@@ -1,42 +1,30 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
+# Exclusion des dépendences du projet. Elles peuvent être regénérées
+# automatiquement.
+.nyc_output/
+node_modules/
+false/
 
-# Compiled output
-**/dist
-/tmp
-/out-tsc
-/bazel-out
+# Dictionaries
+#assets/
 
-# Node
-/node_modules
+# Exclusion des fichiers Javascripts
+out/
+
+# NPM Debug Log
 npm-debug.log
-yarn-error.log
 
-# IDEs and editors
-.idea/
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
+##Typescrit compilation ##
 
-# Visual Studio Code
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-.history/*
+*.js.map
+*.js
 
-# Miscellaneous
-/.angular/cache
-.sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
-testem.log
-/typings
 
-# System files
-.DS_Store
-Thumbs.db
+# Garder les fichiers necessaires pour les tests
+!systemjs.config.js
+!karma.conf.js
+!karma-test-shim.js
+!systemjs.config.extras.js
+!tsconfig.app.json
+!tsconfig.spec.json
+!tsconfig.json
+!package-lock.json
