@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  limo-node-server: 
+    restart: always
+    build: 
+      context: "./node-server"
+
+  limo-ros-server:
+    restart: always
+    build: 
+      context: "./ros-server"
