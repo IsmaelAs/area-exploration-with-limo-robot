@@ -2,9 +2,11 @@ version: '3.8'
 
 services:
   drone-node-server: 
+    restart: always
     build: 
       context: "./node-server"
 
   drone-ros-server:
+    restart: always
     build: 
       context: "./ros-server"
