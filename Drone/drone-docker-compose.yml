@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  drone-node-server: 
+    build: 
+      context: "./node-server"
+
+  drone-ros-server:
+    build: 
+      context: "./ros-server"

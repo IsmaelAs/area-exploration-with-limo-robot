@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  limo-node-server: 
+    build: 
+      context: "./node-server"
+
+  limo-ros-server:
+    build: 
+      context: "./ros-server"
