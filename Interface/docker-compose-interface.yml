@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  interface-client: 
+    restart: always
+    build: 
+      context: ./client
+    ports:
+      - "4200:4200"
+
+  interface-server:
+    restart: always
+    build: 
+      context: ./server
+    ports:
+      - "9229:9229"
+
+
