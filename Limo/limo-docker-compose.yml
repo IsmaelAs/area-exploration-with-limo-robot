@@ -10,3 +10,5 @@ services:
     restart: always
     build: 
       context: "./ros-server"
+    environment:
+      - PORT=3000
