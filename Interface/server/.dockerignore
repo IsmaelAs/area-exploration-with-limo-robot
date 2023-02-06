@@ -4,4 +4,3 @@
 **/.gitignore
 **/.dockerignore
 **/out
-**/tsconfig.json
