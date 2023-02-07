@@ -17,7 +17,7 @@ export class ClientController {
             console.log('disconnected from server');
           });
           
-          this.socket.on('message', (message) => {
+          this.socket.on('message', (message: String) => {
             console.log('received message: ', message);
           });
           
