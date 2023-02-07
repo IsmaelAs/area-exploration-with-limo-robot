@@ -8,7 +8,7 @@ RUN . venv/bin/activate
 COPY . /home/flask-server
 
 RUN pip install -r requirements.txt
-CMD ["bash"]
+CMD ["flask", "--app", "main", "run"]
 
 
 
