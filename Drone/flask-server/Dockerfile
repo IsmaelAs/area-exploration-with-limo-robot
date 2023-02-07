@@ -1,17 +1,16 @@
-FROM ros:noetic
+FROM python:3.8
 
-RUN apt update
-RUN apt install curl -y
+WORKDIR /home/flask-server
 
-# install node:18.13
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-RUN . ~/.nvm/nvm.sh && . ~/.bashrc && nvm install 18.13 
-# use npm command in sh
-RUN apt install npm -y
+RUN python3 -m venv venv 
+RUN . venv/bin/activate
 
-COPY . /home/ros-server
-WORKDIR /home/ros-server
+COPY . /home/flask-server
 
-RUN  npm install
+RUN pip install -r requirements.txt
+CMD ["bash"]
 
-CMD ["npm", "start"]
+
+
+
+
