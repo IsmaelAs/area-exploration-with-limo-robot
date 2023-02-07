@@ -2,5 +2,6 @@
     "watch": ["app"],
     "ext": "ts",
     "ignore": ["app/**/*.spec.ts"],
-    "exec": "npm run build && node --inspect out/main.js"
+    "exec": "node --inspect -r ts-node/register -r tsconfig-paths/register ./app/www.ts",
+    "signal": "SIGINT"
 }
