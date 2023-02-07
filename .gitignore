@@ -44,3 +44,6 @@ Thumbs.db
 
 # Node 
 **/package-lock.json
+
+# Python 
+**/venv
