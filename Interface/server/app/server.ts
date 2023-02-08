@@ -4,7 +4,6 @@ import { Service } from 'typedi';
 import { Application } from './app';
 import { Server as SocketServer } from 'socket.io';
 import { ServerSocketController } from './controllers/server.socket.controller';
-import { ClientSocketController } from './controllers/client.socket.controller';
 
 
 
@@ -16,7 +15,6 @@ export class Server {
     private server: http.Server;
     private io: SocketServer;
     private serverSocketController: ServerSocketController;
-    private clientSocketController: ClientSocketController
 
 
     constructor(private readonly application: Application) {}
@@ -48,9 +46,6 @@ export class Server {
         
         this.serverSocketController = new ServerSocketController(this.io);
         this.serverSocketController.init();
-        this.clientSocketController = new ClientSocketController();
-        this.clientSocketController.connectToServer();
-
 
     }
 
