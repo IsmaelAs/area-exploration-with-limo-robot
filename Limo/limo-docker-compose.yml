@@ -10,5 +10,14 @@ services:
     restart: always
     build: 
       context: "./ros-server"
-    environment:
-      - PORT=3000
+    depends_on:
+      - limo-bridge-server
+      - limo-node-server
+
+  limo-bridge-server:
+    restart: always
+    build: 
+      context: "./bridge-server"
+    ports:
+      - 11311:11311
+
