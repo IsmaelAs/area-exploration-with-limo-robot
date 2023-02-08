@@ -14,8 +14,8 @@ export class NodeManager {
   }
 
   // Send command to move limo
-  move(command :Command, nbrSendingMsg?: number): void{
-    nbrSendingMsg ? this.nodeMouvement.move(command, nbrSendingMsg) : this.nodeMouvement.move(command)
+  async move(command :Command, nbrSendingMsg?: number): Promise<void>{
+    nbrSendingMsg ? await this.nodeMouvement.move(command, nbrSendingMsg) : await this.nodeMouvement.move(command)
   }
 
   // Stop all nodes
