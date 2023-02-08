@@ -31,21 +31,21 @@ export class NodeMouvement {
 
         // Console error when error
         this.ros.on('error', (err: Error) => {
-            console.error(`${this.name} : ${err.stack}`)
+            console.error(`${this.name} : ${err.message}`)
         })
 
         // Wait for ROS to connect to the bridge
         this.ros.on('connection', () => {
             console.log(`${this.name} : ROS connected`);
+            // initialise publisher
+            this.publisherMouvement = new Topic({
+                ros: this.ros,
+                name: "cmd_vel",
+                messageType: "geometry_msgs/Twist",                
+                queue_size: 10
+            })
         });
 
-        // initialise publisher
-        this.publisherMouvement = new Topic({
-            ros: this.ros,
-            name: "cmd_vel",
-            messageType: "geometry_msgs/Twist",                
-            queue_size: 10
-        })
 
         // Console when connection closed
         this.ros.on('close', () => {
@@ -92,7 +92,7 @@ export class NodeMouvement {
         const msg = new Message(data)
         for(let _ = 0; _ < nbrSendingMsg; _++) {
             this.publisherMouvement.publish(msg)
-            await delay(250)
+            await delay(1000)
         }
         this.publisherMouvement.publish(this.nulVelocityMsg)
     }
