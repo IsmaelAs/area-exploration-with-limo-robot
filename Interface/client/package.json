@@ -18,6 +18,8 @@
     "@angular/platform-browser-dynamic": "^15.0.0",
     "@angular/router": "^15.0.0",
     "rxjs": "~7.5.0",
+    "socket.io": "^1.4.8",
+    "socket.io-client": "^4.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
   },
