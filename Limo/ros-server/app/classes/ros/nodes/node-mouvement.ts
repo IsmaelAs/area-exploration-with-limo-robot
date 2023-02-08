@@ -9,10 +9,25 @@ export class NodeMouvement {
 
     private publisherMouvement: Topic
     private ros: Ros
+    private nulVelocityMsg: Message
 
     // Connect the node to the Limo
     initNodeMouvement(): void {
         this.ros = new Ros({ url: ROS_MASTER_URI })
+
+
+        this.nulVelocityMsg = new Message({
+            linear: {
+                x: 0,
+                y: 0, 
+                z: 0
+            },
+            angular: {
+                x: 0,
+                y: 0,
+                z: 0
+            }
+        }) 
 
         // Console error when error
         this.ros.on('error', (err: Error) => {
@@ -21,16 +36,16 @@ export class NodeMouvement {
 
         // Wait for ROS to connect to the bridge
         this.ros.on('connection', () => {
-
-            // Initialise the publisher to the cmd_vel topic while ROS is connected
-            this.publisherMouvement = new Topic({
-                ros: this.ros,
-                name: "/cmd_vel",
-                messageType: "geometry_msgs/Twist",                
-                queue_size: 10
-            })
-
+            console.log(`${this.name} : ROS connected`);
         });
+
+        // initialise publisher
+        this.publisherMouvement = new Topic({
+            ros: this.ros,
+            name: "cmd_vel",
+            messageType: "geometry_msgs/Twist",                
+            queue_size: 10
+        })
 
         // Console when connection closed
         this.ros.on('close', () => {
@@ -45,27 +60,27 @@ export class NodeMouvement {
     }
 
     // Send command to make the limo move
-    move(command: Command, nbrSendingMsg = 5): void {
+    async move(command: Command, nbrSendingMsg = 5): Promise<void> {
         console.log(`${this.name} : Moving ${command}`);
 
         switch (command) {
             case "forward":
-                this.moveForward(nbrSendingMsg);
+                await this.moveForward(nbrSendingMsg);
                 break;
             case "backward":
-                this.moveBackward(nbrSendingMsg);
+                await this.moveBackward(nbrSendingMsg);
                 break;
             case "left-forward":
-                this.turnLeftForward(nbrSendingMsg);
+                await this.turnLeftForward(nbrSendingMsg);
                 break;
             case "right-forward":
-                this.turnRightForward(nbrSendingMsg);
+                await this.turnRightForward(nbrSendingMsg);
                 break;
             case "right-backward":
-                this.turnRightBackward(nbrSendingMsg);
+                await this.turnRightBackward(nbrSendingMsg);
                 break;
             case "left-forward":
-                this.turnLeftBackward(nbrSendingMsg);
+                await this.turnLeftBackward(nbrSendingMsg);
                 break;
             default:
                 console.log("Invalid movement command");
@@ -73,45 +88,47 @@ export class NodeMouvement {
         }
     }
 
-    private sendMsg(nbrSendingMsg: number, data: Twist) {
+    private async sendMsg(nbrSendingMsg: number, data: Twist) {
         const msg = new Message(data)
         for(let _ = 0; _ < nbrSendingMsg; _++) {
             this.publisherMouvement.publish(msg)
-            delay(250)
+            await delay(250)
         }
+        this.publisherMouvement.publish(this.nulVelocityMsg)
     }
 
-    private moveForward(nbrSendingMsg: number) {
+    private async moveForward(nbrSendingMsg: number) {
         const data: Twist = {
             linear: {
                 x: 1
             }
         } 
-        this.sendMsg(nbrSendingMsg, data)
+        await this.sendMsg(nbrSendingMsg, data)
     }   
     
-    private moveBackward(nbrSendingMsg: number) {
+    private async moveBackward(nbrSendingMsg: number) {
         const data: Twist = {
             linear: {
                 x: -1
             }
         } 
-        this.sendMsg(nbrSendingMsg, data)
+        await this.sendMsg(nbrSendingMsg, data)
     }
 
-    private turnLeftForward(nbrSendingMsg: number) {
+    private async turnLeftForward(nbrSendingMsg: number) {
         const data: Twist = {
             linear: {
-                x: 1
+                x: 1,
+
             },
             angular: {
                 z: -1
             }
         } 
-        this.sendMsg(nbrSendingMsg, data)
+        await this.sendMsg(nbrSendingMsg, data)
     }
 
-    private turnRightForward(nbrSendingMsg: number) {
+    private async turnRightForward(nbrSendingMsg: number) {
         const data: Twist = {
             linear: {
                 x: 1
@@ -120,10 +137,10 @@ export class NodeMouvement {
                 z: 1
             }
         } 
-        this.sendMsg(nbrSendingMsg, data)
+        await this.sendMsg(nbrSendingMsg, data)
     }
 
-    private turnRightBackward(nbrSendingMsg: number) {
+    private async turnRightBackward(nbrSendingMsg: number) {
         const data: Twist = {
             linear: {
                 x: -1
@@ -132,10 +149,10 @@ export class NodeMouvement {
                 z: 1
             }
         } 
-        this.sendMsg(nbrSendingMsg, data)
+        await this.sendMsg(nbrSendingMsg, data)
     }
 
-    private turnLeftBackward(nbrSendingMsg: number) {
+    private async turnLeftBackward(nbrSendingMsg: number) {
         const data: Twist = {
             linear: {
                 x: -1
@@ -144,7 +161,7 @@ export class NodeMouvement {
                 z: -1
             }
         } 
-        this.sendMsg(nbrSendingMsg, data)
+        await this.sendMsg(nbrSendingMsg, data)
     }
 
 }
