@@ -21,7 +21,7 @@ export class ClientSocketController {
 
                 // send a message back to server
                 setTimeout(() => {
-                    this.socket1.emit('client-message', 'Ceci est un message du client - Rover')
+                    this.socket1.emit('client-message', 'Ceci est un message du client backend')
                 }, 1000);
             })
         })
@@ -35,7 +35,7 @@ export class ClientSocketController {
 
                 // send a message back to server
                 setTimeout(() => {
-                    this.socket2.emit('client-message', 'Ceci est un message du client - Drone')
+                    this.socket2.emit('client-message', 'Ceci est un message du client backend')
                 }, 1000);
             })
         })

@@ -10,7 +10,7 @@ import { ClientSocketController } from './controllers/client.socket.controller';
 
 @Service()
 export class Server {
-    private static readonly appPort: string | number | boolean = Server.normalizePort(process.env.PORT || '3000');
+    private static readonly appPort: string | number | boolean = Server.normalizePort(process.env.PORT || '9330');
     // eslint-disable-next-line @typescript-eslint/no-magic-numbersz
     private static readonly baseDix: number = 10;
     private server: http.Server;
@@ -46,10 +46,10 @@ export class Server {
                 cors: ["*"]
             })
         
-        this.serverSocketController = new ServerSocketController(this.io)
-        this.serverSocketController.init()
-        this.clientSocketController = new ClientSocketController()
-        this.clientSocketController.connectToServer()
+        this.serverSocketController = new ServerSocketController(this.io);
+        this.serverSocketController.init();
+        this.clientSocketController = new ClientSocketController();
+        this.clientSocketController.connectToServer();
 
 
     }
