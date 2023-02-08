@@ -1,77 +1,71 @@
+import delay from 'delay'
+import {Topic, Ros, Message} from 'roslib'
+import Twist from '../../../interfaces/Twist'
 import { ROS_MASTER_URI } from '../../../constants/url'
-import { BehaviorSubject } from 'rxjs'
-
-const ros = require('rosnodejs')
-// const roslib = require("roslib")
+import Command from "../../../types/Command"
 
 export class NodeMouvement {
+    private name: String = "Node Mouvement"
 
-    publisherMouvement: any
-    subscriberMouvement: any
-    master: any
+    private publisherMouvement: Topic
+    private ros: Ros
 
-    valuePassor: BehaviorSubject<unknown>
+    // Connect the node to the Limo
+    initNodeMouvement(): void {
+        this.ros = new Ros({ url: ROS_MASTER_URI })
 
-    // async init() {
-    //     this.master = new roslib.Ros({ url: "ws://localhost:9090" })
-
-
-    //     this.master.on('connection', function() {
-    //             console.log('Connected to websocket server.');
-    //         });
-            
-    //         this.master.on('error', function(error:Error) {
-    //             console.log('Error connecting to websocket server: ', error);
-    //         });
-            
-    //         this.master.on('close', function() {
-    //             console.log('Connection to websocket server closed.');
-    //         });
-
-    //     this.publisherMouvement = new roslib.Topic({
-    //         ros: this.master,
-    //         name: "/cmd_vel",
-    //         messageType: "geometry_msgs/Twist"
-    //     })
-
-    // }
-    async init(){
-        await ros.initNode('mouvement_node', {rosMasterUri: ROS_MASTER_URI}).then(() => {
-        console.log('allo')
-        const nh = ros.nh
-        this.publisherMouvement = nh.advertise('cmd_vel', 'geometry_msgs/Twist')
-        this.subscriberMouvement = nh.subscribe('rosout', 'rosgraph_msgs/Log', (msg: any) => {
-            this.valuePassor.next(msg)
+        // Console error when error
+        this.ros.on('error', (err: Error) => {
+            console.error(`${this.name} : ${err.stack}`)
         })
-    })}
 
-    // move(msg: String) {
-    //     console.log(msg);
-    //     const msg2 = new roslib.Message({
-    //         linear : {
-    //             x : 1,
-    //             y : 0,
-    //             z : 0
-    //         }
-    //     });
-    //     console.log(msg2)
-    //     for (let i =0; i<10; i++)
-    //         this.publisherMouvement.publish(msg2)
-    // }
+        // Wait for ROS to connect to the bridge
+        this.ros.on('connection', () => {
 
-    move(command: string) {
+            // Initialise the publisher to the cmd_vel topic while ROS is connected
+            this.publisherMouvement = new Topic({
+                ros: this.ros,
+                name: "/cmd_vel",
+                messageType: "geometry_msgs/Twist",                
+                queue_size: 10
+            })
+
+        });
+
+        // Console when connection closed
+        this.ros.on('close', () => {
+            console.log(`${this.name} : Connection closed !`);
+            
+        })
+    }
+
+    // Close connection to all nodes
+    closeNodeMouvement() {
+        this.ros.close()
+    }
+
+    // Send command to make the limo move
+    move(command: Command, nbrSendingMsg = 5): void {
+        console.log(`${this.name} : Moving ${command}`);
+
         switch (command) {
             case "forward":
-                this.moveForward();
+                this.moveForward(nbrSendingMsg);
                 break;
             case "backward":
-                this.moveBackward();
+                this.moveBackward(nbrSendingMsg);
                 break;
-            case "left":
-                this.turnLeft();
+            case "left-forward":
+                this.turnLeftForward(nbrSendingMsg);
                 break;
-            case "right":
-                this.turnRight();
+            case "right-forward":
+                this.turnRightForward(nbrSendingMsg);
+                break;
+            case "right-backward":
+                this.turnRightBackward(nbrSendingMsg);
+                break;
+            case "left-forward":
+                this.turnLeftBackward(nbrSendingMsg);
                 break;
             default:
                 console.log("Invalid movement command");
@@ -79,37 +73,78 @@ export class NodeMouvement {
         }
     }
 
-    moveForward() {
-        console.log('Moving robot forward');
-        let str = ros.require('geometry_msgs')
-        const msg = new str.msg.Twist({ data: {
-            linear : {
-                            x : 1,
-                            y : 0,
-                            z : 0
-                        }
-        }})
-        msg.header.frame_id = 'base'
-        for (let i =0; i<10; i++)
+    private sendMsg(nbrSendingMsg: number, data: Twist) {
+        const msg = new Message(data)
+        for(let _ = 0; _ < nbrSendingMsg; _++) {
             this.publisherMouvement.publish(msg)
-}
-
-    moveBackward() {
-        console.log('Moving robot backward');
-        this.publisherMouvement.publish({data: "move_backward"})
+            delay(250)
+        }
     }
 
-    turnLeft() {
-        console.log('Turning robot left');
-        this.publisherMouvement.publish({data: "turn_left"})
+    private moveForward(nbrSendingMsg: number) {
+        const data: Twist = {
+            linear: {
+                x: 1
+            }
+        } 
+        this.sendMsg(nbrSendingMsg, data)
+    }   
+    
+    private moveBackward(nbrSendingMsg: number) {
+        const data: Twist = {
+            linear: {
+                x: -1
+            }
+        } 
+        this.sendMsg(nbrSendingMsg, data)
     }
 
-    turnRight() {
-        console.log('Turning robot right');
-        this.publisherMouvement.publish({data: "turn_right"})
+    private turnLeftForward(nbrSendingMsg: number) {
+        const data: Twist = {
+            linear: {
+                x: 1
+            },
+            angular: {
+                z: -1
+            }
+        } 
+        this.sendMsg(nbrSendingMsg, data)
     }
 
-    subscribe() {
-        this.valuePassor.asObservable()
+    private turnRightForward(nbrSendingMsg: number) {
+        const data: Twist = {
+            linear: {
+                x: 1
+            },
+            angular: {
+                z: 1
+            }
+        } 
+        this.sendMsg(nbrSendingMsg, data)
     }
+
+    private turnRightBackward(nbrSendingMsg: number) {
+        const data: Twist = {
+            linear: {
+                x: -1
+            },
+            angular: {
+                z: 1
+            }
+        } 
+        this.sendMsg(nbrSendingMsg, data)
+    }
+
+    private turnLeftBackward(nbrSendingMsg: number) {
+        const data: Twist = {
+            linear: {
+                x: -1
+            },
+            angular: {
+                z: -1
+            }
+        } 
+        this.sendMsg(nbrSendingMsg, data)
+    }
+
 }
