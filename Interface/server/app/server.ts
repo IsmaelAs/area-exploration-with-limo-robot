@@ -2,10 +2,9 @@ import * as http from 'http';
 import { AddressInfo } from 'net';
 import { Service } from 'typedi';
 import { Application } from './app';
-import { SocketManager } from './socket-manager/socket-manager.service';
+//import { SocketManager } from './socket-manager/socket-manager.service';
 import { Server as SocketServer } from 'socket.io';
 import { ServerSocketController } from './controllers/server.socket.controller';
-import { ClientSocketController } from './controllers/client.socket.controller';
 
 
 
@@ -15,10 +14,9 @@ export class Server {
     // eslint-disable-next-line @typescript-eslint/no-magic-numbersz
     private static readonly baseDix: number = 10;
     private server: http.Server;
-    private socketManager: SocketManager;
+  //  private socketManager: SocketManager;
     private io: SocketServer;
     private serverSocketController: ServerSocketController;
-    private clientSocketController: ClientSocketController
 
 
     constructor(private readonly application: Application) {}
@@ -39,14 +37,14 @@ export class Server {
         this.application.app.set('port', Server.appPort);
         this.server = http.createServer(this.application.app);
         console.log(Server.appPort);
-        const socket =  require('socket.io')(this.server, { cors:['*']});
+        //const socket =  require('socket.io')(this.server, { cors:['*']});
         
         this.server.listen(Server.appPort);
         this.server.on('error', (error: NodeJS.ErrnoException) => this.onError(error));
         this.server.on('listening', () => this.onListening());
 
-        this.socketManager = new SocketManager(socket);
-        this.socketManager.handleSockets();
+       // this.socketManager = new SocketManager(socket);
+       // this.socketManager.handleSockets();
         this.io = require("socket.io")(this.server, 
             {
                 cors: ["*"]
@@ -54,9 +52,6 @@ export class Server {
         
         this.serverSocketController = new ServerSocketController(this.io);
         this.serverSocketController.init();
-        this.clientSocketController = new ClientSocketController();
-        this.clientSocketController.connectToServer();
-
 
     }
 
