@@ -5,6 +5,8 @@ services:
     restart: always
     build: 
       context: "./node-server"
+    environment:
+      - BACKEND_URL
 
   limo-ros-server:
     restart: always
@@ -18,6 +20,7 @@ services:
     restart: always
     build: 
       context: "./bridge-server"
+    environment:
+      - ROS_MASTER_URI=http://172.29.170.62:11311
     ports:
       - 11311:11311
-
