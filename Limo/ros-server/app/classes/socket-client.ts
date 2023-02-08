@@ -21,19 +21,21 @@ export class SocketClient {
       // Start all nodes when socker is connected
       this.nodeManager.start();
 
-      this.socket.on('move', (command: Command, nbrSendingMsg?: number) => {
+      this.socket.on('move', async (command: Command, nbrSendingMsg?: number) => {
         console.log(`Received response from node server: ${command}`);
-        this.nodeManager.move(command, nbrSendingMsg)
+        await this.nodeManager.move(command, nbrSendingMsg)
       });
 
       this.socket.on('error', (err: Error) => {
         console.log(`Socket Client Error : ${err.stack}`);
         this.nodeManager.stop()
+        this.socket.removeAllListeners()
       })
 
       this.socket.on('disconnect', () => {
         console.log('Disconnected from limo robot');
         this.nodeManager.stop();
+        this.socket.removeAllListeners()
 
       });
     });
