@@ -3,9 +3,8 @@ import { AddressInfo } from 'net';
 import { Service } from 'typedi';
 import { Application } from './app';
 import { Server as SocketServer } from 'socket.io';
-import { ServerSocketService } from './services/server-socket';
-import { ClientSocketService } from './services/client-socket';
-
+import { ServerSocketController } from './controllers/server.socket.controller';
+import { ClientSocketController } from './controllers/client.socket.controller';
 
 
 
@@ -16,8 +15,8 @@ export class Server {
     private static readonly baseDix: number = 10;
     private server: http.Server;
     private io: SocketServer;
-    private serverSocketService: ServerSocketService
-    private clientSocketService: ClientSocketService
+    private serverSocketController: ServerSocketController;
+    private clientSocketController: ClientSocketController
 
 
     constructor(private readonly application: Application) {}
@@ -47,10 +46,10 @@ export class Server {
                 cors: ["*"]
             })
         
-        this.serverSocketService = new ServerSocketService(this.io)
-        this.serverSocketService.init()
-        this.clientSocketService = new ClientSocketService()
-        this.clientSocketService.connectToServer()
+        this.serverSocketController = new ServerSocketController(this.io)
+        this.serverSocketController.init()
+        this.clientSocketController = new ClientSocketController()
+        this.clientSocketController.connectToServer()
 
 
     }

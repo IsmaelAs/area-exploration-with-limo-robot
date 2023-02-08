@@ -1,7 +1,8 @@
 import { io, Socket } from 'socket.io-client';
+import { injectable } from 'inversify';
 
-
-export class ClientSocketService {
+@injectable()
+export class ClientSocketController {
     private socket: Socket
 
     constructor(){
