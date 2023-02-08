@@ -4,28 +4,26 @@ import { injectable } from 'inversify';
 @injectable()
 export class ServerSocketController {
     private io: SocketServer;
-    private port: number;
 
     constructor(io: SocketServer) {
         this.io = io;
-        this.port = 3020; // or any other port number
     }
 
     init() {
-        this.io.listen(this.port);
-        this.io.on('connection', (socket) => {
-            console.log('Le server a recu une connection du socket:')
+      this.io.on("connection", (socket) => {
+        console.log("Socket Server Connected !");
 
-            // send a message to client
-            setTimeout(() => {
-                socket.emit('server-message', 'Ceci est un message du serveur Limo')
-            }, 1000);
+        socket.on("error", (err: Error) => {
+        console.log(`Io : Io Error : ${err.stack}`);
+        });
 
-            //receive a message from client
-            socket.on('client-message', (message) => {
-                console.log('Le serveur a recu un message du client')
-                console.log(message)
-            })
-        })
+        socket.on("disconnect", () => {
+          console.log("Disconnected from limo robot");
+        });
+      });
+    }
+
+    emit<T>(event: string, data?: T) {
+        data ? this.io.emit(event, data) : this.io.emit(event)
     }
 }
