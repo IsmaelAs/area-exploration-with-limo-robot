@@ -19,7 +19,7 @@ export class ClientSocketController {
         this.client.on("connect", () => {
             console.log("Socket connected to backend");
 
-            this.client.on("limo-move", (movement: OnRobotMovement) => {
+            this.client.on(`limo-${process.env.LIMO_ID}-move`, (movement: OnRobotMovement) => {
                 console.log('move event received');
                 this.limoEmitter.emit("move", movement)
                 
