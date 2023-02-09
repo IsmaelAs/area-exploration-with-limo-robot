@@ -13,6 +13,6 @@ services:
     build: 
       context: ./server
     ports:
-      - "9229:9229"
+      - "9330:9330"
 
 
