@@ -18,7 +18,8 @@ export class ClientSocketController {
     init() {
         this.client.on("connect", () => {
             console.log("Socket connected to backend");
-
+            console.log(`limo-${process.env.LIMO_ID}-move`);
+            
             this.client.on(`limo-${process.env.LIMO_ID}-move`, (movement: OnRobotMovement) => {
                 console.log('move event received');
                 this.limoEmitter.emit("move", movement)
@@ -32,13 +33,13 @@ export class ClientSocketController {
             });
 
             this.client.on("error", (err: Error) => {
-            console.log(`client Client Error : ${err.stack}`);
-            this.client.removeAllListeners()
+                console.log(`client Client Error : ${err.stack}`);
+                this.client.removeAllListeners()
 
             });
 
             this.client.on("disconnect", () => {
-                console.log("Disconnected from limo robot");
+                console.log("Client node socket disconnected");
                 this.client.removeAllListeners()
             });
         });

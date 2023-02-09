@@ -12,7 +12,7 @@ export class ServerSocketController {
     init() {
         this.io.on("connection", (socket) => {
             
-            socket.on('advance', (movement: RobotMovement) => {   
+            socket.on('identify', (movement: RobotMovement) => {   
                 const data: OnRobotMovement = {
                     direction: movement.direction, 
                     distance: movement.distance
@@ -25,7 +25,9 @@ export class ServerSocketController {
                     direction: movement.direction, 
                     distance: movement.distance
                 }                
-
+                console.log('start mission recived', data);
+                console.log("emit on ", `${movement.robot}-move`);
+                
                 this.io.emit(`${movement.robot}-move`, data);
             })
 

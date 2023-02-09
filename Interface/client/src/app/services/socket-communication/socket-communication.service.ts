@@ -33,7 +33,7 @@ export class SocketCommunicationService {
       direction: DIRECTION_MOVEMENT.FORWARD,
       distance: DISTANCE_MOVEMENT.CLOSE
     }
-
+    console.log('start mission', movement);
     this.socket.emit("start-mission", movement)
   }
   

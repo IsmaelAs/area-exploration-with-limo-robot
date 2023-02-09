@@ -17,7 +17,7 @@ export class AppComponent {
     ){}
   
 
-  identify(){
+  identify(){    
     this.socketCommunication.identify(this.type);
   }
 
@@ -30,7 +30,7 @@ export class AppComponent {
   }
 
 
-  setType(choice: RobotTargetType) {
+  setType(choice: RobotTargetType) { 
     this.type = choice;
   }
 

@@ -18,7 +18,7 @@ export class ServerSocketController {
         });
 
         socket.on("disconnect", () => {
-          console.log("Disconnected from limo robot");
+          console.log("server node socket disconnected");
         });
       });
     }
