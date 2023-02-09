@@ -9,8 +9,8 @@ import RobotTargetType from './types/RobotType';
 })
 export class AppComponent {
 
-  list: RobotTargetType[] = ["drone", "limo", "robots"];
-  private type: RobotTargetType = "limo";
+  list: RobotTargetType[] = ["limo-1", "limo-2", "robots"];
+  private type: RobotTargetType = "limo-1";
   
   constructor(
     private socketCommunication : SocketCommunicationService
