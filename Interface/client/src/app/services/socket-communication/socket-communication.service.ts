@@ -16,14 +16,14 @@ export class SocketCommunicationService {
     this.socket = io(BACKEND_URL);
   }
 
-  advance(robot: RobotTargetType){
+  identify(robot: RobotTargetType){
     const movement: RobotMovement = {
       robot: robot,
-      direction: DIRECTION_MOVEMENT.FORWARD,
+      direction: DIRECTION_MOVEMENT.LEFT_FORWARD,
       distance: DISTANCE_MOVEMENT.FAR
     }
     
-    this.socket.emit("advance", movement);
+    this.socket.emit("identify", movement);
   }
 
   startMission(robot: RobotTargetType) {
