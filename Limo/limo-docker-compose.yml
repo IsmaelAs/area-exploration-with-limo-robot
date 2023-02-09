@@ -6,7 +6,7 @@ services:
     build: 
       context: "./node-server"
     environment:
-      - BACKEND_URL
+      - BACKEND_IP
 
   limo-ros-server:
     restart: always
