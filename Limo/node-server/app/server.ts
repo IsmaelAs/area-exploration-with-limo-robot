@@ -9,7 +9,7 @@ import { ClientSocketController } from './controllers/client.socket.controller';
 
 @Service()
 export class Server {
-    private static readonly appPort: string | number | boolean = Server.normalizePort(process.env.PORT || '9332');
+    private static readonly appPort: string | number | boolean = Server.normalizePort('9332');
     private static readonly baseDix: number = 10;
     private server: http.Server;
     private io: SocketServer;
