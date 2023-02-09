@@ -2,7 +2,7 @@ import { injectable } from "inversify";
 import { io, Socket } from "socket.io-client";
 import { BACKEND_URL } from "../constants/url";
 import { ServerSocketController } from "./server.socket.controller";
-import OnRobotMovement from "@app/classes/interfaces/on-robots-movement-interface";
+import OnRobotMovement from "@app/interfaces/on-robots-movement-interface";
 
 @injectable()
 export class ClientSocketController {
