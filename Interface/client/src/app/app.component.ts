@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { SocketCommunicationService } from './services/socket-communication/socket-communication.service';
-import RobotTargetType from './types/robots';
+import RobotTargetType from './types/RobotType';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -12,7 +13,8 @@ export class AppComponent {
   private type: RobotTargetType = "limo";
   
   constructor(
-    private socketCommunication : SocketCommunicationService){}
+    private socketCommunication : SocketCommunicationService
+    ){}
   
 
   advance(){

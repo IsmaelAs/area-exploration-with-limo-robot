@@ -6,13 +6,25 @@ services:
     build: 
       context: ./client
     ports:
-      - "4200:4200"
+      - 4200:4200
+    depends_on:
+      - server-interface
+    networks:
+      - project-net
+    links:
+      - "server-interface:server"
 
-  interface-server:
+  server-interface:
     restart: always
     build: 
       context: ./server
     ports:
-      - "9330:9330"
+      - 9330:9330
+    networks:
+      - project-net
+
+networks:
+    project-net:
+        driver: bridge
 
 

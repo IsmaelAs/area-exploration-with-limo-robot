@@ -6,10 +6,9 @@ import { Server as SocketServer } from 'socket.io';
 import { ServerSocketController } from './controllers/server.socket.controller';
 
 
-
 @Service()
 export class Server {
-    private static readonly appPort: string | number | boolean = Server.normalizePort('9330');
+    private static readonly appPort: string | number | boolean = Server.normalizePort(9330);
     private static readonly baseDix: number = 10;
     private server: http.Server;
     private io: SocketServer;
@@ -30,7 +29,6 @@ export class Server {
     }
 
     init(): void {
-        console.log("init socket manager");
         this.application.app.set('port', Server.appPort);
         this.server = http.createServer(this.application.app);
         console.log(Server.appPort);
@@ -38,12 +36,11 @@ export class Server {
         this.server.listen(Server.appPort);
         this.server.on('error', (error: NodeJS.ErrnoException) => this.onError(error));
         this.server.on('listening', () => this.onListening());
-
-        this.io = require("socket.io")(this.server, 
-            {
-                cors: ["*"]
-            })
         
+        console.log("init socket manager");
+        this.io = new SocketServer(this.server, {
+            cors: {origin: "*"}
+        })
         this.serverSocketController = new ServerSocketController(this.io);
         this.serverSocketController.init();
 

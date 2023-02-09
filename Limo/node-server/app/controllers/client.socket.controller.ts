@@ -2,23 +2,24 @@ import { injectable } from "inversify";
 import { io, Socket } from "socket.io-client";
 import { BACKEND_URL } from "../constants/url";
 import { ServerSocketController } from "./server.socket.controller";
+import Command from "@app/types/Command";
 
 @injectable()
 export class ClientSocketController {
     private client: Socket;
     private limoEmitter: ServerSocketController;
 
-    constructor(serverSocker: ServerSocketController) {
-    this.client = io(BACKEND_URL);
-    this.limoEmitter = serverSocker
+    constructor(serverSocket: ServerSocketController) {
+        this.client = io(BACKEND_URL);
+        this.limoEmitter = serverSocket
     }
 
     init() {
         this.client.on("connect", () => {
             console.log("Socket connected to backend");
 
-            this.client.on("limo-move", () => {
-                this.limoEmitter.emit("move", "forward")
+            this.client.on("limo-move", (direction: Command, distance: number) => {
+                this.limoEmitter.emit("move", direction, distance)
             });
 
             this.client.on("error", (err: Error) => {

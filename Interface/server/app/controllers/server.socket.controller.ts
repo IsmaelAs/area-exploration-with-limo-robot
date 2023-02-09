@@ -1,6 +1,5 @@
 import { Server as SocketServer } from 'socket.io';
-
-
+import RobotMovement from '@app/interfaces/robots-movement-interface';
 
 export class ServerSocketController {
     private io: SocketServer;
@@ -10,16 +9,19 @@ export class ServerSocketController {
     }
 
     init() {
-        this.io.on('connection', (socket) => {
-            console.log('Le server a recu une connection du socket:')
-
-
-            socket.on('avancer', () => {
-                console.log("avancer dans socket controller");
-                this.io.emit('limo-avancer');
+        this.io.on("connection", (socket) => {
+            
+            socket.on('advance', (movement: RobotMovement) => {                
+                this.io.emit(`${movement.robot}-move`, movement.direction, movement.distance);
             })
 
+            socket.on('start-mission', (movement: RobotMovement) => {
+                this.io.emit(`${movement.robot}-move`, movement.direction, movement.distance);
+            })
 
+            socket.on('stop-mission', (movement: RobotMovement) => {
+                this.io.emit(`${movement.robot}-move`, movement.direction, movement.distance);
+            })
         })
     }
 

@@ -18,7 +18,7 @@ export class SocketClient {
     this.socket.on('connect', () => {
       console.log('Connected to node server');
 
-      // Start all nodes when socker is connected
+      // Start all nodes when socket is connected
       this.nodeManager.start();
 
       this.socket.on('move', async (command: Command, nbrSendingMsg?: number) => {

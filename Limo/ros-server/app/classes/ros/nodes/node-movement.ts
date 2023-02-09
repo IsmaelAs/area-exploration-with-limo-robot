@@ -4,15 +4,15 @@ import Twist from '../../../interfaces/Twist'
 import { BRIDGE_URI } from '../../../constants/url'
 import Command from "../../../types/Command"
 
-export class NodeMouvement {
-    private name: String = "Node Mouvement"
+export class NodeMovement {
+    private name: String = "Node Movement"
 
-    private publisherMouvement: Topic
+    private publisherMovement: Topic
     private ros: Ros
     private nulVelocityMsg: Message
 
     // Connect the node to the Limo
-    initNodeMouvement(): void {
+    initNodeMovement(): void {
         this.ros = new Ros({ url: BRIDGE_URI })
 
 
@@ -38,7 +38,7 @@ export class NodeMouvement {
         this.ros.on('connection', () => {
             console.log(`${this.name} : ROS connected`);
             // initialise publisher
-            this.publisherMouvement = new Topic({
+            this.publisherMovement = new Topic({
                 ros: this.ros,
                 name: "cmd_vel",
                 messageType: "geometry_msgs/Twist",                
@@ -55,7 +55,7 @@ export class NodeMouvement {
     }
 
     // Close connection to all nodes
-    closeNodeMouvement() {
+    closeNodeMovement() {
         this.ros.close()
     }
 
@@ -91,10 +91,10 @@ export class NodeMouvement {
     private async sendMsg(nbrSendingMsg: number, data: Twist) {
         const msg = new Message(data)
         for(let _ = 0; _ < nbrSendingMsg; _++) {
-            this.publisherMouvement.publish(msg)
+            this.publisherMovement.publish(msg)
             await delay(1000)
         }
-        this.publisherMouvement.publish(this.nulVelocityMsg)
+        this.publisherMovement.publish(this.nulVelocityMsg)
     }
 
     private async moveForward(nbrSendingMsg: number) {
