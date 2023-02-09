@@ -25,6 +25,12 @@ export class ClientSocketController {
                 
             });
 
+            this.client.on(`robots-move`, (movement: OnRobotMovement) => {
+                console.log('move event received');
+                this.limoEmitter.emit("move", movement)
+                
+            });
+
             this.client.on("error", (err: Error) => {
             console.log(`client Client Error : ${err.stack}`);
             this.client.removeAllListeners()
