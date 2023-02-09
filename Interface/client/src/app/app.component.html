@@ -1,1 +1,21 @@
-<button (click)="avancer()">Démarrer </button>
+<mat-form-field appearance="fill">
+  <mat-label>Selection</mat-label>
+  <mat-select>
+    <mat-option
+      *ngFor="let choice of list"
+      [value]="choice"
+      (click)="setChoice(choice)"
+    >
+      {{ choice === "robots" ? "LES DEUX ROBOTS" : choice.toUpperCase()}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<section id="buttonsSelection" class="justified">
+  <div class="buttons">
+    <button mat-flat-button color="primary" (click)="advance()">
+      Démarrer
+    </button>
+    <button mat-flat-button color="primary" (click)="startMission()">Lancer la mission</button>
+    <button mat-flat-button color="primary" (click)="stopMission()">Arrêter la mission</button>
+  </div>
+</section>
