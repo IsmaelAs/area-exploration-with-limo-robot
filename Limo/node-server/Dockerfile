@@ -4,4 +4,4 @@ COPY . /home/node-server
 WORKDIR /home/node-server
 RUN npm install
 
-CMD [ "npm", 'start' ]
+CMD [ "npm", "start" ]

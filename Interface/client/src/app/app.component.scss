@@ -1,0 +1,22 @@
+.container {
+    min-height: 100vh;
+    height: auto;
+}
+
+.buttons button {
+    padding: 5px;
+    margin-top: 10px;
+    width: 20vw;
+}
+
+.buttonsSelection {
+    justify-content: center;
+    width: 20%;
+    min-width: min-content;
+}
+.justified {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}

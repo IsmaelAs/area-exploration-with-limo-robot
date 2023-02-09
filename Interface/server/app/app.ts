@@ -35,11 +35,6 @@ export class Application {
 
     bindRoutes(): void {
         this.app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerJSDoc(this.swaggerOptions)));
-        /*this.app.use('/classic', this.httpRoomsHandler.router);
-        this.app.use('/best-scores', this.httpScoresHandler.router);
-        this.app.use('/admin/gamesHistory', this.httpGamesHistoryHandler.router);
-        this.app.use('/admin/virtualPlayers', this.httpVirtualPlayerDBHandler.router);
-        this.app.use('/admin/dictionaries', this.httpDictionaryHandler.router);*/
         this.app.use('/', (req, res) => {
             res.redirect('/api/docs');
         });
