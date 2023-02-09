@@ -42,5 +42,8 @@ testem.log
 .DS_Store
 Thumbs.db
 
-# Nodejs
+# Node 
 **/package-lock.json
+
+# Python 
+**/venv
