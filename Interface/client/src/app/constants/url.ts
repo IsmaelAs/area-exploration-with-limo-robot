@@ -1,0 +1,1 @@
+export const BACKEND_URL = "http://interface-server:9330"
