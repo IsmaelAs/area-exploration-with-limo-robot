@@ -21,9 +21,9 @@ export class SocketClient {
       // Start all nodes when socket is connected
       this.nodeManager.start();
 
-      this.socket.on('move', async (command: Command, nbrSendingMsg?: number) => {
-        console.log(`Received response from node server: ${command}`);
-        await this.nodeManager.move(command, nbrSendingMsg)
+      this.socket.on('move', async (movement: {direction: Command, distance?: number}) => {
+        console.log(`Received response from node server: ${movement.direction}`);
+        await this.nodeManager.move(movement.direction, movement.distance)
       });
 
       this.socket.on('error', (err: Error) => {

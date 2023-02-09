@@ -11,16 +11,16 @@ export class ServerSocketController {
     init() {
         this.io.on("connection", (socket) => {
             
-            socket.on('advance', (movement: RobotMovement) => {                
-                this.io.emit(`${movement.robot}-move`, movement.direction, movement.distance);
+            socket.on('advance', (movement: RobotMovement) => {     
+                this.io.emit(`${movement.robot}-move`, { direction: movement.direction, distance: movement.distance});
             })
 
             socket.on('start-mission', (movement: RobotMovement) => {
-                this.io.emit(`${movement.robot}-move`, movement.direction, movement.distance);
+                this.io.emit(`${movement.robot}-move`, { direction: movement.direction, distance: movement.distance});
             })
 
             socket.on('stop-mission', (movement: RobotMovement) => {
-                this.io.emit(`${movement.robot}-move`, movement.direction, movement.distance);
+                this.io.emit(`${movement.robot}-move`, { direction: movement.direction, distance: movement.distance});
             })
         })
     }
