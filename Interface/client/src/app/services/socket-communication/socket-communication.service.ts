@@ -44,6 +44,6 @@ export class SocketCommunicationService {
       distance: DISTANCE_MOVEMENT.CLOSE
     }
 
-    this.socket.emit("stop-mission", robot)
+    this.socket.emit("stop-mission", movement)
   }
 }
