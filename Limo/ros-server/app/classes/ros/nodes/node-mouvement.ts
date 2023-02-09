@@ -1,7 +1,7 @@
 import delay from 'delay'
 import {Topic, Ros, Message} from 'roslib'
 import Twist from '../../../interfaces/Twist'
-import { ROS_MASTER_URI } from '../../../constants/url'
+import { BRIDGE_URI } from '../../../constants/url'
 import Command from "../../../types/Command"
 
 export class NodeMouvement {
@@ -13,7 +13,7 @@ export class NodeMouvement {
 
     // Connect the node to the Limo
     initNodeMouvement(): void {
-        this.ros = new Ros({ url: ROS_MASTER_URI })
+        this.ros = new Ros({ url: BRIDGE_URI })
 
 
         this.nulVelocityMsg = new Message({
