@@ -6,7 +6,7 @@ services:
     build: 
       context: "./node-server"
 
-  drone-ros-server:
+  drone-flask-server:
     restart: always
     build: 
-      context: "./ros-server"
+      context: "./flask-server"
