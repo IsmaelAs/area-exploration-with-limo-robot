@@ -1,1 +1,12 @@
-<button (click)="avancer()">Démarrer </button>
+
+<mat-form-field appearance="fill">
+    <mat-label>Selection</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let choix of liste" [value]="choix" (click)="selectionner(choix)">
+        {{choix}}
+      </mat-option>
+    </mat-select>
+</mat-form-field>
+ <button (click)="avancer()">Démarrer </button> 
+ <button (click)="avancer()">Lancer la mission </button> 
+ <button (click)="avancer()">Arrêter la mission </button> 
