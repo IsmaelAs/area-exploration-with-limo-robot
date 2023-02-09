@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
+import { BACKEND_URL } from 'src/app/constants/url';
+import RobotTargetType from 'src/app/types/robots';
 
 
 @Injectable({
@@ -7,13 +9,21 @@ import { io, Socket } from 'socket.io-client';
 })
 export class SocketCommunicationService {
 
-  socket: Socket;
+  private socket: Socket;
+
   constructor() {
-    this.socket = io('http://localhost:9330');
+    this.socket = io(BACKEND_URL);
   }
 
-  avancer(){
-    console.log("avancer socket comunication service");
-    this.socket.emit('avancer');
+  advance(robot: RobotTargetType){
+    this.socket.emit(`${robot}-advance`);
+  }
+
+  startMission(robot: RobotTargetType) {
+    this.socket.emit(`${robot}-start-mission`)
+  }
+  
+  stopMission(robot: RobotTargetType) {
+    this.socket.emit(`${robot}-stop-mission`)
   }
 }
