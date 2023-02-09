@@ -12,6 +12,8 @@ export class ClientSocketController {
     constructor(serverSocket: ServerSocketController) {
         console.log('backend uri', BACKEND_URL)
         this.client = io(BACKEND_URL);
+        console.log('sal super gens');
+        
         this.limoEmitter = serverSocket
     }
 
