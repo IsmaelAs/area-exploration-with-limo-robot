@@ -13,13 +13,14 @@ services:
     build: 
       context: "./ros-server"
     depends_on:
-      - limo-bridge-server
+      # - limo-bridge-server
       - limo-node-server
-
-
-  limo-bridge-server:
-    restart: always
-    build: 
-      context: "./bridge-server"
     environment:
       - LIMO_IP
+
+
+  # limo-bridge-server:
+  #   restart: always
+  #   build: 
+  #     context: "./bridge-server"
+
