@@ -8,13 +8,13 @@ export class ClientSocketLimo1 {
         this.socket = io(LIMO_URL);
     }
 
-    init() {
+    connectClientSocketToLimo1() {
         this.socket.on("connect", () => {
             console.log('Limo 1 connected to the ROS server');
         })
     }
 
-    emit<T>(event: string, data?: T) {
+    emitToLimo1<T>(event: string, data?: T) {
         data ? this.socket.emit(event, data) : this.socket.emit(event)
     }
 

@@ -20,7 +20,7 @@ export class SocketCommunicationService {
     const movement: RobotMovement = {
       robot: robot,
       direction: DIRECTION_MOVEMENT.LEFT_FORWARD,
-      distance: DISTANCE_MOVEMENT.TOO_FAR
+      distance: DISTANCE_MOVEMENT.FAR_AWAY
     }
     
     this.socket.emit("identify", movement);

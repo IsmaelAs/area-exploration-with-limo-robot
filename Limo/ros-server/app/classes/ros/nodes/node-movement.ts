@@ -3,7 +3,7 @@ import {Topic, Ros, Message} from 'roslib'
 import Twist from '../../../interfaces/Twist'
 import { BRIDGE_URI } from '../../../constants/url'
 import Command from "../../../types/Command"
-
+import { TIME_DELAY } from '../../../constants/time-constants'
 export class NodeMovement {
     private name: String = "Node Movement"
 
@@ -92,7 +92,7 @@ export class NodeMovement {
         const msg = new Message(data)
         for(let _ = 0; _ < nbrSendingMsg; _++) {
             this.publisherMovement.publish(msg)
-            await delay(500)
+            await delay(TIME_DELAY)
         }
         this.publisherMovement.publish(this.nulVelocityMsg)
     }
