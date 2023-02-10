@@ -92,7 +92,7 @@ export class NodeMovement {
         const msg = new Message(data)
         for(let _ = 0; _ < nbrSendingMsg; _++) {
             this.publisherMovement.publish(msg)
-            await delay(500)
+            await delay(550)
         }
         this.publisherMovement.publish(this.nulVelocityMsg)
     }
