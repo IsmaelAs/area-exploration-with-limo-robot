@@ -4,6 +4,8 @@ import { Service } from 'typedi';
 import { Application } from './app';
 import { Server as SocketServer } from 'socket.io';
 import { ServerSocketController } from './controllers/server.socket.controller';
+import { ClientSocketLimo1 } from './controllers/client.socket.limo';
+import { ClientSocketLimo2 } from './controllers/client.socket.limo2';
 
 
 @Service()
@@ -13,6 +15,8 @@ export class Server {
     private server: http.Server;
     private io: SocketServer;
     private serverSocketController: ServerSocketController;
+    private socketLimo?: ClientSocketLimo1
+    private socketLimo2?: ClientSocketLimo2
 
 
     constructor(private readonly application: Application) {}
@@ -41,7 +45,11 @@ export class Server {
         this.io = new SocketServer(this.server, {
             cors: {origin: "*"}
         })
-        this.serverSocketController = new ServerSocketController(this.io);
+
+        if (process.env.LIMO_IP) this.socketLimo = new ClientSocketLimo1()
+        if (process.env.LIMO_IP_2) this.socketLimo2 = new ClientSocketLimo2()
+
+        this.serverSocketController = new ServerSocketController(this.io, this.socketLimo, this.socketLimo2);
         this.serverSocketController.init();
 
     }
