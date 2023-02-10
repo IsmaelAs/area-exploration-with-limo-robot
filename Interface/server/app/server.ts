@@ -46,8 +46,14 @@ export class Server {
             cors: {origin: "*"}
         })
 
-        if (process.env.LIMO_IP) this.socketLimo = new ClientSocketLimo1()
-        if (process.env.LIMO_IP_2) this.socketLimo2 = new ClientSocketLimo2()
+        if (process.env.LIMO_IP_1) {
+            this.socketLimo = new ClientSocketLimo1()
+            this.socketLimo.init()
+        }
+        if (process.env.LIMO_IP_2) {
+            this.socketLimo2 = new ClientSocketLimo2()
+            this.socketLimo2.init()
+        }
 
         this.serverSocketController = new ServerSocketController(this.io, this.socketLimo, this.socketLimo2);
         this.serverSocketController.init();

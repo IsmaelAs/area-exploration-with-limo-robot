@@ -14,7 +14,6 @@ export class ServerSocketController {
     init() {
         this.io.listen(this.port);
         this.io.on('connection', (socket) => {
-            console.log('Le server a recu une connection du socket:')
 
             // send a message to client
             setTimeout(() => {

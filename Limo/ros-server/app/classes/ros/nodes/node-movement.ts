@@ -118,11 +118,11 @@ export class NodeMovement {
     private async turnLeftForward(nbrSendingMsg: number) {
         const data: Twist = {
             linear: {
-                x: 0.5,
+                x: 0.1,
 
             },
             angular: {
-                z: -5
+                z: -7
             }
         } 
         await this.sendMsg(nbrSendingMsg, data)
@@ -131,10 +131,10 @@ export class NodeMovement {
     private async turnRightForward(nbrSendingMsg: number) {
         const data: Twist = {
             linear: {
-                x: 0.5
+                x: 0.1
             },
             angular: {
-                z: 5
+                z: 7
             }
         } 
         await this.sendMsg(nbrSendingMsg, data)
@@ -143,10 +143,10 @@ export class NodeMovement {
     private async turnRightBackward(nbrSendingMsg: number) {
         const data: Twist = {
             linear: {
-                x: -0.5
+                x: -0.1
             },
             angular: {
-                z: 5
+                z: 7
             }
         } 
         await this.sendMsg(nbrSendingMsg, data)
@@ -155,10 +155,10 @@ export class NodeMovement {
     private async turnLeftBackward(nbrSendingMsg: number) {
         const data: Twist = {
             linear: {
-                x: -0.5
+                x: -0.1
             },
             angular: {
-                z: -5
+                z: -7
             }
         } 
         await this.sendMsg(nbrSendingMsg, data)

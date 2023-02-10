@@ -2,11 +2,11 @@ import * as http from 'http';
 import { AddressInfo } from 'net';
 import { Application } from './app';
 import { Server as SocketServer } from 'socket.io';
-import { SocketServer as SocketManager } from './classes/socket-client';
+import { SocketServer as SocketManager } from './classes/socket-server';
 
 
 export class Server {
-    private static readonly appPort: string | number | boolean = Server.normalizePort('9332');
+    private static readonly appPort: string | number | boolean = Server.normalizePort(9332);
     private static readonly baseDix: number = 10;
     private server: http.Server;
     private io: SocketServer;

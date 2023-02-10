@@ -25,6 +25,11 @@ export class SocketServer {
         await this.nodeManager.move(movement.direction, movement.distance)
       });
 
+      socket.on(`robots-move`, async (movement: {direction: Command, distance?: number}) => {
+        console.log(`Received response from node server: ${movement.direction}`);
+        await this.nodeManager.move(movement.direction, movement.distance)
+      });
+
       socket.on('error', (err: Error) => {
         console.log(`Socket Client Error : ${err.stack}`);
         this.nodeManager.stop()

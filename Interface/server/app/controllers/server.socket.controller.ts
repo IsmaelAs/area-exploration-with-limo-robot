@@ -22,12 +22,8 @@ export class ServerSocketController {
                     direction: movement.direction, 
                     distance: movement.distance
                 }
-                if (movement.robot == "limo-1" && this.socketLimo) this.socketLimo.emit(`${movement.robot}-move`, data)
-                if (movement.robot == 'limo-2' && this.socketLimo2) this.socketLimo2.emit(`${movement.robot}-move`, data)
-                if (movement.robot == 'robots' && this.socketLimo && this.socketLimo2) {
-                    this.socketLimo.emit(`${movement.robot}-move`, data)
-                    this.socketLimo2.emit(`${movement.robot}-move`, data)
-                }
+                if ((movement.robot == "limo-1" || movement.robot == 'robots') && this.socketLimo) this.socketLimo.emit(`${movement.robot}-move`, data)
+                if ((movement.robot == "limo-2" || movement.robot == 'robots') && this.socketLimo2) this.socketLimo2.emit(`${movement.robot}-move`, data)
             })
 
             socket.on('start-mission', (movement: RobotMovement) => {
@@ -38,12 +34,8 @@ export class ServerSocketController {
                 console.log('start mission received', data);
                 console.log("emit on ", `${movement.robot}-move`);
                 
-                if (movement.robot == "limo-1" && this.socketLimo) this.socketLimo.emit(`${movement.robot}-move`, data)
-                if (movement.robot == 'limo-2' && this.socketLimo2) this.socketLimo2.emit(`${movement.robot}-move`, data)
-                if (movement.robot == 'robots' && this.socketLimo && this.socketLimo2) {
-                    this.socketLimo.emit(`${movement.robot}-move`, data)
-                    this.socketLimo2.emit(`${movement.robot}-move`, data)
-                }
+                if ((movement.robot == "limo-1" || movement.robot == 'robots') && this.socketLimo) this.socketLimo.emit(`${movement.robot}-move`, data)
+                if ((movement.robot == "limo-2" || movement.robot == 'robots') && this.socketLimo2) this.socketLimo2.emit(`${movement.robot}-move`, data)
             })
 
             socket.on('stop-mission', (movement: RobotMovement) => {
@@ -52,12 +44,8 @@ export class ServerSocketController {
                     distance: movement.distance
                 }                
 
-                if (movement.robot == "limo-1" && this.socketLimo) this.socketLimo.emit(`${movement.robot}-move`, data)
-                if (movement.robot == 'limo-2' && this.socketLimo2) this.socketLimo2.emit(`${movement.robot}-move`, data)
-                if (movement.robot == 'robots' && this.socketLimo && this.socketLimo2) {
-                    this.socketLimo.emit(`${movement.robot}-move`, data)
-                    this.socketLimo2.emit(`${movement.robot}-move`, data)
-                }
+                if ((movement.robot == "limo-1" || movement.robot == 'robots') && this.socketLimo) this.socketLimo.emit(`${movement.robot}-move`, data)
+                if ((movement.robot == "limo-2" || movement.robot == 'robots') && this.socketLimo2) this.socketLimo2.emit(`${movement.robot}-move`, data)
             })
         })
     }

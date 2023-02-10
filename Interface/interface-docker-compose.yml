@@ -17,5 +17,5 @@ services:
     ports:
       - 9330:9330
     environment:
-      - LIMO_IP
+      - LIMO_IP_1
       - LIMO_IP_2

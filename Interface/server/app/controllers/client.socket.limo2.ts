@@ -10,6 +10,7 @@ export class ClientSocketLimo2 {
 
     init() {
         this.socket.on("connect", () => {
+            console.log('Limo 2 connected to the ROS server');
         })
     }
 
