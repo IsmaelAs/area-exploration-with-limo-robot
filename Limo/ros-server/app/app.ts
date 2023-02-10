@@ -5,11 +5,9 @@ import { StatusCodes } from 'http-status-codes';
 import * as logger from 'morgan';
 import * as swaggerJSDoc from 'swagger-jsdoc';
 import * as swaggerUi from 'swagger-ui-express';
-import { Service } from 'typedi';
 import { HttpException } from './classes/http.exception';
 
 
-@Service()
 export class Application {
     app: express.Application;
     private readonly internalError: number = StatusCodes.INTERNAL_SERVER_ERROR;

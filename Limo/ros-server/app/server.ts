@@ -1,20 +1,16 @@
 import * as http from 'http';
 import { AddressInfo } from 'net';
-import { Service } from 'typedi';
 import { Application } from './app';
 import { Server as SocketServer } from 'socket.io';
-import { ServerSocketController } from './controllers/server.socket.controller';
-import { ClientSocketController } from './controllers/client.socket.controller';
+import { SocketServer as SocketManager } from './classes/socket-client';
 
 
-@Service()
 export class Server {
     private static readonly appPort: string | number | boolean = Server.normalizePort('9332');
     private static readonly baseDix: number = 10;
     private server: http.Server;
     private io: SocketServer;
-    private serverSocketController: ServerSocketController;
-    private clientSocketController: ClientSocketController;
+    private socketManager: SocketManager
 
 
     constructor(private readonly application: Application) {}
@@ -39,16 +35,14 @@ export class Server {
         this.server.on('error', (error: NodeJS.ErrnoException) => this.onError(error));
         this.server.on('listening', () => this.onListening());
 
-        this.io = require("socket.io")(this.server, 
-            {
-                cors: ["*"]
-            })
-        
-        this.serverSocketController = new ServerSocketController(this.io);
-        this.serverSocketController.init()
+        this.io = new SocketServer(this.server,             {
+            cors: {
+                origin: "*"
+            }
+        })
 
-        this.clientSocketController = new ClientSocketController(this.serverSocketController)
-        this.clientSocketController.init()
+        this.socketManager = new SocketManager(this.io)
+        this.socketManager.connectSocketServer()
     }
 
     private onError(error: NodeJS.ErrnoException): void {

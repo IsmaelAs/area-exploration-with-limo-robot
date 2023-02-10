@@ -1,1 +1,0 @@
-export const BACKEND_URL = `http://${process.env.BACKEND_IP}:9330`

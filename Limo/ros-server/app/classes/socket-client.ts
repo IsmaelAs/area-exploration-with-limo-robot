@@ -1,41 +1,40 @@
-import { URL_NODE_SERVER } from '../constants/url';
-import  { Socket, io } from 'socket.io-client';
 import { NodeManager } from './nodes-manager';
 import Command from '../types/Command';
+import { Server } from 'socket.io';
 
 
-export class SocketClient {
-  private socket: Socket;
+export class SocketServer {
+  private server: Server;
   private nodeManager: NodeManager;
 
-  constructor() {
+  constructor(server: Server) {
     this.nodeManager = new NodeManager();
-    this.socket = io(URL_NODE_SERVER)
+    this.server = server
   }
   
   // Connect the socket to the limo node server ; subscribe to all limo command ; start all nodes
-  connect(): void {
-    this.socket.on('connect', () => {
+  connectSocketServer(): void {
+    this.server.on('connection', (socket) => {
       console.log('Connected to node server');
 
       // Start all nodes when socket is connected
       this.nodeManager.start();
 
-      this.socket.on('move', async (movement: {direction: Command, distance?: number}) => {
+      socket.on(`limo-${process.env.LIMO_ID}-move`, async (movement: {direction: Command, distance?: number}) => {
         console.log(`Received response from node server: ${movement.direction}`);
         await this.nodeManager.move(movement.direction, movement.distance)
       });
 
-      this.socket.on('error', (err: Error) => {
+      socket.on('error', (err: Error) => {
         console.log(`Socket Client Error : ${err.stack}`);
         this.nodeManager.stop()
-        this.socket.removeAllListeners()
+        this.server.removeAllListeners()
       })
 
-      this.socket.on('disconnect', () => {
+      socket.on('disconnect', () => {
         console.log('Disconnected from limo robot');
         this.nodeManager.stop();
-        this.socket.removeAllListeners()
+        this.server.removeAllListeners()
 
       });
     });

@@ -37,7 +37,7 @@ export class NodeMovement {
         // Wait for ROS to connect to the bridge
         this.ros.on('connection', () => {
             console.log(`${this.name} : ROS connected`);
-            // initialise publisher
+            // initialize publisher
             this.publisherMovement = new Topic({
                 ros: this.ros,
                 name: "cmd_vel",
@@ -92,7 +92,7 @@ export class NodeMovement {
         const msg = new Message(data)
         for(let _ = 0; _ < nbrSendingMsg; _++) {
             this.publisherMovement.publish(msg)
-            await delay(1000)
+            await delay(250)
         }
         this.publisherMovement.publish(this.nulVelocityMsg)
     }
