@@ -31,16 +31,11 @@ export class SocketServer {
       });
 
       socket.on('error', (err: Error) => {
-        console.log(`Socket Client Error : ${err.stack}`);
-        this.nodeManager.stop()
-        this.server.removeAllListeners()
+        console.log(`On Limo Error : ${err.stack}`);
       })
 
       socket.on('disconnect', () => {
-        console.log('Disconnected from limo robot');
-        this.nodeManager.stop();
-        this.server.removeAllListeners()
-
+        console.log('Server disconnected from Limo robot');
       });
     });
   }
