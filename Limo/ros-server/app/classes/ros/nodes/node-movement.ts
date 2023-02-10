@@ -122,7 +122,7 @@ export class NodeMovement {
 
             },
             angular: {
-                z: -5
+                z: -1
             }
         } 
         await this.sendMsg(nbrSendingMsg, data)
@@ -134,7 +134,7 @@ export class NodeMovement {
                 x: 0.1
             },
             angular: {
-                z: 5
+                z: 1
             }
         } 
         await this.sendMsg(nbrSendingMsg, data)
@@ -146,7 +146,7 @@ export class NodeMovement {
                 x: -0.1
             },
             angular: {
-                z: 5
+                z: 1
             }
         } 
         await this.sendMsg(nbrSendingMsg, data)
@@ -158,7 +158,7 @@ export class NodeMovement {
                 x: -0.1
             },
             angular: {
-                z: -5
+                z: -1
             }
         } 
         await this.sendMsg(nbrSendingMsg, data)
