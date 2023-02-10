@@ -18,6 +18,8 @@ export class ClientSocketController {
     }
 
     init() {
+        console.log('Call init');
+        
         this.client.on("connect", () => {
             console.log("Socket connected to backend");
             console.log(`limo-${process.env.LIMO_ID}-move`);
