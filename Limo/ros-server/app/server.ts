@@ -1,20 +1,16 @@
 import * as http from 'http';
 import { AddressInfo } from 'net';
-import { Service } from 'typedi';
 import { Application } from './app';
 import { Server as SocketServer } from 'socket.io';
-import { ServerSocketController } from './controllers/server.socket.controller';
+import { SocketServer as SocketManager } from './classes/socket-server';
 
 
-
-@Service()
 export class Server {
-    private static readonly appPort: string | number | boolean = Server.normalizePort(process.env.PORT || '9331');
-    // eslint-disable-next-line @typescript-eslint/no-magic-numbersz
+    private static readonly appPort: string | number | boolean = Server.normalizePort(9332);
     private static readonly baseDix: number = 10;
     private server: http.Server;
     private io: SocketServer;
-    private serverSocketController: ServerSocketController;
+    private socketManager: SocketManager
 
 
     constructor(private readonly application: Application) {}
@@ -39,15 +35,14 @@ export class Server {
         this.server.on('error', (error: NodeJS.ErrnoException) => this.onError(error));
         this.server.on('listening', () => this.onListening());
 
-        this.io = require("socket.io")(this.server, 
-            {
-                cors: ["*"]
-            })
-        
-        this.serverSocketController = new ServerSocketController(this.io)
-        this.serverSocketController.init()
+        this.io = new SocketServer(this.server,             {
+            cors: {
+                origin: "*"
+            }
+        })
 
-
+        this.socketManager = new SocketManager(this.io)
+        this.socketManager.connectSocketServer()
     }
 
     private onError(error: NodeJS.ErrnoException): void {
@@ -57,12 +52,10 @@ export class Server {
         const bind: string = typeof Server.appPort === 'string' ? 'Pipe ' + Server.appPort : 'Port ' + Server.appPort;
         switch (error.code) {
             case 'EACCES':
-                // eslint-disable-next-line no-console
                 console.error(`${bind} requires elevated privileges`);
                 process.exit(1);
                 break;
             case 'EADDRINUSE':
-                // eslint-disable-next-line no-console
                 console.error(`${bind} is already in use`);
                 process.exit(1);
                 break;

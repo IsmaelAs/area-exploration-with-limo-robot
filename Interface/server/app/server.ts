@@ -4,6 +4,8 @@ import { Service } from 'typedi';
 import { Application } from './app';
 import { Server as SocketServer } from 'socket.io';
 import { ServerSocketController } from './controllers/server.socket.controller';
+import { ClientSocketLimo1 } from './controllers/client.socket.limo';
+import { ClientSocketLimo2 } from './controllers/client.socket.limo2';
 
 
 @Service()
@@ -13,6 +15,8 @@ export class Server {
     private server: http.Server;
     private io: SocketServer;
     private serverSocketController: ServerSocketController;
+    private socketLimo?: ClientSocketLimo1
+    private socketLimo2?: ClientSocketLimo2
 
 
     constructor(private readonly application: Application) {}
@@ -37,12 +41,24 @@ export class Server {
         this.server.on('error', (error: NodeJS.ErrnoException) => this.onError(error));
         this.server.on('listening', () => this.onListening());
         
-        console.log("init socket manager");
+        console.log("Init socket manager");
         this.io = new SocketServer(this.server, {
-            cors: {origin: "*"}
+            cors: {
+                origin: "*"
+            }
         })
-        this.serverSocketController = new ServerSocketController(this.io);
-        this.serverSocketController.init();
+
+        if (process.env.LIMO_IP_1) {
+            this.socketLimo = new ClientSocketLimo1()
+            this.socketLimo.connectClientSocketToLimo1()
+        }
+        if (process.env.LIMO_IP_2) {
+            this.socketLimo2 = new ClientSocketLimo2()
+            this.socketLimo2.connectClientSocketToLimo2()
+        }
+
+        this.serverSocketController = new ServerSocketController(this.io, this.socketLimo, this.socketLimo2);
+        this.serverSocketController.initializeSocketServer();
 
     }
 

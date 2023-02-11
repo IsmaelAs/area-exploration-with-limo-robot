@@ -9,16 +9,16 @@ import RobotTargetType from './types/RobotType';
 })
 export class AppComponent {
 
-  list: RobotTargetType[] = ["drone", "limo", "robots"];
-  private type: RobotTargetType = "limo";
+  list: RobotTargetType[] = ["limo-1", "limo-2", "robots"];
+  type: RobotTargetType = "limo-1";
   
   constructor(
     private socketCommunication : SocketCommunicationService
     ){}
   
 
-  advance(){
-    this.socketCommunication.advance(this.type);
+  identify(){    
+    this.socketCommunication.identify(this.type);
   }
 
   startMission() {
@@ -30,7 +30,7 @@ export class AppComponent {
   }
 
 
-  setChoice(choice: RobotTargetType) {
+  setType(choice: RobotTargetType) { 
     this.type = choice;
   }
 

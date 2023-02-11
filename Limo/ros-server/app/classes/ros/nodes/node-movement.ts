@@ -3,7 +3,7 @@ import {Topic, Ros, Message} from 'roslib'
 import Twist from '../../../interfaces/Twist'
 import { BRIDGE_URI } from '../../../constants/url'
 import Command from "../../../types/Command"
-
+import { TIME_DELAY } from '../../../constants/time-constants'
 export class NodeMovement {
     private name: String = "Node Movement"
 
@@ -37,7 +37,7 @@ export class NodeMovement {
         // Wait for ROS to connect to the bridge
         this.ros.on('connection', () => {
             console.log(`${this.name} : ROS connected`);
-            // initialise publisher
+            // initialize publisher
             this.publisherMovement = new Topic({
                 ros: this.ros,
                 name: "cmd_vel",
@@ -92,7 +92,7 @@ export class NodeMovement {
         const msg = new Message(data)
         for(let _ = 0; _ < nbrSendingMsg; _++) {
             this.publisherMovement.publish(msg)
-            await delay(1000)
+            await delay(TIME_DELAY)
         }
         this.publisherMovement.publish(this.nulVelocityMsg)
     }
@@ -118,7 +118,7 @@ export class NodeMovement {
     private async turnLeftForward(nbrSendingMsg: number) {
         const data: Twist = {
             linear: {
-                x: 1,
+                x: 0.1,
 
             },
             angular: {
@@ -131,7 +131,7 @@ export class NodeMovement {
     private async turnRightForward(nbrSendingMsg: number) {
         const data: Twist = {
             linear: {
-                x: 1
+                x: 0.1
             },
             angular: {
                 z: 1
@@ -143,7 +143,7 @@ export class NodeMovement {
     private async turnRightBackward(nbrSendingMsg: number) {
         const data: Twist = {
             linear: {
-                x: -1
+                x: -0.1
             },
             angular: {
                 z: 1
@@ -155,7 +155,7 @@ export class NodeMovement {
     private async turnLeftBackward(nbrSendingMsg: number) {
         const data: Twist = {
             linear: {
-                x: -1
+                x: -0.1
             },
             angular: {
                 z: -1

@@ -1,9 +1,10 @@
-import { SocketClient } from "./classes/socket-client";
-
+import { Server } from "./server";
+import { Application } from "./app";
 
 const main = async () => {
-    const socketClient = new SocketClient();
-    socketClient.connect()
+    const app = new Application()
+    const server = new Server(app);
+    server.init()
 }
 
 main()
