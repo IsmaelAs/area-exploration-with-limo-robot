@@ -4,6 +4,7 @@
     - Docker 
     - Docker-Compose
     - 2 robots Limos
+    - Rouler l'interface dans un environnement Linux avec la commande ifconfig de disponible
 
 ### Interface 
 
