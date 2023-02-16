@@ -17,6 +17,9 @@ export class ServerSocketController {
 
     initializeSocketServer() {
         this.io.on("connection", (socket) => {
+            console.log('Socket connected', socket.id);
+            
+
             socket.on('identify', (movement: RobotMovement) => {   
                 const data: OnRobotMovement = {
                     direction: movement.direction, 
