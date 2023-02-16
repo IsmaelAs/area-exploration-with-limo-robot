@@ -11,14 +11,13 @@ L'interface contient le serveur statique qui va distribuer le visuel de la page 
 
 ##### Variables d'environnement 
     - ***LIMO_IP_1*** : Addresse IP du Limo avec l'identifiant 1 (*LIMO_ID=1*)
-    - ***LIMO_IP_1*** : Addresse IP du Limo avec l'identifiant 2 (*LIMO_ID=2*)
+    - ***LIMO_IP_2*** : Addresse IP du Limo avec l'identifiant 2 (*LIMO_ID=2*)
 
 ##### Utilisation 
 
     1. Aller dans le dossier **Interface**
-    2. Lancer la commande `docker-compose -f interface-docker-compose.yml build` pour construire les containers
-    3. Repérer le variables d'environnement
-    4. Lancer la commande `LIMO_IP_1=<ADDRESSE IP DU LIMO 1> LIMO_IP_2=<ADDRESSE IP DU LIMO 2> docker-compose -f interface-docker-compose.yml up`
+    2. Repérer le variables d'environnement
+    3. Lancer la commande `./start-interface ADDRESSE IP DU LIMO 1> <ADDRESSE IP DU LIMO 2>`
 Une interface est disponible sur `localhost:4200` pour pouvoir interagir avec les Limos. 
 Le server roule sur le port 9330.
 
