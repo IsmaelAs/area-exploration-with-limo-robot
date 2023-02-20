@@ -2,21 +2,21 @@ import * as http from 'http';
 import { AddressInfo } from 'net';
 import { Service } from 'typedi';
 import { Application } from './app';
-//import { SocketManager } from './socket-manager/socket-manager.service';
 import { Server as SocketServer } from 'socket.io';
 import { ServerSocketController } from './controllers/server.socket.controller';
-
+import { ClientSocketLimo1 } from './controllers/client.socket.limo';
+import { ClientSocketLimo2 } from './controllers/client.socket.limo2';
 
 
 @Service()
 export class Server {
-    private static readonly appPort: string | number | boolean = Server.normalizePort(process.env.PORT || '9330');
-    // eslint-disable-next-line @typescript-eslint/no-magic-numbersz
+    private static readonly appPort: string | number | boolean = Server.normalizePort(9330);
     private static readonly baseDix: number = 10;
     private server: http.Server;
-  //  private socketManager: SocketManager;
     private io: SocketServer;
     private serverSocketController: ServerSocketController;
+    private socketLimo?: ClientSocketLimo1
+    private socketLimo2?: ClientSocketLimo2
 
 
     constructor(private readonly application: Application) {}
@@ -33,25 +33,32 @@ export class Server {
     }
 
     init(): void {
-        console.log("init socket manager");
         this.application.app.set('port', Server.appPort);
         this.server = http.createServer(this.application.app);
         console.log(Server.appPort);
-        //const socket =  require('socket.io')(this.server, { cors:['*']});
         
         this.server.listen(Server.appPort);
         this.server.on('error', (error: NodeJS.ErrnoException) => this.onError(error));
         this.server.on('listening', () => this.onListening());
-
-       // this.socketManager = new SocketManager(socket);
-       // this.socketManager.handleSockets();
-        this.io = require("socket.io")(this.server, 
-            {
-                cors: ["*"]
-            })
         
-        this.serverSocketController = new ServerSocketController(this.io);
-        this.serverSocketController.init();
+        console.log("Init socket manager");
+        this.io = new SocketServer(this.server, {
+            cors: {
+                origin: "*"
+            }
+        })
+
+        if (process.env.LIMO_IP_1) {
+            this.socketLimo = new ClientSocketLimo1()
+            this.socketLimo.connectClientSocketToLimo1()
+        }
+        if (process.env.LIMO_IP_2) {
+            this.socketLimo2 = new ClientSocketLimo2()
+            this.socketLimo2.connectClientSocketToLimo2()
+        }
+
+        this.serverSocketController = new ServerSocketController(this.io, this.socketLimo, this.socketLimo2);
+        this.serverSocketController.initializeSocketServer();
 
     }
 

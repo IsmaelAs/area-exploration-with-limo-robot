@@ -1,34 +1,58 @@
 import { Server as SocketServer } from 'socket.io';
-
-
+import RobotMovement from '@app/interfaces/robots-movement-interface';
+import OnRobotMovement from '@app/interfaces/on-robots-movement-interface';
+import { ClientSocketLimo1 } from './client.socket.limo';
+import { ClientSocketLimo2 } from './client.socket.limo2';
 
 export class ServerSocketController {
     private io: SocketServer;
-   // private port: number;
+    private socketLimo?: ClientSocketLimo1
+    private socketLimo2?: ClientSocketLimo2
 
-    constructor(io: SocketServer) {
+    constructor(io: SocketServer, socketLimo? : ClientSocketLimo1, socketLimo2? : ClientSocketLimo2) {
         this.io = io;
-      //  this.port = 3010;
+        this.socketLimo = socketLimo
+        this.socketLimo2 = socketLimo2
     }
 
-    init() {
-        //this.io.listen(this.port);
-        this.io.on('connection', (socket) => {
-            console.log('Le server a recu une connection du socket:')
+    initializeSocketServer() {
+        this.io.on("connection", (socket) => {
+            socket.on('identify', (movement: RobotMovement) => {   
+                const data: OnRobotMovement = {
+                    direction: movement.direction, 
+                    distance: movement.distance
+                }
+                if ((movement.robot == "limo-1" || movement.robot == 'robots') && this.socketLimo) 
+                    this.socketLimo.emitToLimo1(`${movement.robot}-move`, data)
+                if ((movement.robot == "limo-2" || movement.robot == 'robots') && this.socketLimo2) 
+                    this.socketLimo2.emitToLimo2(`${movement.robot}-move`, data)
+            })
 
-            //receive a message from client
-            socket.on('client-message', (message) => {
-                console.log('Le serveur a recu un message du client')
-                console.log(message)
-            }) 
+            socket.on('start-mission', (movement: RobotMovement) => {
+                const data: OnRobotMovement = {
+                    direction: movement.direction, 
+                    distance: movement.distance
+                }                
+                console.log('start mission received', data);
+                console.log("emit on ", `${movement.robot}-move`);
+                
+                if ((movement.robot == "limo-1" || movement.robot == 'robots') && this.socketLimo) 
+                    this.socketLimo.emitToLimo1(`${movement.robot}-move`, data)
+                if ((movement.robot == "limo-2" || movement.robot == 'robots') && this.socketLimo2) 
+                    this.socketLimo2.emitToLimo2(`${movement.robot}-move`, data)
+            })
 
-            socket.on('avancer', () => {
-               console.log("avancer dans socket controller");
-               this.io.emit('limo-avancer');
-           })
-     
+            socket.on('stop-mission', (movement: RobotMovement) => {
+                const data: OnRobotMovement = {
+                    direction: movement.direction, 
+                    distance: movement.distance
+                }                
 
+                if ((movement.robot == "limo-1" || movement.robot == 'robots') && this.socketLimo) 
+                    this.socketLimo.emitToLimo1(`${movement.robot}-move`, data)
+                if ((movement.robot == "limo-2" || movement.robot == 'robots') && 
+                    this.socketLimo2) this.socketLimo2.emitToLimo2(`${movement.robot}-move`, data)
+            })
         })
     }
-
 }

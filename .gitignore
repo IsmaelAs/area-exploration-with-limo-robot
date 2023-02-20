@@ -2,15 +2,15 @@
 
 # Compiled output
 **/dist
-/tmp
-/out-tsc
-/bazel-out
+**/tmp
+**/out-tsc
+**/bazel-out
+**/out
 
 # Node
 **/node_modules
-**/out
-npm-debug.log
-yarn-error.log
+**/npm-debug.log
+**/yarn-error.log
 
 # IDEs and editors
 .idea/
@@ -22,12 +22,12 @@ yarn-error.log
 *.sublime-workspace
 
 # Visual Studio Code
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-.history/*
+**/.vscode/*
+**/!.vscode/settings.json
+**/!.vscode/tasks.json
+**/!.vscode/launch.json
+**/!.vscode/extensions.json
+**/.history/*
 
 # Miscellaneous
 /.angular/cache
@@ -41,3 +41,9 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Node 
+**/package-lock.json
+
+# Python 
+**/venv

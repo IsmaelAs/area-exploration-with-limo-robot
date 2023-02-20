@@ -1,6 +1,0 @@
-{
-    "watch": ["app"],
-    "ext": "ts",
-    "ignore": ["app/**/*.spec.ts"],
-    "exec": "npm run build && node out/main.js --port=9332"
-}

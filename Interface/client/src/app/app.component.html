@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 <mat-form-field appearance="fill">
     <mat-label>Selection</mat-label>
@@ -14,3 +15,28 @@
  <button mat-flat-button color="primary">Arrêter la mission </button> 
 </div>
 </section>
+=======
+
+<div class="container">
+  <mat-form-field appearance="fill">
+    <mat-label >Selection</mat-label>
+    <mat-select [value]="type" (valueChange)="setType($event)">
+      <mat-option
+        *ngFor="let choice of list"
+        [value]="choice"
+      >
+        {{ choice === "robots" ? "LES DEUX ROBOTS" : choice.toUpperCase()}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <section id="buttonsSelection" class="justified">
+    <div class="buttons">
+      <button mat-flat-button color="primary" (click)="identify()">
+        Identifier
+      </button>
+      <button mat-flat-button color="primary" (click)="startMission()">Lancer la mission</button>
+      <button mat-flat-button color="primary" (click)="stopMission()">Arrêter la mission</button>
+    </div>
+  </section>
+</div>
+>>>>>>> master
