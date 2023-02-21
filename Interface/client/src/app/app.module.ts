@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 
 import {MatSelectModule} from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MapViewerComponent } from './components/map-viewer/map-viewer.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    MapViewerComponent,
 
   ],
   imports: [
