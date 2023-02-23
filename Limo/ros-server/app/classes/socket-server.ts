@@ -14,11 +14,11 @@ export class SocketServer {
   
   // Connect the socket to the limo node server ; subscribe to all limo command ; start all nodes
   connectSocketServer(): void {
+    this.nodeManager.start();
     this.server.on('connection', (socket) => {
       console.log('Connected to node server');
 
       // Start all nodes when socket is connected
-      this.nodeManager.start();
 
       socket.on(`limo-${process.env.LIMO_ID}-move`, async (movement: {direction: Command, distance?: number}) => {
         console.log(`Received response from node server: ${movement.direction}`);
