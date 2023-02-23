@@ -1,12 +1,12 @@
-import { Server } from "socket.io";
 import { NodePosition } from "./ros/nodes/node-position";
+import { SocketServer } from "./socket-server";
 
 export class Logger {
-    private socketServer: Server
+    private socketServer: SocketServer
     private nodePosition: NodePosition
     private intervalLog: NodeJS.Timer
 
-    constructor(socketServer: Server) {
+    constructor(socketServer: SocketServer) {
         this.socketServer = socketServer
         this.nodePosition.initNodePosition()
     }
