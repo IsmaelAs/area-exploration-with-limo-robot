@@ -39,4 +39,8 @@ export class SocketServer {
       });
     });
   }
+
+  emit<T>(event: string, data?: T) {
+    data ? this.server.emit(event, data) : this.server.emit(event)
+  }
 }
