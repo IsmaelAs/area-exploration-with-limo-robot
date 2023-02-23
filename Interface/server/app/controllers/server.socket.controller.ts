@@ -3,11 +3,13 @@ import RobotMovement from '@app/interfaces/robots-movement-interface';
 import OnRobotMovement from '@app/interfaces/on-robots-movement-interface';
 import { ClientSocketLimo1 } from './client.socket.limo';
 import { ClientSocketLimo2 } from './client.socket.limo2';
+import { Logger } from '@app/services/logger';
 
 export class ServerSocketController {
     private io: SocketServer;
     private socketLimo?: ClientSocketLimo1
     private socketLimo2?: ClientSocketLimo2
+    private logger: Logger
 
     constructor(io: SocketServer, socketLimo? : ClientSocketLimo1, socketLimo2? : ClientSocketLimo2) {
         this.io = io;
@@ -52,6 +54,14 @@ export class ServerSocketController {
                     this.socketLimo.emitToLimo1(`${movement.robot}-move`, data)
                 if ((movement.robot == "limo-2" || movement.robot == 'robots') && 
                     this.socketLimo2) this.socketLimo2.emitToLimo2(`${movement.robot}-move`, data)
+            })
+
+            socket.on("save-log", (data: unknown) => {
+                this.logger.saveUserData(data)
+            })
+
+            socket.on("get-all-logs", (missionNumber: number) => {
+                this.logger.getAllData(missionNumber, socket)
             })
         })
     }
