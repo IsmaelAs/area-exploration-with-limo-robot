@@ -3,6 +3,7 @@ import { AddressInfo } from 'net';
 import { Application } from './app';
 import { Server as SocketServer } from 'socket.io';
 import { SocketServer as SocketManager } from './classes/socket-server';
+import { Logger } from './classes/logger';
 
 
 export class Server {
@@ -11,6 +12,7 @@ export class Server {
     private server: http.Server;
     private io: SocketServer;
     private socketManager: SocketManager
+    private logger: Logger
 
 
     constructor(private readonly application: Application) {}
@@ -43,6 +45,8 @@ export class Server {
 
         this.socketManager = new SocketManager(this.io)
         this.socketManager.connectSocketServer()
+        this.logger = new Logger(this.socketManager)
+        this.logger.startLogs()
     }
 
     private onError(error: NodeJS.ErrnoException): void {
