@@ -21,11 +21,11 @@ export class NodePosition {
     }
 
 
-    private callBack(data: Odometry) {
+    private callBack(data: Odometry): void {
         this.data = data
     }
 
-    getData() {
+    getData(): Odometry {
         return this.data
     }
 }
