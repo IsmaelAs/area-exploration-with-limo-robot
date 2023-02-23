@@ -14,6 +14,7 @@ export class SocketCommunicationService {
 
   constructor() {    
     this.socket = io(BACKEND_URL);
+    this.initSocketSubscription()
   }
 
   identify(robot: RobotTargetType){
@@ -23,7 +24,7 @@ export class SocketCommunicationService {
       distance: DISTANCE_MOVEMENT.FAR_AWAY
     }
     
-    this.socket.emit("identify", movement);
+    this.emit("identify", movement);
   }
 
   startMission(robot: RobotTargetType) {
@@ -34,7 +35,7 @@ export class SocketCommunicationService {
       distance: DISTANCE_MOVEMENT.CLOSE
     }
     console.log('start mission', movement);
-    this.socket.emit("start-mission", movement)
+    this.emit("start-mission", movement)
   }
   
   stopMission(robot: RobotTargetType) {
@@ -44,6 +45,23 @@ export class SocketCommunicationService {
       distance: DISTANCE_MOVEMENT.CLOSE
     }
 
-    this.socket.emit("stop-mission", movement)
+    this.emit("stop-mission", movement)
+  }
+
+  private initSocketSubscription() {
+    this.socket.on("connect", () => {
+      this.socket.on("send-all-logs", (logs: string) => {
+        console.log(logs);
+      })
+    })
+  }
+
+  private emit<T>(event: string, data?: T) {
+    data ? this.socket.emit(event, data) : this.socket.emit(event)
+
+    this.socket.emit('save-log', {
+      event: event,
+      data: data? data : ""
+    })
   }
 }
