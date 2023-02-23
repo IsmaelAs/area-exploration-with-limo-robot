@@ -1,17 +1,16 @@
 import { Server as SocketServer } from 'socket.io';
 import RobotMovement from '@app/interfaces/robots-movement-interface';
 import OnRobotMovement from '@app/interfaces/on-robots-movement-interface';
-import { ClientSocketLimo1 } from './client.socket.limo';
-import { ClientSocketLimo2 } from './client.socket.limo2';
+import { ClientSocketLimo } from './client.socket.limo';
 import { Logger } from '@app/services/logger';
 
 export class ServerSocketController {
     private io: SocketServer;
-    private socketLimo?: ClientSocketLimo1
-    private socketLimo2?: ClientSocketLimo2
+    private socketLimo?: ClientSocketLimo
+    private socketLimo2?: ClientSocketLimo
     private logger: Logger
 
-    constructor(io: SocketServer, socketLimo? : ClientSocketLimo1, socketLimo2? : ClientSocketLimo2) {
+    constructor(io: SocketServer, socketLimo? : ClientSocketLimo, socketLimo2? : ClientSocketLimo) {
         this.io = io;
         this.socketLimo = socketLimo
         this.socketLimo2 = socketLimo2
@@ -25,9 +24,9 @@ export class ServerSocketController {
                     distance: movement.distance
                 }
                 if ((movement.robot == "limo-1" || movement.robot == 'robots') && this.socketLimo) 
-                    this.socketLimo.emitToLimo1(`${movement.robot}-move`, data)
+                    this.socketLimo.emitToLimo("limo-move", data)
                 if ((movement.robot == "limo-2" || movement.robot == 'robots') && this.socketLimo2) 
-                    this.socketLimo2.emitToLimo2(`${movement.robot}-move`, data)
+                    this.socketLimo2.emitToLimo("limo-move", data)
             })
 
             socket.on('start-mission', (movement: RobotMovement) => {
@@ -36,12 +35,12 @@ export class ServerSocketController {
                     distance: movement.distance
                 }                
                 console.log('start mission received', data);
-                console.log("emit on ", `${movement.robot}-move`);
+                console.log("emit on ", "limo-move");
                 
                 if ((movement.robot == "limo-1" || movement.robot == 'robots') && this.socketLimo) 
-                    this.socketLimo.emitToLimo1(`${movement.robot}-move`, data)
+                    this.socketLimo.emitToLimo("limo-move", data)
                 if ((movement.robot == "limo-2" || movement.robot == 'robots') && this.socketLimo2) 
-                    this.socketLimo2.emitToLimo2(`${movement.robot}-move`, data)
+                    this.socketLimo2.emitToLimo("limo-move", data)
             })
 
             socket.on('stop-mission', (movement: RobotMovement) => {
@@ -51,9 +50,9 @@ export class ServerSocketController {
                 }                
 
                 if ((movement.robot == "limo-1" || movement.robot == 'robots') && this.socketLimo) 
-                    this.socketLimo.emitToLimo1(`${movement.robot}-move`, data)
+                    this.socketLimo.emitToLimo("limo-move", data)
                 if ((movement.robot == "limo-2" || movement.robot == 'robots') && 
-                    this.socketLimo2) this.socketLimo2.emitToLimo2(`${movement.robot}-move`, data)
+                    this.socketLimo2) this.socketLimo2.emitToLimo("limo-move", data)
             })
 
             socket.on("save-log", (data: unknown) => {

@@ -6,6 +6,7 @@ import { Server } from 'socket.io';
 export class SocketServer {
   private server: Server;
   private nodeManager: NodeManager;
+  limoId: number
 
   constructor(server: Server) {
     this.nodeManager = new NodeManager();
@@ -20,7 +21,11 @@ export class SocketServer {
       // Start all nodes when socket is connected
       this.nodeManager.start();
 
-      socket.on(`limo-${process.env.LIMO_ID}-move`, async (movement: {direction: Command, distance?: number}) => {
+      socket.on("login", (limoId: number) => {
+        this.limoId = limoId
+      })
+
+      socket.on(`limo-move`, async (movement: {direction: Command, distance?: number}) => {
         console.log(`Received response from node server: ${movement.direction}`);
         await this.nodeManager.move(movement.direction, movement.distance)
       });

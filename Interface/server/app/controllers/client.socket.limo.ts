@@ -25,7 +25,7 @@ export class ClientSocketLimo {
         })
     }
 
-    emitToLimo1<T>(event: string, data?: T) {
+    emitToLimo<T>(event: string, data?: T) {
         data ? this.socket.emit(event, data) : this.socket.emit(event)
     }
 

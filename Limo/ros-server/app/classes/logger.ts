@@ -17,7 +17,7 @@ export class Logger {
 
     private callBack() {
         const position = this.positionLog()
-        const limoId = process.env.LIMO_ID
+        const limoId = this.socketServer.limoId
         this.socketServer.emit("save-log", {limoId: limoId, data: position})
     }
 
@@ -32,8 +32,7 @@ export class Logger {
     }
 
     stopLog() {
-        const limoId = process.env.LIMO_ID
-        this.socketServer.emit("save-log", {limoId: limoId, data: "Stop sending logs"})
+        this.socketServer.emit("save-log", {limoId: this.socketServer.limoId, data: "Stop sending logs"})
         clearInterval(this.intervalLog)
     }
 }
