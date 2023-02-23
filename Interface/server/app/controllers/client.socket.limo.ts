@@ -3,18 +3,21 @@ import { LIMO_URL } from '../constants/url';
 import { Logger } from '@app/services/logger';
 import LogLimo from '@app/interfaces/log-limo';
 
-export class ClientSocketLimo1 {
+export class ClientSocketLimo {
     private socket: Socket;
     private logger: Logger
+    private limoId: number
 
-    constructor() {
+    constructor(limoId: number) {
+        this.limoId = limoId
         this.socket = io(LIMO_URL);
     }
 
-    connectClientSocketToLimo1() {
+    connectClientSocketToLimo() {
         this.socket.on("connect", () => {
-            console.log('Limo 1 connected to the ROS server');
-            this.logger.saveLimoData({limoId: 1, data: "Limo 1 connected to the ROS server"})
+            console.log(`Limo ${this.limoId} connected to the ROS server`);
+            this.logger.saveLimoData({limoId: this.limoId, data: `Limo ${this.limoId} connected to the ROS server`})
+            this.socket.emit("login", this.limoId)
 
             this.socket.on("save-log", (data: LogLimo) => {
                 this.logger.saveLimoData(data)
