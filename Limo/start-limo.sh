@@ -12,4 +12,4 @@ sleep 10
 LIMO_IP=$(docker logs ros-packages-server | head -n1 | awk '{print $1;}')
 echo $LIMO_IP
 docker build  -t ros-server ./ros-server
-docker run --name ros-server -p 9332:9332 -e LIMO_IP=$LIMO_IP --rm ros-server
+exec docker run --name ros-server -p 9332:9332 -e LIMO_IP=$LIMO_IP --rm ros-server

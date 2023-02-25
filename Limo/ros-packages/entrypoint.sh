@@ -1,7 +1,5 @@
 #! /bin/bash
 
 source /opt/ros/noetic/setup.bash 
-hostname -I
-
-
-roslaunch rosbridge_server rosbridge_websocket.launch 
+echo $(hostname -I)
+exec roslaunch rosbridge_server rosbridge_websocket.launch 
