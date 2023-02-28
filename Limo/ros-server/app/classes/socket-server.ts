@@ -7,6 +7,7 @@ export class SocketServer {
   private server: Server;
   private nodeManager: NodeManager;
   limoId: number
+  stateMachine: any;
 
   constructor(server: Server) {
     this.nodeManager = new NodeManager();
@@ -24,6 +25,17 @@ export class SocketServer {
       socket.on("login", (limoId: number) => {
         this.limoId = limoId
       })
+
+      
+      socket.on(`start-mission`, async () => {
+        console.log(`Mission started`);
+        await this.stateMachine.onMission();
+      });
+
+      socket.on(`stop-mission`, async () => {
+        console.log(`Mission stopped`);
+        await this.stateMachine.onMissionEnd();
+      });
 
       socket.on(`limo-move`, async (movement: {direction: Command, distance?: number}) => {
         console.log(`Received response from node server: ${movement.direction}`);

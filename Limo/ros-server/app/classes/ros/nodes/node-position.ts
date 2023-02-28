@@ -17,7 +17,7 @@ export class NodePosition {
             queue_size: 10
         })
 
-        this.subscriberMovement.subscribe(this.callBack)
+        this.subscriberMovement.subscribe(this.callBack.bind(this))
     }
 
 

@@ -4,6 +4,7 @@ import { Application } from './app';
 import { Server as SocketServer } from 'socket.io';
 import { SocketServer as SocketManager } from './classes/socket-server';
 import { Logger } from './classes/logger';
+import { MyStateMachine } from './classes/state-machine';
 
 
 export class Server {
@@ -13,6 +14,7 @@ export class Server {
     private io: SocketServer;
     private socketManager: SocketManager
     private logger: Logger
+    stateMachine: MyStateMachine;
 
 
     constructor(private readonly application: Application) {}
@@ -47,6 +49,7 @@ export class Server {
         this.socketManager.connectSocketServer()
         this.logger = new Logger(this.socketManager)
         this.logger.startLogs()
+        this.stateMachine.startStates()
     }
 
     private onError(error: NodeJS.ErrnoException): void {

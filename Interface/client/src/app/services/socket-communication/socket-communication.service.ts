@@ -4,6 +4,7 @@ import { BACKEND_URL } from 'src/app/constants/url';
 import RobotTargetType from 'src/app/types/RobotType';
 import { DISTANCE_MOVEMENT, DIRECTION_MOVEMENT } from 'src/app/constants/robots-movement';
 import RobotMovement from 'src/app/interfaces/robots-movement-interface';
+import { State } from 'src/app/types/States';
 
 @Injectable({
   providedIn: 'root'
@@ -52,6 +53,9 @@ export class SocketCommunicationService {
     this.socket.on("connect", () => {
       this.socket.on("send-all-logs", (logs: string) => {
         console.log(logs);
+      })
+      this.socket.on("send-state", (state: State) => {
+        console.log(state);
       })
     })
   }
