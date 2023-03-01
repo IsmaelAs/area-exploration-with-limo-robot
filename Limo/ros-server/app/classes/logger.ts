@@ -12,7 +12,7 @@ export class Logger {
     }
     
     startLogs() {
-        this.intervalLog = setInterval(this.callBack, 1000)
+        this.intervalLog = setInterval(this.callBack.bind(this), 1000)
     }
 
     private callBack() {
