@@ -19,13 +19,12 @@ export class SocketServer {
     this.server.on('connection', (socket) => {
       console.log('Connected to node server');
 
-      // Start all nodes when socket is connected
-      this.nodeManager.start();
-
       socket.on("login", (limoId: number) => {
         this.limoId = limoId
       })
 
+      // Start all nodes when socket is connected
+      this.nodeManager.start();
       
       socket.on(`start-mission`, async () => {
         console.log(`Mission started`);
