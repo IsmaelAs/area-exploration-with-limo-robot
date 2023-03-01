@@ -1,12 +1,12 @@
 import { BRIDGE_URI } from '@app/constants/url';
-import * as ROSLIB from 'roslib';
+import { Ros, Topic } from 'roslib';
 import { State } from '@app/types/States';
 import { SocketServer } from './socket-server';
 import { setInterval } from 'timers';
 
 export class MyStateMachine {
   private currentState: State = "INIT";
-  private ros: ROSLIB.Ros;
+  private ros: Ros;
   private socketServer: SocketServer;
   
   batteryPercentage: any;
@@ -16,12 +16,12 @@ export class MyStateMachine {
   constructor(socketServer: SocketServer) {
     this.socketServer = socketServer
     // Connexion au serveur ROS
-    this.ros = new ROSLIB.Ros({
+    this.ros = new Ros({
       url: BRIDGE_URI,
     });
 
       // Abonnement au topic "battery_state"
-      const batterySubscriber = new ROSLIB.Topic({
+      const batterySubscriber = new Topic({
         ros: this.ros,
         name: '/battery_state',
         messageType: 'sensor_msgs/BatteryState',
@@ -52,34 +52,6 @@ export class MyStateMachine {
 
   }
       
-  // execute() {
-  //   setInterval (() => {
-  //     switch (this.currentState) {
-  //       case State.INIT:
-  //         console.log('Initialisation');
-  //         this.currentState = State.waiting;
-  //         break;
-  //       case State.waiting:
-  //         console.log('En attente');
-  //         or si fin de mission
-  //         this.currentState = State.stopped;
-  //         break;
-  //       case State.onMission:
-  //         console.log('En mission');
-  //         if(onObstacle())
-  //           this.currentState = State.stopped;
-  //         break;
-  //       case State.stopped:
-  //         console.log('En arrêt');
-  //         if (this.batteryPercentage >= 30)
-  //         this.currentState = State.waiting;
-  //         break;
-  //       default:
-  //         console.log(`Unknown state: ${this.currentState}`);
-  //         break;
-  //     }
-  //   }, 1000);
-  //}
   onMission() {
     this.currentState = "ON_MISSION";
   }
