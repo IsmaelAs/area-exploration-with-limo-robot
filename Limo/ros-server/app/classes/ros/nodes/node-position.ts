@@ -1,6 +1,6 @@
 import { Ros, Topic } from 'roslib'
 import { BRIDGE_URI } from '../../../constants/url'
-import Odometry from '@app/types/Odometry'
+import Odometry from '@app/types/Odometry/Odometry'
 
 export class NodePosition {
     private ros: Ros
