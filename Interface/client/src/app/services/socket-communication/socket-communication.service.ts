@@ -5,6 +5,7 @@ import RobotTargetType from 'src/app/types/RobotType';
 import { DISTANCE_MOVEMENT, DIRECTION_MOVEMENT } from 'src/app/constants/robots-movement';
 import RobotMovement from 'src/app/interfaces/robots-movement-interface';
 import { State } from 'src/app/types/States';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ import { State } from 'src/app/types/States';
 export class SocketCommunicationService {
 
   private socket: Socket;
+  private logsOpen: Subject<string> = new Subject();
 
   constructor() {    
     this.socket = io(BACKEND_URL);
@@ -49,10 +51,19 @@ export class SocketCommunicationService {
     this.emit("stop-mission", movement)
   }
 
+  showLog(missionNumber: number) {
+    this.emit("get-all-logs", missionNumber)
+  }
+
+  get subscribeOpenLogs() {
+    return this.logsOpen.asObservable()
+  }
+
   private initSocketSubscription() {
     this.socket.on("connect", () => {
       this.socket.on("send-all-logs", (logs: string) => {
         console.log(logs);
+        this.logsOpen.next(logs)
       })
       this.socket.on("send-state", (state: State) => {
         console.log(state);
@@ -61,11 +72,11 @@ export class SocketCommunicationService {
   }
 
   private emit<T>(event: string, data?: T) {
-    data ? this.socket.emit(event, data) : this.socket.emit(event)
-
     this.socket.emit('save-log', {
       event: event,
       data: data? data : ""
     })
+
+    data ? this.socket.emit(event, data) : this.socket.emit(event)
   }
 }
