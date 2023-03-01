@@ -2,7 +2,7 @@ import { Server as SocketServer } from 'socket.io';
 import RobotMovement from '@app/interfaces/robots-movement-interface';
 import OnRobotMovement from '@app/interfaces/on-robots-movement-interface';
 import { ClientSocketLimo } from './client.socket.limo';
-import { Logger } from '@app/services/logger';
+import { Logger } from '../services/logger';
 import { State } from '@app/types/States';
 
 export class ServerSocketController {
@@ -15,6 +15,7 @@ export class ServerSocketController {
         this.io = io;
         this.socketLimo = socketLimo
         this.socketLimo2 = socketLimo2
+        this.logger = new Logger()
     }
 
     initializeSocketServer() {
@@ -37,7 +38,8 @@ export class ServerSocketController {
                 }                
                 console.log('start mission received', data);
                 console.log("emit on ", "limo-move");
-                
+                this.logger.startMission()
+
                 if ((movement.robot == "limo-1" || movement.robot == 'robots') && this.socketLimo) {
                     this.socketLimo.emitToLimo("limo-move", data)
                     this.socketLimo.emitToLimo("start-mission")
