@@ -1,4 +1,4 @@
-import { NodeManager } from './nodes-manager';
+import { NodeManager } from '../classes/nodes-manager';
 import Command from '../types/Command';
 import { Server } from 'socket.io';
 
@@ -6,8 +6,9 @@ import { Server } from 'socket.io';
 export class SocketServer {
   private server: Server;
   private nodeManager: NodeManager;
+  private clientCounter = 0
   limoId: number
-  stateMachine: any;
+  // stateMachine: any;
 
   constructor(server: Server) {
     this.nodeManager = new NodeManager();
@@ -18,7 +19,7 @@ export class SocketServer {
   connectSocketServer(): void {
     this.server.on('connection', (socket) => {
       console.log('Connected to node server');
-
+      this.clientCounter++
       socket.on("login", (limoId: number) => {
         this.limoId = limoId
       })
@@ -28,12 +29,12 @@ export class SocketServer {
       
       socket.on(`start-mission`, async () => {
         console.log(`Mission started`);
-        await this.stateMachine.onMission();
+        // await this.stateMachine.onMission();
       });
 
       socket.on(`stop-mission`, async () => {
         console.log(`Mission stopped`);
-        await this.stateMachine.onMissionEnd();
+        // await this.stateMachine.onMissionEnd();
       });
 
       socket.on(`limo-move`, async (movement: {direction: Command, distance?: number}) => {
@@ -51,12 +52,17 @@ export class SocketServer {
       })
 
       socket.on('disconnect', () => {
-        console.log('Server disconnected from Limo robot');
+        console.log(`Server disconnected from Limo ${this.limoId} robot`);
+        this.nodeManager.stop()
       });
     });
   }
 
   emit<T>(event: string, data?: T) {
     data ? this.server.emit(event, data) : this.server.emit(event)
+  }
+
+  get numberSocketConnected() {
+    return this.clientCounter
   }
 }

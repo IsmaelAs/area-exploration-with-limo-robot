@@ -1,10 +1,10 @@
-import { NodePosition } from "./ros/nodes/node-position";
-import { SocketServer } from "./socket-server";
+import { NodePosition } from "../classes/ros/nodes/node-position";
+import { SocketServer } from "../controllers/socket-server";
 
 export class Logger {
     private socketServer: SocketServer
-    private nodePosition: NodePosition
     private intervalLog: NodeJS.Timer
+    private nodePosition: NodePosition = new NodePosition()
 
     constructor(socketServer: SocketServer) {
         this.socketServer = socketServer
@@ -16,6 +16,8 @@ export class Logger {
     }
 
     private callBack() {
+        if (this.socketServer.numberSocketConnected === 0) return
+
         const position = this.positionLog()
         const limoId = this.socketServer.limoId
         this.socketServer.emit("save-log", {limoId: limoId, data: position})
@@ -24,11 +26,12 @@ export class Logger {
     private positionLog() {
         const data = this.nodePosition.getData()
         const distance = Math.sqrt(Math.pow(data.pose.pose.position.x, 2) + Math.pow(data.pose.pose.position.y, 2) + Math.pow(data.pose.pose.position.z, 2))
-        const position = {
-            position: data.pose.pose.position,
-            distance: distance
+        return {
+            x: Math.round(data.pose.pose.position.x * 100) / 100,
+            y: Math.round(data.pose.pose.position.y * 100) / 100,
+            z: Math.round(data.pose.pose.position.z * 100) / 100,
+            distance: Math.round(distance * 100) / 100
         }
-        return position
     }
 
     stopLog() {
