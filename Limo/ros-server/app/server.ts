@@ -4,7 +4,6 @@ import { Application } from './app';
 import { Server as SocketServer } from 'socket.io';
 import { SocketServer as SocketManager } from './controllers/socket-server';
 import { Logger } from './services/logger';
-import { BRIDGE_URI } from './constants/url';
 // import { MyStateMachine } from './classes/state-machine';
 
 

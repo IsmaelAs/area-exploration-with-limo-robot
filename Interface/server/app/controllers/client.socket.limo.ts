@@ -39,4 +39,8 @@ export class ClientSocketLimo {
         this.logger.startMission()
     }
 
+    stopMission() {
+        this.logger.stopMission()
+    }
+
 }

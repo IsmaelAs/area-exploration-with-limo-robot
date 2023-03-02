@@ -7,9 +7,10 @@ const LOGS_PATH = "./app/logs"
 
 export class Logger {
     private currentMission = 0
+    private isMissionStop = true
 
     saveLimoData(data: LogLimo): void {
-        if (this.currentMission === 0) return
+        if (this.isMissionStop &&  this.currentMission === 0) return
 
         const d = new Date()
         const dformat = [d.getMonth()+1,
@@ -29,7 +30,7 @@ export class Logger {
     }
 
     saveUserData<T>(data: T) {
-        if (this.currentMission === 0) return
+        if (this.isMissionStop &&  this.currentMission === 0) return
 
         const d = new Date()
         const dformat = [d.getMonth()+1,
@@ -67,5 +68,10 @@ export class Logger {
 
     startMission() {
         this.currentMission += 1
+        this.isMissionStop = false
+    }
+
+    stopMission() {
+        this.isMissionStop = true
     }
 }

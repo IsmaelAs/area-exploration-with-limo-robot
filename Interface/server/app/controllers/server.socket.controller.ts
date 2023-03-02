@@ -58,13 +58,16 @@ export class ServerSocketController {
                     distance: movement.distance
                 }                
 
+                this.logger.stopMission()
                 if ((movement.robot == "limo-1" || movement.robot == 'robots') && this.socketLimo) {
                     this.socketLimo.emitToLimo("limo-move", data)
                     this.socketLimo.emitToLimo("stop-mission")
+                    this.socketLimo.stopMission()
                 }
                 if ((movement.robot == "limo-2" || movement.robot == 'robots') && this.socketLimo2) {
                     this.socketLimo2.emitToLimo("limo-move", data)
                     this.socketLimo2.emitToLimo("stop-mission")
+                    this.socketLimo2.stopMission()
                 }
             })
 
