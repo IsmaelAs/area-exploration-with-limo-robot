@@ -1,0 +1,35 @@
+{
+    "extends": [
+        "eslint:recommended",
+        "google",
+        "plugin:@typescript-eslint/recommended",
+        "prettier",
+        "eslint:all"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["@typescript-eslint"],
+    "ignorePatterns": ["app/**/*.test.ts"],
+    "env": {
+        "node": true,
+        "es6": true
+    },
+    "rules": {
+        "require-jsdoc" : 0,
+        "object-curly-spacing":"off",
+        "no-console": "off",
+        "max-len": "off",
+        "max-lines-per-function": "off",
+        "function-paren-newline": "off",
+        "no-ternary": "off",
+        "linebreak-style": "off",
+        "sort-keys": "off",
+        "no-unused-expressions": "off",
+        "function-call-argument-newline": "off",
+        "multiline-ternary": "off",
+        "no-await-in-loop": "off",
+        "sort-imports": "off",
+        "new-cap": "off",
+        "max-statements": "off"
+    }
+        
+}
