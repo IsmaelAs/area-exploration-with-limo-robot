@@ -2,9 +2,10 @@ import * as http from 'http';
 import { AddressInfo } from 'net';
 import { Application } from './app';
 import { Server as SocketServer } from 'socket.io';
-import { SocketServer as SocketManager } from './classes/socket-server';
-import { Logger } from './classes/logger';
-import { MyStateMachine } from './classes/state-machine';
+import { SocketServer as SocketManager } from './controllers/socket-server';
+import { Logger } from './services/logger';
+import { BRIDGE_URI } from './constants/url';
+// import { MyStateMachine } from './classes/state-machine';
 
 
 export class Server {
@@ -14,7 +15,7 @@ export class Server {
     private io: SocketServer;
     private socketManager: SocketManager
     private logger: Logger
-    stateMachine: MyStateMachine;
+    // stateMachine: MyStateMachine;
 
 
     constructor(private readonly application: Application) {}
@@ -44,12 +45,12 @@ export class Server {
                 origin: "*"
             }
         })
-
+        
         this.socketManager = new SocketManager(this.io)
         this.socketManager.connectSocketServer()
         this.logger = new Logger(this.socketManager)
         this.logger.startLogs()
-        this.stateMachine.startStates()
+        // this.stateMachine.startStates()
     }
 
     private onError(error: NodeJS.ErrnoException): void {
