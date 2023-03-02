@@ -9,22 +9,51 @@ export class Logger {
     private currentMission = 0
 
     saveLimoData(data: LogLimo): void {
+        if (this.currentMission === 0) return
+
+        const d = new Date()
+        const dformat = [d.getMonth()+1,
+            d.getDate(),
+            d.getFullYear()].join('/')+' '+
+        [   d.getHours(),
+            d.getMinutes(),
+            d.getSeconds()].join(':');
+
+
+
         const stringData = JSON.stringify(data.data)
-        const log = `[${(new Date()).toString()} : LIMO-${data.limoId}] : ${stringData}\n`
+        const log = `[${dformat} : LIMO-${data.limoId}] : ${stringData}\n`
         appendFile(`${LOGS_PATH}/logs-${this.currentMission}.log`, log, (err: Error) => {
             if (err) console.error(err.stack)
         })
     }
 
     saveUserData<T>(data: T) {
+        if (this.currentMission === 0) return
+
+        const d = new Date()
+        const dformat = [d.getMonth()+1,
+            d.getDate(),
+            d.getFullYear()].join('/')+' '+
+        [   d.getHours(),
+            d.getMinutes(),
+            d.getSeconds()].join(':');
+
+
+
         const stringData = JSON.stringify(data)
-        const log = `[${(new Date()).toString()} : User] : ${stringData}\n`
+        const log = `[${dformat} : User] : ${stringData}\n`
         appendFile(`${LOGS_PATH}/logs-${this.currentMission}.log`, log, (err: Error) => {
             if (err) console.error(err.stack)
         }, )
     }
 
-    getAllData(missionNumber: number, socket: Socket): void {
+    getAllData(missionNumber: number, socket: Socket): void {        
+        if (this.currentMission === 0) {
+            socket.emit("send-all-logs", "Aucune mission disponible. Lancer une mission pour commencer")
+            return
+        }
+
         readFile(`${LOGS_PATH}/logs-${missionNumber}.log`, (err: Error, data: Buffer) => {
             if (err) {
                 console.error(err.stack)
