@@ -4,6 +4,8 @@ import RobotTargetType from './types/RobotType';
 import { MatDialog, MatDialogRef } from "@angular/material/dialog"
 import { LogsDialogComponent } from './dialogs/logs-dialog/logs-dialog.component';
 import {  Subscription } from 'rxjs';
+import { exec } from 'child_process';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -41,6 +43,27 @@ export class AppComponent  implements OnDestroy {
     this.socketCommunication.stopMission(this.type)
   }
 
+  launchSimulation(): void {
+    const commandPath = 'prj_ws'; // dossier ou se trouve la simu
+
+    exec('source devel/setup.bash', { cwd: commandPath }, (error, stdout, stderr) => {
+      if (error) {
+        console.error(`exec erreur: ${error}`);
+        return;
+      }
+      console.log(`stdout: ${stdout}`);
+      console.error(`stderr: ${stderr}`);
+    });
+
+    exec('roslaunch limo_gazebo_sim limo_ackerman.launch &', { cwd: commandPath }, (error, stdout, stderr) => {
+      if (error) {
+        console.error(`exec erreur: ${error}`);
+        return;
+      }
+      console.log(`stdout: ${stdout}`);
+      console.error(`stderr: ${stderr}`);
+    });
+  }
 
   setType(choice: RobotTargetType) { 
     this.type = choice;
