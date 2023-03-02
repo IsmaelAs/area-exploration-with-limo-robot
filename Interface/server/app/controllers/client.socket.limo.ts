@@ -23,6 +23,10 @@ export class ClientSocketLimo {
                 this.logger.saveLimoData(data)
             })
 
+            this.socket.on("disconnect", () => {
+                this.socket.removeAllListeners()
+            })
+
             this.socket.emit("login", this.limoId)
         })
     }
