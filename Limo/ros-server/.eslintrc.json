@@ -8,7 +8,7 @@
     ],
     "parser": "@typescript-eslint/parser",
     "plugins": ["@typescript-eslint"],
-    "ignorePatterns": ["app/**/*.test.ts"],
+    "ignorePatterns": ["app/**/*.spec.ts"],
     "env": {
         "node": true,
         "es6": true
