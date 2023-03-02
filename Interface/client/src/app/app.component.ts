@@ -13,7 +13,7 @@ export class AppComponent  implements OnDestroy {
 
   list: RobotTargetType[] = ["limo-1", "limo-2", "robots"];
   type: RobotTargetType = "limo-1";
-  missionNumber: number = 0;
+  missionNumber: number = 1;
   private openLogsSubscription: Subscription;
   private ref: MatDialogRef<LogsDialogComponent> | undefined;
   
