@@ -27,7 +27,8 @@
         "function-call-argument-newline": "off",
         "multiline-ternary": "off",
         "no-await-in-loop": "off",
-        "sort-imports": "off"
+        "sort-imports": "off",
+        "new-cap": "off"
     }
         
 }
