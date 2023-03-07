@@ -6,44 +6,53 @@ import { DISTANCE_MOVEMENT, DIRECTION_MOVEMENT } from 'src/app/constants/robots-
 import RobotMovement from 'src/app/interfaces/robots-movement-interface';
 
 @Injectable({
-  providedIn: 'root'
+    'providedIn': 'root'
 })
 export class SocketCommunicationService {
 
-  private socket: Socket;
+    private socket: Socket;
 
-  constructor() {    
-    this.socket = io(BACKEND_URL);
-  }
+    constructor () {
 
-  identify(robot: RobotTargetType){
-    const movement: RobotMovement = {
-      robot: robot,
-      direction: DIRECTION_MOVEMENT.LEFT_FORWARD,
-      distance: DISTANCE_MOVEMENT.FAR_AWAY
-    }
-    
-    this.socket.emit("identify", movement);
-  }
+        this.socket = io(BACKEND_URL);
 
-  startMission(robot: RobotTargetType) {
-
-    const movement: RobotMovement = {
-      robot: robot,
-      direction: DIRECTION_MOVEMENT.FORWARD,
-      distance: DISTANCE_MOVEMENT.CLOSE
-    }
-    console.log('start mission', movement);
-    this.socket.emit("start-mission", movement)
-  }
-  
-  stopMission(robot: RobotTargetType) {
-    const movement: RobotMovement = {
-      robot: robot,
-      direction: DIRECTION_MOVEMENT.BACKWARD,
-      distance: DISTANCE_MOVEMENT.CLOSE
     }
 
-    this.socket.emit("stop-mission", movement)
-  }
+    identify (robot: RobotTargetType) {
+
+        const movement: RobotMovement = {
+            robot,
+            'direction': DIRECTION_MOVEMENT.LEFT_FORWARD,
+            'distance': DISTANCE_MOVEMENT.FAR_AWAY
+        };
+
+        this.socket.emit('identify', movement);
+
+    }
+
+    startMission (robot: RobotTargetType) {
+
+        const movement: RobotMovement = {
+            robot,
+            'direction': DIRECTION_MOVEMENT.FORWARD,
+            'distance': DISTANCE_MOVEMENT.CLOSE
+        };
+        // eslint-disable-next-line no-undef
+        console.log('start mission', movement);
+        this.socket.emit('start-mission', movement);
+
+    }
+
+    stopMission (robot: RobotTargetType) {
+
+        const movement: RobotMovement = {
+            robot,
+            'direction': DIRECTION_MOVEMENT.BACKWARD,
+            'distance': DISTANCE_MOVEMENT.CLOSE
+        };
+
+        this.socket.emit('stop-mission', movement);
+
+    }
+
 }

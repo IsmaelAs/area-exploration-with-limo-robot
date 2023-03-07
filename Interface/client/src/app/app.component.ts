@@ -3,36 +3,50 @@ import { SocketCommunicationService } from './services/socket-communication/sock
 import RobotTargetType from './types/RobotType';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+    'selector': 'app-root',
+    'templateUrl': './app.component.html',
+    'styleUrls': ['./app.component.scss']
 })
 export class AppComponent {
 
-  list: RobotTargetType[] = ["limo-1", "limo-2", "robots"];
-  type: RobotTargetType = "limo-1";
-  
-  constructor(
+    list: RobotTargetType[] = [
+        'limo-1',
+        'limo-2',
+        'robots'
+    ];
+
+    type: RobotTargetType = 'limo-1';
+
+    constructor (
+    // eslint-disable-next-line no-unused-vars
     private socketCommunication : SocketCommunicationService
-    ){}
-  
-
-  identify(){    
-    this.socketCommunication.identify(this.type);
-  }
-
-  startMission() {
-    this.socketCommunication.startMission(this.type)
-  }
-
-  stopMission() {
-    this.socketCommunication.stopMission(this.type)
-  }
+    ) {}
 
 
-  setType(choice: RobotTargetType) { 
-    this.type = choice;
-  }
+    identify () {
+
+        this.socketCommunication.identify(this.type);
+
+    }
+
+    startMission () {
+
+        this.socketCommunication.startMission(this.type);
+
+    }
+
+    stopMission () {
+
+        this.socketCommunication.stopMission(this.type);
+
+    }
+
+
+    setType (choice: RobotTargetType) {
+
+        this.type = choice;
+
+    }
 
 }
 
