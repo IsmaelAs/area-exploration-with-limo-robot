@@ -20,4 +20,8 @@
       <button mat-flat-button color="primary" (click)="stopMission()">Arrêter la mission</button>
     </div>
   </section>
+  <section>
+    <input type="number" [(ngModel)]="missionNumber" min="1" />
+    <button (click)="showLog()">Montrer les logs de la mission numero {{missionNumber}}</button>
+  </section>
 </div>

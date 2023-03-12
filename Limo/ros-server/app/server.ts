@@ -2,20 +2,20 @@
 import * as http from 'http';
 import { AddressInfo } from 'net';
 import { Application } from './app';
-import { SocketServer as SocketManager } from './classes/socket-server';
 import { Server as SocketServer } from 'socket.io';
+import { SocketServer as SocketManager } from './controllers/socket-server';
+import { Logger } from './services/logger';
+// import { MyStateMachine } from './classes/state-machine';
 
 
 export class Server {
-  private static readonly appPort: string | number | boolean = Server.normalizePort(9332);
-
-  private static readonly baseDix: number = 10;
-
-  private server: http.Server;
-
-  private io: SocketServer;
-
-  private socketManager: SocketManager;
+    private static readonly appPort: string | number | boolean = Server.normalizePort(9332);
+    private static readonly baseDix: number = 10;
+    private server: http.Server;
+    private io: SocketServer;
+    private socketManager: SocketManager
+    private logger: Logger
+    // stateMachine: MyStateMachine;
 
 
   // eslint-disable-next-line no-useless-constructor, no-empty-function
@@ -48,16 +48,18 @@ val;
     this.server.on('listening',
         () => this.onListening());
 
-    this.io = new SocketServer(this.server,
-        {
-          cors: {
-            origin: '*',
-          },
-        });
-
-    this.socketManager = new SocketManager(this.io);
-    this.socketManager.connectSocketServer();
-  }
+        this.io = new SocketServer(this.server,             {
+            cors: {
+                origin: "*"
+            }
+        })
+        
+        this.socketManager = new SocketManager(this.io)
+        this.socketManager.connectSocketServer()
+        this.logger = new Logger(this.socketManager)
+        this.logger.startLogs()
+        // this.stateMachine.startStates()
+    }
 
   // eslint-disable-next-line class-methods-use-this, no-undef
   private onError(error: NodeJS.ErrnoException): void {

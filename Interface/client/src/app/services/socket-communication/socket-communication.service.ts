@@ -4,19 +4,26 @@ import { BACKEND_URL } from 'src/app/constants/url';
 import RobotTargetType from 'src/app/types/RobotType';
 import { DISTANCE_MOVEMENT, DIRECTION_MOVEMENT } from 'src/app/constants/robots-movement';
 import RobotMovement from 'src/app/interfaces/robots-movement-interface';
+import { State } from 'src/app/types/States';
+import { Subject } from 'rxjs';
 
 @Injectable({
     'providedIn': 'root'
 })
 export class SocketCommunicationService {
 
-    private socket: Socket;
+  private socket: Socket;
+  private logsOpen: Subject<string> = new Subject();
 
-    constructor () {
-
-        this.socket = io(BACKEND_URL);
+  constructor() {    
+    this.socket = io(BACKEND_URL);
+    this.initSocketSubscription()
+  }
 
     }
+    
+    this.emit("identify", movement);
+  }
 
     identify (robot: RobotTargetType) {
 
@@ -29,30 +36,46 @@ export class SocketCommunicationService {
         this.socket.emit('identify', movement);
 
     }
-
-    startMission (robot: RobotTargetType) {
-
-        const movement: RobotMovement = {
-            robot,
-            'direction': DIRECTION_MOVEMENT.FORWARD,
-            'distance': DISTANCE_MOVEMENT.CLOSE
-        };
-        // eslint-disable-next-line no-undef
-        console.log('start mission', movement);
-        this.socket.emit('start-mission', movement);
-
+    console.log('start mission', movement);
+    this.emit("start-mission", movement)
+  }
+  
+  stopMission(robot: RobotTargetType) {
+    const movement: RobotMovement = {
+      robot: robot,
+      direction: DIRECTION_MOVEMENT.BACKWARD,
+      distance: DISTANCE_MOVEMENT.CLOSE
     }
 
-    stopMission (robot: RobotTargetType) {
+    this.emit("stop-mission", movement)
+  }
 
-        const movement: RobotMovement = {
-            robot,
-            'direction': DIRECTION_MOVEMENT.BACKWARD,
-            'distance': DISTANCE_MOVEMENT.CLOSE
-        };
+  showLog(missionNumber: number) {
+    this.emit("get-all-logs", missionNumber)
+  }
 
-        this.socket.emit('stop-mission', movement);
+  get subscribeOpenLogs() {
+    return this.logsOpen.asObservable()
+  }
 
-    }
+  private initSocketSubscription() {
+    this.socket.on("connect", () => {
+      this.socket.on("send-all-logs", (logs: string) => {
+        console.log(logs);
+        this.logsOpen.next(logs)
+      })
+      this.socket.on("send-state", (state: State) => {
+        console.log(state);
+      })
+    })
+  }
 
+  private emit<T>(event: string, data?: T) {
+    this.socket.emit('save-log', {
+      event: event,
+      data: data? data : ""
+    })
+
+    data ? this.socket.emit(event, data) : this.socket.emit(event)
+  }
 }

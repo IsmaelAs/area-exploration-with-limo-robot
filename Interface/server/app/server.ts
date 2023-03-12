@@ -7,8 +7,7 @@ import { Service } from 'typedi';
 import { Application } from './app';
 import { Server as SocketServer } from 'socket.io';
 import { ServerSocketController } from './controllers/server.socket.controller';
-import { ClientSocketLimo1 } from './controllers/client.socket.limo';
-import { ClientSocketLimo2 } from './controllers/client.socket.limo2';
+import { ClientSocketLimo } from './controllers/client.socket.limo';
 
 
 @Service()
@@ -57,14 +56,14 @@ export class Server {
       },
     });
 
-    if (process.env.LIMO_IP_1) {
-      this.socketLimo = new ClientSocketLimo1();
-      this.socketLimo.connectClientSocketToLimo1();
-    }
-    if (process.env.LIMO_IP_2) {
-      this.socketLimo2 = new ClientSocketLimo2();
-      this.socketLimo2.connectClientSocketToLimo2();
-    }
+        if (process.env.LIMO_IP_1) {
+            this.socketLimo = new ClientSocketLimo(1)
+            this.socketLimo.connectClientSocketToLimo()
+        }
+        if (process.env.LIMO_IP_2) {
+            this.socketLimo2 = new ClientSocketLimo(2)
+            this.socketLimo2.connectClientSocketToLimo()
+        }
 
     this.serverSocketController = new ServerSocketController(this.io, this.socketLimo, this.socketLimo2);
     this.serverSocketController.initializeSocketServer();
