@@ -20,7 +20,7 @@ export class AppComponent implements OnDestroy {
         'robots'
     ];
 
-    type: RobotTargetType = 'limo-1';
+    robotTarget: RobotTargetType = 'limo-1';
 
     missionNumber = FIRST_MISSION;
 
@@ -47,26 +47,26 @@ export class AppComponent implements OnDestroy {
 
     identify () {
 
-        this.socketCommunication.identify(this.type);
+        this.socketCommunication.identify(this.robotTarget);
 
     }
 
     startMission () {
 
-        this.socketCommunication.startMission(this.type);
+        this.socketCommunication.startMission(this.robotTarget);
 
     }
 
     stopMission () {
 
-        this.socketCommunication.stopMission(this.type);
+        this.socketCommunication.stopMission(this.robotTarget);
 
     }
 
 
     setType (choice: RobotTargetType) {
 
-        this.type = choice;
+        this.robotTarget = choice;
 
     }
 
