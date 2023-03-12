@@ -79,7 +79,6 @@ export class SocketCommunicationService {
 
             this.socket.on('send-all-logs', (logs: string) => {
 
-                console.log(logs);
                 this.logsOpen.next(logs);
 
             });
