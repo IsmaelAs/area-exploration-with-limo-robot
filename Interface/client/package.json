@@ -2,11 +2,13 @@
   "name": "client",
   "version": "0.0.0",
   "scripts": {
-    "start": "ng serve --open --host 0.0.0.0",
+    "start": "npm run set-env && ng serve --open --host 0.0.0.0",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "set-env" : "npx ts-node ./src/set_env.ts",
     "lint": "ng lint"
+
   },
   "private": true,
   "dependencies": {
@@ -19,8 +21,12 @@
     "@angular/platform-browser": "^15.0.0",
     "@angular/platform-browser-dynamic": "^15.0.0",
     "@angular/router": "^15.0.0",
+    "fs": "^0.0.1-security",
+    "node": "^19.6.0",
+    "process": "^0.11.10",
     "rxjs": "~7.5.0",
     "socket.io-client": "^4.6.0",
+    "ts-node": "^10.9.1",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
   },
@@ -37,6 +43,7 @@
     "@typescript-eslint/eslint-plugin": "5.48.2",
     "@typescript-eslint/parser": "5.48.2",
     "eslint": "^8.33.0",
+    "@types/node": "^18.13.0",
     "jasmine-core": "~4.5.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.1.0",
