@@ -1,6 +1,9 @@
-import Command from "@app/types/Command";
+import Command from '@app/types/Command';
 
-export default interface OnRobotMovement {
+interface OnRobotMovement {
     direction: Command,
     distance: number
 }
+
+export default OnRobotMovement;
+
