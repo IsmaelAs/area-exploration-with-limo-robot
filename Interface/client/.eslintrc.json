@@ -17,6 +17,8 @@
 				"eslint:all"
       ],
       "rules": {
+        "no-unused-vars": "off",
+        "no-undef":"off",
 				"require-jsdoc" : 0,
 				"no-empty-function": "off",
         "object-curly-spacing":"off",
