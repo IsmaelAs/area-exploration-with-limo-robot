@@ -12,38 +12,24 @@ export class Logger {
   private isMissionStop = true;
 
   saveLimoData(data: LogLimo): void {
-    if (this.isMissionStop && this.currentMission === NONE_MISSION) return;
+    if (this.isMissionStop || this.currentMission === NONE_MISSION) return;
 
     const date = new Date();
-    const dformat = `${
-      [
-        date.getHours(),
-        date.getMinutes(),
-        date.getSeconds(),
-      ].join(':')}`;
-
 
     const stringData = JSON.stringify(data.data);
-    const log = `[${date.toLocaleString()} : ${dformat} : LIMO-${data.limoId}] : ${stringData}\n`;
+    const log = `[${date.toLocaleString()} : LIMO-${data.limoId}] : ${stringData}\n`;
     appendFile(`${LOGS_PATH}/logs-${this.currentMission}.log`, log, (err: Error) => {
       if (err) console.error(err.stack);
     });
   }
 
   saveUserData<T>(data: T) {
-    if (this.isMissionStop && this.currentMission === NONE_MISSION) return;
+    if (this.isMissionStop || this.currentMission === NONE_MISSION) return;
 
     const date = new Date();
-    const dformat = `${
-      [
-        date.getHours(),
-        date.getMinutes(),
-        date.getSeconds(),
-      ].join(':')}`;
-
 
     const stringData = JSON.stringify(data);
-    const log = `[${date.toLocaleString()} : ${dformat} : User] : ${stringData}\n`;
+    const log = `[${date.toLocaleString()} : User] : ${stringData}\n`;
     appendFile(`${LOGS_PATH}/logs-${this.currentMission}.log`, log, (err: Error) => {
       if (err) console.error(err.stack);
     },);
