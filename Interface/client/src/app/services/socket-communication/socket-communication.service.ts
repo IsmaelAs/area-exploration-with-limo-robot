@@ -32,7 +32,7 @@ export class SocketCommunicationService {
             'distance': DISTANCE_MOVEMENT.FAR_AWAY
         };
 
-        this.socket.emit('identify', movement);
+        this.emit('identify', movement);
 
     }
 
@@ -83,6 +83,7 @@ export class SocketCommunicationService {
                 this.logsOpen.next(logs);
 
             });
+
             this.socket.on('send-state', (state: State) => {
 
                 console.log(state);
