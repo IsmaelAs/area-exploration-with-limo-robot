@@ -1,5 +1,6 @@
-import { NodeMovement } from "./ros/nodes/node-movement";
-import Command from "../types/Command";
+import Command from '../types/Command';
+import { NodeMovement } from './ros/nodes/node-movement';
+
 export class NodeManager {
   private nodeMovement: NodeMovement;
 
@@ -10,17 +11,17 @@ export class NodeManager {
   // Start all nodes
   start(): void {
     console.log(`Starting connection for the nodes`);
-    this.nodeMovement.initNodeMovement()
+    this.nodeMovement.initNodeMovement();
   }
 
   // Send command to move limo
-  async move(command :Command, nbrSendingMsg?: number): Promise<void>{
-    nbrSendingMsg ? await this.nodeMovement.move(command, nbrSendingMsg) : await this.nodeMovement.move(command)
+  async move(command :Command, nbrSendingMsg?: number): Promise<void> {
+    nbrSendingMsg ? await this.nodeMovement.move(command, nbrSendingMsg) : await this.nodeMovement.move(command);
   }
 
   // Stop all nodes
   stop(): void {
     console.log(`Closing connection of nodes !`);
-    this.nodeMovement.closeNodeMovement()
+    this.nodeMovement.closeNodeMovement();
   }
 }

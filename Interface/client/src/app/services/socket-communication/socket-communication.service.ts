@@ -8,7 +8,7 @@ import { State } from 'src/app/types/States';
 import { Subject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+    'providedIn': 'root'
 })
 export class SocketCommunicationService {
 
@@ -20,22 +20,21 @@ export class SocketCommunicationService {
     this.initSocketSubscription()
   }
 
-  identify(robot: RobotTargetType){
-    const movement: RobotMovement = {
-      robot: robot,
-      direction: DIRECTION_MOVEMENT.LEFT_FORWARD,
-      distance: DISTANCE_MOVEMENT.FAR_AWAY
     }
     
     this.emit("identify", movement);
   }
 
-  startMission(robot: RobotTargetType) {
+    identify (robot: RobotTargetType) {
 
-    const movement: RobotMovement = {
-      robot: robot,
-      direction: DIRECTION_MOVEMENT.FORWARD,
-      distance: DISTANCE_MOVEMENT.CLOSE
+        const movement: RobotMovement = {
+            robot,
+            'direction': DIRECTION_MOVEMENT.LEFT_FORWARD,
+            'distance': DISTANCE_MOVEMENT.FAR_AWAY
+        };
+
+        this.socket.emit('identify', movement);
+
     }
     console.log('start mission', movement);
     this.emit("start-mission", movement)

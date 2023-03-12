@@ -1,10 +1,10 @@
-import { Server } from "./server";
-import { Application } from "./app";
+import { Application } from './app';
+import { Server } from './server';
 
-const main = async () => {
-    const app = new Application()
-    const server = new Server(app);
-    server.init()
-}
+const main = () => {
+  const app = new Application();
+  const server = new Server(app);
+  server.init();
+};
 
-main()
+main();
