@@ -1,4 +1,6 @@
-export default interface LogLimo {
+interface LogLimo {
     limoId: number,
     data: unknown
 }
+
+export default LogLimo;

@@ -22,9 +22,9 @@ export class Server {
 
   private serverSocketController: ServerSocketController;
 
-  private socketLimo?: ClientSocketLimo1;
+  private socketLimo?: ClientSocketLimo;
 
-  private socketLimo2?: ClientSocketLimo2;
+  private socketLimo2?: ClientSocketLimo;
 
 
   // eslint-disable-next-line no-useless-constructor, no-empty-function
@@ -56,14 +56,14 @@ export class Server {
       },
     });
 
-        if (process.env.LIMO_IP_1) {
-            this.socketLimo = new ClientSocketLimo(1)
-            this.socketLimo.connectClientSocketToLimo()
-        }
-        if (process.env.LIMO_IP_2) {
-            this.socketLimo2 = new ClientSocketLimo(2)
-            this.socketLimo2.connectClientSocketToLimo()
-        }
+    if (process.env.LIMO_IP_1) {
+      this.socketLimo = new ClientSocketLimo(1);
+      this.socketLimo.connectClientSocketToLimo();
+    }
+    if (process.env.LIMO_IP_2) {
+      this.socketLimo2 = new ClientSocketLimo(2);
+      this.socketLimo2.connectClientSocketToLimo();
+    }
 
     this.serverSocketController = new ServerSocketController(this.io, this.socketLimo, this.socketLimo2);
     this.serverSocketController.initializeSocketServer();

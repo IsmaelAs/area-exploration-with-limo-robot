@@ -4,43 +4,45 @@ import { Logger } from '../services/logger';
 import LogLimo from '@app/interfaces/log-limo';
 
 export class ClientSocketLimo {
-    private socket: Socket;
-    private logger: Logger
-    private limoId: number
+  private socket: Socket;
 
-    constructor(limoId: number) {
-        this.limoId = limoId
-        this.socket = io(LIMO_URL);
-        this.logger = new Logger()
-    }
+  private logger: Logger;
 
-    connectClientSocketToLimo() {
-        this.socket.on("connect", () => {
-            console.log(`Limo ${this.limoId} connected to the ROS server`);
-            this.logger.saveLimoData({limoId: this.limoId, data: `Limo ${this.limoId} connected to the ROS server`})
-            
-            this.socket.on("save-log", (data: LogLimo) => {
-                this.logger.saveLimoData(data)
-            })
+  private limoId: number;
 
-            this.socket.on("disconnect", () => {
-                this.socket.removeAllListeners()
-            })
+  constructor(limoId: number) {
+    this.limoId = limoId;
+    this.socket = io(LIMO_URL);
+    this.logger = new Logger();
+  }
 
-            this.socket.emit("login", this.limoId)
-        })
-    }
+  connectClientSocketToLimo() {
+    this.socket.on('connect', () => {
+      console.log(`Limo ${this.limoId} connected to the ROS server`);
+      this.logger.saveLimoData({limoId: this.limoId,
+        data: `Limo ${this.limoId} connected to the ROS server`});
 
-    emitToLimo<T>(event: string, data?: T) {
-        data ? this.socket.emit(event, data) : this.socket.emit(event)
-    }
+      this.socket.on('save-log', (data: LogLimo) => {
+        this.logger.saveLimoData(data);
+      });
 
-    startMission() {
-        this.logger.startMission()
-    }
+      this.socket.on('disconnect', () => {
+        this.socket.removeAllListeners();
+      });
 
-    stopMission() {
-        this.logger.stopMission()
-    }
+      this.socket.emit('login', this.limoId);
+    });
+  }
 
+  emitToLimo<T>(event: string, data?: T) {
+        data ? this.socket.emit(event, data) : this.socket.emit(event);
+  }
+
+  startMission() {
+    this.logger.startMission();
+  }
+
+  stopMission() {
+    this.logger.stopMission();
+  }
 }
