@@ -64,7 +64,7 @@ export class AppComponent implements OnDestroy {
     }
 
 
-    setType (choice: RobotTargetType) {
+    setTarget (choice: RobotTargetType) {
 
         this.robotTarget = choice;
 
