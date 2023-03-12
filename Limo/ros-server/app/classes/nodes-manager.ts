@@ -1,5 +1,5 @@
 import { NodeMovement } from "./ros/nodes/node-movement";
-import Command from "../types/Command";
+import Command from "../types/types";
 export class NodeManager {
   private nodeMovement: NodeMovement;
 

@@ -1,5 +1,5 @@
 import { NodeManager } from './nodes-manager';
-import Command from '../types/Command';
+import Command from '../types/types';
 import { Server } from 'socket.io';
 
 

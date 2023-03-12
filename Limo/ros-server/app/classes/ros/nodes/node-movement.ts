@@ -2,7 +2,7 @@ import delay from 'delay'
 import {Topic, Ros, Message} from 'roslib'
 import Twist from '../../../interfaces/Twist'
 import { BRIDGE_URI } from '../../../constants/url'
-import Command from "../../../types/Command"
+import Command from "../../../types/types"
 import { TIME_DELAY } from '../../../constants/time-constants'
 export class NodeMovement {
     private name: String = "Node Movement"
