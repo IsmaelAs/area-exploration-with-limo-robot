@@ -11,4 +11,4 @@ interface Twist {
     }
 }
 
-export default Twist
+export default Twist;
