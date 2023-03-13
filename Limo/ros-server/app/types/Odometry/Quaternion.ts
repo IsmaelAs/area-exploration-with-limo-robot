@@ -1,8 +1,8 @@
 type Quaternion = {
-    x: number, 
-    y: number, 
-    z: number, 
+    x: number,
+    y: number,
+    z: number,
     w: number
 }
 
-export default Quaternion
+export default Quaternion;

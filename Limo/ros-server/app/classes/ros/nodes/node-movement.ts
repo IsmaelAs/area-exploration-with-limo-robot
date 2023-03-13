@@ -83,6 +83,9 @@ export class NodeMovement {
       case 'right-backward':
         await this.turnRightBackward(nbrSendingMsg);
         break;
+      case 'left-backward':
+        await this.turnLeftBackward(nbrSendingMsg);
+        break;
       default:
         console.log('Invalid movement command');
         break;

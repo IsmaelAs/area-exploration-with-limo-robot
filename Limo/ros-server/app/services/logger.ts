@@ -1,41 +1,46 @@
-import { NodePosition } from "../classes/ros/nodes/node-position";
-import { SocketServer } from "../controllers/socket-server";
+/* eslint-disable no-magic-numbers */
+import { NodePosition } from '../classes/ros/nodes/node-position';
+import { SocketServer } from '../controllers/socket-server';
 
 export class Logger {
-    private socketServer: SocketServer
-    private intervalLog: NodeJS.Timer
-    private nodePosition: NodePosition = new NodePosition()
+  private socketServer: SocketServer;
 
-    constructor(socketServer: SocketServer) {
-        this.socketServer = socketServer
-        this.nodePosition.initNodePosition()
-    }
-    
-    startLogs() {
-        this.intervalLog = setInterval(this.callBack.bind(this), 1000)
-    }
+  private intervalLog: NodeJS.Timer;
 
-    private callBack() {
-        if (this.socketServer.numberSocketConnected === 0) return
+  private nodePosition: NodePosition = new NodePosition();
 
-        const position = this.positionLog()
-        const limoId = this.socketServer.limoId
-        this.socketServer.emit("save-log", {limoId: limoId, data: position})
-    }
+  constructor(socketServer: SocketServer) {
+    this.socketServer = socketServer;
+    this.nodePosition.initNodePosition();
+  }
 
-    private positionLog() {
-        const data = this.nodePosition.getData()
-        const distance = Math.sqrt(Math.pow(data.pose.pose.position.x, 2) + Math.pow(data.pose.pose.position.y, 2) + Math.pow(data.pose.pose.position.z, 2))
-        return {
-            x: Math.round(data.pose.pose.position.x * 100) / 100,
-            y: Math.round(data.pose.pose.position.y * 100) / 100,
-            z: Math.round(data.pose.pose.position.z * 100) / 100,
-            distance: Math.round(distance * 100) / 100
-        }
-    }
+  startLogs() {
+    this.intervalLog = setInterval(this.callBack.bind(this), 1000);
+  }
 
-    stopLog() {
-        this.socketServer.emit("save-log", {limoId: this.socketServer.limoId, data: "Stop sending logs"})
-        clearInterval(this.intervalLog)
-    }
+  private callBack() {
+    if (this.socketServer.numberSocketConnected === 0) return;
+
+    const position = this.positionLog();
+    const {limoId} = this.socketServer;
+    this.socketServer.emit('save-log', {limoId,
+      data: position});
+  }
+
+  private positionLog() {
+    const data = this.nodePosition.getData();
+    const distance = Math.sqrt((data.pose.pose.position.x ** 2) + (data.pose.pose.position.y ** 2) + (data.pose.pose.position.z ** 2));
+    return {
+      x: Math.round(data.pose.pose.position.x * 100) / 100,
+      y: Math.round(data.pose.pose.position.y * 100) / 100,
+      z: Math.round(data.pose.pose.position.z * 100) / 100,
+      distance: Math.round(distance * 100) / 100,
+    };
+  }
+
+  stopLog() {
+    this.socketServer.emit('save-log', {limoId: this.socketServer.limoId,
+      data: 'Stop sending logs'});
+    clearInterval(this.intervalLog);
+  }
 }

@@ -1,5 +1,5 @@
-import PoseWithCovariance from "./PoseWithCovariance"
-import TwistWithCovariance from "./TwistWithCovariance"
+import PoseWithCovariance from './PoseWithCovariance';
+import TwistWithCovariance from './TwistWithCovariance';
 
 type Odometry = {
     pose: PoseWithCovariance
@@ -7,4 +7,4 @@ type Odometry = {
 }
 
 
-export default Odometry
+export default Odometry;

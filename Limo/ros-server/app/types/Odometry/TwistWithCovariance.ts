@@ -1,8 +1,8 @@
-import Twist from "./Twist"
+import Twist from './Twist';
 
 type TwistWithCovariance = {
     twist: Twist,
     covariance: number[]
 }
 
-export default TwistWithCovariance
+export default TwistWithCovariance;

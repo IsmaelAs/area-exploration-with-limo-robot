@@ -1,7 +1,7 @@
 type Point = {
-        x: number, 
-        y: number, 
+        x: number,
+        y: number,
         z: number
 }
 
-export default Point
+export default Point;

@@ -1,7 +1,7 @@
 type Vector3 = {
     x: number,
-    y: number, 
+    y: number,
     z: number
 }
 
-export default Vector3
+export default Vector3;

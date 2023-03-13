@@ -1,8 +1,8 @@
-import Pose from "./Pose"
+import Pose from './Pose';
 
 type PoseWithCovariance = {
     pose: Pose,
     covariance: number[]
 }
 
-export default PoseWithCovariance
+export default PoseWithCovariance;
