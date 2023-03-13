@@ -40,7 +40,7 @@ export class SocketCommunicationService {
 
         const movement: RobotMovement = {
             robot,
-            'direction': DIRECTION_MOVEMENT.BACKWARD,
+            'direction': DIRECTION_MOVEMENT.FORWARD,
             'distance': DISTANCE_MOVEMENT.CLOSE
         };
 
