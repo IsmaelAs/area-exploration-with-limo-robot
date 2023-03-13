@@ -52,11 +52,13 @@ export class Logger {
   }
 
   startMission() {
-    this.currentMission += 1;
-    this.isMissionStop = false;
+    if (this.isMissionStop) {
+      this.currentMission += 1;
+      this.isMissionStop = false;
+    }
   }
 
   stopMission() {
-    this.isMissionStop = true;
+    if (!this.isMissionStop) this.isMissionStop = true;
   }
 }
