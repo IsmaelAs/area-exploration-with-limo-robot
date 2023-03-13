@@ -15,6 +15,7 @@ export class SocketCommunicationService {
     private socket: Socket;
 
     private logsOpen: Subject<string> = new Subject();
+    private receivedState: Subject<string> = new Subject();
 
     constructor () {
 
@@ -73,12 +74,18 @@ export class SocketCommunicationService {
 
     }
 
+    get subscribeStates () {
+
+      return this.receivedState.asObservable();
+
+    }
+
     private initSocketSubscription () {
 
         this.socket.on('connect', () => {
 
             this.socket.on('send-all-logs', (logs: string) => {
-
+                console.log(logs);
                 this.logsOpen.next(logs);
 
             });
@@ -86,7 +93,7 @@ export class SocketCommunicationService {
             this.socket.on('send-state', (state: State) => {
 
                 console.log(state);
-
+                this.receivedState.next(state);
             });
 
         });

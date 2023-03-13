@@ -2,7 +2,7 @@
 <div class="container">
   <mat-form-field appearance="fill">
     <mat-label >Selection</mat-label>
-    <mat-select [value]="robotTarget" (valueChange)="setTarget($event)">
+    <mat-select [value]="type" (valueChange)="setType($event)">
       <mat-option
         *ngFor="let choice of list"
         [value]="choice"
@@ -23,5 +23,8 @@
   <section>
     <input type="number" [(ngModel)]="missionNumber" min="1" />
     <button (click)="showLog()">Montrer les logs de la mission numero {{missionNumber}}</button>
+    <ng-container *ngIf="currentState">
+      <p>L'etat courant est: {{ currentState }}</p>
+    </ng-container>
   </section>
 </div>
