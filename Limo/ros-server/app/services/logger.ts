@@ -1,4 +1,5 @@
 /* eslint-disable no-magic-numbers */
+import NodeScan from '@app/classes/ros/nodes/node-scan';
 import { NodePosition } from '../classes/ros/nodes/node-position';
 import { SocketServer } from '../controllers/socket-server';
 
@@ -9,9 +10,12 @@ export class Logger {
 
   private nodePosition: NodePosition = new NodePosition();
 
+  private nodeScan: NodeScan = new NodeScan();
+
   constructor(socketServer: SocketServer) {
     this.socketServer = socketServer;
     this.nodePosition.initNodePosition();
+    this.nodeScan.initNodeScan();
   }
 
   startLogs() {
@@ -22,19 +26,23 @@ export class Logger {
     if (this.socketServer.numberSocketConnected === 0) return;
 
     const position = this.positionLog();
+    const scanOutput = this.nodeScan.getData();
     const {limoId} = this.socketServer;
     this.socketServer.emit('save-log', {limoId,
-      data: position});
+      data: {
+        position,
+        scanOutput,
+      }});
   }
 
   private positionLog() {
     const data = this.nodePosition.getData();
-    const distance = Math.sqrt((data.pose.pose.position.x ** 2) + (data.pose.pose.position.y ** 2) + (data.pose.pose.position.z ** 2));
+    const distanceFromInit = Math.sqrt((data.pose.pose.position.x ** 2) + (data.pose.pose.position.y ** 2) + (data.pose.pose.position.z ** 2));
     return {
       x: Math.round(data.pose.pose.position.x * 100) / 100,
       y: Math.round(data.pose.pose.position.y * 100) / 100,
       z: Math.round(data.pose.pose.position.z * 100) / 100,
-      distance: Math.round(distance * 100) / 100,
+      distanceFromInit: Math.round(distanceFromInit * 100) / 100,
     };
   }
 
