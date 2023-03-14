@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -6,7 +6,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
     'templateUrl': './logs-dialog.component.html',
     'styleUrls': ['./logs-dialog.component.scss']
 })
-export class LogsDialogComponent {
+export class LogsDialogComponent implements OnInit {
 
     constructor (@Inject(MAT_DIALOG_DATA) public data: {logs: string},
     private dialogRef: MatDialogRef<LogsDialogComponent>) {}
@@ -14,6 +14,12 @@ export class LogsDialogComponent {
     get logsFormatted () {
 
         return this.data.logs;
+
+    }
+
+    ngOnInit (): void {
+
+        this.dialogRef.updateSize('200 px', '300 px');
 
     }
 

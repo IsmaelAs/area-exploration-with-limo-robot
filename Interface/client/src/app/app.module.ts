@@ -9,12 +9,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { LogsDialogComponent } from './dialogs/logs-dialog/logs-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { LogActionComponent } from './components/log-action/log-action.component';
 
 
 @NgModule({
     'declarations': [
         AppComponent,
-        LogsDialogComponent
+        LogsDialogComponent,
+        LogActionComponent
 
     ],
     'imports': [
