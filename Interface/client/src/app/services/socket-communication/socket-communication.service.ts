@@ -26,38 +26,21 @@ export class SocketCommunicationService {
 
     identify (robot: RobotTargetType) {
 
-        const movement: RobotMovement = {
-            robot,
-            'direction': DIRECTION_MOVEMENT.LEFT_FORWARD,
-            'distance': DISTANCE_MOVEMENT.FAR_AWAY
-        };
-
-        this.emit('identify', movement);
+        this.emit('identify', robot);
 
     }
 
     startMission (robot: RobotTargetType) {
 
-        const movement: RobotMovement = {
-            robot,
-            'direction': DIRECTION_MOVEMENT.FORWARD,
-            'distance': DISTANCE_MOVEMENT.CLOSE
-        };
-
-        console.log('start mission', movement);
-        this.emit('start-mission', movement);
+        console.log('start mission', robot);
+        this.emit('start-mission', robot);
 
     }
 
     stopMission (robot: RobotTargetType) {
 
-        const movement: RobotMovement = {
-            robot,
-            'direction': DIRECTION_MOVEMENT.BACKWARD,
-            'distance': DISTANCE_MOVEMENT.CLOSE
-        };
 
-        this.emit('stop-mission', movement);
+        this.emit('stop-mission', robot);
 
     }
 
