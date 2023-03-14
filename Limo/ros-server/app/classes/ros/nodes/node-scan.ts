@@ -26,7 +26,7 @@ export default class NodeScan {
       this.subscriberScan = new Topic({
         ros: this.ros,
         messageType: 'sensor_msgs/LaserScan',
-        name: process.env.IS_SIMULATION ? 'limo/scan' : 'scan',
+        name: process.env.IS_SIMULATION ? `limo-${process.env.LIMO_ID}/limo/scan` : 'scan',
         queue_size: 10,
       });
       this.subscriberScan.subscribe(this.callBack.bind(this));
