@@ -1,5 +1,8 @@
 
 <div class="container">
-  <app-robots-actions></app-robots-actions>
-  <app-log-action> </app-log-action>
+  <div *ngIf="isIpSet">
+    <app-robots-actions></app-robots-actions>
+    <app-log-action> </app-log-action>  
+  </div>
+  <app-ip-limo-handler *ngIf="!isIpSet" (isIpSet)="setIsIpSet($event)"></app-ip-limo-handler>
 </div>

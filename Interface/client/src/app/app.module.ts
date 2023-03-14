@@ -12,6 +12,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { LogActionComponent } from './components/log-action/log-action.component';
 import { ActionButtonsComponent } from './components/action-buttons/action-buttons.component';
 import { RobotsActionsComponent } from './components/robots-actions/robots-actions.component';
+import { IpLimoHandlerComponent } from './components/ip-limo-handler/ip-limo-handler.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { RobotsActionsComponent } from './components/robots-actions/robots-actio
         LogsDialogComponent,
         LogActionComponent,
         ActionButtonsComponent,
-        RobotsActionsComponent
+        RobotsActionsComponent,
+        IpLimoHandlerComponent
 
     ],
     'imports': [

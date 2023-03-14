@@ -17,6 +17,8 @@
 				"eslint:all"
       ],
       "rules": {
+        "one-var":"off",
+        "object-property-newline":"off",
         "no-unused-vars": "off",
         "no-undef":"off",
 				"require-jsdoc" : 0,

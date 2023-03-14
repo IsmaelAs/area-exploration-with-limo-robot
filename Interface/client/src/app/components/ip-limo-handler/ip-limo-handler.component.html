@@ -1,0 +1,10 @@
+<div>
+
+    <h1> RENTREZ LES ADRESSES IP DES LIMOS : mettre au moins l'ip du limo 1</h1>
+    <label>Limo IP 1</label>
+    <input type="text" id="limo1" [(ngModel)]="ipAddressLimo1">
+    <label>Limo IP 2</label>
+    <input type="text" id="limo2" [(ngModel)]="ipAddressLimo2">
+
+    <button [disabled]="!ipPatternRight" (click)="sendLimoIps()">Envoyer les adresses ip</button>
+</div>

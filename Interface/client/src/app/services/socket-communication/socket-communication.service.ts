@@ -67,6 +67,12 @@ export class SocketCommunicationService {
 
     }
 
+    sendLimoIps (limo1: string, limo2: string) {
+
+        this.emit('send-limo-ips', {limo1, limo2});
+
+    }
+
     get subscribeOpenLogs () {
 
         return this.logsOpen.asObservable();
