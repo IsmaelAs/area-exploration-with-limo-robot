@@ -1,7 +1,7 @@
 import { Ros, Topic } from 'roslib';
-import { BRIDGE_URI } from '@app/constants/url';
-import LaserScan from '@app/types/LaserScan';
-import deepCopy from '@app/utilities/DeepCopy';
+import { BRIDGE_URI } from '../../../constants/url';
+import LaserScan from '../../../types/LaserScan';
+import deepCopy from '../../../utilities/DeepCopy';
 
 export default class NodeScan {
   private ros: Ros;

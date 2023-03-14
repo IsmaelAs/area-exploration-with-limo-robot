@@ -1,5 +1,5 @@
 /* eslint-disable no-magic-numbers */
-import NodeScan from '@app/classes/ros/nodes/node-scan';
+import NodeScan from '../classes/ros/nodes/node-scan';
 import { NodePosition } from '../classes/ros/nodes/node-position';
 import { SocketServer } from '../controllers/socket-server';
 
