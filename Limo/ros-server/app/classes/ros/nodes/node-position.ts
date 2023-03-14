@@ -1,6 +1,7 @@
 import { Ros, Topic } from 'roslib';
 import { BRIDGE_URI } from '../../../constants/url';
-import Odometry from '@app/types/Odometry/Odometry';
+import Odometry from '../../../types/Odometry/Odometry';
+import deepCopy from '../../../utilities/DeepCopy';
 
 export class NodePosition {
   private ros: Ros;
@@ -28,6 +29,6 @@ export class NodePosition {
   }
 
   getData(): Odometry {
-    return this.data;
+    return deepCopy(this.data);
   }
 }
