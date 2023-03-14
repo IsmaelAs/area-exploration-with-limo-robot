@@ -10,13 +10,17 @@ import { FormsModule } from '@angular/forms';
 import { LogsDialogComponent } from './dialogs/logs-dialog/logs-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { LogActionComponent } from './components/log-action/log-action.component';
+import { ActionButtonsComponent } from './components/action-buttons/action-buttons.component';
+import { RobotsActionsComponent } from './components/robots-actions/robots-actions.component';
 
 
 @NgModule({
     'declarations': [
         AppComponent,
         LogsDialogComponent,
-        LogActionComponent
+        LogActionComponent,
+        ActionButtonsComponent,
+        RobotsActionsComponent
 
     ],
     'imports': [
