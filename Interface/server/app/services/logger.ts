@@ -15,7 +15,6 @@ export class Logger {
     if (this.isMissionStop || this.currentMission === NONE_MISSION) return;
 
     const date = new Date();
-
     const stringData = JSON.stringify(data.data);
     const log = `[${date.toLocaleString()} : LIMO-${data.limoId}] : ${stringData}\n`;
     appendFile(`${LOGS_PATH}/logs-${this.currentMission}.log`, log, (err: Error) => {
@@ -46,7 +45,7 @@ export class Logger {
         console.error(err.stack);
         socket.emit('send-all-logs', `Erreur dans la lecture du fichier de log de la misson ${missionNumber} : ${err.message}`);
       } else {
-        socket.emit('send-all-logs', data.toString('utf8'));
+        socket.emit('send-all-logs', data.toString('ascii'));
       }
     });
   }

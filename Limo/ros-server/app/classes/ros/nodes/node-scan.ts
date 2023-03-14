@@ -10,16 +10,27 @@ export default class NodeScan {
 
   private data: LaserScan;
 
+  private name = 'Node Scan';
+
   initNodeScan() {
     this.ros = new Ros({ url: BRIDGE_URI });
-    this.subscriberScan = new Topic({
-      ros: this.ros,
-      messageType: 'sensor_msgs/LaserScan',
-      name: process.env.IS_SIMULATION ? 'limo/scan' : 'scan',
-      queue_size: 10,
+
+    this.ros.on('error', (err: Error) => {
+      console.error(`${this.name} : ${err.message}`);
     });
 
-    this.subscriberScan.subscribe(this.callBack.bind(this));
+    // Wait for ROS to connect to the bridge
+    this.ros.on('connection', () => {
+      console.log(`${this.name} : ROS connected`);
+      // Initialize subscriber
+      this.subscriberScan = new Topic({
+        ros: this.ros,
+        messageType: 'sensor_msgs/LaserScan',
+        name: process.env.IS_SIMULATION ? 'limo/scan' : 'scan',
+        queue_size: 10,
+      });
+      this.subscriberScan.subscribe(this.callBack.bind(this));
+    });
   }
 
   private callBack(data: LaserScan): void {
@@ -28,5 +39,9 @@ export default class NodeScan {
 
   getData(): LaserScan {
     return deepCopy(this.data);
+  }
+
+  closeNodeScan() {
+    this.ros.close();
   }
 }

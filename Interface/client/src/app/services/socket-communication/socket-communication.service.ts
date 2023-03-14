@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
 import { BACKEND_URL } from 'src/app/constants/url';
 import RobotTargetType from 'src/app/types/RobotType';
-import { DISTANCE_MOVEMENT, DIRECTION_MOVEMENT } from 'src/app/constants/robots-movement';
-import RobotMovement from 'src/app/interfaces/robots-movement-interface';
 import { State } from 'src/app/types/States';
 import { Subject } from 'rxjs';
 
@@ -26,44 +24,33 @@ export class SocketCommunicationService {
 
     identify (robot: RobotTargetType) {
 
-        const movement: RobotMovement = {
-            robot,
-            'direction': DIRECTION_MOVEMENT.LEFT_FORWARD,
-            'distance': DISTANCE_MOVEMENT.FAR_AWAY
-        };
-
-        this.emit('identify', movement);
+        this.emit('identify', robot);
 
     }
 
     startMission (robot: RobotTargetType) {
 
-        const movement: RobotMovement = {
-            robot,
-            'direction': DIRECTION_MOVEMENT.FORWARD,
-            'distance': DISTANCE_MOVEMENT.CLOSE
-        };
-
-        console.log('start mission', movement);
-        this.emit('start-mission', movement);
+        console.log('start mission', robot);
+        this.emit('start-mission', robot);
 
     }
 
     stopMission (robot: RobotTargetType) {
 
-        const movement: RobotMovement = {
-            robot,
-            'direction': DIRECTION_MOVEMENT.BACKWARD,
-            'distance': DISTANCE_MOVEMENT.CLOSE
-        };
 
-        this.emit('stop-mission', movement);
+        this.emit('stop-mission', robot);
 
     }
 
     showLog (missionNumber: number) {
 
         this.emit('get-all-logs', missionNumber);
+
+    }
+
+    sendLimoIps (limo1: string, limo2: string) {
+
+        this.emit('send-limo-ips', {limo1, limo2});
 
     }
 
@@ -89,6 +76,9 @@ export class SocketCommunicationService {
 
             });
 
+            this.socket.on('reconnect', () => {
+                window.location.reload();
+            });
         });
 
     }

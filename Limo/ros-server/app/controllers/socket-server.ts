@@ -1,8 +1,12 @@
+import { Logger } from '../services/logger';
 import { NodeManager } from '../classes/nodes-manager';
-import Command from '../types/Command';
 import { Server } from 'socket.io';
+import delay from 'delay';
+import { Subscription } from 'rxjs';
+import LogType from '@app/types/LogType';
 
 const NO_CLIENT = 0;
+
 export class SocketServer {
   private server: Server;
 
@@ -10,43 +14,58 @@ export class SocketServer {
 
   private clientCounter = NO_CLIENT;
 
+  private logger: Logger;
+
+  private loggerObservable: Subscription;
+
   limoId: number;
-  // StateMachine: any;
 
   constructor(server: Server) {
-    this.nodeManager = new NodeManager();
     this.server = server;
+    this.nodeManager = new NodeManager();
+    this.logger = new Logger();
   }
 
   // Connect the socket to the limo node server ; subscribe to all limo command ; start all nodes
   connectSocketServer(): void {
     this.server.on('connection', (socket) => {
       console.log('Connected to node server');
+
       this.clientCounter++;
+
       socket.on('login', (limoId: number) => {
         this.limoId = limoId;
+        this.logger.setLimoId(this.limoId);
       });
 
-      // Start all nodes when socket is connected
-      this.nodeManager.start();
-
-      socket.on(`limo-move`, async (movement: {direction: Command, distance?: number}) => {
-        console.log(`Received response from node server: ${movement.direction}`);
-        await this.nodeManager.move(movement.direction, movement.distance);
-      });
-
-      socket.on(`robots-move`, async (movement: {direction: Command, distance?: number}) => {
-        console.log(`Received response from node server: ${movement.direction}`);
-        await this.nodeManager.move(movement.direction, movement.distance);
+      socket.on('identify', async () => {
+        await this.nodeManager.identify();
       });
 
       socket.on('error', (err: Error) => {
         console.log(`On Limo Error : ${err.stack}`);
       });
 
+      socket.on('start-mission', async () => {
+        this.loggerObservable = this.logger.logObservable.subscribe(this.sendLogs.bind(this));
+        this.nodeManager.startNodes();
+        this.logger.startLogs();
+
+        // eslint-disable-next-line no-magic-numbers
+        await delay(1000);
+        await this.nodeManager.move('forward');
+      });
+
+      socket.on('stop-mission', async () => {
+        await this.nodeManager.move('backward');
+        this.nodeManager.stop();
+        this.logger.stopLog();
+        this.loggerObservable.unsubscribe();
+      });
+
       socket.on('disconnect', () => {
         console.log(`Server disconnected from Limo ${this.limoId} robot`);
-        this.nodeManager.stop();
+        this.clientCounter--;
       });
     });
   }
@@ -55,7 +74,7 @@ export class SocketServer {
     data ? this.server.emit(event, data) : this.server.emit(event);
   }
 
-  get numberSocketConnected() {
-    return this.clientCounter;
+  private sendLogs(log: LogType) {
+    if (this.clientCounter > NO_CLIENT) this.emit('save-log', log);
   }
 }

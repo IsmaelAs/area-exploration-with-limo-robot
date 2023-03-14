@@ -1,9 +1,11 @@
 import { Server as SocketServer } from 'socket.io';
-import RobotMovement from '@app/interfaces/robots-movement-interface';
-import OnRobotMovement from '@app/interfaces/on-robots-movement-interface';
 import { ClientSocketLimo } from './client.socket.limo';
 import { Logger } from '../services/logger';
-import { State } from '@app/types/States';
+import RobotTargetType from '../types/RobotType';
+
+const FIRST_LIMO = 1;
+const SECOND_LIMO = 2;
+const NO_CLIENT = 0;
 
 export class ServerSocketController {
   private io: SocketServer;
@@ -14,66 +16,29 @@ export class ServerSocketController {
 
   private logger: Logger;
 
-  constructor(io: SocketServer, socketLimo? : ClientSocketLimo, socketLimo2? : ClientSocketLimo) {
+  private clientCounter: number;
+
+  constructor(io: SocketServer) {
     this.io = io;
-    this.socketLimo = socketLimo;
-    this.socketLimo2 = socketLimo2;
     this.logger = new Logger();
   }
 
   initializeSocketServer() {
     this.io.on('connection', (socket) => {
-      socket.on('identify', (movement: RobotMovement) => {
-        const data: OnRobotMovement = {
-          direction: movement.direction,
-          distance: movement.distance,
-        };
-        if ((movement.robot === 'limo-1' || movement.robot === 'robots') && this.socketLimo) {
-          this.socketLimo.emitToLimo('limo-move', data);
-        }
-        if ((movement.robot === 'limo-2' || movement.robot === 'robots') && this.socketLimo2) {
-          this.socketLimo2.emitToLimo('limo-move', data);
-        }
+      this.clientCounter++;
+
+      socket.on('identify', (robotTarget: RobotTargetType) => {
+        this.sendEventToLimo(robotTarget, 'identify');
       });
 
-      socket.on('start-mission', (movement: RobotMovement) => {
-        const data: OnRobotMovement = {
-          direction: movement.direction,
-          distance: movement.distance,
-        };
-        console.log('start mission received', data);
-        console.log('emit on ', 'limo-move');
-        this.logger.startMission();
-
-        if ((movement.robot === 'limo-1' || movement.robot === 'robots') && this.socketLimo) {
-          this.socketLimo.emitToLimo('limo-move', data);
-          this.socketLimo.emitToLimo('start-mission');
-          this.socketLimo.startMission();
-        }
-        if ((movement.robot === 'limo-2' || movement.robot === 'robots') && this.socketLimo2) {
-          this.socketLimo2.emitToLimo('limo-move', data);
-          this.socketLimo2.emitToLimo('start-mission');
-          this.socketLimo2.startMission();
-        }
+      socket.on('start-mission', (robotTarget: RobotTargetType) => {
+        this.startMission();
+        this.sendEventToLimo(robotTarget, 'start-mission');
       });
 
-      socket.on('stop-mission', (movement: RobotMovement) => {
-        const data: OnRobotMovement = {
-          direction: movement.direction,
-          distance: movement.distance,
-        };
-
-        this.logger.stopMission();
-        if ((movement.robot === 'limo-1' || movement.robot === 'robots') && this.socketLimo) {
-          this.socketLimo.emitToLimo('limo-move', data);
-          this.socketLimo.emitToLimo('stop-mission');
-          this.socketLimo.stopMission();
-        }
-        if ((movement.robot === 'limo-2' || movement.robot === 'robots') && this.socketLimo2) {
-          this.socketLimo2.emitToLimo('limo-move', data);
-          this.socketLimo2.emitToLimo('stop-mission');
-          this.socketLimo2.stopMission();
-        }
+      socket.on('stop-mission', (robotTarget: RobotTargetType) => {
+        this.stopMission();
+        this.sendEventToLimo(robotTarget, 'stop-mission');
       });
 
       socket.on('save-log', (data: unknown) => {
@@ -85,9 +50,63 @@ export class ServerSocketController {
         this.logger.getAllData(missionNumber, socket);
       });
 
-      socket.on('save-state', (data: {limoId: number, state: State}) => {
-        socket.emit('send-all-logs', `L'état du robot ${data.limoId} est: ${data.state}`);
+      /*
+       * Socket.on('save-state', (data: {limoId: number, state: State}) => {
+       *   socket.emit('send-all-logs', `L'état du robot ${data.limoId} est: ${data.state}`);
+       *   /*
+       *    client --> save-state --> server
+       *    server --> send-all-logs --> client
+       *    emit stop =--> stop
+       */
+
+      //   */
+      // });
+
+      socket.on('send-limo-ips', (ips: {limo1: string, limo2: string}) => {
+        if (ips.limo1.replace(' ', '') !== '') {
+          this.socketLimo = new ClientSocketLimo(FIRST_LIMO, `ws://${ips.limo1}:${process.env.IS_SIMULATION ? process.env.PORT_LIMO_1 : '9332'}`);
+          this.socketLimo.connectClientSocketToLimo();
+        }
+
+        if (ips.limo2.replace(' ', '') !== '') {
+          this.socketLimo2 = new ClientSocketLimo(SECOND_LIMO, `ws://${ips.limo2}:${process.env.IS_SIMULATION ? process.env.PORT_LIMO_2 : '9332'}`);
+          this.socketLimo2.connectClientSocketToLimo();
+        }
+      });
+
+      socket.on('disconnect', () => {
+        this.clientCounter--;
+
+        if (this.clientCounter <= NO_CLIENT) {
+          this.sendEventToLimo('robots', 'stop-mission');
+          this.socketLimo?.disconnect();
+          this.socketLimo2?.disconnect();
+        }
       });
     });
+  }
+
+  private sendEventToLimo<T>(robotTarget: RobotTargetType, event: string, data?: T) {
+    if ((robotTarget === 'limo-1' || robotTarget === 'robots') && this.socketLimo) {
+      data ? this.socketLimo.emitToLimo(event, data) : this.socketLimo.emitToLimo(event);
+    }
+
+    if ((robotTarget === 'limo-2' || robotTarget === 'robots') && this.socketLimo2) {
+      data ? this.socketLimo2.emitToLimo(event, data) : this.socketLimo2.emitToLimo(event);
+    }
+  }
+
+  private stopMission() {
+    this.logger.stopMission();
+
+    if (this.socketLimo) this.socketLimo.stopMission();
+    if (this.socketLimo2) this.socketLimo2.stopMission();
+  }
+
+  private startMission() {
+    this.logger.startMission();
+
+    if (this.socketLimo) this.socketLimo.startMission();
+    if (this.socketLimo2) this.socketLimo2.startMission();
   }
 }

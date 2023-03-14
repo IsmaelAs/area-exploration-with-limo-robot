@@ -1,7 +1,6 @@
 import { io, Socket } from 'socket.io-client';
-import { LIMO_URL } from '../constants/url';
 import { Logger } from '../services/logger';
-import LogLimo from '@app/interfaces/log-limo';
+import LogLimo from '../interfaces/log-limo';
 
 export class ClientSocketLimo {
   private socket: Socket;
@@ -10,9 +9,9 @@ export class ClientSocketLimo {
 
   private limoId: number;
 
-  constructor(limoId: number) {
+  constructor(limoId: number, limoUrl: string) {
     this.limoId = limoId;
-    this.socket = io(LIMO_URL);
+    this.socket = io(limoUrl);
     this.logger = new Logger();
   }
 
@@ -44,5 +43,9 @@ export class ClientSocketLimo {
 
   stopMission() {
     this.logger.stopMission();
+  }
+
+  disconnect() {
+    this.socket.disconnect();
   }
 }
