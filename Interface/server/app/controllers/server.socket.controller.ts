@@ -5,6 +5,7 @@ import RobotTargetType from '../types/RobotType';
 
 const FIRST_LIMO = 1;
 const SECOND_LIMO = 2;
+const NO_CLIENT = 0;
 
 export class ServerSocketController {
   private io: SocketServer;
@@ -15,6 +16,8 @@ export class ServerSocketController {
 
   private logger: Logger;
 
+  private clientCounter: number;
+
   constructor(io: SocketServer) {
     this.io = io;
     this.logger = new Logger();
@@ -22,6 +25,8 @@ export class ServerSocketController {
 
   initializeSocketServer() {
     this.io.on('connection', (socket) => {
+      this.clientCounter++;
+
       socket.on('identify', (robotTarget: RobotTargetType) => {
         this.sendEventToLimo(robotTarget, 'identify');
       });
@@ -58,8 +63,25 @@ export class ServerSocketController {
       // });
 
       socket.on('send-limo-ips', (ips: {limo1: string, limo2: string}) => {
-        if (ips.limo1 !== '') this.socketLimo = new ClientSocketLimo(FIRST_LIMO, ips.limo1);
-        if (ips.limo2 !== '') this.socketLimo2 = new ClientSocketLimo(SECOND_LIMO, ips.limo2);
+        if (ips.limo1.replace(' ', '') !== '') {
+          this.socketLimo = new ClientSocketLimo(FIRST_LIMO, `ws://${ips.limo1}:${process.env.IS_SIMULATION ? process.env.PORT_LIMO_1 : '9332'}`);
+          this.socketLimo.connectClientSocketToLimo();
+        }
+
+        if (ips.limo2.replace(' ', '') !== '') {
+          this.socketLimo2 = new ClientSocketLimo(SECOND_LIMO, `ws://${ips.limo2}:${process.env.IS_SIMULATION ? process.env.PORT_LIMO_2 : '9332'}`);
+          this.socketLimo2.connectClientSocketToLimo();
+        }
+      });
+
+      socket.on('disconnect', () => {
+        this.clientCounter--;
+
+        if (this.clientCounter <= NO_CLIENT) {
+          this.sendEventToLimo('robots', 'stop-mission');
+          this.socketLimo?.disconnect();
+          this.socketLimo2?.disconnect();
+        }
       });
     });
   }

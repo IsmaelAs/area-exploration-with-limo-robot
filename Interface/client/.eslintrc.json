@@ -17,6 +17,7 @@
 				"eslint:all"
       ],
       "rules": {
+        "padded-blocks":"off",
         "one-var":"off",
         "object-property-newline":"off",
         "no-unused-vars": "off",

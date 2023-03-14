@@ -19,7 +19,7 @@ export class LogsDialogComponent implements OnInit {
 
     ngOnInit (): void {
 
-        this.dialogRef.updateSize('200 px', '300 px');
+        this.dialogRef.updateSize('800px', '500px');
 
     }
 

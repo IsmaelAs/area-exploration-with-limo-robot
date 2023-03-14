@@ -2,7 +2,7 @@
 
 source /opt/ros/noetic/setup.bash
 IS_SIMULATION=$1
-
+echo $IS_SIMULATION
 MASTER_IP=$(hostname -I | head -n1 | awk '{print $1;}')
 ROS_MASTER_URI="http://${MASTER_IP}:11311"
 echo $ROS_MASTER_URI

@@ -44,4 +44,8 @@ export class ClientSocketLimo {
   stopMission() {
     this.logger.stopMission();
   }
+
+  disconnect() {
+    this.socket.disconnect();
+  }
 }

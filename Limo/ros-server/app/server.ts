@@ -4,7 +4,6 @@ import { AddressInfo } from 'net';
 import { Application } from './app';
 import { Server as SocketServer } from 'socket.io';
 import { SocketServer as SocketManager } from './controllers/socket-server';
-import { Logger } from './services/logger';
 // Import { MyStateMachine } from './classes/state-machine';
 
 
@@ -19,7 +18,6 @@ export class Server {
 
   private socketManager: SocketManager;
 
-  private logger: Logger;
   // StateMachine: MyStateMachine;
 
 
@@ -61,8 +59,6 @@ val;
 
     this.socketManager = new SocketManager(this.io);
     this.socketManager.connectSocketServer();
-    this.logger = new Logger(this.socketManager);
-    this.logger.startLogs();
     // This.stateMachine.startStates()
   }
 

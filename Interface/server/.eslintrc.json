@@ -14,6 +14,7 @@
         "es6": true
     },
     "rules": {
+        "no-plusplus":"off",
         "require-jsdoc" : 0,
         "object-curly-spacing":"off",
         "no-console": "off",
