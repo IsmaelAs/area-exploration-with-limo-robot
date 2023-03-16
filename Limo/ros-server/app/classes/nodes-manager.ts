@@ -6,6 +6,7 @@ export class NodeManager {
 
   constructor() {
     this.nodeMovement = new NodeMovement();
+    this.startNodes();
   }
 
   // Start all nodes

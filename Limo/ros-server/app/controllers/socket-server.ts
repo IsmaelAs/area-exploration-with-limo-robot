@@ -32,7 +32,6 @@ export class SocketServer {
       console.log('Connected to node server');
 
       this.clientCounter++;
-
       socket.on('login', (limoId: number) => {
         this.limoId = limoId;
         this.logger.setLimoId(this.limoId);
@@ -48,7 +47,6 @@ export class SocketServer {
 
       socket.on('start-mission', async () => {
         this.loggerObservable = this.logger.logObservable.subscribe(this.sendLogs.bind(this));
-        this.nodeManager.startNodes();
         this.logger.startLogs();
 
         // eslint-disable-next-line no-magic-numbers
@@ -58,7 +56,6 @@ export class SocketServer {
 
       socket.on('stop-mission', async () => {
         await this.nodeManager.move('backward');
-        this.nodeManager.stop();
         this.logger.stopLog();
         this.loggerObservable.unsubscribe();
       });
