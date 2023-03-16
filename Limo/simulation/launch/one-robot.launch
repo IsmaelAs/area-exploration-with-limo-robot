@@ -29,4 +29,9 @@
                                 limo_fl_steering_hinge_controller limo_fr_steering_hinge_controller"/>
 
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+    <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen">
+      <param name="scan" value="limo$(arg robot_namespace)/scan"/>
+    </node>
+
 </launch>
