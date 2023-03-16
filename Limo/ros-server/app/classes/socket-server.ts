@@ -18,7 +18,7 @@ export class SocketServer {
       console.log('Connected to node server');
 
       // Start all nodes when socket is connected
-      this.nodeManager.start();
+      this.nodeManager.startNodes();
 
       socket.on(`limo-${process.env.LIMO_ID}-move`, async (movement: {direction: Command, distance?: number}) => {
         console.log(`Received response from node server: ${movement.direction}`);
