@@ -12,7 +12,8 @@ export class MapViewerComponent {
 
   private limo_bridge: string = "ws://localhost:9090"
   private gridClient: GridClient = { }
-  private viewer: MapViewer = { scene: undefined}
+  private viewer_1: MapViewer = { scene: undefined}
+  private viewer_2: MapViewer = { scene: undefined}
   private ros: Ros
 
   constructor() {
@@ -23,8 +24,8 @@ export class MapViewerComponent {
 
   init() {
 
-        // Create the main viewer.
-        this.viewer = new ROS3D.Viewer({
+        // Create the main viewer 1.
+        this.viewer_1 = new ROS3D.Viewer({
           divID : 'map',
           width : 800,
           height : 600,
@@ -34,7 +35,7 @@ export class MapViewerComponent {
         // Setup the map client.
         this.gridClient = new ROS3D.OccupancyGridClient({
           ros : this.ros,
-          rootObject : this.viewer.scene,
+          rootObject : this.viewer_1.scene,
           continuous: true
         });
   }
