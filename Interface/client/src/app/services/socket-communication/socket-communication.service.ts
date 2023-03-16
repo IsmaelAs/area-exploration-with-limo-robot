@@ -2,48 +2,96 @@ import { Injectable } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
 import { BACKEND_URL } from 'src/app/constants/url';
 import RobotTargetType from 'src/app/types/RobotType';
-import { DISTANCE_MOVEMENT, DIRECTION_MOVEMENT } from 'src/app/constants/robots-movement';
-import RobotMovement from 'src/app/interfaces/robots-movement-interface';
+import { State } from 'src/app/types/States';
+import { Subject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+    'providedIn': 'root'
 })
 export class SocketCommunicationService {
 
-  private socket: Socket;
+    private socket: Socket;
 
-  constructor() {    
-    this.socket = io(BACKEND_URL);
-  }
+    private logsOpen: Subject<string> = new Subject();
 
-  identify(robot: RobotTargetType){
-    const movement: RobotMovement = {
-      robot: robot,
-      direction: DIRECTION_MOVEMENT.LEFT_FORWARD,
-      distance: DISTANCE_MOVEMENT.FAR_AWAY
-    }
-    
-    this.socket.emit("identify", movement);
-  }
+    constructor () {
 
-  startMission(robot: RobotTargetType) {
+        this.socket = io(BACKEND_URL);
+        this.initSocketSubscription();
 
-    const movement: RobotMovement = {
-      robot: robot,
-      direction: DIRECTION_MOVEMENT.FORWARD,
-      distance: DISTANCE_MOVEMENT.CLOSE
-    }
-    console.log('start mission', movement);
-    this.socket.emit("start-mission", movement)
-  }
-  
-  stopMission(robot: RobotTargetType) {
-    const movement: RobotMovement = {
-      robot: robot,
-      direction: DIRECTION_MOVEMENT.BACKWARD,
-      distance: DISTANCE_MOVEMENT.CLOSE
     }
 
-    this.socket.emit("stop-mission", movement)
-  }
+
+    identify (robot: RobotTargetType) {
+
+        this.emit('identify', robot);
+
+    }
+
+    startMission (robot: RobotTargetType) {
+
+        console.log('start mission', robot);
+        this.emit('start-mission', robot);
+
+    }
+
+    stopMission (robot: RobotTargetType) {
+
+
+        this.emit('stop-mission', robot);
+
+    }
+
+    showLog (missionNumber: number) {
+
+        this.emit('get-all-logs', missionNumber);
+
+    }
+
+    sendLimoIps (limo1: string, limo2: string) {
+
+        this.emit('send-limo-ips', {limo1, limo2});
+
+    }
+
+    get subscribeOpenLogs () {
+
+        return this.logsOpen.asObservable();
+
+    }
+
+    private initSocketSubscription () {
+
+        this.socket.on('connect', () => {
+
+            this.socket.on('send-all-logs', (logs: string) => {
+
+                this.logsOpen.next(logs);
+
+            });
+
+            this.socket.on('send-state', (state: State) => {
+
+                console.log(state);
+
+            });
+
+            this.socket.on('reconnect', () => {
+                window.location.reload();
+            });
+        });
+
+    }
+
+    private emit<T> (event: string, data?: T) {
+
+        this.socket.emit('save-log', {
+            event,
+            'data': data ? data : ''
+        });
+
+        data ? this.socket.emit(event, data) : this.socket.emit(event);
+
+    }
+
 }

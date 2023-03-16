@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.3'
 
 services:
   interface-client: 
@@ -9,6 +9,8 @@ services:
       - 4200:4200
     depends_on:
       - server-interface
+    environment:
+      - BACKEND_IP
 
   server-interface:
     restart: always
@@ -16,6 +18,3 @@ services:
       context: ./server
     ports:
       - 9330:9330
-    environment:
-      - LIMO_IP_1
-      - LIMO_IP_2

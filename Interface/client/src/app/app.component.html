@@ -1,24 +1,9 @@
 
 <div class="container">
-  <mat-form-field appearance="fill">
-    <mat-label >Selection</mat-label>
-    <mat-select [value]="type" (valueChange)="setType($event)">
-      <mat-option
-        *ngFor="let choice of list"
-        [value]="choice"
-      >
-        {{ choice === "robots" ? "LES DEUX ROBOTS" : choice.toUpperCase()}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <section id="buttonsSelection" class="justified">
-    <div class="buttons">
-      <button mat-flat-button color="primary" (click)="identify()">
-        Identifier
-      </button>
-      <button mat-flat-button color="primary" (click)="startMission()">Lancer la mission</button>
-      <button mat-flat-button color="primary" (click)="stopMission()">Arrêter la mission</button>
-    </div>
-  </section>
+  <div *ngIf="isIpSet">
+    <app-robots-actions></app-robots-actions>
+    <app-log-action> </app-log-action>  
+  </div>
+  <app-ip-limo-handler *ngIf="!isIpSet" (isIpSet)="setIsIpSet($event)"></app-ip-limo-handler>
   <app-map-viewer></app-map-viewer>
 </div>

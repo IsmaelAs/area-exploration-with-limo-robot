@@ -1,0 +1,72 @@
+{
+  "root": true,
+  "ignorePatterns": [
+    "projects/**/*",
+		"app/**/*.spec.ts"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.ts"
+      ],
+      "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates",
+				"eslint:all"
+      ],
+      "rules": {
+        "padded-blocks":"off",
+        "one-var":"off",
+        "object-property-newline":"off",
+        "no-unused-vars": "off",
+        "no-undef":"off",
+				"require-jsdoc" : 0,
+				"no-empty-function": "off",
+        "object-curly-spacing":"off",
+        "no-console": "off",
+        "max-len": "off",
+        "max-lines-per-function": "off",
+        "function-paren-newline": "off",
+        "no-ternary": "off",
+        "linebreak-style": "off",
+        "sort-keys": "off",
+        "no-unused-expressions": "off",
+        "function-call-argument-newline": "off",
+        "multiline-ternary": "off",
+        "no-await-in-loop": "off",
+        "sort-imports": "off",
+        "new-cap": "off",
+        "max-statements": "off",
+				"no-useless-constructor": "off",
+				"quotes": [2, "single", { "avoidEscape": true }],
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "app",
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "app",
+            "style": "kebab-case"
+          }
+        ]
+      }
+    },
+    {
+      "files": [
+        "*.html"
+      ],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended"
+      ],
+      "rules": {}
+    }
+  ]
+}

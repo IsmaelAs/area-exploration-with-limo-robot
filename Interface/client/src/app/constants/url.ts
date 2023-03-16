@@ -1,1 +1,3 @@
-export const BACKEND_URL = "ws://localhost:9330"
+import { environment } from 'src/environments/environment';
+
+export const BACKEND_URL = `ws://${environment.BACKEND_IP}:9330`;
