@@ -6,9 +6,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "set-env" : "npx ts-node ./src/set_env.ts",
+    "set-env": "npx ts-node ./src/set_env.ts",
     "lint": "ng lint"
-
   },
   "private": true,
   "dependencies": {
@@ -25,6 +24,7 @@
     "node": "^19.6.0",
     "process": "^0.11.10",
     "rxjs": "~7.5.0",
+    "semver": "^7.3.8",
     "socket.io-client": "^4.6.0",
     "ts-node": "^10.9.1",
     "tslib": "^2.3.0",

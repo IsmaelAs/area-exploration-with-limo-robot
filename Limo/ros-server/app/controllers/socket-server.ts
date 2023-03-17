@@ -3,7 +3,8 @@ import { NodeManager } from '../classes/nodes-manager';
 import { Server } from 'socket.io';
 import delay from 'delay';
 import { Subscription } from 'rxjs';
-import LogType from '@app/types/LogType';
+import LogType from '../types/LogType';
+import { MyStateMachine } from '../classes/state-machine';
 
 const NO_CLIENT = 0;
 
@@ -18,12 +19,15 @@ export class SocketServer {
 
   private loggerObservable: Subscription;
 
+  private stateMachine: MyStateMachine; 
+
   limoId: number;
 
   constructor(server: Server) {
     this.server = server;
     this.nodeManager = new NodeManager();
     this.logger = new Logger();
+    this.stateMachine = new MyStateMachine(this);
   }
 
   // Connect the socket to the limo node server ; subscribe to all limo command ; start all nodes
@@ -48,6 +52,8 @@ export class SocketServer {
       socket.on('start-mission', async () => {
         this.loggerObservable = this.logger.logObservable.subscribe(this.sendLogs.bind(this));
         this.logger.startLogs();
+        this.stateMachine.startStates();
+        this.stateMachine.onMission();
 
         // eslint-disable-next-line no-magic-numbers
         await delay(1000);
@@ -58,6 +64,7 @@ export class SocketServer {
         await this.nodeManager.move('backward');
         this.logger.stopLog();
         this.loggerObservable.unsubscribe();
+        this.stateMachine.onMissionEnd();
       });
 
       socket.on('disconnect', () => {

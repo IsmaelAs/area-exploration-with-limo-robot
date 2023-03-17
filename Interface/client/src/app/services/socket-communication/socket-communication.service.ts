@@ -14,6 +14,8 @@ export class SocketCommunicationService {
 
     private logsOpen: Subject<string> = new Subject();
 
+    private state: Subject<string> = new Subject();
+
     constructor () {
 
         this.socket = io(BACKEND_URL);
@@ -60,6 +62,11 @@ export class SocketCommunicationService {
 
     }
 
+    get subscribeState (){
+
+        return this.state.asObservable();
+    }
+ 
     private initSocketSubscription () {
 
         this.socket.on('connect', () => {
@@ -70,8 +77,9 @@ export class SocketCommunicationService {
 
             });
 
-            this.socket.on('send-state', (state: State) => {
+            this.socket.on('send-state', (state: string) => {
 
+                this.state.next(state);
                 console.log(state);
 
             });

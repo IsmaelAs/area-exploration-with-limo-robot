@@ -1,6 +1,8 @@
 import { io, Socket } from 'socket.io-client';
 import { Logger } from '../services/logger';
 import LogLimo from '../interfaces/log-limo';
+import StateLimo from '@app/interfaces/state-limo';
+import { Subject } from 'rxjs';
 
 export class ClientSocketLimo {
   private socket: Socket;
@@ -9,11 +11,20 @@ export class ClientSocketLimo {
 
   private limoId: number;
 
+  private stateObservable: Subject<string> = new Subject();
+
+
+
   constructor(limoId: number, limoUrl: string) {
     this.limoId = limoId;
     this.socket = io(limoUrl);
     this.logger = new Logger();
   }
+
+  get subscribeState (){
+
+    return this.stateObservable.asObservable();
+}
 
   connectClientSocketToLimo() {
     this.socket.on('connect', () => {
@@ -23,6 +34,10 @@ export class ClientSocketLimo {
 
       this.socket.on('save-log', (data: LogLimo) => {
         this.logger.saveLimoData(data);
+      });
+
+      this.socket.on('save-state', (data: StateLimo) => {
+        this.stateObservable.next(data.state);
       });
 
       this.socket.on('disconnect', () => {

@@ -2,6 +2,7 @@ import { Server as SocketServer } from 'socket.io';
 import { ClientSocketLimo } from './client.socket.limo';
 import { Logger } from '../services/logger';
 import RobotTargetType from '../types/RobotType';
+import { Subscription } from 'rxjs';
 
 const FIRST_LIMO = 1;
 const SECOND_LIMO = 2;
@@ -18,11 +19,19 @@ export class ServerSocketController {
 
   private clientCounter: number;
 
+  private stateSub: Subscription | undefined;
+
+
+
   constructor(io: SocketServer) {
     this.io = io;
     this.logger = new Logger();
   }
 
+  ngOnDestroy () {
+    this.stateSub?.unsubscribe();
+  }
+  
   initializeSocketServer() {
     this.io.on('connection', (socket) => {
       this.clientCounter++;
@@ -45,22 +54,12 @@ export class ServerSocketController {
         this.logger.saveUserData(data);
       });
 
-
       socket.on('get-all-logs', (missionNumber: number) => {
         this.logger.getAllData(missionNumber, socket);
       });
 
-      /*
-       * Socket.on('save-state', (data: {limoId: number, state: State}) => {
-       *   socket.emit('send-all-logs', `L'état du robot ${data.limoId} est: ${data.state}`);
-       *   /*
-       *    client --> save-state --> server
-       *    server --> send-all-logs --> client
-       *    emit stop =--> stop
-       */
-
-      //   */
-      // });
+      this.stateSub = this.socketLimo?.subscribeState.subscribe((value: string) =>
+       socket.emit('send-state', value));
 
       socket.on('send-limo-ips', (ips: {limo1: string, limo2: string}) => {
         if (ips.limo1.replace(' ', '') !== '') {

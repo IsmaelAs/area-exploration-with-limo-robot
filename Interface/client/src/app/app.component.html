@@ -2,7 +2,8 @@
 <div class="container">
   <div *ngIf="isIpSet">
     <app-robots-actions></app-robots-actions>
-    <app-log-action> </app-log-action>  
+    <app-log-action> </app-log-action>
+    <p> L'etat est {{state}} </p>  
   </div>
   <app-ip-limo-handler *ngIf="!isIpSet" (isIpSet)="setIsIpSet($event)"></app-ip-limo-handler>
 </div>
