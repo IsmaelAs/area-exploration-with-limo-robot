@@ -1,4 +1,4 @@
-import Command from '@app/types/types';
+import Command from '../types/types';
 import { NodeMovement } from './ros/nodes/node-movement';
 
 export class NodeManager {
