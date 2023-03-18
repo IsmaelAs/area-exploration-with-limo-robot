@@ -6,9 +6,9 @@ import { SocketCommunicationService } from './socket-communication/socket-commun
 })
 export class IpHandlerService {
 
-    private ipLimo1 = '';
+    private ipLimo1: string = '';
 
-    private ipLimo2? : string;
+    private ipLimo2 : string = '';
 
 
     constructor (private socketCommunication: SocketCommunicationService) { }
