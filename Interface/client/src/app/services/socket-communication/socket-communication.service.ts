@@ -80,6 +80,7 @@ export class SocketCommunicationService {
             this.socket.on('send-state', (state: string) => {
 
                 this.state.next(state);
+                console.log("ICI JE RECOIS L'ETAT DANS CLIENT-INTERFACE")
                 console.log(state);
 
             });

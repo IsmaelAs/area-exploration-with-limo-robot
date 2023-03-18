@@ -32,6 +32,8 @@ export class AppComponent {
     }
 
     private changeState (newState: string) {
+        console.log("ICI JE CHANGE L'ETAT DANS L'AFFICHAGE");
+        console.log(newState);
         this.state = newState;
     }
 

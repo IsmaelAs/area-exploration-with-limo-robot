@@ -37,6 +37,8 @@ export class ClientSocketLimo {
       });
 
       this.socket.on('save-state', (data: StateLimo) => {
+        console.log("ICI JE RECOIS DANS SERVER-INTERFACE MON ETAT")
+        console.log(data.state)
         this.stateObservable.next(data.state);
       });
 

@@ -20,6 +20,8 @@ export class ServerSocketController {
   private clientCounter: number;
 
   private stateSub: Subscription | undefined;
+  
+  private intervalState: any;
 
 
 
@@ -58,8 +60,15 @@ export class ServerSocketController {
         this.logger.getAllData(missionNumber, socket);
       });
 
-      this.stateSub = this.socketLimo?.subscribeState.subscribe((value: string) =>
-       socket.emit('send-state', value));
+      this.intervalState = setInterval(() => {
+        this.stateSub?.unsubscribe();
+        this.socketLimo?.subscribeState.subscribe((value: string) => {
+          console.log("ICI J'EMITE AU CLIENT-INTERFACE");
+          console.log(value);
+          socket.emit('send-state', value);
+        });
+      }, 1000)
+
 
       socket.on('send-limo-ips', (ips: {limo1: string, limo2: string}) => {
         if (ips.limo1.replace(' ', '') !== '') {
@@ -80,6 +89,8 @@ export class ServerSocketController {
           this.sendEventToLimo('robots', 'stop-mission');
           this.socketLimo?.disconnect();
           this.socketLimo2?.disconnect();
+          clearInterval(this.intervalState);
+
         }
       });
     });
@@ -95,6 +106,7 @@ export class ServerSocketController {
     }
   }
 
+  
   private stopMission() {
     this.logger.stopMission();
 
