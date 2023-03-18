@@ -20,7 +20,7 @@ export class SocketServer {
 
   private loggerObservable: Subscription;
 
-  private stateObservable: Subscription;
+
 
   private stateMachine: MyStateMachine; 
 
@@ -31,12 +31,15 @@ export class SocketServer {
     this.nodeManager = new NodeManager();
     this.logger = new Logger();
     this.stateMachine = new MyStateMachine();
+    this.stateMachine.stateObservable.subscribe(this.sendState.bind(this));
+    this.stateMachine.startStates();
   }
 
   // Connect the socket to the limo node server ; subscribe to all limo command ; start all nodes
   connectSocketServer(): void {
     this.server.on('connection', (socket) => {
       console.log('Connected to node server');
+      this.stateMachine.onReady();
 
       this.clientCounter++;
       socket.on('login', (limoId: number) => {
@@ -55,9 +58,8 @@ export class SocketServer {
 
       socket.on('start-mission', async () => {
         this.loggerObservable = this.logger.logObservable.subscribe(this.sendLogs.bind(this));
-        this.stateObservable = this.stateMachine.stateObservable.subscribe(this.sendState.bind(this));
+
         this.logger.startLogs();
-        this.stateMachine.startStates();
         this.stateMachine.onMission();
 
         // eslint-disable-next-line no-magic-numbers
@@ -66,11 +68,11 @@ export class SocketServer {
       });
 
       socket.on('stop-mission', async () => {
+        this.stateMachine.onMissionEnd();
         await this.nodeManager.move('backward');
         this.logger.stopLog();
-        this.stateMachine.onMissionEnd();
         this.loggerObservable.unsubscribe();
-        this.stateObservable.unsubscribe();
+        this.stateMachine.onReady();
       });
 
       socket.on('disconnect', () => {

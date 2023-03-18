@@ -28,7 +28,6 @@ export class MyStateMachine {
       url: BRIDGE_URI,
     });
  
-    this.callBack = this.callBack.bind(this);
 
       // Abonnement au topic "battery_state"
     const batterySubscriber = new Topic({
@@ -54,7 +53,7 @@ export class MyStateMachine {
 
 
   startStates() {
-    this.intervalState = setInterval(this.callBack, 1000)
+    this.intervalState = setInterval(this.callBack.bind(this), 1000)
   }
  
 
@@ -76,7 +75,11 @@ export class MyStateMachine {
   onMission() {
     this.currentState = "ON_MISSION";
   }
+  onReady() {
+    this.currentState = "WAITING";
+  }
   onMissionEnd() {
+    console.log("ICI JE MET FIN A LA MISSION-STOPPED")
     this.currentState = "STOPPED";
   }
 
