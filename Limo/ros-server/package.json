@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon",
     "build": "rimraf out && tsc --project tsconfig.app.json",
-    "test": "mocha"
+    "test": "nyc mocha"
   },
   "author": "",
   "license": "ISC",

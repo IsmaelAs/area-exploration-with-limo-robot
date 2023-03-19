@@ -29,6 +29,12 @@ describe("Node Manager Unittest's", () => {
 
         expect(stubNodeMovement.move.called).to.be.true
         expect(stubNodeMovement.move.calledWith('backward', 5)).to.be.true
+
+        await nodeManager.move('right-backward')
+
+        expect(stubNodeMovement.move.called).to.be.true
+        expect(stubNodeMovement.move.calledWith('right-backward')).to.be.true
+
     })
 
     it("should  call move of node movement with good parameters when we call identify", async () => {
