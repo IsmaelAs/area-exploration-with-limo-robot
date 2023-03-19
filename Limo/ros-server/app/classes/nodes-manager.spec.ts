@@ -14,6 +14,10 @@ describe("Node Manager Unittest's", () => {
         nodeManager = new NodeManager(stubNodeMovement)
     })
 
+    afterEach(() => {
+        sinon.restore()
+    })
+
     it("should set node movement when creating node manager", () => {
         expect(nodeManager["nodeMovement"]).to.deep.equal(stubNodeMovement)
     })

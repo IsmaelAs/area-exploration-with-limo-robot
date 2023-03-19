@@ -12,26 +12,32 @@ import * as deepCopy from "../../../utilities/DeepCopy";
 describe("Node Position Unittest's", () => {
 
     let nodePosition: NodePosition
-    const rosMock = new RosMock({url: BRIDGE_URI})
-    const topicMock = new TopicMock({
-        ros: rosMock,
-        name: 'odom',
-        messageType: 'nav_msgs/Odometry',
-        queue_size: 10,
-    })
-
-    sinon.stub(roslibjs, 'Ros').callsFake((args) => {
-        return rosMock
-    })
-
-    sinon.stub(roslibjs, 'Topic').callsFake((args) => {
-        return topicMock
-    })
-
-    sinon
+    let rosMock: RosMock
+    let topicMock: TopicMock
 
     beforeEach(() => {
+        rosMock = new RosMock({url: BRIDGE_URI})
+
+        topicMock = new TopicMock({
+            ros: rosMock,
+            name: 'odom',
+            messageType: 'nav_msgs/Odometry',
+            queue_size: 10,
+        })
+
+        sinon.stub(roslibjs, 'Ros').callsFake((args) => {
+            return rosMock
+        })
+    
+        sinon.stub(roslibjs, 'Topic').callsFake((args) => {
+            return topicMock
+        })    
+
         nodePosition = new NodePosition()
+    })
+
+    afterEach(() => {
+        sinon.restore()
     })
 
     it("should work", () => {
