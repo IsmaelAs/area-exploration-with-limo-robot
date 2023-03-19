@@ -4,7 +4,6 @@ import { Server } from 'socket.io';
 import delay from 'delay';
 import { Subscription } from 'rxjs';
 import LogType from '@app/types/LogType';
-import { NodeMovement } from '@app/classes/ros/nodes/node-movement';
 
 const NO_CLIENT = 0;
 
@@ -21,10 +20,10 @@ export class SocketServer {
 
   limoId: number;
 
-  constructor(server: Server) {
+  constructor(server: Server, nodeManager: NodeManager, logger: Logger) {
     this.server = server;
-    this.nodeManager = new NodeManager(new NodeMovement());
-    this.logger = new Logger();
+    this.nodeManager = nodeManager;
+    this.logger = logger;
   }
 
   // Connect the socket to the limo node server ; subscribe to all limo command ; start all nodes
