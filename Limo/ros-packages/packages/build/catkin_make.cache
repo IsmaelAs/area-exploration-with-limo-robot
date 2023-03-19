@@ -1,0 +1,2 @@
+empty_pkg
+-DCATKIN_DEVEL_PREFIX=/home/ubuntu/Documents/INF3995-102/Limo/ros-packages/packages/devel -DCMAKE_INSTALL_PREFIX=/home/ubuntu/Documents/INF3995-102/Limo/ros-packages/packages/install -G Unix Makefiles
