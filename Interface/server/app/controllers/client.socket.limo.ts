@@ -1,7 +1,7 @@
 import { io, Socket } from 'socket.io-client';
 import { Logger } from '../services/logger';
 import LogLimo from '../interfaces/log-limo';
-import StateLimo from '@app/interfaces/state-limo';
+import StateLimo from '../interfaces/state-limo';
 import { Subject } from 'rxjs';
 
 export class ClientSocketLimo {
@@ -11,7 +11,7 @@ export class ClientSocketLimo {
 
   private limoId: number;
 
-  private stateObservable: Subject<string> = new Subject();
+  private stateObservable: Subject<StateLimo> = new Subject();
 
 
 
@@ -38,8 +38,8 @@ export class ClientSocketLimo {
 
       this.socket.on('save-state', (data: StateLimo) => {
         console.log("ICI JE RECOIS DANS SERVER-INTERFACE MON ETAT")
-        console.log(data.state)
-        this.stateObservable.next(data.state);
+        console.log(data)
+        this.stateObservable.next(data);
       });
 
       this.socket.on('disconnect', () => {

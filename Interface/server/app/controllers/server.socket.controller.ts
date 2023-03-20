@@ -3,6 +3,7 @@ import { ClientSocketLimo } from './client.socket.limo';
 import { Logger } from '../services/logger';
 import RobotTargetType from '../types/RobotType';
 import { Subscription } from 'rxjs';
+import StateLimo from '../interfaces/state-limo';
 
 const FIRST_LIMO = 1;
 const SECOND_LIMO = 2;
@@ -32,6 +33,7 @@ export class ServerSocketController {
 
   ngOnDestroy () {
     this.stateSub?.unsubscribe();
+    clearInterval(this.intervalState);
   }
   
   initializeSocketServer() {
@@ -62,7 +64,7 @@ export class ServerSocketController {
 
       this.intervalState = setInterval(() => {
         this.stateSub?.unsubscribe();
-        this.socketLimo?.subscribeState.subscribe((value: string) => {
+        this.socketLimo?.subscribeState.subscribe((value: StateLimo) => {
           console.log("ICI J'EMITE AU CLIENT-INTERFACE");
           console.log(value);
           socket.emit('send-state', value);

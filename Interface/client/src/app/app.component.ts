@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { StateType } from './interfaces/state-limo';
 import { SocketCommunicationService } from './services/socket-communication/socket-communication.service';
 
 @Component({
@@ -11,7 +12,8 @@ export class AppComponent {
 
     isIpSet = false;
     private stateSub: Subscription;
-    state: string = "INIT";
+    stateLimo1: string = "INIT";
+    stateLimo2: string = "INIT";
     
     constructor (
         private socketCommunication : SocketCommunicationService
@@ -31,10 +33,10 @@ export class AppComponent {
 
     }
 
-    private changeState (newState: string) {
+    private changeState (newState: StateType) {
         console.log("ICI JE CHANGE L'ETAT DANS L'AFFICHAGE");
         console.log(newState);
-        this.state = newState;
+        newState.limoId === 1 ? this.stateLimo1 = newState.state : this.stateLimo2 = newState.state;
     }
 
 }
