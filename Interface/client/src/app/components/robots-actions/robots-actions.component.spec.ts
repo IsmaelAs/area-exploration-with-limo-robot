@@ -23,4 +23,12 @@ describe('RobotsActionsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it("should set robotTarget when we call setTarget", () => {
+    component.robotTarget = "limo-1"
+
+    component.setTarget("robots")
+
+    expect(component.robotTarget).toBe("robots")
+  })
 });
