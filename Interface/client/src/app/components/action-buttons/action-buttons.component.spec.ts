@@ -28,4 +28,20 @@ describe('ActionButtonsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it("should call socket communication identify function when we call identify", () => {
+    component.identify()
+
+    expect(socketCommunicationSpy.identify).toHaveBeenCalled()
+  })
+
+  it("should call socket communication startMission function when we call startMission", () => {
+    component.startMission()
+    expect(socketCommunicationSpy.startMission).toHaveBeenCalled()
+  })
+
+  it("should call socket communication stopMission function when we call stopMission", () => {
+    component.stopMission()
+    expect(socketCommunicationSpy.stopMission).toHaveBeenCalled()
+  })
 });
