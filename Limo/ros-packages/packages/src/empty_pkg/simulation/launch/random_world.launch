@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="random_world_number"/>
+    <arg name="world_name" default="$(find empty_pkg)/simulation/worlds/world$(arg random_world_number).world"/>
+
+    <include file="$(find empty_pkg)/simulation/launch/world.launch">
+        <arg name="world_name" value="$(arg world_name)"/>
+        <arg name="paused" value="false"/>
+        <arg name="use_sim_time" value="true"/>
+        <arg name="gui" value="true"/>
+        <arg name="headless" value="false"/>
+        <arg name="debug" value="false"/>
+    </include>
+
+    <include file="$(find empty_pkg)/simulation/launch/two-robots.launch"/>
+    
+</launch>
