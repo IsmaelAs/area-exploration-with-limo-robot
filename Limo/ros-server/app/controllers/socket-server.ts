@@ -20,9 +20,7 @@ export class SocketServer {
 
   private loggerObservable: Subscription;
 
-
-
-  private stateMachine: MyStateMachine; 
+  private stateMachine: MyStateMachine;
 
   limoId: number;
 
@@ -31,8 +29,6 @@ export class SocketServer {
     this.nodeManager = new NodeManager();
     this.logger = new Logger();
     this.stateMachine = new MyStateMachine();
-    this.stateMachine.stateObservable.subscribe(this.sendState.bind(this));
-    this.stateMachine.startStates();
   }
 
   // Connect the socket to the limo node server ; subscribe to all limo command ; start all nodes
@@ -46,6 +42,8 @@ export class SocketServer {
         this.limoId = limoId;
         this.logger.setLimoId(this.limoId);
         this.stateMachine.setLimoId(this.limoId);
+        this.stateMachine.stateObservable.subscribe(this.sendState.bind(this));
+        this.stateMachine.startStates();
       });
 
       socket.on('identify', async () => {
@@ -89,9 +87,10 @@ export class SocketServer {
   private sendLogs(log: LogType) {
     if (this.clientCounter > NO_CLIENT) this.emit('save-log', log);
   }
+
   private sendState(data: StateType) {
-    console.log("J'EMITE MTN L'ETAT")
-    console.log(data)
+    console.log('J\'EMITE MTN L\'ETAT');
+    console.log(data);
     this.emit('save-state', data);
   }
 }

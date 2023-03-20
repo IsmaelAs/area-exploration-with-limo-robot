@@ -36,7 +36,11 @@ export class AppComponent {
     private changeState (newState: StateType) {
         console.log("ICI JE CHANGE L'ETAT DANS L'AFFICHAGE");
         console.log(newState);
-        newState.limoId === 1 ? this.stateLimo1 = newState.state : this.stateLimo2 = newState.state;
+        if (newState.limoId === 1) {
+            this.stateLimo1 = newState.state
+        } else if (newState.limoId === 2) {
+            this.stateLimo2 = newState.state
+        }
     }
 
 }
