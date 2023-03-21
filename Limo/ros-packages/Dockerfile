@@ -26,14 +26,16 @@ RUN git clone https://github.com/libuvc/libuvc && cd libuvc && \
 RUN git clone https://github.com/YDLIDAR/YDLidar-SDK && cd YDLidar-SDK && \
       cmake . && make install && cd .. && rm -rf YDLidar-SDK
 
-ADD .rosinstall agx_ws/.rosinstall
-RUN cd agx_ws && . /opt/ros/noetic/setup.sh && rosinstall . ; catkin_make
 
-RUN chmod +x agx_ws/src/explore_control/explore_control/src/publish_explore.py
+ADD .rosinstall agx_ws/.rosinstall
+ADD ./packages/src /agx_ws/src
+RUN cd agx_ws && . /opt/ros/noetic/setup.sh  && rosinstall . ; catkin_make
+
+
 RUN chmod +x agx_ws/src/explore_control/explore_control/src/control_explore.py
 
 COPY . /home/ros-package
 WORKDIR /home/ros-package
 RUN chmod +x ./entrypoint.sh
 
-ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT [ "./entrypoint.sh" ]
