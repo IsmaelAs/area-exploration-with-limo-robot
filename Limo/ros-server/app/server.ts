@@ -4,6 +4,7 @@ import { AddressInfo } from 'net';
 import { Application } from './app';
 import { Server as SocketServer } from 'socket.io';
 import { SocketServer as SocketManager } from './controllers/socket-server';
+import { NodeExplorationState } from './classes/ros/nodes/node-exploration-state';
 // Import { MyStateMachine } from './classes/state-machine';
 
 
@@ -56,8 +57,8 @@ val;
         origin: '*',
       },
     });
-
-    this.socketManager = new SocketManager(this.io);
+    const nodeExplorationState = new NodeExplorationState();
+    this.socketManager = new SocketManager(this.io, nodeExplorationState);
     this.socketManager.connectSocketServer();
     // This.stateMachine.startStates()
   }

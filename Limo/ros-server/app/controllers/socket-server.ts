@@ -4,6 +4,7 @@ import { Server } from 'socket.io';
 import delay from 'delay';
 import { Subscription } from 'rxjs';
 import LogType from '@app/types/LogType';
+import { NodeExplorationState } from '../classes/ros/nodes/node-exploration-state';
 
 const NO_CLIENT = 0;
 
@@ -20,9 +21,9 @@ export class SocketServer {
 
   limoId: number;
 
-  constructor(server: Server) {
+  constructor(server: Server, nodeExplorationState: NodeExplorationState) {
     this.server = server;
-    this.nodeManager = new NodeManager();
+    this.nodeManager = new NodeManager(nodeExplorationState);
     this.logger = new Logger();
   }
 
@@ -51,11 +52,11 @@ export class SocketServer {
 
         // eslint-disable-next-line no-magic-numbers
         await delay(1000);
-        await this.nodeManager.move('forward');
+        this.nodeManager.startMission();
       });
 
-      socket.on('stop-mission', async () => {
-        await this.nodeManager.move('backward');
+      socket.on('stop-mission', () => {
+        this.nodeManager.stopMission();
         this.logger.stopLog();
         this.loggerObservable.unsubscribe();
       });
