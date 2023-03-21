@@ -32,7 +32,7 @@ ADD ./packages/src /agx_ws/src
 RUN cd agx_ws && . /opt/ros/noetic/setup.sh  && rosinstall . ; catkin_make
 
 
-RUN chmod +x agx_ws/src/explore_control/explore_control/src/control_explore.py
+RUN chmod +x agx_ws/src/explore_control/src/control_explore.py
 
 COPY . /home/ros-package
 WORKDIR /home/ros-package

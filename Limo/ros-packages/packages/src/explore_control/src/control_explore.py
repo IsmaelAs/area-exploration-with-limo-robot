@@ -8,18 +8,18 @@ class ExplorationControl:
     def __init__(self):
         rospy.init_node('exploration_control')
 
-        explorationTopic = '/exploration_state',
-        moveTopicCancel = '/move_base/cancel'
+
+        self.subscriberState = rospy.Subscriber('/exploration_state', Bool, self.setExplorationState)
+        self.noMove = rospy.Publisher('/move_base/cancel', GoalID, queue_size=10)
+
 
         isSimulation = os.environ.get("IS_SIMULATION")
 
         if isSimulation : 
             limoId = os.environ.get("LIMO_ID", "1")
-            explorationTopic = f'limo{limoId}/exploration_state'
-            moveTopicCancel = f'limo{limoId}/move_base/cancel'
+            self.subscriberState = rospy.Subscriber(f'limo{limoId}/exploration_state', Bool, self.setExplorationState)
+            self.noMove = rospy.Publisher('limo{limoId}/move_base/cancel', GoalID, queue_size=10)
         
-        self.subscriberState = rospy.Subscriber(explorationTopic, Bool, self.setExplorationState)
-        self.noMove = rospy.Publisher(moveTopicCancel, GoalID, queue_size=10)
 
         self.isExploring = False
         self.rate = rospy.Rate(1)
