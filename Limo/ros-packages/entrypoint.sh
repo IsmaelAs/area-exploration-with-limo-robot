@@ -5,8 +5,8 @@ echo $(hostname -I)
 xterm -e "roslaunch rosbridge_server rosbridge_websocket.launch" &
 
 # chmod explore_control files
-exec chmod +x /catkin_ws/src/explore_control/publish_explore.py
-exec chmod +x /catkin_ws/src/explore_control/control_explore.py
+exec chmod +x /home/ros-package/agx_ws/src/explore_control/explore_control/src/publish_explore.py
+exec chmod +x /home/ros-package/agx_ws/src/explore_control/explore_control/src/control_explore.py
 
 # Launch gmapping
 xterm -e "rosrun gmapping slam_gmapping scan:=/limo/scan 2> >(grep -v TF_REPEATED_DATA buffer_core)" &
@@ -29,7 +29,7 @@ sleep 5
 
 
 # Publish /exploration_state topic 
-rosrun explore_control publish_explore.py &
+xterm -e "rosrun explore_control publish_explore.py" &
 
 # Subscribe to /exploration_state topic to control exploration state
-rosrun explore_control control_explore.py &
+xterm -e "rosrun explore_control control_explore.py" &

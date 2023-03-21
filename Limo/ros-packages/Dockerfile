@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y curl git \
       ros-noetic-gmapping ros-noetic-amcl \
       ros-noetic-costmap-2d ros-noetic-global-planner \
       ros-noetic-dwa-local-planner ros-noetic-navigation \
-      ros-noetic-rosbridge-server \
+      ros-noetic-rosbridge-server xterm\
       ros-${ROS_DISTRO}-multirobot-map-merge ros-${ROS_DISTRO}-explore-lite
 
 # For some reason, libusb is missing some pkg-config files
@@ -16,10 +16,6 @@ RUN curl -LO https://github.com/libusb/libusb/releases/download/v1.0.26/libusb-1
       tar xvf libusb-1.0.26.tar.bz2 && cd libusb-1.0.26 && \
       ./configure && make install && cd .. && \
       rm -rf libusb-1.0.26*
-
-# Clone explore_control package
-RUN mkdir -p /catkin_ws/src && cd /catkin_ws/src && catkin_init_workspace && git clone https://github.com/madysemega/explore_control.git \
-     && cd .. && catkin_make && . devel/setup.bash
 
 # For some reason, libuvc is missing some pkg-config files
 RUN git clone https://github.com/libuvc/libuvc && cd libuvc && \
@@ -31,7 +27,7 @@ RUN git clone https://github.com/YDLIDAR/YDLidar-SDK && cd YDLidar-SDK && \
       cmake . && make install && cd .. && rm -rf YDLidar-SDK
 
 ADD .rosinstall agx_ws/.rosinstall
-RUN cd agx_ws && . /opt/ros/noetic/setup.sh && rosinstall . ; catkin_make && . devel/setup.bash
+RUN cd agx_ws && . /opt/ros/noetic/setup.sh && rosinstall . ; catkin_make
 
 COPY . /home/ros-package
 WORKDIR /home/ros-package
