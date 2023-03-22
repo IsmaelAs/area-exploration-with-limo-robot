@@ -1,8 +1,0 @@
-prefix=/home/ubuntu/Documents/INF3995-102/Limo/ros-packages/packages/devel
-
-Name: empty_pkg
-Description: Description of empty_pkg
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 
