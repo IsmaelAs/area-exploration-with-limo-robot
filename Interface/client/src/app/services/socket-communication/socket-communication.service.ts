@@ -56,7 +56,7 @@ export class SocketCommunicationService {
 
     }
 
-    get subscribeOpenLogs () {
+    getSubscribeOpenLogs () {
 
         return this.logsOpen.asObservable();
 

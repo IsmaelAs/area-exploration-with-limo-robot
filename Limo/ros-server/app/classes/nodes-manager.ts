@@ -1,12 +1,11 @@
-import Command from '../types/Command';
+import Command from '../types/types';
 import { NodeMovement } from './ros/nodes/node-movement';
 
 export class NodeManager {
   private nodeMovement: NodeMovement;
 
-  constructor() {
-    this.nodeMovement = new NodeMovement();
-    this.startNodes();
+  constructor(nodeMovement: NodeMovement) {
+    this.nodeMovement = nodeMovement;
   }
 
   // Start all nodes

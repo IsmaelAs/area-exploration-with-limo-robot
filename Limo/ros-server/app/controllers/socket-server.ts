@@ -24,15 +24,16 @@ export class SocketServer {
 
   limoId: number;
 
-  constructor(server: Server) {
+  constructor(server: Server, nodeManager: NodeManager, logger: Logger) {
     this.server = server;
-    this.nodeManager = new NodeManager();
-    this.logger = new Logger();
+    this.nodeManager = nodeManager;
+    this.logger = logger;
     this.stateMachine = new MyStateMachine();
   }
 
   // Connect the socket to the limo node server ; subscribe to all limo command ; start all nodes
   connectSocketServer(): void {
+    this.nodeManager.startNodes();
     this.server.on('connection', (socket) => {
       console.log('Connected to node server');
       this.stateMachine.onReady();
