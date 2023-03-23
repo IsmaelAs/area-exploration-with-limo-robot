@@ -7,10 +7,9 @@ export class NodeManager {
 
   private nodeExplorationState: NodeExplorationState;
 
-  constructor(nodeExplorationState: NodeExplorationState) {
-    this.nodeMovement = new NodeMovement();
+  constructor(nodeExplorationState: NodeExplorationState, nodeMovement: NodeMovement) {
+    this.nodeMovement = nodeMovement;
     this.nodeExplorationState = nodeExplorationState;
-    this.startNodes();
   }
 
   // Start all nodes

@@ -1,9 +1,9 @@
 #!/bin/bash
 
 
-cp -r ./simulation/launch $(rospack find limo_gazebo_sim)
-cp -r ./simulation/worlds $(rospack find limo_gazebo_sim)
-cp -r ./simulation/params $(rospack find limo_gazebo_sim)
+cp -r ./launch $(rospack find limo_gazebo_sim)
+cp -r ./worlds $(rospack find limo_gazebo_sim)
+cp -r ./params $(rospack find limo_gazebo_sim)
 cp -r ../packages/launchs $(rospack find limo_bringup)
 cp -r ../packages/params $(rospack find limo_bringup)
 
