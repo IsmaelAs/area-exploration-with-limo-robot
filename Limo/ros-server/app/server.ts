@@ -64,11 +64,10 @@ val;
     });
     const nodeExplorationState = new NodeExplorationState();
     const nodeMovement = new NodeMovement();
-    const nodeManager = new NodeManager(nodeMovement);
+    const nodeManager = new NodeManager(nodeExplorationState, nodeMovement);
     const logger = new Logger();
-    this.socketManager = new SocketManager(this.io, nodeExplorationState, nodeManager, logger);
+    this.socketManager = new SocketManager(this.io, nodeManager, logger);
     this.socketManager.connectSocketServer();
-    // This.stateMachine.startStates()
   }
 
   // eslint-disable-next-line class-methods-use-this, no-undef

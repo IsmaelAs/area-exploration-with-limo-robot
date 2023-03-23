@@ -38,10 +38,12 @@ export class SocketServer {
       console.log('Connected to node server');
 
       this.clientCounter++;
+
       socket.on('login', (limoId: number) => {
         this.limoId = limoId;
         this.logger.setLimoId(this.limoId);
         this.stateMachine.setLimoId(this.limoId);
+
         this.stateMachine.stateObservable.subscribe(this.sendState.bind(this));
         this.stateMachine.startStates();
         this.stateMachine.onReady();
