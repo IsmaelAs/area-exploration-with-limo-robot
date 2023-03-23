@@ -36,7 +36,6 @@ export class SocketServer {
     this.nodeManager.startNodes();
     this.server.on('connection', (socket) => {
       console.log('Connected to node server');
-      this.stateMachine.onReady();
 
       this.clientCounter++;
       socket.on('login', (limoId: number) => {
@@ -45,6 +44,7 @@ export class SocketServer {
         this.stateMachine.setLimoId(this.limoId);
         this.stateMachine.stateObservable.subscribe(this.sendState.bind(this));
         this.stateMachine.startStates();
+        this.stateMachine.onReady();
       });
 
       socket.on('identify', async () => {

@@ -22,9 +22,9 @@ export class ServerSocketController {
   private isMissionStarted = false;
 
 
-  constructor(io: SocketServer) {
+  constructor(io: SocketServer, logger: Logger) {
     this.io = io;
-    this.logger = new Logger();
+    this.logger = logger;
   }
 
   initializeSocketServer() {
