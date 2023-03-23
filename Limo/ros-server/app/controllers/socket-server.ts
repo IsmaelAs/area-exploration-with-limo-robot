@@ -5,7 +5,7 @@ import delay from 'delay';
 import { Subscription } from 'rxjs';
 import LogType from '../types/LogType';
 import { MyStateMachine } from '../classes/state-machine';
-import StateType from '@app/types/StateType';
+import StateType from '../types/StateType';
 
 const NO_CLIENT = 0;
 
