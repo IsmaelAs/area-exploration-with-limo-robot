@@ -10,6 +10,9 @@ MASTER_IP=$(hostname -I | head -n1 | awk '{print $1;}')
 ROS_MASTER_URI="http://${MASTER_IP}:11311"
 echo $ROS_MASTER_URI
 
+
+
+
 docker build  -t ros-packages-server ./ros-packages 
 docker run --name ros-packages-server  --network host --restart always -e LIMO_ID=$LIMO_ID -e ROS_MASTER_URI=$ROS_MASTER_URI -e IS_SIMULATION=$IS_SIMULATION -d ros-packages-server
 sleep 10
