@@ -5,10 +5,11 @@ source /agx_ws/devel/setup.bash
 
 
 echo $(hostname -I)
-roslaunch rosbridge_server rosbridge_websocket.launch &
 sleep 5
 
 if [ ! "$IS_SIMULATION" ];  then 
+
+  roslaunch rosbridge_server rosbridge_websocket.launch &
 
   cp -r ./packages/launchs $(rospack find limo_bringup)
   cp -r ./packages/params $(rospack find limo_bringup)

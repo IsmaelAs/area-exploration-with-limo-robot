@@ -6,6 +6,8 @@ roslaunch limo_gazebo_sim random_world.launch random_world_number:=$((1 + $RANDO
 
 sleep 2m
 
+roslaunch rosbridge_server rosbridge_websocket.launch &
+
 # Launch gmapping
 roslaunch  limo_gazebo_sim main_gmapping.launch  2> >(grep -v TF_REPEATED_DATA buffer_core) &
 
