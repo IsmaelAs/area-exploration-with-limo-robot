@@ -1,12 +1,6 @@
 #!/bin/bash
 
 
-cp -r ./launch $(rospack find limo_gazebo_sim)
-cp -r ./worlds $(rospack find limo_gazebo_sim)
-cp -r ./params $(rospack find limo_gazebo_sim)
-cp -r ../packages/launchs $(rospack find limo_bringup)
-cp -r ../packages/params $(rospack find limo_bringup)
-
 
 roslaunch limo_gazebo_sim random_world.launch random_world_number:=$((1 + $RANDOM % 6)) &
 

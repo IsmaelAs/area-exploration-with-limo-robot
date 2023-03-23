@@ -3,14 +3,15 @@
 source /opt/ros/noetic/setup.bash
 source /agx_ws/devel/setup.bash
 
-cp -r ./packages/launchs $(rospack find limo_bringup)
-cp -r ./packages/params $(rospack find limo_bringup)
 
 echo $(hostname -I)
 roslaunch rosbridge_server rosbridge_websocket.launch &
 sleep 5
 
 if [ ! "$IS_SIMULATION" ];  then 
+
+  cp -r ./packages/launchs $(rospack find limo_bringup)
+  cp -r ./packages/params $(rospack find limo_bringup)
 
   # Launch gmapping
   roslaunch  limo_bringup one_gmapping.launch  2> >(grep -v TF_REPEATED_DATA buffer_core) &
