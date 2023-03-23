@@ -4,6 +4,7 @@ import { AddressInfo } from 'net';
 import { Application } from './app';
 import { Server as SocketServer } from 'socket.io';
 import { SocketServer as SocketManager } from './controllers/socket-server';
+import { NodeExplorationState } from './classes/ros/nodes/node-exploration-state';
 import { NodeMovement } from './classes/ros/nodes/node-movement';
 import { NodeManager } from './classes/nodes-manager';
 import { Logger } from './services/logger';
@@ -61,11 +62,11 @@ val;
         origin: '*',
       },
     });
-
+    const nodeExplorationState = new NodeExplorationState();
     const nodeMovement = new NodeMovement();
     const nodeManager = new NodeManager(nodeMovement);
     const logger = new Logger();
-    this.socketManager = new SocketManager(this.io, nodeManager, logger);
+    this.socketManager = new SocketManager(this.io, nodeExplorationState, nodeManager, logger);
     this.socketManager.connectSocketServer();
     // This.stateMachine.startStates()
   }

@@ -5,7 +5,7 @@ import delay from 'delay';
 import { Subscription } from 'rxjs';
 import LogType from '../types/LogType';
 import { MyStateMachine } from '../classes/state-machine';
-import StateType from '@app/types/StateType';
+import StateType from '../types/StateType';
 
 const NO_CLIENT = 0;
 
@@ -63,12 +63,12 @@ export class SocketServer {
 
         // eslint-disable-next-line no-magic-numbers
         await delay(1000);
-        await this.nodeManager.move('forward');
+        this.nodeManager.startMission();
       });
 
-      socket.on('stop-mission', async () => {
+      socket.on('stop-mission', () => {
         this.stateMachine.onMissionEnd();
-        await this.nodeManager.move('backward');
+        this.nodeManager.stopMission();
         this.logger.stopLog();
         this.loggerObservable.unsubscribe();
         this.stateMachine.onReady();

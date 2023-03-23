@@ -47,6 +47,8 @@ Thumbs.db
 
 # Python 
 **/venv
+**/devel
+**/build
 
 # Tests 
 **/.nyc_output

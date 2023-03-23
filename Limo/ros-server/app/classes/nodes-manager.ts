@@ -1,17 +1,23 @@
 import Command from '../types/types';
+import { NodeExplorationState } from './ros/nodes/node-exploration-state';
 import { NodeMovement } from './ros/nodes/node-movement';
 
 export class NodeManager {
   private nodeMovement: NodeMovement;
 
-  constructor(nodeMovement: NodeMovement) {
-    this.nodeMovement = nodeMovement;
+  private nodeExplorationState: NodeExplorationState;
+
+  constructor(nodeExplorationState: NodeExplorationState) {
+    this.nodeMovement = new NodeMovement();
+    this.nodeExplorationState = nodeExplorationState;
+    this.startNodes();
   }
 
   // Start all nodes
   startNodes(): void {
     console.log(`Starting connection for the nodes`);
     this.nodeMovement.initNodeMovement();
+    this.nodeExplorationState.initNodeExplorationState();
   }
 
   // Send command to move limo
@@ -23,9 +29,18 @@ export class NodeManager {
     await this.nodeMovement.move('left-forward');
   }
 
+  startMission() {
+    this.nodeExplorationState.sendMessage({ data: true });
+  }
+
+  stopMission() {
+    this.nodeExplorationState.sendMessage({ data: false });
+  }
+
   // Stop all nodes
   stop(): void {
     console.log(`Closing connection of nodes !`);
     this.nodeMovement.closeNodeMovement();
+    this.nodeExplorationState.closeNodeExplorationState();
   }
 }
