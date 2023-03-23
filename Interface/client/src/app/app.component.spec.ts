@@ -1,19 +1,34 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { IpLimoHandlerComponent } from './components/ip-limo-handler/ip-limo-handler.component';
+import { LogActionComponent } from './components/log-action/log-action.component';
+import { RobotsActionsComponent } from './components/robots-actions/robots-actions.component';
+import { FormsModule } from '@angular/forms';
 
 describe('AppComponent', () => {
+  let component: AppComponent
+  let fixture: ComponentFixture<AppComponent>;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        AppRoutingModule
+        AppRoutingModule,
+        FormsModule
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        IpLimoHandlerComponent,
+        LogActionComponent,
+        RobotsActionsComponent
       ],
     }).compileComponents();
+
+    fixture = TestBed.createComponent(AppComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
   });
 
   it('should create the app', () => {
@@ -22,10 +37,12 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('client app is running!');
-  });
+  it("should isIpSet with the event", () => {
+    component.isIpSet = false
+
+    component.setIsIpSet({ isIpSet: true })
+
+    expect(component.isIpSet).toBeTruthy()
+  })
+
 });
