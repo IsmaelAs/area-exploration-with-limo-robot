@@ -1,0 +1,16 @@
+<launch>
+  
+  <!-- Launch the gmapping node for Turtlebot 3 with custom namespace -->
+  <!-- <group ns="/limo1"> -->
+    <include file="$(find limo_gazebo_sim)/launch/one_gmapping.launch">
+      <arg name="ns" value="/limo1"/>
+    </include>
+  <!-- </group> -->
+
+  <!-- <group ns="/limo2"> -->
+    <include file="$(find limo_gazebo_sim)/launch/one_gmapping.launch">
+      <arg name="ns" value="/limo2"/>
+    </include>
+  <!-- </group> -->
+
+</launch>

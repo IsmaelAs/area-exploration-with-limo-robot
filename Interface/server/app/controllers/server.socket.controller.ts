@@ -60,14 +60,14 @@ export class ServerSocketController {
         console.log(`ws://${ips.limo1}:${process.env.IS_SIMULATION ? process.env.PORT_LIMO_1 : '9332'}`);
 
         if (ips.limo1.replace(' ', '') !== '') {
-          this.socketLimo = new ClientSocketLimo(FIRST_LIMO, `ws://${ips.limo1}:${process.env.IS_SIMULATION ? process.env.PORT_LIMO_1 : '9332'}`);
+          this.socketLimo = new ClientSocketLimo(FIRST_LIMO, `ws://${ips.limo1}:9332'}`);
           this.socketLimo.connectClientSocketToLimo();
 
           this.socketLimo.subscribeState.subscribe(this.sendStateToClient.bind(this));
         }
 
         if (ips.limo2.replace(' ', '') !== '') {
-          this.socketLimo2 = new ClientSocketLimo(SECOND_LIMO, `ws://${ips.limo2}:${process.env.IS_SIMULATION ? process.env.PORT_LIMO_2 : '9332'}`);
+          this.socketLimo2 = new ClientSocketLimo(SECOND_LIMO, `ws://${ips.limo2}:${process.env.IS_SIMULATION ? '9333' : '9332'}`);
           this.socketLimo2.connectClientSocketToLimo();
 
           this.socketLimo2.subscribeState.subscribe(this.sendStateToClient.bind(this));

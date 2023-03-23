@@ -27,7 +27,7 @@ export class NodePosition {
       this.subscriberMovement = new Topic({
         ros: this.ros,
         name: 'odom',
-        messageType: 'nav_msgs/Odometry',
+        messageType: process.env.IS_SIMULATION ? `limo${process.env.LIMO_ID}/nav_msgs/Odometry` : 'nav_msgs/Odometry',
         queue_size: 10,
       });
       this.subscriberMovement.subscribe(this.callBack.bind(this));

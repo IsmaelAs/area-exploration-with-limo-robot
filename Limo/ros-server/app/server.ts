@@ -11,7 +11,9 @@ import { Logger } from './services/logger';
 
 
 export class Server {
-  private static readonly appPort: string | number | boolean = Server.normalizePort(9332);
+  private static port: number = process.env.IS_SIMULATION && process.env.LIMO_ID === '2' ? 9333 : 9332;
+
+  private static readonly appPort: string | number | boolean = Server.normalizePort(this.port);
 
   private static readonly baseDix: number = 10;
 
