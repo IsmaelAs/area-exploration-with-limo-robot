@@ -5,7 +5,7 @@
 
 	<group  ns="$(arg ns)">
 		<node pkg="amcl" type="amcl" name="amcl" output="screen">
-			<rosparam file="$(find limo_bringup)/param/amcl_params_diff.yaml" command="load" />
+			<rosparam file="$(find limo_bringup)/params/amcl_params_diff.yaml" command="load" />
 			<param name="initial_pose_x"            value="0"/>
 			<param name="initial_pose_y"            value="0"/>
 			<param name="initial_pose_a"            value="0"/>
@@ -24,11 +24,11 @@
     <!--  ************** Navigation ***************  -->
 	<group  ns="$(arg ns)">
 		<node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
-			<rosparam file="$(find limo_gazebo_sim)/param/diff/costmap_common_params.yaml" command="load" ns="global_costmap" />
-			<rosparam file="$(find limo_gazebo_sim)/param/diff/costmap_common_params.yaml" command="load" ns="local_costmap" />
-			<rosparam file="$(find limo_gazebo_sim)/param/diff/local_costmap_params.yaml" command="load" />
-			<rosparam file="$(find limo_gazebo_sim)/param/diff/global_costmap_params.yaml" command="load" />
-			<rosparam file="$(find limo_gazebo_sim)/param/diff/planner.yaml" command="load" />
+			<rosparam file="$(find limo_gazebo_sim)/params/diff/costmap_common_params_1.yaml" command="load" ns="global_costmap" />
+			<rosparam file="$(find limo_gazebo_sim)/params/diff/costmap_common_params_1.yaml" command="load" ns="local_costmap" />
+			<rosparam file="$(find limo_gazebo_sim)/params/diff/local_costmap_params_1.yaml" command="load" />
+			<rosparam file="$(find limo_gazebo_sim)/params/diff/global_costmap_params_1.yaml" command="load" />
+			<rosparam file="$(find limo_gazebo_sim)/params/diff/planner_1.yaml" command="load" />
 
 			<param name="base_global_planner" value="global_planner/GlobalPlanner" />
 			<param name="planner_frequency" value="1.0" />

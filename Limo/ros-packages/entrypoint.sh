@@ -1,7 +1,8 @@
 #!/bin/bash
 
 source /opt/ros/noetic/setup.bash
-source /agx_ws/devel/setup.bash
+# source /agx_ws/devel/setup.bash
+source /home/ubuntu/Documents/prj/devel/setup.bash
 
 
 # copier les dossiers aux bons endroits
@@ -19,7 +20,7 @@ if [ "$IS_SIMULATION" ];  then
   # executer le random-world-generator
   ./simulation/random-world-generator.sh
 
-  sleep 1.8m
+  sleep 2m
 
   # Launch gmapping
   roslaunch  limo_gazebo_sim main_gmapping.launch  2> >(grep -v TF_REPEATED_DATA buffer_core) &
@@ -40,7 +41,7 @@ if [ "$IS_SIMULATION" ];  then
   sleep 10
 
   # Launch explore lite
-  roslaunch  limo_gazebo_sim main_exploration.launch  &
+  roslaunch  limo_gazebo_sim main_exploration.launch  2> >(grep -v TF_REPEATED_DATA buffer_core) &
 
   # Wait for explore lite to start up
   sleep 5
