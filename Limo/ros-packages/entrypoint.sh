@@ -3,8 +3,8 @@
 source /opt/ros/noetic/setup.bash
 source /agx_ws/devel/setup.bash
 
-cp -r ../packages/launchs $(rospack find limo_bringup)
-cp -r ../packages/params $(rospack find limo_bringup)
+cp -r ./packages/launchs $(rospack find limo_bringup)
+cp -r ./packages/params $(rospack find limo_bringup)
 
 echo $(hostname -I)
 roslaunch rosbridge_server rosbridge_websocket.launch &
