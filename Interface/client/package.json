@@ -6,9 +6,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "set-env" : "npx ts-node ./src/set_env.ts",
+    "set-env": "npx ts-node ./src/set_env.ts",
     "lint": "ng lint"
-
   },
   "private": true,
   "dependencies": {
@@ -24,6 +23,8 @@
     "fs": "^0.0.1-security",
     "node": "^19.6.0",
     "process": "^0.11.10",
+    "ros3d": "^1.1.0",
+    "roslib": "^1.3.0",
     "rxjs": "~7.5.0",
     "socket.io-client": "^4.6.0",
     "ts-node": "^10.9.1",
@@ -40,10 +41,11 @@
     "@angular/cli": "~15.0.1",
     "@angular/compiler-cli": "^15.0.0",
     "@types/jasmine": "~4.3.0",
+    "@types/node": "^18.13.0",
+    "@types/roslib": "^1.3.0",
     "@typescript-eslint/eslint-plugin": "5.48.2",
     "@typescript-eslint/parser": "5.48.2",
     "eslint": "^8.33.0",
-    "@types/node": "^18.13.0",
     "jasmine-core": "~4.5.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.1.0",
