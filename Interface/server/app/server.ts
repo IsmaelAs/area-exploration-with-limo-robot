@@ -7,6 +7,7 @@ import { Service } from 'typedi';
 import { Application } from './app';
 import { Server as SocketServer } from 'socket.io';
 import { ServerSocketController } from './controllers/server.socket.controller';
+import { Logger } from './services/logger';
 
 
 @Service()
@@ -51,7 +52,8 @@ export class Server {
       },
     });
 
-    this.serverSocketController = new ServerSocketController(this.io);
+    const logger = new Logger();
+    this.serverSocketController = new ServerSocketController(this.io, logger);
     this.serverSocketController.initializeSocketServer();
   }
 

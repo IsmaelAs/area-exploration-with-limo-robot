@@ -2,6 +2,7 @@ import { Server as SocketServer } from 'socket.io';
 import { ClientSocketLimo } from './client.socket.limo';
 import { Logger } from '../services/logger';
 import RobotTargetType from '../types/RobotType';
+import StateLimo from '../interfaces/state-limo';
 
 const FIRST_LIMO = 1;
 const SECOND_LIMO = 2;
@@ -18,9 +19,12 @@ export class ServerSocketController {
 
   private clientCounter: number;
 
-  constructor(io: SocketServer) {
+  private isMissionStarted = false;
+
+
+  constructor(io: SocketServer, logger: Logger) {
     this.io = io;
-    this.logger = new Logger();
+    this.logger = logger;
   }
 
   initializeSocketServer() {
@@ -32,11 +36,13 @@ export class ServerSocketController {
       });
 
       socket.on('start-mission', (robotTarget: RobotTargetType) => {
+        if (this.isMissionStarted) return;
         this.startMission();
         this.sendEventToLimo(robotTarget, 'start-mission');
       });
 
       socket.on('stop-mission', (robotTarget: RobotTargetType) => {
+        if (!this.isMissionStarted) return;
         this.stopMission();
         this.sendEventToLimo(robotTarget, 'stop-mission');
       });
@@ -45,32 +51,26 @@ export class ServerSocketController {
         this.logger.saveUserData(data);
       });
 
-
       socket.on('get-all-logs', (missionNumber: number) => {
         this.logger.getAllData(missionNumber, socket);
       });
 
-      /*
-       * Socket.on('save-state', (data: {limoId: number, state: State}) => {
-       *   socket.emit('send-all-logs', `L'état du robot ${data.limoId} est: ${data.state}`);
-       *   /*
-       *    client --> save-state --> server
-       *    server --> send-all-logs --> client
-       *    emit stop =--> stop
-       */
-
-      //   */
-      // });
-
       socket.on('send-limo-ips', (ips: {limo1: string, limo2: string}) => {
+        console.log('ips recu : ', ips);
+        console.log(`ws://${ips.limo1}:${process.env.IS_SIMULATION ? process.env.PORT_LIMO_1 : '9332'}`);
+
         if (ips.limo1.replace(' ', '') !== '') {
           this.socketLimo = new ClientSocketLimo(FIRST_LIMO, `ws://${ips.limo1}:9332'}`);
           this.socketLimo.connectClientSocketToLimo();
+
+          this.socketLimo.subscribeState.subscribe(this.sendStateToClient.bind(this));
         }
 
         if (ips.limo2.replace(' ', '') !== '') {
           this.socketLimo2 = new ClientSocketLimo(SECOND_LIMO, `ws://${ips.limo2}:${process.env.IS_SIMULATION ? '9333' : '9332'}`);
           this.socketLimo2.connectClientSocketToLimo();
+
+          this.socketLimo2.subscribeState.subscribe(this.sendStateToClient.bind(this));
         }
       });
 
@@ -96,11 +96,13 @@ export class ServerSocketController {
     }
   }
 
+
   private stopMission() {
     this.logger.stopMission();
 
     if (this.socketLimo) this.socketLimo.stopMission();
     if (this.socketLimo2) this.socketLimo2.stopMission();
+    this.isMissionStarted = false;
   }
 
   private startMission() {
@@ -108,5 +110,14 @@ export class ServerSocketController {
 
     if (this.socketLimo) this.socketLimo.startMission();
     if (this.socketLimo2) this.socketLimo2.startMission();
+    this.isMissionStarted = true;
+  }
+
+  private sendStateToClient(data: StateLimo) {
+    this.sendEventToFrontend('send-state', data);
+  }
+
+  private sendEventToFrontend<T>(event: string, data?: T) {
+    data ? this.io.emit(event, data) : this.io.emit(event);
   }
 }

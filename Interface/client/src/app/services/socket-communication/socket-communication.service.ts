@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
 import { BACKEND_URL } from 'src/app/constants/url';
 import RobotTargetType from 'src/app/types/RobotType';
-import { State } from 'src/app/types/States';
 import { Subject } from 'rxjs';
+import { StateType } from 'src/app/interfaces/state-limo';
 
 @Injectable({
     'providedIn': 'root'
@@ -13,6 +13,8 @@ export class SocketCommunicationService {
     private socket: Socket;
 
     private logsOpen: Subject<string> = new Subject();
+
+    private state: Subject<StateType> = new Subject();
 
     constructor () {
 
@@ -54,12 +56,17 @@ export class SocketCommunicationService {
 
     }
 
-    get subscribeOpenLogs () {
+    getSubscribeOpenLogs () {
 
         return this.logsOpen.asObservable();
 
     }
 
+    get subscribeState (){
+
+        return this.state.asObservable();
+    }
+ 
     private initSocketSubscription () {
 
         this.socket.on('connect', () => {
@@ -70,8 +77,9 @@ export class SocketCommunicationService {
 
             });
 
-            this.socket.on('send-state', (state: State) => {
-
+            this.socket.on('send-state', (state: StateType) => {
+                this.state.next(state);
+                console.log("ICI JE RECOIS L'ETAT DANS CLIENT-INTERFACE")
                 console.log(state);
 
             });

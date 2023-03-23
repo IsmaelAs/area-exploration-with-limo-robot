@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { RobotsActionsComponent } from './robots-actions.component';
+import { ActionButtonsComponent } from '../action-buttons/action-buttons.component';
+import { MatSelectModule } from '@angular/material/select';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('RobotsActionsComponent', () => {
   let component: RobotsActionsComponent;
@@ -8,7 +10,8 @@ describe('RobotsActionsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RobotsActionsComponent ]
+      imports: [MatSelectModule, BrowserAnimationsModule],
+      declarations: [ RobotsActionsComponent, ActionButtonsComponent ]
     })
     .compileComponents();
 
@@ -20,4 +23,12 @@ describe('RobotsActionsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it("should set robotTarget when we call setTarget", () => {
+    component.robotTarget = "limo-1"
+
+    component.setTarget("robots")
+
+    expect(component.robotTarget).toBe("robots")
+  })
 });

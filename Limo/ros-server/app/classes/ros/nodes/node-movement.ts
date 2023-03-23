@@ -1,4 +1,3 @@
-/* eslint-disable id-length */
 import { BRIDGE_URI } from '../../../constants/url';
 import Command from '../../../types/Command';
 import {Message, Ros, Topic} from 'roslib';

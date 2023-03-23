@@ -1,4 +1,3 @@
-/* eslint-disable no-magic-numbers */
 import NodeScan from '../classes/ros/nodes/node-scan';
 import { NodePosition } from '../classes/ros/nodes/node-position';
 import { Subject } from 'rxjs';
