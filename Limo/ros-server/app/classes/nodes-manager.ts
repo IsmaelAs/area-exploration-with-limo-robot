@@ -1,4 +1,4 @@
-import Command from '../types/Command';
+import Command from '../types/types';
 import { NodeExplorationState } from './ros/nodes/node-exploration-state';
 import { NodeMovement } from './ros/nodes/node-movement';
 

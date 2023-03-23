@@ -5,11 +5,16 @@ import { Application } from './app';
 import { Server as SocketServer } from 'socket.io';
 import { SocketServer as SocketManager } from './controllers/socket-server';
 import { NodeExplorationState } from './classes/ros/nodes/node-exploration-state';
+import { NodeMovement } from './classes/ros/nodes/node-movement';
+import { NodeManager } from './classes/nodes-manager';
+import { Logger } from './services/logger';
 // Import { MyStateMachine } from './classes/state-machine';
 
 
 export class Server {
-  private static readonly appPort: string | number | boolean = Server.normalizePort(9332);
+  private static port: number = process.env.IS_SIMULATION && process.env.LIMO_ID === '2' ? 9333 : 9332;
+
+  private static readonly appPort: string | number | boolean = Server.normalizePort(this.port);
 
   private static readonly baseDix: number = 10;
 
@@ -58,7 +63,10 @@ val;
       },
     });
     const nodeExplorationState = new NodeExplorationState();
-    this.socketManager = new SocketManager(this.io, nodeExplorationState);
+    const nodeMovement = new NodeMovement();
+    const nodeManager = new NodeManager(nodeMovement);
+    const logger = new Logger();
+    this.socketManager = new SocketManager(this.io, nodeExplorationState, nodeManager, logger);
     this.socketManager.connectSocketServer();
     // This.stateMachine.startStates()
   }

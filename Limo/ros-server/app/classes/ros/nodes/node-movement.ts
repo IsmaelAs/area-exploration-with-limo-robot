@@ -44,7 +44,7 @@ export class NodeMovement {
       // Initialize publisher
       this.publisherMovement = new Topic({
         ros: this.ros,
-        name: 'cmd_vel',
+        name: process.env.IS_SIMULATION ? `limo${process.env.LIMO_ID}/cmd_vel` : 'cmd_vel',
         messageType: 'geometry_msgs/Twist',
         queue_size: 10,
       });

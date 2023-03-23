@@ -23,7 +23,7 @@ export class LogActionComponent implements OnDestroy {
       private matDialogLogsOpen: MatDialog
     ) {
 
-        this.openLogsSubscription = this.socketCommunication.subscribeOpenLogs.subscribe(this.openLogsDialog.bind(this));
+        this.openLogsSubscription = this.socketCommunication.getSubscribeOpenLogs().subscribe(this.openLogsDialog.bind(this));
 
     }
 

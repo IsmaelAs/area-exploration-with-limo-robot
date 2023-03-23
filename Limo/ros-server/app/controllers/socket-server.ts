@@ -3,8 +3,9 @@ import { NodeManager } from '../classes/nodes-manager';
 import { Server } from 'socket.io';
 import delay from 'delay';
 import { Subscription } from 'rxjs';
-import LogType from '@app/types/LogType';
-import { NodeExplorationState } from '../classes/ros/nodes/node-exploration-state';
+import LogType from '../types/LogType';
+import { MyStateMachine } from '../classes/state-machine';
+import StateType from '@app/types/StateType';
 
 const NO_CLIENT = 0;
 
@@ -19,16 +20,20 @@ export class SocketServer {
 
   private loggerObservable: Subscription;
 
+  private stateMachine: MyStateMachine;
+
   limoId: number;
 
-  constructor(server: Server, nodeExplorationState: NodeExplorationState) {
+  constructor(server: Server, nodeManager: NodeManager, logger: Logger) {
     this.server = server;
-    this.nodeManager = new NodeManager(nodeExplorationState);
-    this.logger = new Logger();
+    this.nodeManager = nodeManager;
+    this.logger = logger;
+    this.stateMachine = new MyStateMachine();
   }
 
   // Connect the socket to the limo node server ; subscribe to all limo command ; start all nodes
   connectSocketServer(): void {
+    this.nodeManager.startNodes();
     this.server.on('connection', (socket) => {
       console.log('Connected to node server');
 
@@ -36,6 +41,10 @@ export class SocketServer {
       socket.on('login', (limoId: number) => {
         this.limoId = limoId;
         this.logger.setLimoId(this.limoId);
+        this.stateMachine.setLimoId(this.limoId);
+        this.stateMachine.stateObservable.subscribe(this.sendState.bind(this));
+        this.stateMachine.startStates();
+        this.stateMachine.onReady();
       });
 
       socket.on('identify', async () => {
@@ -48,7 +57,9 @@ export class SocketServer {
 
       socket.on('start-mission', async () => {
         this.loggerObservable = this.logger.logObservable.subscribe(this.sendLogs.bind(this));
+
         this.logger.startLogs();
+        this.stateMachine.onMission();
 
         // eslint-disable-next-line no-magic-numbers
         await delay(1000);
@@ -56,9 +67,11 @@ export class SocketServer {
       });
 
       socket.on('stop-mission', () => {
+        this.stateMachine.onMissionEnd();
         this.nodeManager.stopMission();
         this.logger.stopLog();
         this.loggerObservable.unsubscribe();
+        this.stateMachine.onReady();
       });
 
       socket.on('disconnect', () => {
@@ -74,5 +87,11 @@ export class SocketServer {
 
   private sendLogs(log: LogType) {
     if (this.clientCounter > NO_CLIENT) this.emit('save-log', log);
+  }
+
+  private sendState(data: StateType) {
+    console.log('J\'EMITE MTN L\'ETAT');
+    console.log(data);
+    this.emit('save-state', data);
   }
 }
