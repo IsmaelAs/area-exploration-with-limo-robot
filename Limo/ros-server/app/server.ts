@@ -4,6 +4,9 @@ import { AddressInfo } from 'net';
 import { Application } from './app';
 import { Server as SocketServer } from 'socket.io';
 import { SocketServer as SocketManager } from './controllers/socket-server';
+import { NodeMovement } from './classes/ros/nodes/node-movement';
+import { NodeManager } from './classes/nodes-manager';
+import { Logger } from './services/logger';
 // Import { MyStateMachine } from './classes/state-machine';
 
 
@@ -57,7 +60,10 @@ val;
       },
     });
 
-    this.socketManager = new SocketManager(this.io);
+    const nodeMovement = new NodeMovement();
+    const nodeManager = new NodeManager(nodeMovement);
+    const logger = new Logger();
+    this.socketManager = new SocketManager(this.io, nodeManager, logger);
     this.socketManager.connectSocketServer();
     // This.stateMachine.startStates()
   }
