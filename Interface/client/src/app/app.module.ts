@@ -14,8 +14,8 @@ import { ActionButtonsComponent } from './components/action-buttons/action-butto
 import { RobotsActionsComponent } from './components/robots-actions/robots-actions.component';
 import { IpLimoHandlerComponent } from './components/ip-limo-handler/ip-limo-handler.component';
 import { MapViewerComponent } from './components/map-viewer/map-viewer.component';
-
-
+import { RobotsStateComponent } from './components/robots-state/robots-state.component';
+import { MainPageComponent } from './components/main-page/main-page.component';
 
 @NgModule({
     'declarations': [
@@ -25,7 +25,9 @@ import { MapViewerComponent } from './components/map-viewer/map-viewer.component
         LogActionComponent,
         ActionButtonsComponent,
         RobotsActionsComponent,
-        IpLimoHandlerComponent
+        IpLimoHandlerComponent,
+        RobotsStateComponent,
+        MainPageComponent
 
     ],
     'imports': [

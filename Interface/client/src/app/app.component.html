@@ -1,10 +1,5 @@
 
 <div class="container">
-  <div *ngIf="isIpSet">
-    <app-robots-actions></app-robots-actions>
-    <p> L'etat du Limo1 est {{ stateLimo1 }} </p>  
-    <p> L'etat du Limo2 est {{ stateLimo2 }} </p>
-    <app-log-action> </app-log-action>  
-  </div>
+  <app-main-page *ngIf="isIpSet" ></app-main-page>
   <app-ip-limo-handler *ngIf="!isIpSet" (isIpSet)="setIsIpSet($event)"></app-ip-limo-handler>
 </div>

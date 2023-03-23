@@ -3,9 +3,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { IpLimoHandlerComponent } from './components/ip-limo-handler/ip-limo-handler.component';
-import { LogActionComponent } from './components/log-action/log-action.component';
-import { RobotsActionsComponent } from './components/robots-actions/robots-actions.component';
 import { FormsModule } from '@angular/forms';
+import { MainPageComponent } from './components/main-page/main-page.component';
 
 describe('AppComponent', () => {
   let component: AppComponent
@@ -21,8 +20,7 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent,
         IpLimoHandlerComponent,
-        LogActionComponent,
-        RobotsActionsComponent
+        MainPageComponent
       ],
     }).compileComponents();
 
