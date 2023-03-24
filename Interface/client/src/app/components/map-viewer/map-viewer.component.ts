@@ -89,7 +89,7 @@ export class MapViewerComponent {
         // Setup the Merged map client.
         this.gridClientMerged = new ROS3D.OccupancyGridClient({
             'ros': this.ros1,
-            'topic': '/map_merge/x_merged_map',
+            'topic': environment.IS_SIMULATION ? '/map_merge/x_merged_map' : '/map_merged/map',
             'rootObject': this.viewerMerged.scene,
             'continuous': true
         });
