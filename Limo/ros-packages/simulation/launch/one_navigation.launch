@@ -52,7 +52,5 @@
 		</node>
 	</group>
 
-	<!--  **************** Visualisation ****************  -->
-	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find limo_bringup)/rviz/navigation_diff.rviz" ns="$(arg ns)"/>
 </launch>
 
