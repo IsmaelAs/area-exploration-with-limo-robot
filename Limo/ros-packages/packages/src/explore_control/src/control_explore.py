@@ -12,8 +12,8 @@ class ExplorationControl:
         if isSimulation : 
             limoId = os.environ.get("LIMO_ID", "1")
             rospy.init_node('exploration_control' + limoId)
-            self.subscriberState = rospy.Subscriber(f'limo{limoId}/exploration_state', Bool, self.setExplorationState)
-            self.noMove = rospy.Publisher('limo{limoId}/move_base/cancel', GoalID, queue_size=10)
+            self.subscriberState = rospy.Subscriber(f"limo{limoId}/exploration_state", Bool, self.setExplorationState)
+            self.noMove = rospy.Publisher(f"limo{limoId}/move_base/cancel", GoalID, queue_size=10)
         else :
             rospy.init_node('exploration_control')
             self.subscriberState = rospy.Subscriber('/exploration_state', Bool, self.setExplorationState)
