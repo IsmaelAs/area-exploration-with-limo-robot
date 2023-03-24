@@ -36,14 +36,14 @@ export class ServerSocketController {
       });
 
       socket.on('start-mission', (robotTarget: RobotTargetType) => {
-        if (this.isMissionStarted) return;
-        this.startMission();
+        if (!this.isMissionStarted) this.startMission();
+
         this.sendEventToLimo(robotTarget, 'start-mission');
       });
 
       socket.on('stop-mission', (robotTarget: RobotTargetType) => {
-        if (!this.isMissionStarted) return;
-        this.stopMission();
+        if (this.isMissionStarted) this.stopMission();
+
         this.sendEventToLimo(robotTarget, 'stop-mission');
       });
 
@@ -60,7 +60,7 @@ export class ServerSocketController {
         console.log(`ws://${ips.limo1}:${process.env.IS_SIMULATION ? process.env.PORT_LIMO_1 : '9332'}`);
 
         if (ips.limo1.replace(' ', '') !== '') {
-          this.socketLimo = new ClientSocketLimo(FIRST_LIMO, `ws://${ips.limo1}:9332'}`);
+          this.socketLimo = new ClientSocketLimo(FIRST_LIMO, `ws://${ips.limo1}:9332`);
           this.socketLimo.connectClientSocketToLimo();
 
           this.socketLimo.subscribeState.subscribe(this.sendStateToClient.bind(this));
