@@ -3,6 +3,7 @@ const ROS3D = require('ros3d');
 import { Ros } from 'roslib';
 import { IpHandlerService } from 'src/app/services/ip-handler.service';
 import { GridClient, MapViewer } from 'src/app/types/ros3d';
+import { environment } from 'src/environments/environment';
 @Component({
     'selector': 'app-map-viewer',
     'templateUrl': './map-viewer.component.html',
@@ -53,7 +54,7 @@ export class MapViewerComponent {
         // Setup the map client 1.
         this.gridClient1 = new ROS3D.OccupancyGridClient({
             'ros': this.ros1,
-            'topic': '/limo1/map',
+            'topic': environment.IS_SIMULATION ? '/limo1/map' : '/map',
             'rootObject': this.viewer1.scene,
             'continuous': true
         });
@@ -70,7 +71,7 @@ export class MapViewerComponent {
         // Setup the map client 2.
         this.gridClient2 = new ROS3D.OccupancyGridClient({
             'ros': this.ros2,
-            'topic': '/limo2/map',
+            'topic': environment.IS_SIMULATION ? '/limo2/map' : 'map',
             'rootObject': this.viewer2.scene,
             'continuous': true
         });

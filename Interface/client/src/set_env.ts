@@ -4,6 +4,7 @@ const targetPath = './src/environments/environment.ts';
 
 const envConfigFile = `export const environment = {
   BACKEND_IP: '${process.env["BACKEND_IP"]}',
+  IS_SIMULATION: '${process.env["IS_SIMULATION"]}',
 };`;
 
 console.log('The content of `environment.ts` will be: \n');
