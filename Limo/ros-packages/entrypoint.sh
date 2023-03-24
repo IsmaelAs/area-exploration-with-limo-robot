@@ -15,25 +15,25 @@ if [ ! "$IS_SIMULATION" ];  then
   cp -r ./packages/params $(rospack find limo_bringup)
 
   # Launch gmapping
-  roslaunch  limo_bringup one_gmapping.launch  2> >(grep -v TF_REPEATED_DATA buffer_core) &
+  roslaunch --wait  limo_bringup one_gmapping.launch  2> >(grep -v TF_REPEATED_DATA buffer_core) &
 
   # Wait for gmapping to start up
   sleep 5
 
   # Launch map_merge
-  roslaunch  limo_bringup map_merge.launch  2> >(grep -v TF_REPEATED_DATA buffer_core) &
+  roslaunch --wait  limo_bringup map_merge.launch  2> >(grep -v TF_REPEATED_DATA buffer_core) &
 
   # Wait for map_merge to start up
   sleep 5
 
   # Launch navigation stack
-  roslaunch  limo_bringup one_navigation.launch  2> >(grep -v TF_REPEATED_DATA buffer_core) &
+  roslaunch  --wait  limo_bringup one_navigation.launch  2> >(grep -v TF_REPEATED_DATA buffer_core) &
 
   # Wait for navigation stack to start up
   sleep 5
 
   # Launch explore lite
-  roslaunch  limo_bringup one_exploration.launch  2> >(grep -v TF_REPEATED_DATA buffer_core) &
+  roslaunch --wait  limo_bringup one_exploration.launch  2> >(grep -v TF_REPEATED_DATA buffer_core) &
 
   # Wait for explore lite to start up
   sleep 5
