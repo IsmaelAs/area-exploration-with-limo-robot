@@ -44,6 +44,7 @@ class ExplorationControl:
             self.rate.sleep()
         
         goal = MoveBaseActionGoal()
+        goal.header.frame_id = 'map'
         goal.goal.target_pose.pose.position.x = random.randint(0, 3)
         goal.goal.target_pose.pose.position.y = random.randint(0, 3)
         goal.goal.target_pose.pose.orientation.w = 0.66
