@@ -1,54 +1,57 @@
 import rospy
 from std_msgs.msg import Bool
 from actionlib_msgs.msg import GoalID
+from move_base_msgs.msg import MoveBaseActionGoal
 import os
-
-
-import roslaunch
+import random
 
 class ExplorationControl:
     def __init__(self):
 
-        self.isSimulation = os.environ.get("IS_SIMULATION")
+        isSimulation = os.environ.get("IS_SIMULATION")
 
-        if self.isSimulation : 
+        if isSimulation : 
             limoId = os.environ.get("LIMO_ID", "1")
             rospy.init_node('exploration_control' + limoId)
-
             self.subscriberState = rospy.Subscriber(f"limo{limoId}/exploration_state", Bool, self.setExplorationState)
             self.noMove = rospy.Publisher(f"limo{limoId}/move_base/cancel", GoalID, queue_size=10)
-
-            self.node = roslaunch.core.Node("limo_gazebo_sim", "main_exploration.launch")
+            self.sendGoal = rospy.Publisher(f"limo{limoId}/move_base/goal", MoveBaseActionGoal, queue_size=10)
         else :
             rospy.init_node('exploration_control')
             self.subscriberState = rospy.Subscriber('/exploration_state', Bool, self.setExplorationState)
             self.noMove = rospy.Publisher('/move_base/cancel', GoalID, queue_size=10)
+            self.sendGoal = rospy.Publisher("/move_base/goal", MoveBaseActionGoal, queue_size=10)
 
-            self.node = roslaunch.core.Node("limo_bringup", "one_exploration.launch")
 
-        self.launch = roslaunch.scriptapi.ROSLaunch()
-        self.launch.start()
 
         self.isExploring = False
+        self.rate = rospy.Rate(10)
+        self.stopRobot()
 
     def setExplorationState(self, msg: Bool):
-        if self.isExploring == msg.data :
-            return
+        if msg.data != self.isExploring:
 
-        self.isExploring = msg.data
-    
-        if self.isExploring :
-            self.process = self.launch.launch(self.node)
-        else :
-            self.stopRobot()
+            self.isExploring = msg.data
+            
+            if(not self.isExploring):
+                self.stopRobot()
 
     def stopRobot(self):
-        if self.process.is_alive() :
-            self.process.stop()
 
+        while not self.isExploring :
             msg = GoalID()
             self.noMove.publish(msg)
+            self.rate.sleep()
+        
+        goal = MoveBaseActionGoal()
+        goal.header.frame_id = 'map'
+        goal.goal.target_pose.pose.position.x = random.randint(0, 3)
+        goal.goal.target_pose.pose.position.y = random.randint(0, 3)
+        goal.goal.target_pose.pose.orientation.w = 0.66
 
+        self.sendGoal.publish(goal)
+
+    
 
 if __name__ == '__main__':
     ec = ExplorationControl()

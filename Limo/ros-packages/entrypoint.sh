@@ -32,13 +32,17 @@ if [ ! "$IS_SIMULATION" ];  then
   # Wait for navigation stack to start up
   sleep 5
 
-  # Launch explore lite
-  roslaunch --wait  limo_bringup one_exploration.launch  2> >(grep -v TF_REPEATED_DATA buffer_core) &
+  rosrun explore_control control_explore.py &
 
   # Wait for explore lite to start up
-  sleep 5
+  sleep 10
+
+  # Launch explore lite
+  exec roslaunch --wait  limo_bringup one_exploration.launch  2> >(grep -v TF_REPEATED_DATA buffer_core)
+
+else 
+  exec rosrun explore_control control_explore.py
 
 fi
 
 # Subscribe to /exploration_state topic to control exploration state
-exec rosrun explore_control control_explore.py
