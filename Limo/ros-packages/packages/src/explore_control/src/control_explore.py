@@ -25,7 +25,7 @@ class ExplorationControl:
 
 
         self.isExploring = False
-        self.rate = rospy.Rate(10)
+        self.rate = rospy.Rate(3)
         self.stopRobot()
 
     def setExplorationState(self, msg: Bool):
@@ -43,16 +43,35 @@ class ExplorationControl:
             self.noMove.publish(msg)
             self.rate.sleep()
         
+        self.sendGoal()
+        
+    def sendMoveGoal(self): 
         goal = MoveBaseActionGoal()
-        goal.header.frame_id = 'map'
+        goal.header.seq = 0
+        goal.header.stamp.nsecs = 0
+        goal.header.stamp.secs = 0
+        goal.header.frame_id = ''
+
+        goal.goal_id.id = ''
+        goal.goal_id.stamp.secs = 0 
+        goal.goal_id.stamp.nsecs = 0
+
+        goal.goal.target_pose.header.seq = 0
+        goal.goal.target_pose.header.stamp.secs = 0
+        goal.goal.target_pose.header.stamp.nsecs = 0
+        goal.goal.target_pose.header.frame_id = 'map'
+
         goal.goal.target_pose.pose.position.x = random.randint(0, 3)
         goal.goal.target_pose.pose.position.y = random.randint(0, 3)
+        goal.goal.target_pose.pose.position.z = 0
+        goal.goal.target_pose.pose.orientation.x = 0
+        goal.goal.target_pose.pose.orientation.y = 0
+        goal.goal.target_pose.pose.orientation.z = 0
         goal.goal.target_pose.pose.orientation.w = 0.66
 
         self.sendGoal.publish(goal)
 
     
-
 if __name__ == '__main__':
     ec = ExplorationControl()
     rospy.spin()
