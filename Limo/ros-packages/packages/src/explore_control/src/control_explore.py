@@ -36,6 +36,7 @@ class ExplorationControl:
             if(not self.isExploring):
                 self.stopRobot()
 
+
     def stopRobot(self):
 
         while not self.isExploring :
@@ -43,7 +44,7 @@ class ExplorationControl:
             self.noMove.publish(msg)
             self.rate.sleep()
         
-        self.sendGoal()
+        self.sendMoveGoal()
         
     def sendMoveGoal(self): 
         goal = MoveBaseActionGoal()
