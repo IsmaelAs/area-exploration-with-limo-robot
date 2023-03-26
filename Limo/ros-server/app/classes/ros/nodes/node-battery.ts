@@ -47,6 +47,6 @@ export default class NodeBattery {
   }
 
   closeNodeBattery() {
-    this.ros.close();
+    if (this.ros) this.ros.close();
   }
 }

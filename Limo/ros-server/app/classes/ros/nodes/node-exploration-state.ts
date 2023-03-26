@@ -36,6 +36,6 @@ export class NodeExplorationState {
   }
 
   closeNodeExplorationState() {
-    this.ros.close();
+    if (this.ros) this.ros.close();
   }
 }

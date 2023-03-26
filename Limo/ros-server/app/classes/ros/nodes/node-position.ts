@@ -44,6 +44,6 @@ export class NodePosition {
   }
 
   closeNodePosition() {
-    this.ros.close();
+    if (this.ros) this.ros.close();
   }
 }

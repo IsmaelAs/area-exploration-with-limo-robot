@@ -42,6 +42,6 @@ export default class NodeScan {
   }
 
   closeNodeScan() {
-    this.ros.close();
+    if (this.ros) this.ros.close();
   }
 }

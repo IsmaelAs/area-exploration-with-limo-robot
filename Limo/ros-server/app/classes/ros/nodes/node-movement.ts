@@ -59,7 +59,7 @@ export class NodeMovement {
 
   // Close connection to all nodes
   closeNodeMovement() {
-    this.ros.close();
+    if (this.ros) this.ros.close();
   }
 
   // Send command to make the limo move
