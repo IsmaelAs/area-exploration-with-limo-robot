@@ -11,6 +11,7 @@ services:
       - server-interface
     environment:
       - BACKEND_IP
+      - IS_SIMULATION
 
   server-interface:
     restart: always
