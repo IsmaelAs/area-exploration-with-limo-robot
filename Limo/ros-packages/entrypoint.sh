@@ -1,13 +1,13 @@
 #!/bin/bash
 
 source /opt/ros/noetic/setup.bash
-source /agx_ws/devel/setup.bash
 
 
 echo $(hostname -I)
 sleep 5
 
 if [ ! "$IS_SIMULATION" ];  then 
+  source /agx_ws/devel/setup.bash
 
   roslaunch rosbridge_server rosbridge_websocket.launch &
 
