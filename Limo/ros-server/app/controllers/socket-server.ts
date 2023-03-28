@@ -22,6 +22,8 @@ export class SocketServer {
 
   private stateMachine: MyStateMachine;
 
+  private isMissionStopped = true;
+
   limoId: number;
 
   constructor(server: Server, nodeManager: NodeManager, logger: Logger) {
@@ -58,10 +60,14 @@ export class SocketServer {
       });
 
       socket.on('start-mission', async () => {
+
+        if (!this.isMissionStopped) return;
+  
         this.loggerObservable = this.logger.logObservable.subscribe(this.sendLogs.bind(this));
 
         this.logger.startLogs();
         this.stateMachine.onMission();
+        this.isMissionStopped = false;
 
         // eslint-disable-next-line no-magic-numbers
         await delay(1000);
@@ -69,6 +75,9 @@ export class SocketServer {
       });
 
       socket.on('stop-mission', () => {
+        if (this.isMissionStopped) return;
+
+        this.isMissionStopped = true;
         this.stateMachine.onMissionEnd();
         this.nodeManager.stopMission();
         this.logger.stopLog();
