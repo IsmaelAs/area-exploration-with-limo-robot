@@ -3,15 +3,18 @@ import { NodeManager} from "./nodes-manager";
 import { beforeEach, describe, it } from "mocha";
 import * as sinon from "sinon"
 import { NodeMovement } from "./ros/nodes/node-movement";
+import { NodeExplorationState } from './ros/nodes/node-exploration-state';
 
 describe("Node Manager Unittest's", () => {
     
     let nodeManager: NodeManager
     let stubNodeMovement: sinon.SinonStubbedInstance<NodeMovement>
+    let stubNodeExplorationState: sinon.SinonStubbedInstance<NodeExplorationState>
 
     beforeEach(() => {
         stubNodeMovement =  sinon.createStubInstance(NodeMovement)
-        nodeManager = new NodeManager(stubNodeMovement)
+        stubNodeExplorationState = sinon.createStubInstance(NodeExplorationState)
+        nodeManager = new NodeManager(stubNodeExplorationState,stubNodeMovement)
     })
 
     afterEach(() => {
