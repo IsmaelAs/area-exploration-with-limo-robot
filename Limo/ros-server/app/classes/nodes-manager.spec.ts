@@ -8,6 +8,7 @@ import { NodeExplorationState } from './ros/nodes/node-exploration-state';
 describe("Node Manager Unittest's", () => {
     
     let nodeManager: NodeManager
+    let nodeExplorationState: NodeExplorationState
     let stubNodeMovement: sinon.SinonStubbedInstance<NodeMovement>
     let stubNodeExplorationState: sinon.SinonStubbedInstance<NodeExplorationState>
 
@@ -15,6 +16,7 @@ describe("Node Manager Unittest's", () => {
         stubNodeMovement =  sinon.createStubInstance(NodeMovement)
         stubNodeExplorationState = sinon.createStubInstance(NodeExplorationState)
         nodeManager = new NodeManager(stubNodeExplorationState,stubNodeMovement)
+        nodeExplorationState = new NodeExplorationState()
     })
 
     afterEach(() => {
@@ -55,5 +57,17 @@ describe("Node Manager Unittest's", () => {
         nodeManager.stop()
 
         expect(stubNodeMovement.closeNodeMovement.called).to.be.true
+    })
+
+    it("should call sendMessage when the misssion start", () => {
+        const spy = sinon.spy(nodeExplorationState, 'sendMessage');
+        nodeManager.startMission();
+        expect(spy.calledOnce);
+    })
+
+    it("should call sendMessage when the misssion stop", () => {
+        const spy = sinon.spy(nodeExplorationState, 'sendMessage');
+        nodeManager.stopMission();
+        expect(spy.calledOnce);
     })
 })
