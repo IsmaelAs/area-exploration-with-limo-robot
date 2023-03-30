@@ -9,7 +9,7 @@ export class P2PSocketClient {
 
   constructor(p2pUrl: string) {
     this.p2pUrl = p2pUrl;
-    this.socket = io(p2pUrl);
+    this.socket = io(this.p2pUrl);
   }
 
 
