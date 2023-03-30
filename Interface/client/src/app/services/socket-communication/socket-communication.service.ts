@@ -16,10 +16,19 @@ export class SocketCommunicationService {
 
     private state: Subject<StateType> = new Subject();
 
+    private p2pConnected: Subject<boolean> = new Subject();
+
+
     constructor () {
 
         this.socket = io(BACKEND_URL);
         this.initSocketSubscription();
+
+    }
+
+    startP2P () {
+
+        this.emit('p2p-start');
 
     }
 
@@ -62,11 +71,16 @@ export class SocketCommunicationService {
 
     }
 
-    get subscribeState (){
+    get subscribeState () {
 
         return this.state.asObservable();
     }
- 
+
+    get subscribeP2PState () {
+
+        return this.p2pConnected.asObservable();
+    }
+
     private initSocketSubscription () {
 
         this.socket.on('connect', () => {
@@ -79,9 +93,14 @@ export class SocketCommunicationService {
 
             this.socket.on('send-state', (state: StateType) => {
                 this.state.next(state);
-                console.log("ICI JE RECOIS L'ETAT DANS CLIENT-INTERFACE")
+                console.log("ICI JE RECOIS L'ETAT DANS CLIENT-INTERFACE");
                 console.log(state);
 
+            });
+
+            this.socket.on('p2p-sconnected', () => {
+                this.p2pConnected.next(true);
+                console.log('P2P connected reçu par CLIENT-INTERFACE');
             });
 
             this.socket.on('reconnect', () => {
