@@ -33,7 +33,6 @@ export class P2pHandlerComponent implements OnDestroy {
     }
 
     private changeP2PState (newState: boolean) {
-        console.log(newState);
         this.isP2PActivated = newState;
     }
 }

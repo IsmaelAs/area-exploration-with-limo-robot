@@ -62,12 +62,15 @@ export class SocketServer {
       });
 
       socket.on('p2p-start', () => {
-        if (this.limoId === 2) this.p2pSocketClient?.initP2P();
+        if (this.limoId === 2) this.p2pSocketClient?.activateP2P();
       });
 
-      socket.on('p2p-connection', () => {
-        console.log('p2p connection on ROS servers established');
-        socket.broadcast.emit('p2p-connected');
+      socket.on('p2p-activated', () => {
+        socket.broadcast.emit('p2p-connected', true);
+      });
+
+      socket.on('p2p-deactivated', () => {
+        socket.broadcast.emit('p2p-connected', false);
       });
 
       socket.on('identify', async () => {
@@ -119,8 +122,6 @@ export class SocketServer {
   }
 
   private sendState(data: StateType) {
-    console.log('J\'EMITE MTN L\'ETAT');
-    console.log(data);
     this.emit('save-state', data);
   }
 }

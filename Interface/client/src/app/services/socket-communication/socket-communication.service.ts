@@ -41,7 +41,6 @@ export class SocketCommunicationService {
 
     startMission (robot: RobotTargetType) {
 
-        console.log('start mission', robot);
         this.emit('start-mission', robot);
 
     }
@@ -93,14 +92,11 @@ export class SocketCommunicationService {
 
             this.socket.on('send-state', (state: StateType) => {
                 this.state.next(state);
-                console.log("ICI JE RECOIS L'ETAT DANS CLIENT-INTERFACE");
-                console.log(state);
 
             });
 
-            this.socket.on('p2p-sconnected', () => {
-                this.p2pConnected.next(true);
-                console.log('P2P connected reçu par CLIENT-INTERFACE');
+            this.socket.on('p2p-connected', (isConnected: boolean) => {
+                this.p2pConnected.next(isConnected);
             });
 
             this.socket.on('reconnect', () => {

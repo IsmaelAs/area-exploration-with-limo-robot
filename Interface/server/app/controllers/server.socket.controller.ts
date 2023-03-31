@@ -60,8 +60,6 @@ export class ServerSocketController {
       });
 
       socket.on('send-limo-ips', (ips: {limo1: string, limo2: string}) => {
-        console.log('ips recu : ', ips);
-        console.log(`ws://${ips.limo1}:${process.env.IS_SIMULATION ? process.env.PORT_LIMO_1 : '9332'}`);
 
         const LIMO1_URL = `ws://${ips.limo1}:9332`;
         const LIMO2_URL = `ws://${ips.limo2}:${process.env.IS_SIMULATION ? '9333' : '9332'}`;

@@ -47,13 +47,11 @@ export class ClientSocketLimo {
     });
 
     this.socket.on('save-state', (data: StateLimo) => {
-      console.log('ICI JE RECOIS DANS SERVER-INTERFACE MON ETAT');
-      console.log(data);
       this.stateObservable.next(data);
     });
 
-    this.socket.on('p2p-connected', () => {
-      this.p2pConnectedObservable.next(true);
+    this.socket.on('p2p-connected', (isConnected: boolean) => {
+      this.p2pConnectedObservable.next(isConnected);
     });
 
     this.socket.on('disconnect', () => {

@@ -6,17 +6,30 @@ export class P2PSocketClient {
 
   private p2pUrl: string;
 
+  private p2pActivated: boolean;
+
 
   constructor(p2pUrl: string) {
+    this.p2pActivated = false;
     this.p2pUrl = p2pUrl;
     this.socket = io(this.p2pUrl);
+
+    this.initP2P();
   }
 
+  activateP2P () {
+    this.p2pActivated = true;
+    this.emit('p2p-activated');
+  }
+
+  deactivateP2P () {
+    this.p2pActivated = false;
+    this.emit('p2p-deactivated');
+  }
 
   initP2P() {
     this.socket.on('connect', () => {
-      this.emit('p2p-connection');
-
+      
       this.socket.on('reconnect', () => {
         window.location.reload();
       });
@@ -24,6 +37,6 @@ export class P2PSocketClient {
   }
 
   private emit<T>(event: string, data?: T) {
-    data ? this.socket.emit(event, data) : this.socket.emit(event);
+    if (this.p2pActivated) data ? this.socket.emit(event, data) : this.socket.emit(event);
   }
 }
