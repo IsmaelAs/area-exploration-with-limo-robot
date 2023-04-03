@@ -52,7 +52,6 @@ describe("Battery Unittest's", ()=> {
 
     })
 
-
     it("should set data when we call callback", () => {
         const data = {"percentage":40} 
         nodeBattery["callBack"](data)
