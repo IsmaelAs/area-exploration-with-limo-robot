@@ -1,0 +1,413 @@
+[33m[ WARN] [1680482964.089280038]: link 'laser_link' material 'laser_material' undefined.[0m
+[33m[ WARN] [1680482964.092398342]: link 'laser_link' material 'laser_material' undefined.[0m
+[33m[ WARN] [1680482964.092855942]: link 'depth_camera_link' material 'depth_camera_material' undefined.[0m
+[33m[ WARN] [1680482964.093015842]: link 'depth_camera_link' material 'depth_camera_material' undefined.[0m
+[33m[ WARN] [1680482964.093344643]: link 'imu_link' material 'imu_material' undefined.[0m
+[33m[ WARN] [1680482964.093554443]: link 'imu_link' material 'imu_material' undefined.[0m
+[33m[ WARN] [1680482964.136038997]: link 'laser_link' material 'laser_material' undefined.[0m
+[33m[ WARN] [1680482964.140092802]: link 'laser_link' material 'laser_material' undefined.[0m
+[33m[ WARN] [1680482964.140369402]: link 'depth_camera_link' material 'depth_camera_material' undefined.[0m
+[33m[ WARN] [1680482964.140471803]: link 'depth_camera_link' material 'depth_camera_material' undefined.[0m
+[33m[ WARN] [1680482964.140689603]: link 'imu_link' material 'imu_material' undefined.[0m
+[33m[ WARN] [1680482964.140792503]: link 'imu_link' material 'imu_material' undefined.[0m
+INFO: cannot create a symlink to latest log directory: [Errno 17] File exists: '/home/mady/.ros/log/5fa7e1ce-d1b9-11ed-a28b-00155d737ba6' -> '/home/mady/.ros/log/latest'
+INFO: cannot create a symlink to latest log directory: [Errno 17] File exists: '/home/mady/.ros/log/5fa7e1ce-d1b9-11ed-a28b-00155d737ba6' -> '/home/mady/.ros/log/latest'
+[31m[ERROR] [1680482980.733352742, 312.000000000]: No p gain specified for pid.  Namespace: /limo2/gazebo_ros_control/pid_gains/front_right_wheel[0m
+[31m[ERROR] [1680482980.737109423, 312.000000000]: No p gain specified for pid.  Namespace: /limo2/gazebo_ros_control/pid_gains/front_left_wheel[0m
+[31m[ERROR] [1680482980.740589983, 312.000000000]: No p gain specified for pid.  Namespace: /limo2/gazebo_ros_control/pid_gains/rear_left_wheel[0m
+[31m[ERROR] [1680482980.743333489, 312.000000000]: No p gain specified for pid.  Namespace: /limo2/gazebo_ros_control/pid_gains/rear_right_wheel[0m
+[31m[ERROR] [1680482982.559953882, 312.210000000]: No p gain specified for pid.  Namespace: /limo1/gazebo_ros_control/pid_gains/front_right_wheel[0m
+[31m[ERROR] [1680482982.563253700, 312.210000000]: No p gain specified for pid.  Namespace: /limo1/gazebo_ros_control/pid_gains/front_left_wheel[0m
+[31m[ERROR] [1680482982.566728818, 312.210000000]: No p gain specified for pid.  Namespace: /limo1/gazebo_ros_control/pid_gains/rear_left_wheel[0m
+[31m[ERROR] [1680482982.569201632, 312.210000000]: No p gain specified for pid.  Namespace: /limo1/gazebo_ros_control/pid_gains/rear_right_wheel[0m
+grep: buffer_core: No such file or directory
+[0m[ INFO] [1680483085.260475965, 414.790000000]: Laser is mounted upwards.[0m
+ -maxUrange 7.99 -maxUrange 7.99 -sigma     0.05 -kernelSize 1 -lstep 0.05 -lobsGain 3 -astep 0.05
+ -srr 0.1 -srt 0.2 -str 0.1 -stt 0.2
+ -linearUpdate 1 -angularUpdate 0.5 -resampleThreshold 0.5
+ -xmin -100 -xmax 100 -ymin -100 -ymax 100 -delta 0.05 -particles 30
+[0m[ INFO] [1680483085.270550415, 414.800000000]: Laser is mounted upwards.[0m
+ -maxUrange 7.99 -maxUrange 7.99 -sigma     0.05 -kernelSize 1 -lstep 0.05 -lobsGain 3 -astep 0.05
+ -srr 0.1 -srt 0.2 -str 0.1 -stt 0.2
+ -linearUpdate 1 -angularUpdate 0.5 -resampleThreshold 0.5
+ -xmin -100 -xmax 100 -ymin -100 -ymax 100 -delta 0.05 -particles 30
+[0m[ INFO] [1680483085.312426721, 414.840000000]: Initialization complete[0m
+update frame 0
+update ld=0 ad=0
+m_count 0
+Registering First Scan
+[0m[ INFO] [1680483085.316478341, 414.840000000]: Initialization complete[0m
+update frame 0
+update ld=0 ad=0
+m_count 0
+Registering First Scan
+grep: buffer_core: No such file or directory
+2023-04-02 20:51:27-0400 [-] Log opened.
+2023-04-02 20:51:28-0400 [-] registered capabilities (classes):
+2023-04-02 20:51:28-0400 [-]  - <class 'rosbridge_library.capabilities.call_service.CallService'>
+2023-04-02 20:51:28-0400 [-]  - <class 'rosbridge_library.capabilities.advertise.Advertise'>
+2023-04-02 20:51:28-0400 [-]  - <class 'rosbridge_library.capabilities.publish.Publish'>
+2023-04-02 20:51:28-0400 [-]  - <class 'rosbridge_library.capabilities.subscribe.Subscribe'>
+2023-04-02 20:51:28-0400 [-]  - <class 'rosbridge_library.capabilities.defragmentation.Defragment'>
+2023-04-02 20:51:28-0400 [-]  - <class 'rosbridge_library.capabilities.advertise_service.AdvertiseService'>
+2023-04-02 20:51:28-0400 [-]  - <class 'rosbridge_library.capabilities.service_response.ServiceResponse'>
+2023-04-02 20:51:28-0400 [-]  - <class 'rosbridge_library.capabilities.unadvertise_service.UnadvertiseService'>
+2023-04-02 20:51:28-0400 [-] WebSocketServerFactory starting on 9090
+2023-04-02 20:51:28-0400 [-] Starting factory <autobahn.twisted.websocket.WebSocketServerFactory object at 0x7f6eecf83be0>
+2023-04-02 20:51:28-0400 [-] [INFO] [1680483088.876824, 418.080000]: Rosbridge WebSocket server started at ws://0.0.0.0:9090
+grep: buffer_core: No such file or directory
+... logging to /home/mady/.ros/log/5fa7e1ce-d1b9-11ed-a28b-00155d737ba6/roslaunch-winos-9178.log
+Checking log directory for disk usage. This may take a while.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is <1GB.
+]2;/home/mady/limo_ws/src/limo_ros/ugv_sim/limo/limo_gazebo_sim/launch/main_navigation.launch
+[1mstarted roslaunch server http://winos:45275/[0m
+
+SUMMARY
+========
+
+PARAMETERS
+ * /limo1/amcl/base_frame_id: limo1/base_footprint
+ * /limo1/amcl/global_frame_id: limo1/map
+ * /limo1/amcl/gui_publish_rate: 10.0
+ * /limo1/amcl/initial_pose_a: 0
+ * /limo1/amcl/initial_pose_x: 0
+ * /limo1/amcl/initial_pose_y: 0
+ * /limo1/amcl/kld_err: 0.05
+ * /limo1/amcl/kld_z: 0.99
+ * /limo1/amcl/laser_lambda_short: 0.1
+ * /limo1/amcl/laser_likelihood_max_dist: 2.0
+ * /limo1/amcl/laser_max_beams: 60
+ * /limo1/amcl/laser_max_range: 60.0
+ * /limo1/amcl/laser_model_type: likelihood_field
+ * /limo1/amcl/laser_sigma_hit: 0.2
+ * /limo1/amcl/laser_z_hit: 0.5
+ * /limo1/amcl/laser_z_max: 0.05
+ * /limo1/amcl/laser_z_rand: 0.5
+ * /limo1/amcl/laser_z_short: 0.05
+ * /limo1/amcl/max_particles: 2000
+ * /limo1/amcl/min_particles: 500
+ * /limo1/amcl/odom_alpha1: 0.2
+ * /limo1/amcl/odom_alpha2: 0.2
+ * /limo1/amcl/odom_alpha3: 0.2
+ * /limo1/amcl/odom_alpha4: 0.2
+ * /limo1/amcl/odom_alpha5: 0.1
+ * /limo1/amcl/odom_frame_id: limo1/odom
+ * /limo1/amcl/odom_model_type: diff
+ * /limo1/amcl/recovery_alpha_fast: 0.0
+ * /limo1/amcl/recovery_alpha_slow: 0.0
+ * /limo1/amcl/resample_interval: 1
+ * /limo1/amcl/transform_tolerance: 0.2
+ * /limo1/amcl/update_min_a: 0.5
+ * /limo1/amcl/update_min_d: 0.25
+ * /limo1/amcl/use_map_topic: True
+ * /limo1/move_base/DWAPlannerROS/acc_lim_theta: 2.0
+ * /limo1/move_base/DWAPlannerROS/acc_lim_x: 1.0
+ * /limo1/move_base/DWAPlannerROS/acc_lim_y: 0.0
+ * /limo1/move_base/DWAPlannerROS/angular_sim_granularity: 0.02
+ * /limo1/move_base/DWAPlannerROS/forward_point_distance: 0.325
+ * /limo1/move_base/DWAPlannerROS/global_frame_id: map
+ * /limo1/move_base/DWAPlannerROS/goal_distance_bias: 0.8
+ * /limo1/move_base/DWAPlannerROS/holonomic_robot: False
+ * /limo1/move_base/DWAPlannerROS/latch_xy_goal_tolerance: False
+ * /limo1/move_base/DWAPlannerROS/max_rot_vel: 0.8
+ * /limo1/move_base/DWAPlannerROS/max_scaling_factor: 0.2
+ * /limo1/move_base/DWAPlannerROS/max_trans_vel: 0.1
+ * /limo1/move_base/DWAPlannerROS/max_vel_x: 0.4
+ * /limo1/move_base/DWAPlannerROS/max_vel_y: 0.0
+ * /limo1/move_base/DWAPlannerROS/min_rot_vel: 0.5
+ * /limo1/move_base/DWAPlannerROS/min_trans_vel: -0.1
+ * /limo1/move_base/DWAPlannerROS/min_vel_x: -0.35
+ * /limo1/move_base/DWAPlannerROS/min_vel_y: 0.0
+ * /limo1/move_base/DWAPlannerROS/occdist_scale: 0.1
+ * /limo1/move_base/DWAPlannerROS/oscillation_reset_dist: 0.05
+ * /limo1/move_base/DWAPlannerROS/path_distance_bias: 40.0
+ * /limo1/move_base/DWAPlannerROS/publish_cost_grid_pc: True
+ * /limo1/move_base/DWAPlannerROS/publish_traj_pc: True
+ * /limo1/move_base/DWAPlannerROS/rot_stopped_vel: 1
+ * /limo1/move_base/DWAPlannerROS/scaling_speed: 0.25
+ * /limo1/move_base/DWAPlannerROS/sim_granularity: 0.02
+ * /limo1/move_base/DWAPlannerROS/sim_time: 1.5
+ * /limo1/move_base/DWAPlannerROS/stop_time_buffer: 0.2
+ * /limo1/move_base/DWAPlannerROS/trans_stopped_vel: 0.1
+ * /limo1/move_base/DWAPlannerROS/vtheta_samples: 30
+ * /limo1/move_base/DWAPlannerROS/vx_samples: 25
+ * /limo1/move_base/DWAPlannerROS/vy_samples: 1
+ * /limo1/move_base/DWAPlannerROS/xy_goal_tolerance: 0.3
+ * /limo1/move_base/DWAPlannerROS/yaw_goal_tolerance: 0.3
+ * /limo1/move_base/TrajectoryPlannerROS/acc_lim_th: 0.7
+ * /limo1/move_base/TrajectoryPlannerROS/acc_lim_x: 0.5
+ * /limo1/move_base/TrajectoryPlannerROS/acc_lim_y: 0
+ * /limo1/move_base/TrajectoryPlannerROS/angular_sim_granularity: 0.025
+ * /limo1/move_base/TrajectoryPlannerROS/controller_frequency: 1.0
+ * /limo1/move_base/TrajectoryPlannerROS/dwa: False
+ * /limo1/move_base/TrajectoryPlannerROS/escape_vel: -0.2
+ * /limo1/move_base/TrajectoryPlannerROS/goal_distance_bias: 0.8
+ * /limo1/move_base/TrajectoryPlannerROS/heading_lookahead: 0.325
+ * /limo1/move_base/TrajectoryPlannerROS/holonomic_robot: False
+ * /limo1/move_base/TrajectoryPlannerROS/latch_xy_goal_tolerance: True
+ * /limo1/move_base/TrajectoryPlannerROS/max_rotational_vel: 1.0
+ * /limo1/move_base/TrajectoryPlannerROS/max_vel_theta: 0.5
+ * /limo1/move_base/TrajectoryPlannerROS/max_vel_x: 0.4
+ * /limo1/move_base/TrajectoryPlannerROS/min_in_place_rotational_vel: 0.8
+ * /limo1/move_base/TrajectoryPlannerROS/min_in_place_vel_theta: 0.8
+ * /limo1/move_base/TrajectoryPlannerROS/min_vel_theta: -0.5
+ * /limo1/move_base/TrajectoryPlannerROS/min_vel_x: 0.1
+ * /limo1/move_base/TrajectoryPlannerROS/occdist_scale: 0.01
+ * /limo1/move_base/TrajectoryPlannerROS/oscillation_reset_dist: 0.05
+ * /limo1/move_base/TrajectoryPlannerROS/path_distance_bias: 1.0
+ * /limo1/move_base/TrajectoryPlannerROS/planner_frequency: 1.0
+ * /limo1/move_base/TrajectoryPlannerROS/prune_plan: False
+ * /limo1/move_base/TrajectoryPlannerROS/sim_granularity: 0.025
+ * /limo1/move_base/TrajectoryPlannerROS/sim_time: 1.5
+ * /limo1/move_base/TrajectoryPlannerROS/vtheta_samples: 20
+ * /limo1/move_base/TrajectoryPlannerROS/vx_samples: 3
+ * /limo1/move_base/TrajectoryPlannerROS/xy_goal_tolerance: 0.1
+ * /limo1/move_base/TrajectoryPlannerROS/yaw_goal_tolerance: 0.1
+ * /limo1/move_base/base_global_planner: global_planner/Gl...
+ * /limo1/move_base/base_local_planner: dwa_local_planner...
+ * /limo1/move_base/clearing_rotation_allowed: True
+ * /limo1/move_base/controller_frequency: 5.0
+ * /limo1/move_base/controller_patience: 15.0
+ * /limo1/move_base/global_costmap/always_send_full_costmap: True
+ * /limo1/move_base/global_costmap/footprint: [[-0.16, -0.11], ...
+ * /limo1/move_base/global_costmap/footprint_padding: 0.02
+ * /limo1/move_base/global_costmap/global_frame: limo1/map
+ * /limo1/move_base/global_costmap/inflation_layer/cost_scaling_factor: 10.0
+ * /limo1/move_base/global_costmap/inflation_layer/enabled: True
+ * /limo1/move_base/global_costmap/inflation_layer/inflation_radius: 0.5
+ * /limo1/move_base/global_costmap/map_type: costmap
+ * /limo1/move_base/global_costmap/obstacle_layer/combination_method: 1
+ * /limo1/move_base/global_costmap/obstacle_layer/enabled: True
+ * /limo1/move_base/global_costmap/obstacle_layer/inflation_radius: 0.2
+ * /limo1/move_base/global_costmap/obstacle_layer/laser_scan_sensor/clearing: True
+ * /limo1/move_base/global_costmap/obstacle_layer/laser_scan_sensor/data_type: LaserScan
+ * /limo1/move_base/global_costmap/obstacle_layer/laser_scan_sensor/marking: True
+ * /limo1/move_base/global_costmap/obstacle_layer/laser_scan_sensor/topic: /limo1/scan
+ * /limo1/move_base/global_costmap/obstacle_layer/observation_sources: laser_scan_sensor
+ * /limo1/move_base/global_costmap/obstacle_layer/obstacle_range: 2.0
+ * /limo1/move_base/global_costmap/obstacle_layer/raytrace_range: 2.0
+ * /limo1/move_base/global_costmap/obstacle_layer/scan/sensor_frame: /limo1/base_scan
+ * /limo1/move_base/global_costmap/obstacle_layer/track_unknown_space: True
+ * /limo1/move_base/global_costmap/robot_base_frame: limo1/base_link
+ * /limo1/move_base/global_costmap/scan/sensor_frame: /limo1/base_scan
+ * /limo1/move_base/global_costmap/static_layer/enabled: True
+ * /limo1/move_base/global_costmap/static_layer/map_topic: /limo1/map
+ * /limo1/move_base/global_costmap/static_map: True
+ * /limo1/move_base/global_costmap/transform_tolerance: 0.2
+ * /limo1/move_base/global_costmap/update_frequency: 5.0
+ * /limo1/move_base/local_costmap/always_send_full_costmap: True
+ * /limo1/move_base/local_costmap/footprint: [[-0.16, -0.11], ...
+ * /limo1/move_base/local_costmap/footprint_padding: 0.02
+ * /limo1/move_base/local_costmap/global_frame: limo1/odom
+ * /limo1/move_base/local_costmap/height: 6.0
+ * /limo1/move_base/local_costmap/inflation_layer/cost_scaling_factor: 10.0
+ * /limo1/move_base/local_costmap/inflation_layer/enabled: True
+ * /limo1/move_base/local_costmap/inflation_layer/inflation_radius: 0.5
+ * /limo1/move_base/local_costmap/map_type: costmap
+ * /limo1/move_base/local_costmap/obstacle_layer/combination_method: 1
+ * /limo1/move_base/local_costmap/obstacle_layer/enabled: True
+ * /limo1/move_base/local_costmap/obstacle_layer/inflation_radius: 0.2
+ * /limo1/move_base/local_costmap/obstacle_layer/laser_scan_sensor/clearing: True
+ * /limo1/move_base/local_costmap/obstacle_layer/laser_scan_sensor/data_type: LaserScan
+ * /limo1/move_base/local_costmap/obstacle_layer/laser_scan_sensor/marking: True
+ * /limo1/move_base/local_costmap/obstacle_layer/laser_scan_sensor/topic: /limo1/scan
+ * /limo1/move_base/local_costmap/obstacle_layer/observation_sources: laser_scan_sensor
+ * /limo1/move_base/local_costmap/obstacle_layer/obstacle_range: 2.0
+ * /limo1/move_base/local_costmap/obstacle_layer/raytrace_range: 2.0
+ * /limo1/move_base/local_costmap/obstacle_layer/scan/sensor_frame: /limo1/base_scan
+ * /limo1/move_base/local_costmap/obstacle_layer/track_unknown_space: True
+ * /limo1/move_base/local_costmap/publish_frequency: 2.0
+ * /limo1/move_base/local_costmap/resolution: 0.05
+ * /limo1/move_base/local_costmap/robot_base_frame: limo1/base_link
+ * /limo1/move_base/local_costmap/rolling_window: True
+ * /limo1/move_base/local_costmap/scan/sensor_frame: /limo1/base_scan
+ * /limo1/move_base/local_costmap/static_layer/enabled: True
+ * /limo1/move_base/local_costmap/static_layer/map_topic: /limo1/map
+ * /limo1/move_base/local_costmap/static_map: False
+ * /limo1/move_base/local_costmap/transform_tolerance: 0.2
+ * /limo1/move_base/local_costmap/update_frequency: 5.0
+ * /limo1/move_base/local_costmap/width: 6.0
+ * /limo1/move_base/oscillation_distance: 0.2
+ * /limo1/move_base/oscillation_timeout: 10.0
+ * /limo1/move_base/planner_frequency: 1.0
+ * /limo1/move_base/planner_patience: 5.0
+ * /limo1/move_base/recovery_behavior_enabled: False
+ * /limo1/move_base/shutdown_costmaps: False
+ * /limo2/amcl/base_frame_id: limo2/base_footprint
+ * /limo2/amcl/global_frame_id: limo2/map
+ * /limo2/amcl/gui_publish_rate: 10.0
+ * /limo2/amcl/initial_pose_a: 0
+ * /limo2/amcl/initial_pose_x: 0
+ * /limo2/amcl/initial_pose_y: 0
+ * /limo2/amcl/kld_err: 0.05
+ * /limo2/amcl/kld_z: 0.99
+ * /limo2/amcl/laser_lambda_short: 0.1
+ * /limo2/amcl/laser_likelihood_max_dist: 2.0
+ * /limo2/amcl/laser_max_beams: 60
+ * /limo2/amcl/laser_max_range: 60.0
+ * /limo2/amcl/laser_model_type: likelihood_field
+ * /limo2/amcl/laser_sigma_hit: 0.2
+ * /limo2/amcl/laser_z_hit: 0.5
+ * /limo2/amcl/laser_z_max: 0.05
+ * /limo2/amcl/laser_z_rand: 0.5
+ * /limo2/amcl/laser_z_short: 0.05
+ * /limo2/amcl/max_particles: 2000
+ * /limo2/amcl/min_particles: 500
+ * /limo2/amcl/odom_alpha1: 0.2
+ * /limo2/amcl/odom_alpha2: 0.2
+ * /limo2/amcl/odom_alpha3: 0.2
+ * /limo2/amcl/odom_alpha4: 0.2
+ * /limo2/amcl/odom_alpha5: 0.1
+ * /limo2/amcl/odom_frame_id: limo2/odom
+ * /limo2/amcl/odom_model_type: diff
+ * /limo2/amcl/recovery_alpha_fast: 0.0
+ * /limo2/amcl/recovery_alpha_slow: 0.0
+ * /limo2/amcl/resample_interval: 1
+ * /limo2/amcl/transform_tolerance: 0.2
+ * /limo2/amcl/update_min_a: 0.5
+ * /limo2/amcl/update_min_d: 0.25
+ * /limo2/amcl/use_map_topic: True
+ * /limo2/move_base/DWAPlannerROS/acc_lim_theta: 2.0
+ * /limo2/move_base/DWAPlannerROS/acc_lim_x: 1.0
+ * /limo2/move_base/DWAPlannerROS/acc_lim_y: 0.0
+ * /limo2/move_base/DWAPlannerROS/angular_sim_granularity: 0.02
+ * /limo2/move_base/DWAPlannerROS/forward_point_distance: 0.325
+ * /limo2/move_base/DWAPlannerROS/global_frame_id: map
+ * /limo2/move_base/DWAPlannerROS/goal_distance_bias: 0.8
+ * /limo2/move_base/DWAPlannerROS/holonomic_robot: False
+ * /limo2/move_base/DWAPlannerROS/latch_xy_goal_tolerance: False
+ * /limo2/move_base/DWAPlannerROS/max_rot_vel: 0.8
+ * /limo2/move_base/DWAPlannerROS/max_scaling_factor: 0.2
+ * /limo2/move_base/DWAPlannerROS/max_trans_vel: 0.1
+ * /limo2/move_base/DWAPlannerROS/max_vel_x: 0.4
+ * /limo2/move_base/DWAPlannerROS/max_vel_y: 0.0
+ * /limo2/move_base/DWAPlannerROS/min_rot_vel: 0.5
+ * /limo2/move_base/DWAPlannerROS/min_trans_vel: -0.1
+ * /limo2/move_base/DWAPlannerROS/min_vel_x: -0.35
+ * /limo2/move_base/DWAPlannerROS/min_vel_y: 0.0
+ * /limo2/move_base/DWAPlannerROS/occdist_scale: 0.1
+ * /limo2/move_base/DWAPlannerROS/oscillation_reset_dist: 0.05
+ * /limo2/move_base/DWAPlannerROS/path_distance_bias: 40.0
+ * /limo2/move_base/DWAPlannerROS/publish_cost_grid_pc: True
+ * /limo2/move_base/DWAPlannerROS/publish_traj_pc: True
+ * /limo2/move_base/DWAPlannerROS/rot_stopped_vel: 1
+ * /limo2/move_base/DWAPlannerROS/scaling_speed: 0.25
+ * /limo2/move_base/DWAPlannerROS/sim_granularity: 0.02
+ * /limo2/move_base/DWAPlannerROS/sim_time: 1.5
+ * /limo2/move_base/DWAPlannerROS/stop_time_buffer: 0.2
+ * /limo2/move_base/DWAPlannerROS/trans_stopped_vel: 0.1
+ * /limo2/move_base/DWAPlannerROS/vtheta_samples: 30
+ * /limo2/move_base/DWAPlannerROS/vx_samples: 25
+ * /limo2/move_base/DWAPlannerROS/vy_samples: 1
+ * /limo2/move_base/DWAPlannerROS/xy_goal_tolerance: 0.3
+ * /limo2/move_base/DWAPlannerROS/yaw_goal_tolerance: 0.3
+ * /limo2/move_base/TrajectoryPlannerROS/acc_lim_th: 0.7
+ * /limo2/move_base/TrajectoryPlannerROS/acc_lim_x: 0.5
+ * /limo2/move_base/TrajectoryPlannerROS/acc_lim_y: 0
+ * /limo2/move_base/TrajectoryPlannerROS/angular_sim_granularity: 0.025
+ * /limo2/move_base/TrajectoryPlannerROS/controller_frequency: 1.0
+ * /limo2/move_base/TrajectoryPlannerROS/dwa: False
+ * /limo2/move_base/TrajectoryPlannerROS/escape_vel: -0.2
+ * /limo2/move_base/TrajectoryPlannerROS/goal_distance_bias: 0.8
+ * /limo2/move_base/TrajectoryPlannerROS/heading_lookahead: 0.325
+ * /limo2/move_base/TrajectoryPlannerROS/holonomic_robot: False
+ * /limo2/move_base/TrajectoryPlannerROS/latch_xy_goal_tolerance: True
+ * /limo2/move_base/TrajectoryPlannerROS/max_rotational_vel: 1.0
+ * /limo2/move_base/TrajectoryPlannerROS/max_vel_theta: 0.5
+ * /limo2/move_base/TrajectoryPlannerROS/max_vel_x: 0.4
+ * /limo2/move_base/TrajectoryPlannerROS/min_in_place_rotational_vel: 0.8
+ * /limo2/move_base/TrajectoryPlannerROS/min_in_place_vel_theta: 0.8
+ * /limo2/move_base/TrajectoryPlannerROS/min_vel_theta: -0.5
+ * /limo2/move_base/TrajectoryPlannerROS/min_vel_x: 0.1
+ * /limo2/move_base/TrajectoryPlannerROS/occdist_scale: 0.01
+ * /limo2/move_base/TrajectoryPlannerROS/oscillation_reset_dist: 0.05
+ * /limo2/move_base/TrajectoryPlannerROS/path_distance_bias: 1.0
+ * /limo2/move_base/TrajectoryPlannerROS/planner_frequency: 1.0
+ * /limo2/move_base/TrajectoryPlannerROS/prune_plan: False
+ * /limo2/move_base/TrajectoryPlannerROS/sim_granularity: 0.025
+ * /limo2/move_base/TrajectoryPlannerROS/sim_time: 1.5
+ * /limo2/move_base/TrajectoryPlannerROS/vtheta_samples: 20
+ * /limo2/move_base/TrajectoryPlannerROS/vx_samples: 3
+ * /limo2/move_base/TrajectoryPlannerROS/xy_goal_tolerance: 0.1
+ * /limo2/move_base/TrajectoryPlannerROS/yaw_goal_tolerance: 0.1
+ * /limo2/move_base/base_global_planner: global_planner/Gl...
+ * /limo2/move_base/base_local_planner: dwa_local_planner...
+ * /limo2/move_base/clearing_rotation_allowed: True
+ * /limo2/move_base/controller_frequency: 5.0
+ * /limo2/move_base/controller_patience: 15.0
+ * /limo2/move_base/global_costmap/always_send_full_costmap: True
+ * /limo2/move_base/global_costmap/footprint: [[-0.16, -0.11], ...
+ * /limo2/move_base/global_costmap/footprint_padding: 0.02
+ * /limo2/move_base/global_costmap/global_frame: limo2/map
+ * /limo2/move_base/global_costmap/inflation_layer/cost_scaling_factor: 10.0
+ * /limo2/move_base/global_costmap/inflation_layer/enabled: True
+ * /limo2/move_base/global_costmap/inflation_layer/inflation_radius: 0.5
+ * /limo2/move_base/global_costmap/map_type: costmap
+ * /limo2/move_base/global_costmap/obstacle_layer/combination_method: 1
+ * /limo2/move_base/global_costmap/obstacle_layer/enabled: True
+ * /limo2/move_base/global_costmap/obstacle_layer/inflation_radius: 0.2
+ * /limo2/move_base/global_costmap/obstacle_layer/laser_scan_sensor/clearing: True
+ * /limo2/move_base/global_costmap/obstacle_layer/laser_scan_sensor/data_type: LaserScan
+ * /limo2/move_base/global_costmap/obstacle_layer/laser_scan_sensor/marking: True
+ * /limo2/move_base/global_costmap/obstacle_layer/laser_scan_sensor/topic: /limo1/scan
+ * /limo2/move_base/global_costmap/obstacle_layer/observation_sources: laser_scan_sensor
+ * /limo2/move_base/global_costmap/obstacle_layer/obstacle_range: 2.0
+ * /limo2/move_base/global_costmap/obstacle_layer/raytrace_range: 2.0
+ * /limo2/move_base/global_costmap/obstacle_layer/scan/sensor_frame: /limo2/base_scan
+ * /limo2/move_base/global_costmap/obstacle_layer/track_unknown_space: True
+ * /limo2/move_base/global_costmap/robot_base_frame: limo2/base_link
+ * /limo2/move_base/global_costmap/scan/sensor_frame: /limo2/base_scan
+ * /limo2/move_base/global_costmap/static_layer/enabled: True
+ * /limo2/move_base/global_costmap/static_layer/map_topic: /limo1/map
+ * /limo2/move_base/global_costmap/static_map: True
+ * /limo2/move_base/global_costmap/transform_tolerance: 0.2
+ * /limo2/move_base/global_costmap/update_frequency: 5.0
+ * /limo2/move_base/local_costmap/always_send_full_costmap: True
+ * /limo2/move_base/local_costmap/footprint: [[-0.16, -0.11], ...
+ * /limo2/move_base/local_costmap/footprint_padding: 0.02
+ * /limo2/move_base/local_costmap/global_frame: limo2/odom
+ * /limo2/move_base/local_costmap/height: 6.0
+ * /limo2/move_base/local_costmap/inflation_layer/cost_scaling_factor: 10.0
+ * /limo2/move_base/local_costmap/inflation_layer/enabled: True
+ * /limo2/move_base/local_costmap/inflation_layer/inflation_radius: 0.5
+ * /limo2/move_base/local_costmap/map_type: costmap
+ * /limo2/move_base/local_costmap/obstacle_layer/combination_method: 1
+ * /limo2/move_base/local_costmap/obstacle_layer/enabled: True
+ * /limo2/move_base/local_costmap/obstacle_layer/inflation_radius: 0.2
+ * /limo2/move_base/local_costmap/obstacle_layer/laser_scan_sensor/clearing: True
+ * /limo2/move_base/local_costmap/obstacle_layer/laser_scan_sensor/data_type: LaserScan
+ * /limo2/move_base/local_costmap/obstacle_layer/laser_scan_sensor/marking: True
+ * /limo2/move_base/local_costmap/obstacle_layer/laser_scan_sensor/topic: /limo1/scan
+ * /limo2/move_base/local_costmap/obstacle_layer/observation_sources: laser_scan_sensor
+ * /limo2/move_base/local_costmap/obstacle_layer/obstacle_range: 2.0
+ * /limo2/move_base/local_costmap/obstacle_layer/raytrace_range: 2.0
+ * /limo2/move_base/local_costmap/obstacle_layer/scan/sensor_frame: /limo2/base_scan
+ * /limo2/move_base/local_costmap/obstacle_layer/track_unknown_space: True
+ * /limo2/move_base/local_costmap/publish_frequency: 2.0
+ * /limo2/move_base/local_costmap/resolution: 0.05
+ * /limo2/move_base/local_costmap/robot_base_frame: limo2/base_link
+ * /limo2/move_base/local_costmap/rolling_window: True
+ * /limo2/move_base/local_costmap/scan/sensor_frame: /limo2/base_scan
+ * /limo2/move_base/local_costmap/static_layer/enabled: True
+ * /limo2/move_base/local_costmap/static_layer/map_topic: /limo1/map
+ * /limo2/move_base/local_costmap/static_map: False
+ * /limo2/move_base/local_costmap/transform_tolerance: 0.2
+ * /limo2/move_base/local_costmap/update_frequency: 5.0
+ * /limo2/move_base/local_costmap/width: 6.0
+ * /limo2/move_base/oscillation_distance: 0.2
+ * /limo2/move_base/oscillation_timeout: 10.0
+ * /limo2/move_base/planner_frequency: 1.0
+ * /limo2/move_base/planner_patience: 5.0
+ * /limo2/move_base/recovery_behavior_enabled: False
+ * /limo2/move_base/shutdown_costmaps: False
+ * /rosdistro: noetic
+ * /rosversion: 1.15.15
+
+NODES
+  /limo1/
+    amcl (amcl/amcl)
+    move_base (move_base/move_base)
+  /limo2/
+    amcl (amcl/amcl)
+    move_base (move_base/move_base)

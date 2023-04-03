@@ -9,6 +9,16 @@ fi
 IS_SIMULATION=$1
 echo "IS_SIMULATION: $IS_SIMULATION"
 
+if [ "$IS_SIMULATION" -eq 1 ]; then
+  if [ -z "$2" ]; then
+    echo "Error: Missing input parameter (PATH_TO_SETUP_BASH) when IS_SIMULATION is set to 1. You must provide path for limo_gazebo_sim and limo_bringup setup.bash"
+    exit 1
+  fi
+  PATH_TO_SETUP_BASH=$2
+else
+  PATH_TO_SETUP_BASH="~/limo_ws/devel/setup.bash"
+fi
+
 MASTER_IP=$(hostname -I | head -n1 | awk '{print $1;}')
 ROS_MASTER_URI="http://${MASTER_IP}:11311"
 echo "ROS_MASTER_URI: $ROS_MASTER_URI"
@@ -19,8 +29,8 @@ docker build -t ros-server ./ros-server || { echo "Error: Failed to build ros-se
 
 wait
 
-echo "Sourcing ~/catkin_ws/devel/setup.bash..."
-source ~/catkin_ws/devel/setup.bash  || { echo "Error: Failed to source setup.bash"; exit 1; }
+echo "Sourcing ${PATH_TO_SETUP_BASH}..."
+source ${PATH_TO_SETUP_BASH} || { echo "Error: Failed to source setup.bash"; exit 1; }
 
 if [ "$IS_SIMULATION" == "true" ] || [ "$IS_SIMULATION" == "1" ]; then
 
@@ -38,19 +48,35 @@ if [ "$IS_SIMULATION" == "true" ] || [ "$IS_SIMULATION" == "1" ]; then
 
   wait
 
-  echo "Starting Docker containers (Simulation mode)..."
-  docker run --name ros-packages-server-1 --network host --rm -e ROS_MASTER_URI=$ROS_MASTER_URI -e IS_SIMULATION=1 -e LIMO_ID='1' -d ros-packages-server > ros-packages-server-1.log 2>&1 &
-  docker run --name ros-packages-server-2 --network host --rm -e ROS_MASTER_URI=$ROS_MASTER_URI -e IS_SIMULATION=1 -e LIMO_ID='2' -d ros-packages-server > ros-packages-server-2.log 2>&1 &
+  # Change directory to ros-packages/packages
+  echo "Changing directory to ros-packages/packages..."
+  cd ros-packages/packages || { echo "Error: Failed to change directory to ros-packages/packages"; exit 1; }
 
-  sleep 10
+  # Build the packages
+  echo "Building packages using catkin_make..."
+  catkin_make || { echo "Error: Failed to build packages using catkin_make"; exit 1; }
 
-  LIMO_IP_SIMU_1=$(grep -m 1 -oP '(?<=LIMO_IP_SIMU_1: )[^\s]+' ros-packages-server-1.log)
-  echo "LIMO_IP_SIMU_1: $LIMO_IP_SIMU_1"
-  LIMO_IP_SIMU_2=$(grep -m 1 -oP '(?<=LIMO_IP_SIMU_2: )[^\s]+' ros-packages-server-2.log)
-  echo "LIMO_IP_SIMU_2: $LIMO_IP_SIMU_2"
+  # Source devel/setup.bash
+  echo "Sourcing devel/setup.bash..."
+  source devel/setup.bash || { echo "Error: Failed to source devel/setup.bash"; exit 1; }
 
-  docker run --name ros-server-1 -p 9332:9332 --rm -e LIMO_IP=$LIMO_IP_SIMU_1 -e IS_SIMULATION=1 -e LIMO_ID='1' -d ros-server > ros-server-1.log 2>&1 &
-  docker run --name ros-server-2 -p 9333:9333 --rm -e LIMO_IP=$LIMO_IP_SIMU_2 -e IS_SIMULATION=1 -e LIMO_ID='2' ros-server > ros-server-2.log 2>&1 &
+  # Run explore_control control_explore.py
+  echo "Running explore_control control_explore.py..."
+  rosrun explore_control control_explore.py || { echo "Error: Failed to run explore_control control_explore.py"; exit 1; } &
+  wait
+  # echo "Starting Docker containers (Simulation mode)..."
+  # docker run --name ros-packages-server-1 --network host --rm -e ROS_MASTER_URI=$ROS_MASTER_URI -e IS_SIMULATION=1 -e LIMO_ID='1' -d ros-packages-server > ros-packages-server-1.log 2>&1 &
+  # docker run --name ros-packages-server-2 --network host --rm -e ROS_MASTER_URI=$ROS_MASTER_URI -e IS_SIMULATION=1 -e LIMO_ID='2' -d ros-packages-server > ros-packages-server-2.log 2>&1 &
+
+  # sleep 10
+
+  # LIMO_IP_SIMU_1=$(grep -m 1 -oP '(?<=LIMO_IP_SIMU_1: )[^\s]+' ros-packages-server-1.log)
+  # echo "LIMO_IP_SIMU_1: $LIMO_IP_SIMU_1"
+  # LIMO_IP_SIMU_2=$(grep -m 1 -oP '(?<=LIMO_IP_SIMU_2: )[^\s]+' ros-packages-server-2.log)
+  # echo "LIMO_IP_SIMU_2: $LIMO_IP_SIMU_2"
+
+  # docker run --name ros-server-1 -p 9332:9332 --rm -e LIMO_IP=$LIMO_IP_SIMU_1 -e IS_SIMULATION=1 -e LIMO_ID='1' -d ros-server > ros-server-1.log 2>&1 &
+  # docker run --name ros-server-2 -p 9333:9333 --rm -e LIMO_IP=$LIMO_IP_SIMU_2 -e IS_SIMULATION=1 -e LIMO_ID='2' ros-server > ros-server-2.log 2>&1 &
 
 else
 
@@ -62,6 +88,11 @@ else
   LIMO_IP=$(grep -m 1 -oP '(?<=LIMO_IP: )[^\s]+' ros-packages-server.log)
   echo "LIMO_IP: $LIMO_IP"
 
+  # Run explore_control control_explore.py
+  echo "Running explore_control control_explore.py..."
+  rosrun explore_control control_explore.py || { echo "Error: Failed to run explore_control control_explore.py"; exit 1; } &
+  wait
+  
   docker run --name ros-server -p 9332:9332 --rm -e LIMO_IP=$LIMO_IP ros-server > ros-server.log 2>&1 &
 
 fi
