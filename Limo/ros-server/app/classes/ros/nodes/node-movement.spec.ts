@@ -7,16 +7,20 @@ import { BRIDGE_URI } from "../../../constants/url";
 import * as roslibjs from 'roslib';
 import { expect } from "chai";
 import Command from '../../../types/types';
+//import Twist from '../../../interfaces/Twist';
+//import { Topic } from 'roslib';
+
 
 describe("Node Movement Unittest", () => {
     let nodeMovement: NodeMovement
     let rosMock: RosMock
     let topicMock: TopicMock
+    let clock: sinon.SinonFakeTimers
 
     beforeEach(() => {
         nodeMovement = new NodeMovement();
         rosMock = new RosMock({url: BRIDGE_URI})
-
+        clock = sinon.useFakeTimers()
         topicMock = new TopicMock({
             ros: rosMock,
             name: process.env.IS_SIMULATION ? `limo${process.env.LIMO_ID}/cmd_vel` : 'cmd_vel',
@@ -32,13 +36,11 @@ describe("Node Movement Unittest", () => {
             return topicMock
         })    
 
-        sinon.stub(nodeMovement, <any>'sendMsg').callsFake(async () => {
-            return Promise.resolve();
-        });
     })
 
     afterEach(() => {
         sinon.restore()
+        clock.restore()
     })
 
     it("should work", () => {
@@ -59,6 +61,9 @@ describe("Node Movement Unittest", () => {
     })
 
     it("should call moveForward to make the limo move", async () => {
+        sinon.stub(nodeMovement, <any>'sendMsg').callsFake(async () => {
+            return Promise.resolve();
+        });
         const commandTest: Command = 'forward'
         const nbrTest = 5
         const spyOn = sinon.spy(nodeMovement, <any>'moveForward')
@@ -67,6 +72,9 @@ describe("Node Movement Unittest", () => {
     })
 
     it("should call moveBackward to make the limo move", async () => {
+        sinon.stub(nodeMovement, <any>'sendMsg').callsFake(async () => {
+            return Promise.resolve();
+        });
         const commandTest: Command = 'backward'
         const nbrTest = 5
         const spyOn = sinon.spy(nodeMovement, <any>'moveBackward')
@@ -75,6 +83,9 @@ describe("Node Movement Unittest", () => {
     })
 
     it("should call turnLeftForward to make the limo move", async () => {
+        sinon.stub(nodeMovement, <any>'sendMsg').callsFake(async () => {
+            return Promise.resolve();
+        });
         const commandTest: Command = 'left-forward'
         const nbrTest = 5
         const spyOn = sinon.spy(nodeMovement, <any>'turnLeftForward')
@@ -83,6 +94,9 @@ describe("Node Movement Unittest", () => {
     })
 
     it("should call turnRightForward to make the limo move", async () => {
+        sinon.stub(nodeMovement, <any>'sendMsg').callsFake(async () => {
+            return Promise.resolve();
+        });
         const commandTest: Command = 'right-forward'
         const nbrTest = 5
         const spyOn = sinon.spy(nodeMovement, <any>'turnRightForward')
@@ -91,6 +105,9 @@ describe("Node Movement Unittest", () => {
     })
 
     it("should call turnLeftBackward to make the limo move", async () => {
+        sinon.stub(nodeMovement, <any>'sendMsg').callsFake(async () => {
+            return Promise.resolve();
+        });
         const commandTest: Command = 'left-backward'
         const nbrTest = 5
         const spyOn = sinon.spy(nodeMovement, <any>'turnLeftBackward')
@@ -99,6 +116,9 @@ describe("Node Movement Unittest", () => {
     })
 
     it("should call turnRightBackward to make the limo move", async () => {
+        sinon.stub(nodeMovement, <any>'sendMsg').callsFake(async () => {
+            return Promise.resolve();
+        });
         const commandTest: Command = 'right-backward'
         const nbrTest = 5
         const spyOn = sinon.spy(nodeMovement, <any>'turnRightBackward')
@@ -119,7 +139,16 @@ describe("Node Movement Unittest", () => {
             },
           }
         const nbrTest = 5
-        
-
+        const spyPublish = sinon.spy(topicMock, "publish")
+        nodeMovement['publisherMovement'] = new Topic({ros: nodeMovement['ros'],
+            name: nodeMovement['name'],
+            messageType: 'std_msgs/String',
+            queue_size: 10,})
+        await nodeMovement['sendMsg'](nbrTest, dataTest)
+        setTimeout(() => {
+           expect(spyPublish.calledTwice)
+        }, 1500);
+        clock.tick(500)
+        expect(spyPublish.calledTwice)
     })*/
 })
