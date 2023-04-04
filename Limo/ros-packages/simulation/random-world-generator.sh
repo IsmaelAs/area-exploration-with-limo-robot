@@ -30,7 +30,7 @@ sleep 10
 # roslaunch  limo_gazebo_sim main_exploration.launch  2> >(grep -v TF_REPEATED_DATA buffer_core) &
 
 # Wait for explore lite to start up
-sleep 5
+# sleep 5
 
 
 

@@ -48,35 +48,19 @@ if [ "$IS_SIMULATION" == "true" ] || [ "$IS_SIMULATION" == "1" ]; then
 
   wait
 
-  # Change directory to ros-packages/packages
-  echo "Changing directory to ros-packages/packages..."
-  cd ros-packages/packages || { echo "Error: Failed to change directory to ros-packages/packages"; exit 1; }
+  echo "Starting Docker containers (Simulation mode)..."
+  docker run --name ros-packages-server-1 --network host --rm -e ROS_MASTER_URI=$ROS_MASTER_URI -e IS_SIMULATION=1 -e LIMO_ID='1' -d ros-packages-server > ros-packages-server-1.log 2>&1 &
+  docker run --name ros-packages-server-2 --network host --rm -e ROS_MASTER_URI=$ROS_MASTER_URI -e IS_SIMULATION=1 -e LIMO_ID='2' -d ros-packages-server > ros-packages-server-2.log 2>&1 &
 
-  # Build the packages
-  echo "Building packages using catkin_make..."
-  catkin_make || { echo "Error: Failed to build packages using catkin_make"; exit 1; }
+  sleep 10
 
-  # Source devel/setup.bash
-  echo "Sourcing devel/setup.bash..."
-  source devel/setup.bash || { echo "Error: Failed to source devel/setup.bash"; exit 1; }
+  LIMO_IP_SIMU_1=$(grep -m 1 -oP '(?<=LIMO_IP_SIMU_1: )[^\s]+' ros-packages-server-1.log)
+  echo "LIMO_IP_SIMU_1: $LIMO_IP_SIMU_1"
+  LIMO_IP_SIMU_2=$(grep -m 1 -oP '(?<=LIMO_IP_SIMU_2: )[^\s]+' ros-packages-server-2.log)
+  echo "LIMO_IP_SIMU_2: $LIMO_IP_SIMU_2"
 
-  # Run explore_control control_explore.py
-  echo "Running explore_control control_explore.py..."
-  rosrun explore_control control_explore.py || { echo "Error: Failed to run explore_control control_explore.py"; exit 1; } &
-  wait
-  # echo "Starting Docker containers (Simulation mode)..."
-  # docker run --name ros-packages-server-1 --network host --rm -e ROS_MASTER_URI=$ROS_MASTER_URI -e IS_SIMULATION=1 -e LIMO_ID='1' -d ros-packages-server > ros-packages-server-1.log 2>&1 &
-  # docker run --name ros-packages-server-2 --network host --rm -e ROS_MASTER_URI=$ROS_MASTER_URI -e IS_SIMULATION=1 -e LIMO_ID='2' -d ros-packages-server > ros-packages-server-2.log 2>&1 &
-
-  # sleep 10
-
-  # LIMO_IP_SIMU_1=$(grep -m 1 -oP '(?<=LIMO_IP_SIMU_1: )[^\s]+' ros-packages-server-1.log)
-  # echo "LIMO_IP_SIMU_1: $LIMO_IP_SIMU_1"
-  # LIMO_IP_SIMU_2=$(grep -m 1 -oP '(?<=LIMO_IP_SIMU_2: )[^\s]+' ros-packages-server-2.log)
-  # echo "LIMO_IP_SIMU_2: $LIMO_IP_SIMU_2"
-
-  # docker run --name ros-server-1 -p 9332:9332 --rm -e LIMO_IP=$LIMO_IP_SIMU_1 -e IS_SIMULATION=1 -e LIMO_ID='1' -d ros-server > ros-server-1.log 2>&1 &
-  # docker run --name ros-server-2 -p 9333:9333 --rm -e LIMO_IP=$LIMO_IP_SIMU_2 -e IS_SIMULATION=1 -e LIMO_ID='2' ros-server > ros-server-2.log 2>&1 &
+  docker run --name ros-server-1 -p 9332:9332 --rm -e LIMO_IP=$LIMO_IP_SIMU_1 -e IS_SIMULATION=1 -e LIMO_ID='1' -d ros-server > ros-server-1.log 2>&1 &
+  docker run --name ros-server-2 -p 9333:9333 --rm -e LIMO_IP=$LIMO_IP_SIMU_2 -e IS_SIMULATION=1 -e LIMO_ID='2' ros-server > ros-server-2.log 2>&1 &
 
 else
 

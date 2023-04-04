@@ -32,7 +32,6 @@ if [ ! "$IS_SIMULATION" ];  then
   # Wait for navigation stack to start up
   sleep 5
 
-  rosrun explore_control control_explore.py &
 
   # Wait for explore lite to start up
   # sleep 10
@@ -42,3 +41,5 @@ if [ ! "$IS_SIMULATION" ];  then
 fi
 
 # Subscribe to /exploration_state topic to control exploration state
+echo "Launching explore_control..."
+exec rosrun explore_control control_explore.py &
