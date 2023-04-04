@@ -31,6 +31,10 @@ export class ServerSocketController {
     this.io.on('connection', (socket) => {
       this.clientCounter++;
 
+      socket.on('p2p-start', () => {
+        this.sendEventToLimo('robots', 'p2p-start');
+      });
+
       socket.on('identify', (robotTarget: RobotTargetType) => {
         this.sendEventToLimo(robotTarget, 'identify');
       });
@@ -56,18 +60,20 @@ export class ServerSocketController {
       });
 
       socket.on('send-limo-ips', (ips: {limo1: string, limo2: string}) => {
-        console.log('ips recu : ', ips);
-        console.log(`ws://${ips.limo1}:${process.env.IS_SIMULATION ? process.env.PORT_LIMO_1 : '9332'}`);
+
+        const LIMO1_URL = `ws://${ips.limo1}:9332`;
+        const LIMO2_URL = `ws://${ips.limo2}:${process.env.IS_SIMULATION ? '9333' : '9332'}`;
 
         if (ips.limo1.replace(' ', '') !== '') {
-          this.socketLimo = new ClientSocketLimo(FIRST_LIMO, `ws://${ips.limo1}:9332`);
+          this.socketLimo = new ClientSocketLimo(FIRST_LIMO, LIMO1_URL, LIMO2_URL);
           this.socketLimo.connectClientSocketToLimo();
 
           this.socketLimo.subscribeState.subscribe(this.sendStateToClient.bind(this));
+          this.socketLimo.subscribeP2PConnected.subscribe(this.sendP2PConnectedToClient.bind(this));
         }
 
         if (ips.limo2.replace(' ', '') !== '') {
-          this.socketLimo2 = new ClientSocketLimo(SECOND_LIMO, `ws://${ips.limo2}:${process.env.IS_SIMULATION ? '9333' : '9332'}`);
+          this.socketLimo2 = new ClientSocketLimo(SECOND_LIMO, LIMO2_URL, LIMO1_URL);
           this.socketLimo2.connectClientSocketToLimo();
 
           this.socketLimo2.subscribeState.subscribe(this.sendStateToClient.bind(this));
@@ -115,6 +121,10 @@ export class ServerSocketController {
 
   private sendStateToClient(data: StateLimo) {
     this.sendEventToFrontend('send-state', data);
+  }
+
+  private sendP2PConnectedToClient(data: boolean) {
+    this.sendEventToFrontend('p2p-connected', data);
   }
 
   private sendEventToFrontend<T>(event: string, data?: T) {
