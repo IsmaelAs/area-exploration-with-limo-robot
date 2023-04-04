@@ -36,7 +36,6 @@ describe("Logger Unittest", () => {
         })
         logger.startLogs()
         clock.tick(1000)
-        console.log(logger['positionLog'])
         expect(spyNodePos.calledOnce)
         expect(spyNodeScan.calledOnce)
     })
