@@ -16,6 +16,7 @@ import { IpLimoHandlerComponent } from './components/ip-limo-handler/ip-limo-han
 import { MapViewerComponent } from './components/map-viewer/map-viewer.component';
 import { RobotsStateComponent } from './components/robots-state/robots-state.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
+import { P2pHandlerComponent } from './components/p2p-handler/p2p-handler.component';
 
 @NgModule({
     'declarations': [
@@ -27,7 +28,8 @@ import { MainPageComponent } from './components/main-page/main-page.component';
         RobotsActionsComponent,
         IpLimoHandlerComponent,
         RobotsStateComponent,
-        MainPageComponent
+        MainPageComponent,
+        P2pHandlerComponent
 
     ],
     'imports': [
