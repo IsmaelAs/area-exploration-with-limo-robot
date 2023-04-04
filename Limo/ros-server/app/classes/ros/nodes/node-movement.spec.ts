@@ -7,9 +7,6 @@ import { BRIDGE_URI } from "../../../constants/url";
 import * as roslibjs from 'roslib';
 import { expect } from "chai";
 import Command from '../../../types/types';
-//import Twist from '../../../interfaces/Twist';
-//import { Topic } from 'roslib';
-
 
 describe("Node Movement Unittest", () => {
     let nodeMovement: NodeMovement
@@ -115,19 +112,16 @@ describe("Node Movement Unittest", () => {
         expect(spyOn.calledOnce)
     })
 
-    it("should call turnRightBackward to make the limo move", () => {
-        /*sinon.stub(nodeMovement, <any>'sendMsg').callsFake(async () => {
-            return Promise.resolve();
-        });*/
+    it("should call turnRightBackward to make the limo move", async () => {
         nodeMovement['publisherMovement'] = new roslibjs.Topic({ros: new roslibjs.Ros({url: undefined}),
             name: 'cmd/vel',
             messageType: 'geometry_msgs/Twist',})
         sinon.stub(nodeMovement['publisherMovement'], 'publish').callsFake(() => {})
         const commandTest: Command = 'right-backward'
-        const nbrTest = 5
-        const spyOn = sinon.stub(nodeMovement, <any>'turnRightBackward')
-        nodeMovement.move(commandTest, nbrTest)
-        clock.tick(1000)
+        const spyOn = sinon.spy(nodeMovement, <any>'turnRightBackward')
+        nodeMovement.initNodeMovement()
+        nodeMovement.move(commandTest)
+        clock.tick(500)
         expect(spyOn.calledOnce)
     })
 
@@ -136,21 +130,4 @@ describe("Node Movement Unittest", () => {
         const nbrTest = 5
         await nodeMovement.move(commandTest, nbrTest)
     })
-
-    /*it("should publish to the topic when sendMsg() is called", async () => {
-        const dataTest: Twist = {
-            linear: {
-              x: 1,
-            },
-          }
-        const nbrTest = 5
-        const spyPublish = sinon.spy(topicMock, "publish")
-        nodeMovement['publisherMovement'] = new Topic({ros: nodeMovement['ros'],
-            name: nodeMovement['name'],
-            messageType: 'std_msgs/String',
-            queue_size: 10,})
-        await nodeMovement['sendMsg'](nbrTest, dataTest)
-        clock.tick(1000)
-        expect(spyPublish.calledTwice)
-    })*/
 })
