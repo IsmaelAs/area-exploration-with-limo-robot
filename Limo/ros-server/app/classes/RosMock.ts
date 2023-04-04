@@ -5,8 +5,10 @@ export class RosMock {
     this.url = data.url;
   }
 
-  on(event: string, callBack: () => void) {
+  on(event: string, callBack: (error?:any) => void) {
     if (event === 'connection') callBack();
+    if (event === 'error') callBack(new Error())
+    if (event === 'close') callBack()
   }
 
   close() {
