@@ -1,1 +1,57 @@
 /* You can add global styles to this file, and also import other style files */
+
+* {
+    background-color: rgb(51, 51, 51);
+    color: white;
+
+}
+
+
+button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    border-radius: 8px;
+    transition-duration: 0.4s;
+  }
+
+  button:hover {
+    background-color: #0a4d0c; /* Green */
+    color: white;
+  }
+
+  button:active {
+    background-color: #0a4d0c;
+    box-shadow: 0 5px #858585;
+    transform: translateY(4px);
+  }
+
+
+input {
+  width: 70px;
+  position: relative;
+  background-color: #fff;
+  border: 1px solid #e6e6e6;
+  margin-bottom: 17px;
+}
+
+input {
+  display: block;
+  width: 200px;
+  background: transparent;
+  font-family: JosefinSans-Bold;
+  font-size: 15px;
+  color: white;
+  line-height: 1.2;
+}
+
+
+
+* {
+    margin: 5px;
+}

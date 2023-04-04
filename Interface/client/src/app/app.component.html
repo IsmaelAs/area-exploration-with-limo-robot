@@ -1,5 +1,5 @@
 
-<div class="container">
+<div class="container" >
   <app-main-page *ngIf="isIpSet" ></app-main-page>
   <app-ip-limo-handler *ngIf="!isIpSet" (isIpSet)="setIsIpSet($event)"></app-ip-limo-handler>
 </div>
