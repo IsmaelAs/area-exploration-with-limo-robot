@@ -14,6 +14,7 @@ docker build  -t ros-server ./ros-server
 
 if [ "$IS_SIMUALTION" == "true" ] || [ "$IS_SIMULATION" == "1" ]; then 
 
+  source /home/ubuntu/Desktop/catkin_ws/devel/setup.bash
 
   cp -r ./ros-packages/simulation/launch $(rospack find limo_gazebo_sim)
   cp -r ./ros-packages/simulation/worlds $(rospack find limo_gazebo_sim)
