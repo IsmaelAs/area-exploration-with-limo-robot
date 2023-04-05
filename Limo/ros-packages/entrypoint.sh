@@ -5,9 +5,10 @@ source /opt/ros/noetic/setup.bash
 
 echo $(hostname -I)
 sleep 5
+source /agx_ws/devel/setup.bash
+
 
 if [ ! "$IS_SIMULATION" ];  then 
-  source /agx_ws/devel/setup.bash
 
   roslaunch rosbridge_server rosbridge_websocket.launch &
 
