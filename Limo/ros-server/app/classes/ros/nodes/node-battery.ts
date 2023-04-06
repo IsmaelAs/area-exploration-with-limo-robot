@@ -34,6 +34,8 @@ export class NodeBattery {
 
   private callBack(data: {percentage: number} = {percentage: 100}): void {
     this.data = data;
+    console.log('this is the battery level');
+    console.log(data.percentage);
     // Check if the battery is below 30%
     if (data.percentage < 30) {
       console.log(data.percentage);
