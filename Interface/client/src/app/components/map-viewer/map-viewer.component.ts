@@ -169,21 +169,20 @@ export class MapViewerComponent {
     addArrow() {
         console.log("adding arrow func...")
         // Generate random x, y, and z values between 0 and 5
-        var xx = Math.random() * 5;
-        var yy = Math.random() * 5;
-        var zz = Math.random() * 5;
+        let xx = Math.random() * 10;
+        let yy = Math.random() * 10;
       
         // Create a new Arrow object with random parameters
-        var arrow = new ROS3D.Arrow({
+        let arrow = new ROS3D.Arrow({
             ros: this.ros1,
-            length : 1.0,
+            length : 0.2,
             shaftRadius : 0.05,
             headRadius : 0.1,
             headLength : 0.2,
             color : "#ff0000",
             x: xx,
             y: yy,
-            z: zz 
+            z: 0 
         });
       
         // Add the arrow to the viewer
