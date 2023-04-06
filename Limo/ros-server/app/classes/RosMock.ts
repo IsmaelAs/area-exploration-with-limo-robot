@@ -7,7 +7,8 @@ export class RosMock {
 
   on(event: string, callBack: (error?:any) => void) {
     if (event === 'connection') callBack();
-    if (event === 'error') callBack(new Error());
+    if (event === 'error') callBack(new Error())
+    if (event === 'close') callBack()
   }
 
   close() {
