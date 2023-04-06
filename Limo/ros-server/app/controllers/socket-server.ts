@@ -36,6 +36,7 @@ export class SocketServer {
   // Connect the socket to the limo node server ; subscribe to all limo command ; start all nodes
   connectSocketServer(): void {
     this.nodeManager.startNodes();
+    console.log('normalement je me suis connecté à toutes les nodes');
     this.server.on('connection', (socket) => {
       console.log('Connected to node server');
 
@@ -60,9 +61,8 @@ export class SocketServer {
       });
 
       socket.on('start-mission', async () => {
-
         if (!this.isMissionStopped) return;
-  
+
         this.loggerObservable = this.logger.logObservable.subscribe(this.sendLogs.bind(this));
 
         this.logger.startLogs();

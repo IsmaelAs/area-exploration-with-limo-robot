@@ -1,7 +1,7 @@
 import { Ros, Topic } from 'roslib';
 import { BRIDGE_URI } from '../../../constants/url';
 
-export default class NodeBattery {
+export class NodeBattery {
   private ros: Ros;
 
   private batterySubscriber: Topic;
@@ -10,7 +10,9 @@ export default class NodeBattery {
 
   private name = 'Node Battery';
 
-  initNodeScan() {
+  isLowBattery = false;
+
+  initNodeBattery() {
     this.ros = new Ros({ url: BRIDGE_URI });
 
     this.ros.on('error', (err: Error) => {
@@ -21,27 +23,26 @@ export default class NodeBattery {
     this.ros.on('connection', () => {
       console.log(`${this.name} : ROS connected`);
       // Initialize subscriber
-    this.batterySubscriber = new Topic({
+      this.batterySubscriber = new Topic({
         ros: this.ros,
         name: '/battery_state',
         messageType: 'sensor_msgs/BatteryState',
       });
-    this.batterySubscriber.subscribe(this.callBack.bind(this));
+      this.batterySubscriber.subscribe(this.callBack.bind(this));
     });
   }
 
-  private callBack(data: {percentage: number}): void {
+  private callBack(data: {percentage: number} = {percentage: 100}): void {
     this.data = data;
+    // Check if the battery is below 30%
+    if (data.percentage < 30) {
+      console.log(data.percentage);
+      console.log('Battery level is below 30%');
+      this.isLowBattery = true;
+    }
   }
 
-  onLowBattery(percentage: number = 100): void {
-    // Check if the battery is below 30%
-    if (percentage < 30) {
-      console.log('Battery level is below 30%');
-    }
- }
 
-  
   getData(): {percentage: number} {
     return this.data;
   }
