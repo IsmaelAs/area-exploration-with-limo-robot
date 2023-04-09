@@ -40,6 +40,9 @@ export class P2PSocketClient {
         window.location.reload();
       });
       this.intervalPos = setInterval(this.callBack.bind(this), 1000);
+      this.socket.on('p2p-distance', (distance: number) => {
+        this.p2pPosition.setP2PDistance(distance);
+      });
     });
   }
 

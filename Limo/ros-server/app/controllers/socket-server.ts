@@ -32,6 +32,8 @@ export class SocketServer {
 
   private p2pPosition: P2PPosition;
 
+  private intervalPos: NodeJS.Timer;
+
   limoId: number;
 
   constructor(server: Server, nodeManager: NodeManager, logger: Logger) {
@@ -62,11 +64,12 @@ export class SocketServer {
       socket.on('p2p-login', (p2pUrl: string) => {
         this.p2pUrl = p2pUrl;
         if (this.limoId === 2) this.p2pSocketClient = new P2PSocketClient(this.p2pUrl);
-        if (this.limoId === 1) this.p2pPosition = new P2PPosition(this.limoId);
+        else this.p2pPosition = new P2PPosition(this.limoId);
       });
 
       socket.on('p2p-start', () => {
         if (this.limoId === 2) this.p2pSocketClient?.activateP2P();
+        else this.intervalPos = setInterval(this.callBack.bind(this), 1000);
       });
 
       socket.on('p2p-activated', () => {
@@ -78,7 +81,7 @@ export class SocketServer {
       });
 
       socket.on('p2p-distance', (distance: number) => {
-        
+        this.p2pPosition.setP2PDistance(distance);
       });
 
       socket.on('identify', async () => {
@@ -119,6 +122,11 @@ export class SocketServer {
         this.clientCounter--;
       });
     });
+  }
+
+  private callBack() {
+    const distance = this.p2pPosition.getDistance();
+    if (distance) this.emit('p2p-distance', distance);
   }
 
   emit<T>(event: string, data?: T) {

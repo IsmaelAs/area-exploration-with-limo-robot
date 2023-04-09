@@ -38,7 +38,7 @@ export class NodePosition {
 
   setNamespace(namespace:string) {
     this.namespace = namespace;
-    console.log(`namespace set to : ${this.namespace}`);
+    console.log(`namespace for Node Position set to : ${this.namespace}`);
   }
 
 
