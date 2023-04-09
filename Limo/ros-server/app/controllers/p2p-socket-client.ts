@@ -48,6 +48,7 @@ export class P2PSocketClient {
 
   private callBack() {
     const distance = this.p2pPosition.getDistance();
+    console.log("Dans le call back de Limo2.... la disstance est : " + distance)
     if (distance) this.emit('p2p-distance', distance);
   }
 
