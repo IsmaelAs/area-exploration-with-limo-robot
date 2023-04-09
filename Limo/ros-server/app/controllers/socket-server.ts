@@ -7,6 +7,7 @@ import LogType from '../types/LogType';
 import { MyStateMachine } from '../classes/state-machine';
 import StateType from '../types/StateType';
 import { P2PSocketClient } from './p2p-socket-client';
+import { P2PPosition } from '@app/classes/p2p-position';
 
 const NO_CLIENT = 0;
 
@@ -28,6 +29,8 @@ export class SocketServer {
   private isMissionStopped = true;
 
   private p2pUrl = '';
+
+  private p2pPosition: P2PPosition;
 
   limoId: number;
 
@@ -59,6 +62,7 @@ export class SocketServer {
       socket.on('p2p-login', (p2pUrl: string) => {
         this.p2pUrl = p2pUrl;
         if (this.limoId === 2) this.p2pSocketClient = new P2PSocketClient(this.p2pUrl);
+        if (this.limoId === 1) this.p2pPosition = new P2PPosition(this.limoId);
       });
 
       socket.on('p2p-start', () => {
@@ -71,6 +75,10 @@ export class SocketServer {
 
       socket.on('p2p-deactivated', () => {
         socket.broadcast.emit('p2p-connected', false);
+      });
+
+      socket.on('p2p-distance', (distance: number) => {
+        
       });
 
       socket.on('identify', async () => {

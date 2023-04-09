@@ -12,6 +12,8 @@ export class NodePosition {
 
   private name = 'Node Position';
 
+  private namespace = '';
+
 
   initNodePosition() {
     this.ros = new Ros({url: BRIDGE_URI});
@@ -26,12 +28,17 @@ export class NodePosition {
       // Initialize publisher
       this.subscriberMovement = new Topic({
         ros: this.ros,
-        name: 'odom',
+        name: `${this.namespace}/odom`,
         messageType: 'nav_msgs/Odometry',
         queue_size: 10,
       });
       this.subscriberMovement.subscribe(this.callBack.bind(this));
     });
+  }
+
+  setNamespace(namespace:string) {
+    this.namespace = namespace;
+    console.log(`namespace set to : ${this.namespace}`);
   }
 
 
