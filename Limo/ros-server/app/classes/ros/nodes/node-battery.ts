@@ -26,23 +26,35 @@ export class NodeBattery {
       this.batterySubscriber = new Topic({
         ros: this.ros,
         name: '/limo_status',
-        messageType: 'limo_base/LimoStatus', // Ici  jdois mettre 'limo_status/... plutôt
+        messageType: 'limo_base/LimoStatus',
       });
       this.batterySubscriber.subscribe(this.callBack.bind(this));
     });
   }
 
-  private callBack(data: {percentage: number} = {percentage: 100}): void {
-    this.data = data;
-    console.log('this is the battery level');
-    console.log(data.percentage);
+  private callBack(message: { battery_voltage: number; }): void {
+    const minVoltage = 8.25;
+    const maxVoltage = 12.6;
+    const batteryVoltage = message.battery_voltage;
+  
+    // Calculate the battery percentage
+    const percentage = ((batteryVoltage - minVoltage) / (maxVoltage - minVoltage)) * 100;
+  
+    // Log the battery level
+    console.log('This is the battery level:', percentage);
+  
     // Check if the battery is below 30%
-    if (data.percentage < 30) {
-      console.log(data.percentage);
+    if (percentage < 30) {
       console.log('Battery level is below 30%');
       this.isLowBattery = true;
+    } else {
+      this.isLowBattery = false;
     }
+  
+    // Update the data object
+    this.data = { percentage };
   }
+  
 
 
   getData(): {percentage: number} {
