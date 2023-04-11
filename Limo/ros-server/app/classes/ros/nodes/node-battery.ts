@@ -25,8 +25,8 @@ export class NodeBattery {
       // Initialize subscriber
       this.batterySubscriber = new Topic({
         ros: this.ros,
-        name: '/battery_state',
-        messageType: 'sensor_msgs/BatteryState',
+        name: '/limo_status',
+        messageType: 'limo_base/LimoStatus', // Ici  jdois mettre 'limo_status/... plutôt
       });
       this.batterySubscriber.subscribe(this.callBack.bind(this));
     });
