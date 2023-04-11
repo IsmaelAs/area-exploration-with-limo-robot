@@ -30,7 +30,7 @@ docker build -t ros-server ./ros-server || { echo "Error: Failed to build ros-se
 wait
 
 echo "Sourcing ${PATH_TO_SETUP_BASH}..."
-source ${PATH_TO_SETUP_BASH} || { echo "Error: Failed to source setup.bash"; exit 1; }
+source ${PATH_TO_SETUP_BASH} --extend || { echo "Error: Failed to source setup.bash"; exit 1; }
 
 if [ "$IS_SIMULATION" == "true" ] || [ "$IS_SIMULATION" == "1" ]; then
 
@@ -49,8 +49,8 @@ if [ "$IS_SIMULATION" == "true" ] || [ "$IS_SIMULATION" == "1" ]; then
   wait
 
   echo "Starting Docker containers (Simulation mode)..."
-  docker run --name ros-packages-server-1 --network host --rm -e ROS_MASTER_URI=$ROS_MASTER_URI -e IS_SIMULATION=1 -e LIMO_ID='1' -d ros-packages-server > ros-packages-server-1.log 2>&1 &
-  docker run --name ros-packages-server-2 --network host --rm -e ROS_MASTER_URI=$ROS_MASTER_URI -e IS_SIMULATION=1 -e LIMO_ID='2' -d ros-packages-server > ros-packages-server-2.log 2>&1 &
+  docker run --name ros-packages-server-1 --network host -e ROS_MASTER_URI=$ROS_MASTER_URI -e IS_SIMULATION=1 -e LIMO_ID='1' -d ros-packages-server &
+  docker run --name ros-packages-server-2 --network host -e ROS_MASTER_URI=$ROS_MASTER_URI -e IS_SIMULATION=1 -e LIMO_ID='2' -d ros-packages-server &
 
   sleep 10
 

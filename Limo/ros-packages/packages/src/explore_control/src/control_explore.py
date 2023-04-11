@@ -31,17 +31,18 @@ class ExplorationControl:
     def launch_explore_lite(self):
         if self.explore_lite_process is None:
             if self.isSimulation:
+                rospy.loginfo("Launching explore_control for simulated limo")
                 self.explore_lite_process = subprocess.Popen(
                     ["roslaunch", "--wait", "limo_gazebo_sim", "one_exploration.launch", f'ns:=/limo{self.limoId}', f'id:=limo{self.limoId}'],
                     stderr=subprocess.PIPE, preexec_fn=os.setpgrp)
             else:
-                rospy.loginfo("je suia asxjnasjkxnasx")
+                rospy.loginfo("Launching explore_control for physical limo")
                 self.explore_lite_process = subprocess.Popen(
                     ["roslaunch", "limo_bringup", "one_exploration.launch"],
                     stderr=subprocess.PIPE, preexec_fn=os.setpgrp)
-            # self.warning_filter_process = subprocess.Popen(
-            #     ["grep", "-v", "TF_REPEATED_DATA", "buffer_core"],
-            #     stdin=self.explore_lite_process.stderr)
+            self.warning_filter_process = subprocess.Popen(
+                ["grep", "-v", "TF_REPEATED_DATA", "buffer_core"],
+                stdin=self.explore_lite_process.stderr)
 
     def stop_explore_lite(self):
         if self.explore_lite_process is not None:

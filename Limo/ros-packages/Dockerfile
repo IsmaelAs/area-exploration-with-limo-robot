@@ -38,4 +38,4 @@ COPY . /home/ros-package
 WORKDIR /home/ros-package
 RUN chmod +x ./entrypoint.sh
 
-ENTRYPOINT [ "./entrypoint.sh" ]
+CMD [ "./entrypoint.sh" ]
