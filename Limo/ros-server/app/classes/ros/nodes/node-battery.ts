@@ -23,12 +23,12 @@ export class NodeBattery {
     this.ros.on('connection', () => {
       console.log(`${this.name} : ROS connected`);
       // Initialize subscriber
-      this.batterySubscriber = new Topic({
-        ros: this.ros,
-        name: '/limo_status',
-        messageType: 'limo_base/LimoStatus',
-      });
-      this.batterySubscriber.subscribe(this.callBack.bind(this));
+      // this.batterySubscriber = new Topic({
+      //   ros: this.ros,
+      //   name: '/limo_status',
+      //   messageType: 'limo_base/LimoStatus',
+      // });
+      // this.batterySubscriber.subscribe(this.callBack.bind(this));
     });
   }
 
