@@ -3,10 +3,12 @@ import { Logger } from '../services/logger';
 import { ClientSocketLimo } from './client.socket.limo';
 import { ServerSocketController } from './server.socket.controller';
 import * as sinon from 'sinon';
-import chai, { expect } from 'chai';
-import sinonChai from 'sinon-chai';
 import StateLimo from '@app/interfaces/state-limo';
 import RobotTargetType from '@app/types/RobotType';
+import * as chai from 'chai';
+import { expect } from 'chai';
+import * as sinonChai from 'sinon-chai';
+
 
 chai.use(sinonChai);
 
@@ -106,12 +108,7 @@ describe('ServerSocketController', () => {
         expect(socketStub.on.calledWith('get-all-logs')).to.be.true;
         expect(socketStub.on.calledWith('send-limo-ips')).to.be.true;
         expect(socketStub.on.calledWith('disconnect')).to.be.true;
-
-
-
-        
       });
-
 
         it('should call stopMission on logger and socketLimo instances', () => {
           serverSocketController['socketLimo'] = socketLimo;
@@ -200,6 +197,7 @@ describe('ServerSocketController', () => {
     
         expect(sendEventToLimoSpy).to.have.been.calledWith(data, 'identify');
       });
+      
     
       it('should call sendEventToLimo when "start-mission" event is received', () => {
         serverSocketController["isMissionStarted"] = false;
@@ -272,8 +270,12 @@ describe('ServerSocketController', () => {
       it('should create new ClientSocketLimo instances when "send-limo-ips" event is received', () => {
         const ips = { limo1: '192.168.1.1', limo2: '192.168.1.2' };
         const sendLimoIpsCallback = socketStub.on.getCalls().find((call: { args: string[]; }) => call.args[0] === 'send-limo-ips').args[1];
+        const consoleLogSpy = sinon.spy(console, 'log');
         sendLimoIpsCallback(ips);
-    
+
+        expect(consoleLogSpy.calledWith('ips recu : ', ips)).to.be.true;
+        expect(consoleLogSpy.calledWith(`ws://${ips.limo1}:${process.env.IS_SIMULATION ? process.env.PORT_LIMO_1 : '9332'}`)).to.be.true;
+        consoleLogSpy.restore();
         expect(serverSocketController["socketLimo"]).to.be.instanceOf(ClientSocketLimo);
         expect(serverSocketController["socketLimo2"]).to.be.instanceOf(ClientSocketLimo);
       });

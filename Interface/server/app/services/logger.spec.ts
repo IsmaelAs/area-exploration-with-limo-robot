@@ -4,8 +4,10 @@ import * as fs from "fs"
 import * as sinon from "sinon" 
 import LogLimo from "../interfaces/log-limo";
 import { Socket } from "socket.io";
-import chai, { expect } from 'chai';
-import sinonChai from 'sinon-chai';
+import * as chai from 'chai';
+import { expect } from 'chai';
+import * as sinonChai from 'sinon-chai';
+
 chai.use(sinonChai);
 
 describe("Logger Backend Unittest's", () => {
@@ -41,6 +43,28 @@ describe("Logger Backend Unittest's", () => {
   //   expect(spyAppendFile.called).to.be.true
   // })
 
+  it("should call appendFile when we call saveLimoData, there is a mission", () => {
+    const spyAppendFile = sinon.spy(fs, "appendFile");
+  
+    const logLimo: LogLimo = {
+      limoId: 1,
+      data: "data"
+    };
+  
+    const currentMission = 1;
+  
+    logger["currentMission"] = currentMission;
+    logger["isMissionStop"] = false;
+  
+    logger.saveLimoData(logLimo);
+  
+    const logFilePath = `./app/logs/logs-${currentMission}.log`;
+    const expectedLogContent = `[${new Date().toLocaleString()} : LIMO-${logLimo.limoId}] : ${JSON.stringify(logLimo.data)}\n`;
+  
+    sinon.assert.calledOnce(spyAppendFile);
+    sinon.assert.calledWith(spyAppendFile, logFilePath, expectedLogContent);
+  });
+  
   it("should not call appendFile when we call saveLimoData there is no mission", () => {
     const spyAppendFile = sinon.stub(fs, "appendFile").callsFake(() => {})
 
@@ -91,6 +115,28 @@ describe("Logger Backend Unittest's", () => {
 
   //   expect(spyAppendFile.called).to.be.true
   // })
+
+  it("should call appendFile when we call saveUserData, there is a mission", () => {
+    const spyAppendFile = sinon.spy(fs, "appendFile");
+  
+    const logLimo = {
+      data: "data"
+    };
+  
+    const currentMission = 1;
+  
+    logger["currentMission"] = currentMission;
+    logger["isMissionStop"] = false;
+  
+    logger.saveUserData(logLimo);
+  
+    const logFilePath = `./app/logs/logs-${currentMission}.log`;
+    const expectedLogContent = `[${new Date().toLocaleString()} : User] : ${JSON.stringify(logLimo)}\n`;
+  
+    sinon.assert.calledOnce(spyAppendFile);
+    sinon.assert.calledWith(spyAppendFile, logFilePath, expectedLogContent);
+  });
+  
 
   it("should not call appendFile when we call saveUserData there is no mission", () => {
     const spyAppendFile = sinon.stub(fs, "appendFile").callsFake(() => {})
@@ -150,6 +196,7 @@ describe("Logger Backend Unittest's", () => {
   //   expect(spyReadFile.called).to.be.true
   // })
 
+
   it("should stop mission when there is a mission and we call stopMission", () => {
     logger["isMissionStop"] = false
 
@@ -187,4 +234,75 @@ describe("Logger Backend Unittest's", () => {
     expect(logger["isMissionStop"]).to.be.false
 
   })
+  it("should call appendFile when we call saveLimoData, there is a mission", () => {
+    const spyAppendFile = sinon.stub(fs, "appendFile").callsFake(() => {});
+
+    const logLimo: LogLimo = {
+      limoId: 1,
+      data: "data",
+    };
+
+    logger["currentMission"] = 1;
+    logger["isMissionStop"] = false;
+
+    logger.saveLimoData(logLimo);
+
+    expect(spyAppendFile.called).to.be.true;
+  });
+
+  it("should call appendFile when we call saveUserData, there is a mission", () => {
+    const spyAppendFile = sinon.stub(fs, "appendFile").callsFake(() => {});
+
+    const logLimo = {
+      data: "data",
+    };
+
+    logger["currentMission"] = 1;
+    logger["isMissionStop"] = false;
+
+    logger.saveUserData(logLimo);
+
+    expect(spyAppendFile.called).to.be.true;
+  });
+
+  it("should call readFile when there is a mission and we call getAllData", () => {
+    const spyReadFile = sinon.stub(fs, "readFile").callsFake(() => {});
+    const fakeSocket: Socket = { emit: () => {} } as unknown as Socket;
+
+    logger["currentMission"] = 1;
+
+    logger.getAllData(1, fakeSocket);
+
+    expect(spyReadFile.called).to.be.true;
+  });
+
+  it("should emit error when readFile returns an error", () => {
+    sinon.stub(fs, "readFile").callsFake((path, callback) => {
+      callback(new Error("Test error"), <any>null);
+    });
+    const fakeSocket: Socket = { emit: () => {} } as unknown as Socket;
+    const spySocket = sinon.stub(fakeSocket, "emit");
+
+    logger["currentMission"] = 1;
+
+    logger.getAllData(1, fakeSocket);
+
+    expect(spySocket.calledWith("send-all-logs", sinon.match.string)).to.be.true;
+  });
+
+  it("should emit data when readFile returns data", () => {
+    const testData = "Test data";
+    sinon.stub(fs, "readFile").callsFake((path, callback) => {
+      callback(null, Buffer.from(testData, "ascii"));
+    });
+    const fakeSocket: Socket = { emit: () => {} } as unknown as Socket;
+    const spySocket = sinon.stub(fakeSocket, "emit");
+
+    logger["currentMission"] = 1;
+
+    logger.getAllData(1, fakeSocket);
+
+    expect(spySocket.calledWith("send-all-logs", testData)).to.be.true;
+  });
+
 })
