@@ -1,4 +1,4 @@
-#! /bin/python3
+#!/usr/bin/env python
 
 import rospy
 from std_msgs.msg import Bool
@@ -8,7 +8,7 @@ import subprocess
 class ExplorationControl:
     def __init__(self):
         self.isSimulation = os.environ.get("IS_SIMULATION")
-
+	self.bringup_path = os.environ.get("BRINGUP_PATH")
         if self.isSimulation : 
             self.limoId = os.environ.get("LIMO_ID", "1")
             rospy.init_node('exploration_control' + self.limoId)
@@ -33,12 +33,12 @@ class ExplorationControl:
             if self.isSimulation:
                 rospy.loginfo("Launching explore_control for simulated limo")
                 self.explore_lite_process = subprocess.Popen(
-                    ["roslaunch", "--wait", "limo_gazebo_sim", "one_exploration.launch", f'ns:=/limo{self.limoId}', f'id:=limo{self.limoId}'],
+                    ["roslaunch", f'{self.bringup_path}', "one_exploration.launch", f'ns:=/limo{self.limoId}', f'id:=limo{self.limoId}'],
                     stderr=subprocess.PIPE, preexec_fn=os.setpgrp)
             else:
                 rospy.loginfo("Launching explore_control for physical limo")
                 self.explore_lite_process = subprocess.Popen(
-                    ["roslaunch", "limo_bringup", "one_exploration.launch"],
+                    ["roslaunch", f'{self.bringup_path}', "one_exploration.launch"],
                     stderr=subprocess.PIPE, preexec_fn=os.setpgrp)
             self.warning_filter_process = subprocess.Popen(
                 ["grep", "-v", "TF_REPEATED_DATA", "buffer_core"],

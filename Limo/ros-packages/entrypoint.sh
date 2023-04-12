@@ -13,7 +13,10 @@ cp -r ./packages/params $(rospack find limo_bringup)
 
 
 roslaunch rosbridge_server rosbridge_websocket.launch &
+wait
 
+# Set the environment variable
+export BRINGUP_PATH=$(rospack find limo_bringup)
 if [ ! "$IS_SIMULATION" ];  then 
 
   # Launch gmapping
