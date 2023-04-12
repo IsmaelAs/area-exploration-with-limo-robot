@@ -22,22 +22,29 @@ export class DataBaseHandler {
 
   async insert(collection: string, document: mongodb.Document): Promise<void> {
     const collectionDb = await this.getDataBaseCollection(collection);
-    collectionDb.insertOne(document);
+    await collectionDb.insertOne(document);
   }
 
   async insertMany(collection: string, documents: mongodb.Document[]): Promise<void> {
     const collectionDb = await this.getDataBaseCollection(collection);
-    collectionDb.insertMany(documents);
+    await collectionDb.insertMany(documents);
   }
 
   async replaceOne(collection: string, filter: any, replacement: mongodb.Document): Promise<void> {
     const collectionDb = await this.getDataBaseCollection(collection);
-    collectionDb.replaceOne(filter, replacement);
+    await collectionDb.replaceOne(filter, replacement);
   }
 
   async deleteMany(collection: string, filter: any): Promise<void> {
     const collectionDb = await this.getDataBaseCollection(collection);
-    collectionDb.deleteMany(filter);
+    await collectionDb.deleteMany(filter);
+  }
+
+  async reset(collection: string): Promise<void> {
+    const collectionDb = await this.getDataBaseCollection(collection);
+    if (await collectionDb.countDocuments() > 0) {
+      await collectionDb.drop();
+    }
   }
 
   private async connectToDataBase(): Promise<void> {
