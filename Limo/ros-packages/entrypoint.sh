@@ -5,6 +5,8 @@ source /opt/ros/noetic/setup.bash
 
 echo $(hostname -I)
 sleep 5
+source /agx_ws/devel/setup.bash
+
 
 source /agx_ws/devel/setup.bash --extend
 
