@@ -16,6 +16,9 @@ import { IpLimoHandlerComponent } from './components/ip-limo-handler/ip-limo-han
 import { MapViewerComponent } from './components/map-viewer/map-viewer.component';
 import { RobotsStateComponent } from './components/robots-state/robots-state.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
+import { MissionActionComponent } from './components/mission-action/mission-action.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
     'declarations': [
@@ -23,6 +26,7 @@ import { MainPageComponent } from './components/main-page/main-page.component';
         MapViewerComponent,
         LogsDialogComponent,
         LogActionComponent,
+        MissionActionComponent,
         ActionButtonsComponent,
         RobotsActionsComponent,
         IpLimoHandlerComponent,
@@ -36,7 +40,8 @@ import { MainPageComponent } from './components/main-page/main-page.component';
         MatSelectModule,
         BrowserAnimationsModule,
         FormsModule,
-        MatDialogModule
+        MatDialogModule,
+        HttpClientModule
     ],
     'providers': [],
     'bootstrap': [AppComponent]

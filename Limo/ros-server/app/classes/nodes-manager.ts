@@ -46,5 +46,6 @@ export class NodeManager {
     console.log(`Closing connection of nodes !`);
     this.nodeMovement.closeNodeMovement();
     this.nodeExplorationState.closeNodeExplorationState();
+    this.nodeBattery.closeNodeBattery();
   }
 }

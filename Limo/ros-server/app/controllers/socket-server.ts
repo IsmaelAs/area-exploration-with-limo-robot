@@ -6,6 +6,8 @@ import { Subscription } from 'rxjs';
 import LogType from '../types/LogType';
 import { MyStateMachine } from '../classes/state-machine';
 import StateType from '../types/StateType';
+import { MissionDistance } from '../services/mission-distance';
+
 
 const NO_CLIENT = 0;
 
@@ -26,11 +28,14 @@ export class SocketServer {
 
   limoId: number;
 
+  private missionDistance: MissionDistance;
+
   constructor(server: Server, nodeManager: NodeManager, logger: Logger) {
     this.server = server;
     this.nodeManager = nodeManager;
     this.logger = logger;
     this.stateMachine = new MyStateMachine();
+    this.missionDistance = new MissionDistance(this.server);
   }
 
   // Connect the socket to the limo node server ; subscribe to all limo command ; start all nodes
@@ -46,6 +51,9 @@ export class SocketServer {
         this.limoId = limoId;
         this.logger.setLimoId(this.limoId);
         this.stateMachine.setLimoId(this.limoId);
+        this.missionDistance.setLimoId(this.limoId);
+        this.nodeManager["nodeBattery"].getBatteryObservable().subscribe(this.sendBattery.bind(this));
+
 
         this.stateMachine.stateObservable.subscribe(this.sendState.bind(this));
         this.stateMachine.startStates();
@@ -66,6 +74,7 @@ export class SocketServer {
         this.loggerObservable = this.logger.logObservable.subscribe(this.sendLogs.bind(this));
 
         this.logger.startLogs();
+        this.missionDistance.startMission();
         this.stateMachine.onMission();
         this.isMissionStopped = false;
 
@@ -81,6 +90,7 @@ export class SocketServer {
         this.stateMachine.onMissionEnd();
         this.nodeManager.stopMission();
         this.logger.stopLog();
+        this.missionDistance.stopMission();
         this.loggerObservable.unsubscribe();
         this.stateMachine.onReady();
       });
@@ -105,4 +115,10 @@ export class SocketServer {
     console.log(data);
     this.emit('save-state', data);
   }
+
+  private sendBattery(data: { percentage: number }) {
+    this.emit('save-battery', {limoId: this.limoId,
+      battery: data.percentage});
+  }
 }
+

@@ -1,5 +1,6 @@
 import { Ros, Topic } from 'roslib';
 import { BRIDGE_URI } from '../../../constants/url';
+import { Observable, Subject } from 'rxjs';
 
 export class NodeBattery {
   private ros: Ros;
@@ -8,9 +9,12 @@ export class NodeBattery {
 
   private data: {percentage: number};
 
+  private batterySubject: Subject<{ percentage: number }> = new Subject();
+
   private name = 'Node Battery';
 
   isLowBattery = false;
+
 
   initNodeBattery() {
     this.ros = new Ros({ url: BRIDGE_URI });
@@ -35,13 +39,13 @@ export class NodeBattery {
     const minVoltage = 8.25;
     const maxVoltage = 12.6;
     const batteryVoltage = message.battery_voltage;
-  
+
     // Calculate the battery percentage
     const percentage = ((batteryVoltage - minVoltage) / (maxVoltage - minVoltage)) * 100;
-  
+
     // Log the battery level
     console.log('This is the battery level:', percentage);
-  
+
     // Check if the battery is below 30%
     if (percentage < 30) {
       console.log('Battery level is below 30%');
@@ -49,15 +53,21 @@ export class NodeBattery {
     } else {
       this.isLowBattery = false;
     }
-  
+
     // Update the data object
     this.data = { percentage };
+
+    // Emit the new battery data
+    this.batterySubject.next(this.data);
   }
-  
 
 
   getData(): {percentage: number} {
     return this.data;
+  }
+
+  getBatteryObservable(): Observable<{ percentage: number }> {
+    return this.batterySubject.asObservable();
   }
 
   closeNodeBattery() {

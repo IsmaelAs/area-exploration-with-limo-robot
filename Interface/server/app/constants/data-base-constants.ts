@@ -2,4 +2,5 @@ export const DB_URL_CONNEXTION = 'mongodb+srv://youss:limo@cluster0.fp0k7.mongod
 export const DB_DATABASE_NAME = 'projet3';
 export const DB_TEST_COLLECTION = 'test collection';
 export const DB_MAPS_COLLECTION = 'historique des maps';
+export const DB_MISSION_INFOS_COLLECTION = 'historique des missions';
 

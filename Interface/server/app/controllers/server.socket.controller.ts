@@ -3,6 +3,8 @@ import { ClientSocketLimo } from './client.socket.limo';
 import { Logger } from '../services/logger';
 import RobotTargetType from '../types/RobotType';
 import StateLimo from '../interfaces/state-limo';
+import { MissionInfos } from '../services/mission-infos';
+import BatteryLimo from '../interfaces/battery-limo';
 
 const FIRST_LIMO = 1;
 const SECOND_LIMO = 2;
@@ -16,6 +18,8 @@ export class ServerSocketController {
   private socketLimo2?: ClientSocketLimo;
 
   private logger: Logger;
+
+  private missionInfos: MissionInfos;
 
   private clientCounter: number;
 
@@ -55,6 +59,10 @@ export class ServerSocketController {
         this.logger.getAllData(missionNumber, socket);
       });
 
+      socket.on('get-all-missions-infos', (missionNumber: number) => {
+        this.logger.getAllData(missionNumber, socket);
+      });
+
       socket.on('send-limo-ips', (ips: {limo1: string, limo2: string}) => {
         console.log('ips recu : ', ips);
         console.log(`ws://${ips.limo1}:${process.env.IS_SIMULATION ? process.env.PORT_LIMO_1 : '9332'}`);
@@ -64,6 +72,7 @@ export class ServerSocketController {
           this.socketLimo.connectClientSocketToLimo();
 
           this.socketLimo.subscribeState.subscribe(this.sendStateToClient.bind(this));
+          this.socketLimo.subscribeBattery.subscribe(this.sendBatteryToClient.bind(this));
         }
 
         if (ips.limo2.replace(' ', '') !== '') {
@@ -71,6 +80,7 @@ export class ServerSocketController {
           this.socketLimo2.connectClientSocketToLimo();
 
           this.socketLimo2.subscribeState.subscribe(this.sendStateToClient.bind(this));
+          this.socketLimo2.subscribeBattery.subscribe(this.sendBatteryToClient.bind(this));
         }
       });
 
@@ -99,6 +109,8 @@ export class ServerSocketController {
 
   private stopMission() {
     this.logger.stopMission();
+    this.missionInfos.onMissionEnd();
+
 
     if (this.socketLimo) this.socketLimo.stopMission();
     if (this.socketLimo2) this.socketLimo2.stopMission();
@@ -107,6 +119,8 @@ export class ServerSocketController {
 
   private startMission() {
     this.logger.startMission();
+    this.missionInfos = new MissionInfos();
+    this.missionInfos.onMissionStart();
 
     if (this.socketLimo) this.socketLimo.startMission();
     if (this.socketLimo2) this.socketLimo2.startMission();
@@ -115,6 +129,10 @@ export class ServerSocketController {
 
   private sendStateToClient(data: StateLimo) {
     this.sendEventToFrontend('send-state', data);
+  }
+
+  private sendBatteryToClient(data: BatteryLimo) {
+    this.sendEventToFrontend('send-battery', data);
   }
 
   private sendEventToFrontend<T>(event: string, data?: T) {

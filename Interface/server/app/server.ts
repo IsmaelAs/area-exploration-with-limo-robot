@@ -8,7 +8,12 @@ import { Application } from './app';
 import { Server as SocketServer } from 'socket.io';
 import { ServerSocketController } from './controllers/server.socket.controller';
 import { Logger } from './services/logger';
+import * as cors from 'cors';
+import express = require('express');
 
+const app = express();
+
+app.use(cors());
 
 @Service()
 export class Server {
