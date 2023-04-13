@@ -60,6 +60,8 @@ if [ "$IS_SIMULATION" == "true" ] || [ "$IS_SIMULATION" == "1" ]; then
   docker run --name ros-packages-server-2 --rm --network host -e ROS_MASTER_URI=$ROS_MASTER_URI -e IS_SIMULATION=1 -e LIMO_ID='2' -d ros-packages-server &
 
   sleep 10
+  docker logs ros-packages-server-1 > ros-packages-server-1.log
+  docker logs ros-packages-server-2 > ros-packages-server-2.log
 
   LIMO_IP_SIMU_1=$(grep -m 1 -oP '(?<=LIMO_IP_SIMU_1: )[^\s]+' ros-packages-server-1.log)
   echo "LIMO_IP_SIMU_1: $LIMO_IP_SIMU_1"

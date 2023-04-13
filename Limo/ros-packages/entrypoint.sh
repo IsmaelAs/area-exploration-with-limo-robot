@@ -3,9 +3,8 @@
 source /opt/ros/noetic/setup.bash
 
 
-echo $(hostname -I)
+echo "LIMO_IP_SIMU_$LIMO_ID: $(hostname -I awk '{print $1}')"
 sleep 5
-source /agx_ws/devel/setup.bash
 
 
 source /agx_ws/devel/setup.bash --extend
