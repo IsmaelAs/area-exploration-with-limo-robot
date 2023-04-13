@@ -11,7 +11,7 @@
 > ros-server@1.0.0 build /home/ros-server
 > rimraf out && tsc --project tsconfig.app.json
 
-Debugger listening on ws://127.0.0.1:9229/fd28f19d-ec1d-4643-acac-1d42de8cdaef
+Debugger listening on ws://127.0.0.1:9229/b84a217a-c26c-4920-9631-fb05d1856db8
 For help, see: https://nodejs.org/en/docs/inspector
 Starting connection for the nodes
 ROSLib uses utf8 encoding by default.It would be more efficent to use ascii (if possible)

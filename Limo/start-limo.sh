@@ -15,8 +15,6 @@ if [ "$IS_SIMULATION" -eq 1 ]; then
     exit 1
   fi
   PATH_TO_SETUP_BASH=$2
-else
-  PATH_TO_SETUP_BASH="~/limo_ws/devel/setup.bash"
 fi
 
 MASTER_IP=$(hostname -I | head -n1 | awk '{print $1;}')
@@ -43,14 +41,23 @@ if [ "$IS_SIMULATION" == "true" ] || [ "$IS_SIMULATION" == "1" ]; then
 
   wait
 
+  echo "Building simulated explore control..."
+  pushd ros-packages/packages
+  catkin_make
+  source devel/setup.bash --extend
+  popd
+
   echo "Running random-world-generator.sh script..."
   ./ros-packages/simulation/random-world-generator.sh > random-world-generator.log 2>&1 || { echo "Error: Failed to run random-world-generator.sh"; exit 1; } &
 
   wait
+  echo "Launching simulated explore control..."
+  rosrun explore_control simulation_explore.py &
+  sleep 5
 
   echo "Starting Docker containers (Simulation mode)..."
-  docker run --name ros-packages-server-1 --network host -e ROS_MASTER_URI=$ROS_MASTER_URI -e IS_SIMULATION=1 -e LIMO_ID='1' -d ros-packages-server &
-  docker run --name ros-packages-server-2 --network host -e ROS_MASTER_URI=$ROS_MASTER_URI -e IS_SIMULATION=1 -e LIMO_ID='2' -d ros-packages-server &
+  docker run --name ros-packages-server-1 --rm --network host -e ROS_MASTER_URI=$ROS_MASTER_URI -e IS_SIMULATION=1 -e LIMO_ID='1' -d ros-packages-server &
+  docker run --name ros-packages-server-2 --rm --network host -e ROS_MASTER_URI=$ROS_MASTER_URI -e IS_SIMULATION=1 -e LIMO_ID='2' -d ros-packages-server &
 
   sleep 10
 
@@ -59,8 +66,8 @@ if [ "$IS_SIMULATION" == "true" ] || [ "$IS_SIMULATION" == "1" ]; then
   LIMO_IP_SIMU_2=$(grep -m 1 -oP '(?<=LIMO_IP_SIMU_2: )[^\s]+' ros-packages-server-2.log)
   echo "LIMO_IP_SIMU_2: $LIMO_IP_SIMU_2"
 
-  docker run --name ros-server-1 -p 9332:9332 --rm -e LIMO_IP=$LIMO_IP_SIMU_1 -e IS_SIMULATION=1 -e LIMO_ID='1' -d ros-server > ros-server-1.log 2>&1 &
-  docker run --name ros-server-2 -p 9333:9333 --rm -e LIMO_IP=$LIMO_IP_SIMU_2 -e IS_SIMULATION=1 -e LIMO_ID='2' ros-server > ros-server-2.log 2>&1 &
+  docker run --name ros-server-1 -p 9332:9332 --rm -e LIMO_IP=$LIMO_IP_SIMU_1 -e IS_SIMULATION=1 -e LIMO_ID='1' -d ros-server &
+  docker run --name ros-server-2 -p 9333:9333 --rm -e LIMO_IP=$LIMO_IP_SIMU_2 -e IS_SIMULATION=1 -e LIMO_ID='2' ros-server &
 
 else
 
@@ -71,11 +78,6 @@ else
 
   LIMO_IP=$(grep -m 1 -oP '(?<=LIMO_IP: )[^\s]+' ros-packages-server.log)
   echo "LIMO_IP: $LIMO_IP"
-
-  # Run explore_control control_explore.py
-  echo "Running explore_control control_explore.py..."
-  rosrun explore_control control_explore.py || { echo "Error: Failed to run explore_control control_explore.py"; exit 1; } &
-  wait
   
   docker run --name ros-server -p 9332:9332 --rm -e LIMO_IP=$LIMO_IP ros-server > ros-server.log 2>&1 &
 

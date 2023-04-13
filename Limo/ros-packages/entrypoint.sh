@@ -8,17 +8,12 @@ sleep 5
 
 source /agx_ws/devel/setup.bash --extend
 
-cp -r ./packages/launchs $(rospack find limo_bringup)
-cp -r ./packages/params $(rospack find limo_bringup)
-
-
-roslaunch rosbridge_server rosbridge_websocket.launch &
-wait
-
-# Set the environment variable
-export BRINGUP_PATH=$(rospack find limo_bringup)
 if [ ! "$IS_SIMULATION" ];  then 
+  cp -r ./packages/launchs $(rospack find limo_bringup)
+  cp -r ./packages/params $(rospack find limo_bringup)
 
+  roslaunch rosbridge_server rosbridge_websocket.launch &
+  wait
   # Launch gmapping
   roslaunch --wait  limo_bringup one_gmapping.launch  2> >(grep -v TF_REPEATED_DATA buffer_core) &
 
