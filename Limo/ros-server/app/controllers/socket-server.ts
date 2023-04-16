@@ -7,7 +7,7 @@ import LogType from '../types/LogType';
 import { MyStateMachine } from '../classes/state-machine';
 import StateType from '../types/StateType';
 import { P2PSocketClient } from './p2p-socket-client';
-import { P2PPosition } from '@app/classes/p2p-position';
+import { P2PPosition } from '../classes/p2p-position';
 
 const NO_CLIENT = 0;
 
@@ -72,6 +72,11 @@ export class SocketServer {
         else this.intervalPos = setInterval(this.callBack.bind(this), 1000);
       });
 
+      socket.on('p2p-stop', () => {
+        if (this.limoId === 2) this.p2pSocketClient?.activateP2P();
+        else clearInterval(this.intervalPos);
+      });
+
       socket.on('p2p-activated', () => {
         socket.broadcast.emit('p2p-connected', true);
       });
@@ -126,6 +131,7 @@ export class SocketServer {
 
   private callBack() {
     const distance = this.p2pPosition.getDistance();
+    console.log("Dans le call back de Limo1.... la disstance est : " + distance)
     if (distance) this.emit('p2p-distance', distance);
   }
 

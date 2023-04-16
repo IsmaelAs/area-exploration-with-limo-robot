@@ -10,11 +10,14 @@ export class P2PPosition {
 
   private distance = 0;
 
+  private furthestLimo= 0;
+
 
   constructor(limoId: number) {
     this.limoId = limoId;
     if (process.env.IS_SIMULATION) this.nodePosition.setNamespace(`limo${this.limoId}`);
     this.nodePosition.initNodePosition();
+    setInterval(this.getFurthestLimo, 2000);
   }
 
 
@@ -45,8 +48,10 @@ export class P2PPosition {
   }
 
   getFurthestLimo() {
-    if (this.distance > this.p2pDistance) return this.limoId;
+    if (this.distance > this.p2pDistance) this.furthestLimo = this.limoId;
     // Return the opposite ID
-    return this.limoId === 1 ? 2 : 1;
+    else this.furthestLimo = this.limoId === 1 ? 2 : 1;
+    console.log("the fursthest limo is :  "+ this.furthestLimo)
+    return this.furthestLimo;
   }
 }
