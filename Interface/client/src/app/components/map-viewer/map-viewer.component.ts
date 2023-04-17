@@ -1,3 +1,4 @@
+import * as ROS2D from '../../../assets/ros2d/ros2d';
 import { Component } from '@angular/core';
 const ROS3D = require('ros3d');
 import { Ros } from 'roslib';
@@ -31,7 +32,7 @@ export class MapViewerComponent {
     constructor (private ipHandler: IpHandlerService) {
 
         this.ros1 = new Ros({
-            'url': `ws://${ipHandler.ipAddressLimo1}:9090`
+            'url': `ws://172.18.0.1:9090`
         });
 
         this.ros2 = new Ros({
@@ -54,7 +55,7 @@ export class MapViewerComponent {
         // Setup the map client 1.
         this.gridClient1 = new ROS3D.OccupancyGridClient({
             'ros': this.ros1,
-            'topic': environment.IS_SIMULATION ? '/limo1/map' : '/map',
+            'topic': environment.IS_SIMULATION ? 'zzz/limo1/map' : 'zzz/map',
             'rootObject': this.viewer1.scene,
             'continuous': true
         });
@@ -71,7 +72,7 @@ export class MapViewerComponent {
         // Setup the map client 2.
         this.gridClient2 = new ROS3D.OccupancyGridClient({
             'ros': this.ros2,
-            'topic': environment.IS_SIMULATION ? '/limo2/map' : 'map',
+            'topic': environment.IS_SIMULATION ? 'zzz/limo2/map' : 'zzz/map',
             'rootObject': this.viewer2.scene,
             'continuous': true
         });
@@ -89,11 +90,38 @@ export class MapViewerComponent {
         // Setup the Merged map client.
         this.gridClientMerged = new ROS3D.OccupancyGridClient({
             'ros': this.ros1,
-            'topic': environment.IS_SIMULATION ? '/map_merge/x_merged_map' : '/map_merged/map',
+            'topic': environment.IS_SIMULATION ? 'zzz/map_merge/x_merged_map' : 'zzz/map_merged/map',
             'rootObject': this.viewerMerged.scene,
             'continuous': true
         });
+
+        this.yo();
     }
 
+    yo() {
+
+        // Create the main viewer.
+        var viewerz = new ROS2D.Viewer({
+            divID : 'mapz',
+            width : 600,
+            height : 500
+        });
+
+        // Setup the map client.
+        var gridClient = new ROS2D.OccupancyGridClient({
+            ros : this.ros1,
+            rootObject : this.viewer1.scene,
+            topic: '/limo1/map',
+            continuous: true
+        });
+        // Scale the canvas to fit to the map
+        gridClient.on('change', function(){
+            viewerz.scaleToDimensions(gridClient.currentGrid.width, gridClient.currentGrid.height);
+        });
+    }
 
 }
+
+
+
+

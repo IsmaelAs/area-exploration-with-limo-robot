@@ -23,6 +23,10 @@
     "lib": [
       "ES2022",
       "dom"
+    ],
+    "typeRoots": [
+      "src/customTypings",
+      "node_modules/@types"
     ]
   },
   "paths": {
