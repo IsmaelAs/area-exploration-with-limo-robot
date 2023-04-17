@@ -44,7 +44,7 @@ export class NodeBattery {
     const percentage = ((batteryVoltage - minVoltage) / (maxVoltage - minVoltage)) * 100;
 
     // Log the battery level
-    console.log('This is the battery level:', percentage);
+    //console.log('This is the battery level:', percentage);
 
     // Check if the battery is below 30%
     if (percentage < 30) {

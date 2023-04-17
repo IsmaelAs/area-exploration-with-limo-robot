@@ -49,6 +49,8 @@ export class ClientSocketLimo {
 
     this.socket.on('save-total-distance', (data: DistanceInfo) => {
       this.missionInfos = new MissionInfos();
+      console.log('ici jai recu la data dans le emit ');
+      console.log(data);
       this.missionInfos.saveTotalDistance(data);
       this.missionInfos.insertMissionsInfos();
     });

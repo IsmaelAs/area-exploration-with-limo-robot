@@ -59,10 +59,6 @@ export class ServerSocketController {
         this.logger.getAllData(missionNumber, socket);
       });
 
-      socket.on('get-all-missions-infos', (missionNumber: number) => {
-        this.logger.getAllData(missionNumber, socket);
-      });
-
       socket.on('send-limo-ips', (ips: {limo1: string, limo2: string}) => {
         console.log('ips recu : ', ips);
         console.log(`ws://${ips.limo1}:${process.env.IS_SIMULATION ? process.env.PORT_LIMO_1 : '9332'}`);

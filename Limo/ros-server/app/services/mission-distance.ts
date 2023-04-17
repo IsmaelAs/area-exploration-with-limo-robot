@@ -68,6 +68,12 @@ export class MissionDistance {
   }
 
   private emitTotalDistance(): void {
+    const id = this.limoId;
+    const distance = Math.round(this.totalDistance * 100) / 100;
+    console.log('la distance parcourue est: ');
+    console.log(distance);
+    console.log('pour le limo ');
+    console.log(id);
     this.server.emit('save-total-distance', {
       limoId: this.limoId,
       totalDistance: Math.round(this.totalDistance * 100) / 100,
