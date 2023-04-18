@@ -18,7 +18,6 @@ export class ClientSocketLimo {
   private p2pConnectedObservable: Subject<boolean> = new Subject();
 
 
-
   constructor(limoId: number, limoUrl: string, p2pUrl: string) {
     this.limoId = limoId;
     this.socket = io(limoUrl);
@@ -42,6 +41,15 @@ export class ClientSocketLimo {
       this.socket.emit('login', this.limoId);
       this.socket.emit('p2p-login', this.p2pUrl);
     });
+
+    this.socket.on('reconnect', () => {
+      console.log(`Limo ${this.limoId} reconnected to the ROS server`);
+      this.logger.saveLimoData({limoId: this.limoId,
+        data: `Limo ${this.limoId} connected to the ROS server`});
+      this.socket.emit('login', this.limoId);
+      this.socket.emit('p2p-login', this.p2pUrl);
+    });
+
     this.socket.on('save-log', (data: LogLimo) => {
       this.logger.saveLimoData(data);
     });

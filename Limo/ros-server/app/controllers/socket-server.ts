@@ -51,6 +51,7 @@ export class SocketServer {
       this.clientCounter++;
 
       socket.on('login', (limoId: number) => {
+        console.log('login from', limoId);
         this.limoId = limoId;
         this.logger.setLimoId(this.limoId);
         this.stateMachine.setLimoId(this.limoId);
