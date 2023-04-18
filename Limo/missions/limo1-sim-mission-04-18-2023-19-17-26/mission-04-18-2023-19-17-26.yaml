@@ -1,0 +1,7 @@
+image: missions/limo1-sim-mission-04-18-2023-19-17-26/mission-04-18-2023-19-17-26.pgm
+resolution: 0.050000
+origin: [-100.000000, -100.000000, 0.000000]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196
+

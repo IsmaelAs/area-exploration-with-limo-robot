@@ -38,9 +38,9 @@ if [ ! "$IS_SIMULATION" ];  then
   exec rosrun explore_control control_explore.py 
 
 else 
-  echo "Launching return to base..."
-  rosrun explore_control return_to_base.py &
-  sleep 5
+  # echo "Launching return to base..."
+  # rosrun explore_control return_to_base.py &
+  # sleep 5
   echo "Launching explore_control..."
   exec rosrun explore_control control_explore.py
 fi
