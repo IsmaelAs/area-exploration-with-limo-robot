@@ -18,6 +18,7 @@ class ExplorationControl:
             rospy.init_node('exploration_control')
             self.subscriberState = rospy.Subscriber(
                     '/exploration_state', Bool, self.setExplorationState)
+        self.return_to_base_process = None
         self.explore_lite_process = None
         rospy.loginfo("fini le init")
 
@@ -58,6 +59,7 @@ class ExplorationControl:
             if self.explore_lite_process is not None:
                 self.explore_lite_process.terminate()
                 self.explore_lite_process = None
+                self.return_to_base_process.terminate()
 
 if __name__ == '__main__':
     ec = ExplorationControl()
