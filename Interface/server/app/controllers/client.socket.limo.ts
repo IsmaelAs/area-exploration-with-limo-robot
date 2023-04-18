@@ -26,6 +26,7 @@ export class ClientSocketLimo {
     this.limoId = limoId;
     this.socket = io(limoUrl);
     this.logger = new Logger();
+    this.missionInfos = new MissionInfos();
   }
 
   get subscribeState() {
@@ -52,7 +53,10 @@ export class ClientSocketLimo {
       console.log('ici jai recu la data dans le emit ');
       console.log(data);
       this.missionInfos.saveTotalDistance(data);
-      this.missionInfos.insertMissionsInfos();
+    });
+
+    this.socket.on('test-emit', (data: string) => {
+      console.log('Received data:', data);
     });
 
     this.socket.on('save-state', (data: StateLimo) => {

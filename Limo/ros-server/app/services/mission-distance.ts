@@ -79,4 +79,8 @@ export class MissionDistance {
       totalDistance: Math.round(this.totalDistance * 100) / 100,
     });
   }
+
+  // public sendTestMessage(message: string): void {
+  //   this.server.emit('test-emit', message);
+  // }
 }

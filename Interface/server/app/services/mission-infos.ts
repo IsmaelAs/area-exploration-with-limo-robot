@@ -20,6 +20,9 @@ export class MissionInfos {
 
   private dataBaseHandler: DataBaseHandler;
 
+  constructor() {
+    this.dataBaseHandler = new DataBaseHandler();
+  }
 
   onMissionStart(): void {
     this.missionStart = new Date();
@@ -67,6 +70,19 @@ export class MissionInfos {
       distanceLimo2: this.distanceLimo2,
     }
     );
+  }
+
+  async test(): Promise<void> {
+    const currentDate = '2023-04-18';
+    const currentHour = '10:30:00';
+    const duration = '01:15:30';
+    await this.dataBaseHandler.insert('test-missions-infos', {
+      date: currentDate,
+      heure: currentHour,
+      durée: duration,
+      distanceLimo1: 1234.56,
+      distanceLimo2: 987.65,
+    });
   }
 
   /*

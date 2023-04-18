@@ -21,5 +21,10 @@ export class HttpMissionHandler {
         res.send(missions);
       });
     });
+    this.router.get('/', (req: Request, res: Response) => {
+      this.dataBaseHandler.find('test-missions-infos').then((tests) => {
+        res.send(tests);
+      });
+    });
   }
 }

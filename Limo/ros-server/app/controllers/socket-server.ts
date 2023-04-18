@@ -42,6 +42,9 @@ export class SocketServer {
   connectSocketServer(): void {
     this.nodeManager.startNodes();
     console.log('normalement je me suis connecté à toutes les nodes');
+    // this.emit('test-emit', 'Hello World envoyé directement');
+    // this.missionDistance.sendTestMessage('Hello world');
+
     this.server.on('connection', (socket) => {
       console.log('Connected to node server');
 
@@ -52,7 +55,7 @@ export class SocketServer {
         this.logger.setLimoId(this.limoId);
         this.stateMachine.setLimoId(this.limoId);
         this.missionDistance.setLimoId(this.limoId);
-        this.nodeManager["nodeBattery"].getBatteryObservable().subscribe(this.sendBattery.bind(this));
+        this.nodeManager['nodeBattery'].getBatteryObservable().subscribe(this.sendBattery.bind(this));
 
 
         this.stateMachine.stateObservable.subscribe(this.sendState.bind(this));
