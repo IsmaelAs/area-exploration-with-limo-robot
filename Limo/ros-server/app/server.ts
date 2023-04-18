@@ -7,6 +7,7 @@ import { NodeExplorationState } from './classes/ros/nodes/node-exploration-state
 import { NodeMovement } from './classes/ros/nodes/node-movement';
 import { NodeManager } from './classes/nodes-manager';
 import { Logger } from './services/logger';
+import { NodeBattery } from './classes/ros/nodes/node-battery';
 import { NodeUpdate } from './classes/ros/nodes/node-update';
 
 
@@ -64,7 +65,8 @@ val;
     const nodeExplorationState = new NodeExplorationState();
     const nodeMovement = new NodeMovement();
     const nodeUpdate = new NodeUpdate();
-    const nodeManager = new NodeManager(nodeExplorationState, nodeMovement, nodeUpdate);
+    const nodeBattery = new NodeBattery();
+    const nodeManager = new NodeManager(nodeExplorationState, nodeMovement, nodeUpdate, nodeBattery);
     const logger = new Logger();
     this.socketManager = new SocketManager(this.io, nodeManager, logger);
     this.socketManager.connectSocketServer();

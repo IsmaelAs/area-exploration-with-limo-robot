@@ -18,6 +18,9 @@ import { RobotsStateComponent } from './components/robots-state/robots-state.com
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { P2pHandlerComponent } from './components/p2p-handler/p2p-handler.component';
 import { UpdateComponentComponent } from './components/update-component/update-component.component';
+import { MissionActionComponent } from './components/mission-action/mission-action.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
     'declarations': [
@@ -25,6 +28,7 @@ import { UpdateComponentComponent } from './components/update-component/update-c
         MapViewerComponent,
         LogsDialogComponent,
         LogActionComponent,
+        MissionActionComponent,
         ActionButtonsComponent,
         RobotsActionsComponent,
         IpLimoHandlerComponent,
@@ -40,7 +44,8 @@ import { UpdateComponentComponent } from './components/update-component/update-c
         MatSelectModule,
         BrowserAnimationsModule,
         FormsModule,
-        MatDialogModule
+        MatDialogModule,
+        HttpClientModule
     ],
     'providers': [],
     'bootstrap': [AppComponent]

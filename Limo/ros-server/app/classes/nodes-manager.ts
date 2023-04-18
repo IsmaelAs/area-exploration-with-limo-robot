@@ -1,4 +1,5 @@
 import Command from '../types/types';
+import { NodeBattery } from './ros/nodes/node-battery';
 import { NodeExplorationState } from './ros/nodes/node-exploration-state';
 import { NodeMovement } from './ros/nodes/node-movement';
 import { NodeUpdate } from './ros/nodes/node-update';
@@ -10,10 +11,13 @@ export class NodeManager {
 
   private nodeUpdate: NodeUpdate;
 
-  constructor(nodeExplorationState: NodeExplorationState, nodeMovement: NodeMovement, nodeUpdate: NodeUpdate) {
+  private nodeBattery: NodeBattery;
+
+  constructor(nodeExplorationState: NodeExplorationState, nodeMovement: NodeMovement, nodeUpdate: NodeUpdate, nodeBattery: NodeBattery) {
     this.nodeMovement = nodeMovement;
     this.nodeExplorationState = nodeExplorationState;
     this.nodeUpdate = nodeUpdate;
+    this.nodeBattery = nodeBattery;
   }
 
   // Start all nodes
@@ -22,6 +26,7 @@ export class NodeManager {
     this.nodeMovement.initNodeMovement();
     this.nodeExplorationState.initNodeExplorationState();
     this.nodeUpdate.initNodeScan();
+    this.nodeBattery.initNodeBattery();
   }
 
   // Send command to move limo
@@ -53,5 +58,6 @@ export class NodeManager {
     this.nodeMovement.closeNodeMovement();
     this.nodeExplorationState.closeNodeExplorationState();
     this.nodeUpdate.closeNodeUpdate();
+    this.nodeBattery.closeNodeBattery();
   }
 }

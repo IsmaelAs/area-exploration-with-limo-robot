@@ -1,16 +1,22 @@
 import { Ros, Topic } from 'roslib';
 import { BRIDGE_URI } from '../../../constants/url';
+import { Observable, Subject } from 'rxjs';
 
-export default class NodeBattery {
+export class NodeBattery {
   private ros: Ros;
 
   private batterySubscriber: Topic;
 
   private data: {percentage: number};
 
+  private batterySubject: Subject<{ percentage: number }> = new Subject();
+
   private name = 'Node Battery';
 
-  initNodeScan() {
+  isLowBattery = false;
+
+
+  initNodeBattery() {
     this.ros = new Ros({ url: BRIDGE_URI });
 
     this.ros.on('error', (err: Error) => {
@@ -20,30 +26,48 @@ export default class NodeBattery {
     // Wait for ROS to connect to the bridge
     this.ros.on('connection', () => {
       console.log(`${this.name} : ROS connected`);
-      // Initialize subscriber
-    this.batterySubscriber = new Topic({
+      this.batterySubscriber = new Topic({
         ros: this.ros,
-        name: '/battery_state',
-        messageType: 'sensor_msgs/BatteryState',
+        name: '/limo_status',
+        messageType: 'limo_base/LimoStatus',
       });
-    this.batterySubscriber.subscribe(this.callBack.bind(this));
+      this.batterySubscriber.subscribe(this.callBack.bind(this));
     });
   }
 
-  private callBack(data: {percentage: number}): void {
-    this.data = data;
-  }
+  private callBack(message: { battery_voltage: number; }): void {
+    const minVoltage = 8.25;
+    const maxVoltage = 12.6;
+    const batteryVoltage = message.battery_voltage;
 
-  onLowBattery(percentage: number = 100): void {
+    // Calculate the battery percentage
+    const percentage = ((batteryVoltage - minVoltage) / (maxVoltage - minVoltage)) * 100;
+
+    // Log the battery level
+    //console.log('This is the battery level:', percentage);
+
     // Check if the battery is below 30%
     if (percentage < 30) {
       console.log('Battery level is below 30%');
+      this.isLowBattery = true;
+    } else {
+      this.isLowBattery = false;
     }
- }
 
-  
+    // Update the data object
+    this.data = { percentage };
+
+    // Emit the new battery data
+    this.batterySubject.next(this.data);
+  }
+
+
   getData(): {percentage: number} {
     return this.data;
+  }
+
+  getBatteryObservable(): Observable<{ percentage: number }> {
+    return this.batterySubject.asObservable();
   }
 
   closeNodeBattery() {
