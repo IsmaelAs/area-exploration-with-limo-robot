@@ -1,20 +1,21 @@
 #! /bin/bash 
 
 IS_SIMULATION=$1
-echo $IS_SIMULATION
+echo "is simulation  = $IS_SIMULATION"
+SIMULATION_FOLDER=$2
+echo  "'$SIMULATION_FOLDER'"
 
 MASTER_IP=$(hostname -I | head -n1 | awk '{print $1;}')
 ROS_MASTER_URI="http://${MASTER_IP}:11311"
 echo $ROS_MASTER_URI
 
 
-docker build  -t ros-packages-server ./ros-packages 
-docker build  -t ros-server ./ros-server
+if ([ ! -z "$SIMULATION_FOLDER" ] && [ "$IS_SIMUALTION" == "true" ]) || ([ ! -z "$SIMULATION_FOLDER" ] && [ "$IS_SIMULATION" == "1" ]); then 
 
+  docker build  -t ros-packages-server ./ros-packages 
+  docker build  -t ros-server ./ros-server
 
-if [ "$IS_SIMUALTION" == "true" ] || [ "$IS_SIMULATION" == "1" ]; then 
-
-  source /home/ubuntu/Desktop/catkin_ws/devel/setup.bash
+  source $SIMULATION_FOLDER
   
   cp -r ./ros-packages/simulation/launch $(rospack find limo_gazebo_sim)
   cp -r ./ros-packages/simulation/worlds $(rospack find limo_gazebo_sim)
@@ -38,7 +39,10 @@ if [ "$IS_SIMUALTION" == "true" ] || [ "$IS_SIMULATION" == "1" ]; then
   docker run --name ros-server-2 -p 9333:9333 --rm -e LIMO_IP=$LIMO_IP_SIMU_2 -e IS_SIMULATION=1 -e LIMO_ID='2'   ros-server
 
 
-else 
+elif [ "$IS_SIMULATION" == "" ]; then
+
+  docker build  -t ros-packages-server ./ros-packages 
+  docker build  -t ros-server ./ros-server
 
   docker run --name ros-packages-server  --network host --rm -e ROS_MASTER_URI=$ROS_MASTER_URI -d ros-packages-server
   sleep 10
@@ -47,5 +51,9 @@ else
   echo $LIMO_IP
 
   docker run --name ros-server -p 9332:9332 --rm -e LIMO_IP=$LIMO_IP   ros-server
+
+else 
+
+  echo "Le bon format pour lancer la simulation est : sudo ./start-limo.sh 1 < Chemin du dossier de dependance gazebo >"
 
 fi 
