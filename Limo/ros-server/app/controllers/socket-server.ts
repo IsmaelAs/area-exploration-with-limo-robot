@@ -1,7 +1,6 @@
 import { Logger } from '../services/logger';
 import { NodeManager } from '../classes/nodes-manager';
 import { Server } from 'socket.io';
-import delay from 'delay';
 import { Subscription } from 'rxjs';
 import LogType from '../types/LogType';
 import { MyStateMachine } from '../classes/state-machine';
@@ -52,6 +51,7 @@ export class SocketServer {
       this.clientCounter++;
 
       socket.on('login', (limoId: number) => {
+        console.log('login from', limoId);
         this.limoId = limoId;
         this.logger.setLimoId(this.limoId);
         this.stateMachine.setLimoId(this.limoId);
@@ -97,7 +97,7 @@ export class SocketServer {
         console.log(`On Limo Error : ${err.stack}`);
       });
 
-      socket.on('start-mission', async () => {
+      socket.on('start-mission', () => {
         if (!this.isMissionStopped) return;
 
         this.loggerObservable = this.logger.logObservable.subscribe(this.sendLogs.bind(this));
@@ -105,9 +105,6 @@ export class SocketServer {
         this.logger.startLogs();
         this.stateMachine.onMission();
         this.isMissionStopped = false;
-
-        // eslint-disable-next-line no-magic-numbers
-        await delay(1000);
         this.nodeManager.startMission();
       });
 
@@ -122,6 +119,10 @@ export class SocketServer {
         this.stateMachine.onReady();
       });
 
+      socket.on('update', async () => {
+        await this.nodeManager.update();
+      });
+
       socket.on('disconnect', () => {
         console.log(`Server disconnected from Limo ${this.limoId} robot`);
         this.clientCounter--;
@@ -131,7 +132,7 @@ export class SocketServer {
 
   private callBack() {
     const distance = this.p2pPosition.getDistance();
-    console.log("Dans le call back de Limo1.... la disstance est : " + distance)
+    console.log(`Dans le call back de Limo1.... la disstance est : ${distance}`);
     if (distance) this.emit('p2p-distance', distance);
   }
 

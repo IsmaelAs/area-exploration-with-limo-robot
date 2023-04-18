@@ -1,4 +1,3 @@
-/* eslint-disable no-magic-numbers */
 import * as http from 'http';
 import { AddressInfo } from 'net';
 import { Application } from './app';
@@ -8,7 +7,7 @@ import { NodeExplorationState } from './classes/ros/nodes/node-exploration-state
 import { NodeMovement } from './classes/ros/nodes/node-movement';
 import { NodeManager } from './classes/nodes-manager';
 import { Logger } from './services/logger';
-// Import { MyStateMachine } from './classes/state-machine';
+import { NodeUpdate } from './classes/ros/nodes/node-update';
 
 
 export class Server {
@@ -64,7 +63,8 @@ val;
     });
     const nodeExplorationState = new NodeExplorationState();
     const nodeMovement = new NodeMovement();
-    const nodeManager = new NodeManager(nodeExplorationState, nodeMovement);
+    const nodeUpdate = new NodeUpdate();
+    const nodeManager = new NodeManager(nodeExplorationState, nodeMovement, nodeUpdate);
     const logger = new Logger();
     this.socketManager = new SocketManager(this.io, nodeManager, logger);
     this.socketManager.connectSocketServer();

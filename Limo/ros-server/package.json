@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon",
+    "start": "nodemon --exitcrash",
     "build": "rimraf out && tsc --project tsconfig.app.json",
     "test": "nyc mocha"
   },
