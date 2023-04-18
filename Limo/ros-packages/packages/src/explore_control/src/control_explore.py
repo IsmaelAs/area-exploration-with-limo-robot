@@ -57,6 +57,19 @@ class ExplorationControl:
             self.publishState.publish(new_msg)
         else:
             if self.explore_lite_process is not None:
+                map_save_process = subprocess.Popen(
+                ["python3", "/agx_ws/src/explore_control/src/save_map.py"],
+                stderr=subprocess.PIPE, preexec_fn=os.setpgrp  
+                )
+                # Wait for the process to complete and get the output and error messages
+                stdout, stderr = map_save_process.communicate()
+
+                # Check the return code of the command
+                if map_save_process.returncode == 0:
+                    print("Map saved successfully")
+                else:
+                    print("Error saving map:")
+                    print(stderr.decode("utf-8"))
                 self.explore_lite_process.terminate()
                 self.explore_lite_process = None
                 self.return_to_base_process.terminate()
