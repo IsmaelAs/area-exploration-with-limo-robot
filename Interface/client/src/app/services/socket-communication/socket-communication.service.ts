@@ -26,6 +26,10 @@ export class SocketCommunicationService {
 
     }
 
+    updateLimo (limo: RobotTargetType) {
+        this.emit('update', limo);
+    }
+
     startP2P () {
 
         this.emit('p2p-start');

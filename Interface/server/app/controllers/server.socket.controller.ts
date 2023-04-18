@@ -59,8 +59,11 @@ export class ServerSocketController {
         this.logger.getAllData(missionNumber, socket);
       });
 
-      socket.on('send-limo-ips', (ips: {limo1: string, limo2: string}) => {
+      socket.on('update', (robotTarget: RobotTargetType) => {
+        this.sendEventToLimo(robotTarget, 'update');
+      });
 
+      socket.on('send-limo-ips', (ips: {limo1: string, limo2: string}) => {
         const LIMO1_URL = `ws://${ips.limo1}:9332`;
         const LIMO2_URL = `ws://${ips.limo2}:${process.env.IS_SIMULATION ? '9333' : '9332'}`;
 
