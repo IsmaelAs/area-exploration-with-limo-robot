@@ -7,6 +7,7 @@ import * as swaggerJSDoc from 'swagger-jsdoc';
 import * as swaggerUi from 'swagger-ui-express';
 import { Service } from 'typedi';
 import { HttpException } from './classes/http.exception';
+import { HttpMissionHandler } from './controllers/http-mission-handler.controller';
 
 
 @Service()
@@ -16,6 +17,8 @@ export class Application {
   private readonly internalError: number = StatusCodes.INTERNAL_SERVER_ERROR;
 
   private readonly swaggerOptions: swaggerJSDoc.Options;
+
+  private readonly httpMissionHandler: HttpMissionHandler = new HttpMissionHandler();
 
   constructor() {
     this.app = express();
@@ -37,6 +40,7 @@ export class Application {
 
   bindRoutes(): void {
     this.app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerJSDoc(this.swaggerOptions)));
+    this.app.use('/history', this.httpMissionHandler.router);
     this.app.use('/', (req, res) => {
       res.redirect('/api/docs');
     });

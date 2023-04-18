@@ -1,15 +1,23 @@
 import Command from '../types/types';
+import { NodeBattery } from './ros/nodes/node-battery';
 import { NodeExplorationState } from './ros/nodes/node-exploration-state';
 import { NodeMovement } from './ros/nodes/node-movement';
+import { NodeUpdate } from './ros/nodes/node-update';
 
 export class NodeManager {
   private nodeMovement: NodeMovement;
 
   private nodeExplorationState: NodeExplorationState;
 
-  constructor(nodeExplorationState: NodeExplorationState, nodeMovement: NodeMovement) {
+  private nodeUpdate: NodeUpdate;
+
+  private nodeBattery: NodeBattery;
+
+  constructor(nodeExplorationState: NodeExplorationState, nodeMovement: NodeMovement, nodeUpdate: NodeUpdate, nodeBattery: NodeBattery) {
     this.nodeMovement = nodeMovement;
     this.nodeExplorationState = nodeExplorationState;
+    this.nodeUpdate = nodeUpdate;
+    this.nodeBattery = nodeBattery;
   }
 
   // Start all nodes
@@ -17,6 +25,8 @@ export class NodeManager {
     console.log(`Starting connection for the nodes`);
     this.nodeMovement.initNodeMovement();
     this.nodeExplorationState.initNodeExplorationState();
+    this.nodeUpdate.initNodeScan();
+    this.nodeBattery.initNodeBattery();
   }
 
   // Send command to move limo
@@ -36,10 +46,18 @@ export class NodeManager {
     this.nodeExplorationState.sendMessage({ data: false });
   }
 
+  async update() {
+    await this.nodeMovement.move('forward', 2);
+    await this.nodeMovement.move('backward', 2);
+    this.nodeUpdate.restartContainers();
+  }
+
   // Stop all nodes
   stop(): void {
     console.log(`Closing connection of nodes !`);
     this.nodeMovement.closeNodeMovement();
     this.nodeExplorationState.closeNodeExplorationState();
+    this.nodeUpdate.closeNodeUpdate();
+    this.nodeBattery.closeNodeBattery();
   }
 }

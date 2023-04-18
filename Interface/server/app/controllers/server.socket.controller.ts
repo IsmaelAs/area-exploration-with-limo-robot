@@ -3,6 +3,9 @@ import { ClientSocketLimo } from './client.socket.limo';
 import { Logger } from '../services/logger';
 import RobotTargetType from '../types/RobotType';
 import StateLimo from '../interfaces/state-limo';
+import delay = require('delay');
+import { MissionInfos } from '../services/mission-infos';
+import BatteryLimo from '../interfaces/battery-limo';
 
 const FIRST_LIMO = 1;
 const SECOND_LIMO = 2;
@@ -16,6 +19,8 @@ export class ServerSocketController {
   private socketLimo2?: ClientSocketLimo;
 
   private logger: Logger;
+
+  private missionInfos: MissionInfos;
 
   private clientCounter: number;
 
@@ -59,8 +64,25 @@ export class ServerSocketController {
         this.logger.getAllData(missionNumber, socket);
       });
 
-      socket.on('send-limo-ips', (ips: {limo1: string, limo2: string}) => {
+      socket.on('update', async (robotTarget: RobotTargetType) => {
+        this.sendEventToLimo(robotTarget, 'update');
 
+        if ((robotTarget === 'limo-1' || robotTarget === 'robots') && this.socketLimo) {
+          this.socketLimo.disconnect();
+          // eslint-disable-next-line no-magic-numbers
+          await delay(5000);
+          this.socketLimo.connectClientSocketToLimo();
+        }
+
+        if ((robotTarget === 'limo-2' || robotTarget === 'robots') && this.socketLimo2) {
+          this.socketLimo2.disconnect();
+          // eslint-disable-next-line no-magic-numbers
+          await delay(5000);
+          this.socketLimo2.connectClientSocketToLimo();
+        }
+      });
+
+      socket.on('send-limo-ips', (ips: {limo1: string, limo2: string}) => {
         const LIMO1_URL = `ws://${ips.limo1}:9332`;
         const LIMO2_URL = `ws://${ips.limo2}:${process.env.IS_SIMULATION ? '9333' : '9332'}`;
 
@@ -70,6 +92,7 @@ export class ServerSocketController {
 
           this.socketLimo.subscribeState.subscribe(this.sendStateToClient.bind(this));
           this.socketLimo.subscribeP2PConnected.subscribe(this.sendP2PConnectedToClient.bind(this));
+          this.socketLimo.subscribeBattery.subscribe(this.sendBatteryToClient.bind(this));
         }
 
         if (ips.limo2.replace(' ', '') !== '') {
@@ -77,6 +100,7 @@ export class ServerSocketController {
           this.socketLimo2.connectClientSocketToLimo();
 
           this.socketLimo2.subscribeState.subscribe(this.sendStateToClient.bind(this));
+          this.socketLimo2.subscribeBattery.subscribe(this.sendBatteryToClient.bind(this));
         }
       });
 
@@ -105,6 +129,8 @@ export class ServerSocketController {
 
   private stopMission() {
     this.logger.stopMission();
+    this.missionInfos.onMissionEnd();
+
 
     if (this.socketLimo) this.socketLimo.stopMission();
     if (this.socketLimo2) this.socketLimo2.stopMission();
@@ -113,6 +139,8 @@ export class ServerSocketController {
 
   private startMission() {
     this.logger.startMission();
+    this.missionInfos = new MissionInfos();
+    this.missionInfos.onMissionStart();
 
     if (this.socketLimo) this.socketLimo.startMission();
     if (this.socketLimo2) this.socketLimo2.startMission();
@@ -125,6 +153,10 @@ export class ServerSocketController {
 
   private sendP2PConnectedToClient(data: boolean) {
     this.sendEventToFrontend('p2p-connected', data);
+  }
+
+  private sendBatteryToClient(data: BatteryLimo) {
+    this.sendEventToFrontend('send-battery', data);
   }
 
   private sendEventToFrontend<T>(event: string, data?: T) {

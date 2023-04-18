@@ -1,12 +1,14 @@
 import { Logger } from '../services/logger';
 import { NodeManager } from '../classes/nodes-manager';
 import { Server } from 'socket.io';
-import delay from 'delay';
 import { Subscription } from 'rxjs';
 import LogType from '../types/LogType';
 import { MyStateMachine } from '../classes/state-machine';
 import StateType from '../types/StateType';
 import { P2PSocketClient } from './p2p-socket-client';
+import { P2PPosition } from '../classes/p2p-position';
+import { MissionDistance } from '../services/mission-distance';
+
 
 const NO_CLIENT = 0;
 
@@ -29,27 +31,42 @@ export class SocketServer {
 
   private p2pUrl = '';
 
+  private p2pPosition: P2PPosition;
+
+  private intervalPos: NodeJS.Timer;
+
   limoId: number;
+
+  private missionDistance: MissionDistance;
 
   constructor(server: Server, nodeManager: NodeManager, logger: Logger) {
     this.server = server;
     this.nodeManager = nodeManager;
     this.logger = logger;
     this.stateMachine = new MyStateMachine();
+    this.missionDistance = new MissionDistance(this.server);
   }
 
   // Connect the socket to the limo node server ; subscribe to all limo command ; start all nodes
   connectSocketServer(): void {
     this.nodeManager.startNodes();
+    console.log('normalement je me suis connecté à toutes les nodes');
+    // this.emit('test-emit', 'Hello World envoyé directement');
+    // this.missionDistance.sendTestMessage('Hello world');
+
     this.server.on('connection', (socket) => {
       console.log('Connected to node server');
 
       this.clientCounter++;
 
       socket.on('login', (limoId: number) => {
+        console.log('login from', limoId);
         this.limoId = limoId;
         this.logger.setLimoId(this.limoId);
         this.stateMachine.setLimoId(this.limoId);
+        this.missionDistance.setLimoId(this.limoId);
+        this.nodeManager['nodeBattery'].getBatteryObservable().subscribe(this.sendBattery.bind(this));
+
 
         this.stateMachine.stateObservable.subscribe(this.sendState.bind(this));
         this.stateMachine.startStates();
@@ -59,10 +76,17 @@ export class SocketServer {
       socket.on('p2p-login', (p2pUrl: string) => {
         this.p2pUrl = p2pUrl;
         if (this.limoId === 2) this.p2pSocketClient = new P2PSocketClient(this.p2pUrl);
+        else this.p2pPosition = new P2PPosition(this.limoId);
       });
 
       socket.on('p2p-start', () => {
         if (this.limoId === 2) this.p2pSocketClient?.activateP2P();
+        else this.intervalPos = setInterval(this.callBack.bind(this), 1000);
+      });
+
+      socket.on('p2p-stop', () => {
+        if (this.limoId === 2) this.p2pSocketClient?.activateP2P();
+        else clearInterval(this.intervalPos);
       });
 
       socket.on('p2p-activated', () => {
@@ -73,6 +97,10 @@ export class SocketServer {
         socket.broadcast.emit('p2p-connected', false);
       });
 
+      socket.on('p2p-distance', (distance: number) => {
+        this.p2pPosition.setP2PDistance(distance);
+      });
+
       socket.on('identify', async () => {
         await this.nodeManager.identify();
       });
@@ -81,17 +109,15 @@ export class SocketServer {
         console.log(`On Limo Error : ${err.stack}`);
       });
 
-      socket.on('start-mission', async () => {
+      socket.on('start-mission', () => {
         if (!this.isMissionStopped) return;
 
         this.loggerObservable = this.logger.logObservable.subscribe(this.sendLogs.bind(this));
 
         this.logger.startLogs();
+        this.missionDistance.startMission();
         this.stateMachine.onMission();
         this.isMissionStopped = false;
-
-        // eslint-disable-next-line no-magic-numbers
-        await delay(1000);
         this.nodeManager.startMission();
       });
 
@@ -102,8 +128,13 @@ export class SocketServer {
         this.stateMachine.onMissionEnd();
         this.nodeManager.stopMission();
         this.logger.stopLog();
+        this.missionDistance.stopMission();
         this.loggerObservable.unsubscribe();
         this.stateMachine.onReady();
+      });
+
+      socket.on('update', async () => {
+        await this.nodeManager.update();
       });
 
       socket.on('disconnect', () => {
@@ -111,6 +142,12 @@ export class SocketServer {
         this.clientCounter--;
       });
     });
+  }
+
+  private callBack() {
+    const distance = this.p2pPosition.getDistance();
+    console.log(`Dans le call back de Limo1.... la disstance est : ${distance}`);
+    if (distance) this.emit('p2p-distance', distance);
   }
 
   emit<T>(event: string, data?: T) {
@@ -124,4 +161,10 @@ export class SocketServer {
   private sendState(data: StateType) {
     this.emit('save-state', data);
   }
+
+  private sendBattery(data: { percentage: number }) {
+    this.emit('save-battery', {limoId: this.limoId,
+      battery: data.percentage});
+  }
 }
+
