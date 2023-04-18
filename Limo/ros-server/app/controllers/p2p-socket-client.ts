@@ -48,7 +48,7 @@ export class P2PSocketClient {
         window.location.reload();
       });
       this.intervalPos = setInterval(this.callBackPos.bind(this), 1000);
-      this.intervalMap = setInterval(this.callBackMap.bind(this), 500);
+      this.intervalMap = setInterval(this.callBackMap.bind(this), 10000);
       this.socket.on('p2p-distance', (distance: number) => {
         this.p2pPosition.setP2PDistance(distance);
       });
@@ -57,9 +57,11 @@ export class P2PSocketClient {
 
   private callBackMap() {
     const map = this.nodeMap.getMap();
-    console.log("Dans le call back Map de Limo2.... la Map est : ");
-    console.log(map);
-    if (map) this.emit('p2p-map', map);
+    console.log("Dans le call back Map de Limo2.... ");
+    if (map) {
+      console.log("Il y a une map");
+      this.emit('p2p-map', map); 
+    }
   }
 
   private callBackPos() {

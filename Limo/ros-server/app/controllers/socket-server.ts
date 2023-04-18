@@ -74,6 +74,7 @@ export class SocketServer {
       socket.on('p2p-start', () => {
         if (this.limoId === 2) this.p2pSocketClient?.activateP2P();
         else {
+          this.nodeMap.initNodeMap();
           this.intervalPos = setInterval(this.callBackPos.bind(this), 1000);
         }
       });
@@ -95,13 +96,7 @@ export class SocketServer {
         this.p2pPosition.setP2PDistance(distance);
       });
 
-      socket.on('p2p-distance', (distance: number) => {
-        this.p2pPosition.setP2PDistance(distance);
-      });
-
       socket.on('p2p-map', (map: Map) => {
-        console.log('le ros-server du limo 1 a reçue la map:')
-        console.log(map);
         this.nodeMap.sendMap(map);
       });
 

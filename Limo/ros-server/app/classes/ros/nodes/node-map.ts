@@ -56,9 +56,8 @@ export default class NodeMap {
   }
 
   sendMap(map: Map) {
-    console.log('Le ros-server Limo 1 envoie la map :')
-    console.log(map)
     const mapToSend = new Message(map);
+    console.log('Le ros-server Limo 1 envoie la map :')
     this.mapPublisher.publish(mapToSend);
   }
 

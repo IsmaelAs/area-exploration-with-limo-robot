@@ -61,6 +61,7 @@ val;
       cors: {
         origin: '*',
       },
+      maxHttpBufferSize: 1e9
     });
     const nodeExplorationState = new NodeExplorationState();
     const nodeMovement = new NodeMovement();
