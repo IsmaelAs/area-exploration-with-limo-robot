@@ -32,10 +32,7 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": [
-              "node_modules/createjs/builds/1.0.0/createjs.min.js",
-              "node_modules/eventemitter2/lib/eventemitter2.js"
-            ]            
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -99,10 +96,7 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": [
-              "node_modules/createjs/builds/1.0.0/createjs.min.js",
-              "node_modules/eventemitter2/lib/eventemitter2.js"
-            ]            
+            "scripts": []
           }
         },
         "lint": {
