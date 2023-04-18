@@ -64,7 +64,7 @@ export class SocketServer {
       socket.on('p2p-login', (p2pUrl: string) => {
         this.p2pUrl = p2pUrl;
         if (this.limoId === 2) this.p2pSocketClient = new P2PSocketClient(this.p2pUrl);
-        else this.p2pPosition = new P2PPosition(this.limoId);
+        else this.p2pPosition = new P2PPosition(1) 
       });
 
       socket.on('p2p-start', () => {

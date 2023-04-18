@@ -48,10 +48,17 @@ export class P2PPosition {
   }
 
   getFurthestLimo() {
+    console.log('This is limoId : ' + this.limoId )
+    console.log('My distance is : ' + this.distance )
+    console.log('The P2P distance is : ' + this.p2pDistance )
+
+
     if (this.distance > this.p2pDistance) this.furthestLimo = this.limoId;
     // Return the opposite ID
-    else this.furthestLimo = this.limoId === 1 ? 2 : 1;
-    console.log("the fursthest limo is :  "+ this.furthestLimo)
+    else  {
+      this.furthestLimo = this.limoId === 1 ? 2 : 1; 
+    }
+    console.log("the fursthest limo is of ID :  "+ this.furthestLimo)
     return this.furthestLimo;
   }
 }
