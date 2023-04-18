@@ -1,10 +1,11 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import rospy
 from std_msgs.msg import Bool
 import os
 import subprocess
 from explore_control.msg import BoolString
+from datetime import datetime
 
 class ExplorationControl:
     def __init__(self):
@@ -30,6 +31,19 @@ class ExplorationControl:
     def stop_explore_lite(self, msg: BoolString):
         if msg.info in self.explore_lite_processes:
             rospy.loginfo("Stopping explore_control for simulated limo...")
+            map_save_process = subprocess.Popen(
+              ["python3", "./ros-packages/packages/src/explore_control/src/save_map.py", '-s', f"{msg.info}"],
+              stderr=subprocess.PIPE, preexec_fn=os.setpgrp  
+            )
+            # Wait for the process to complete and get the output and error messages
+            stdout, stderr = map_save_process.communicate()
+
+            # Check the return code of the command
+            if map_save_process.returncode == 0:
+                print("Map saved successfully")
+            else:
+                print("Error saving map:")
+                print(stderr.decode("utf-8"))
             self.explore_lite_processes[f'{msg.info}'].terminate()
             del self.explore_lite_processes[f'{msg.info}']
 
