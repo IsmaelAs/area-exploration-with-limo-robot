@@ -12,12 +12,18 @@ th, td {
     border-bottom: 1px solid #ddd;
 }
 th {
-    background-color: #f2f2f2;
-    cursor: pointer;
+    background-color: rgb(0, 180, 0); /* Green */
+    color: white;
 }
+
 th:hover {
-    background-color: #ddd;
+    background-color: #0a4d0c;
 }
-tr:hover {
-    background-color: #f5f5f5;
+
+tr {
+    background-color: rgb(0, 180, 0);
+        cursor: pointer;
+        padding: 15px 32px;
+        font-size: 16px;
+        border-radius: 8px;
 }
