@@ -27,10 +27,11 @@ docker build -t ros-server ./ros-server || { echo "Error: Failed to build ros-se
 
 wait
 
-echo "Sourcing ${PATH_TO_SETUP_BASH}..."
-source ${PATH_TO_SETUP_BASH} --extend || { echo "Error: Failed to source setup.bash"; exit 1; }
 
 if [ "$IS_SIMULATION" == "true" ] || [ "$IS_SIMULATION" == "1" ]; then
+  echo "Sourcing ${PATH_TO_SETUP_BASH}..."
+  source ${PATH_TO_SETUP_BASH} --extend || { echo "Error: Failed to source setup.bash"; exit 1; }
+
 
   echo "Copying files..."
   cp -r ./ros-packages/simulation/launch $(rospack find limo_gazebo_sim) || { echo "Error: Failed to copy launch files"; exit 1; } &
