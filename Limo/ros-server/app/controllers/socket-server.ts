@@ -9,7 +9,7 @@ import StateType from '../types/StateType';
 import { P2PSocketClient } from './p2p-socket-client';
 import { P2PPosition } from '../classes/p2p-position';
 import Map from '../types/Map';
-import NodeMap from '@app/classes/ros/nodes/node-map';
+import NodeMap from '../classes/ros/nodes/node-map';
 
 const NO_CLIENT = 0;
 
