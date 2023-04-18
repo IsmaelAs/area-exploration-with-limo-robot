@@ -8,6 +8,8 @@ import { MyStateMachine } from '../classes/state-machine';
 import StateType from '../types/StateType';
 import { P2PSocketClient } from './p2p-socket-client';
 import { P2PPosition } from '../classes/p2p-position';
+import Map from '../types/Map';
+import NodeMap from '@app/classes/ros/nodes/node-map';
 
 const NO_CLIENT = 0;
 
@@ -33,6 +35,8 @@ export class SocketServer {
   private p2pPosition: P2PPosition;
 
   private intervalPos: NodeJS.Timer;
+
+  private nodeMap: NodeMap = new NodeMap();
 
   limoId: number;
 
@@ -64,12 +68,14 @@ export class SocketServer {
       socket.on('p2p-login', (p2pUrl: string) => {
         this.p2pUrl = p2pUrl;
         if (this.limoId === 2) this.p2pSocketClient = new P2PSocketClient(this.p2pUrl);
-        else this.p2pPosition = new P2PPosition(this.limoId);
+        else this.p2pPosition = new P2PPosition(1);
       });
 
       socket.on('p2p-start', () => {
         if (this.limoId === 2) this.p2pSocketClient?.activateP2P();
-        else this.intervalPos = setInterval(this.callBack.bind(this), 1000);
+        else {
+          this.intervalPos = setInterval(this.callBackPos.bind(this), 1000);
+        }
       });
 
       socket.on('p2p-stop', () => {
@@ -87,6 +93,16 @@ export class SocketServer {
 
       socket.on('p2p-distance', (distance: number) => {
         this.p2pPosition.setP2PDistance(distance);
+      });
+
+      socket.on('p2p-distance', (distance: number) => {
+        this.p2pPosition.setP2PDistance(distance);
+      });
+
+      socket.on('p2p-map', (map: Map) => {
+        console.log('le ros-server du limo 1 a reçue la map:')
+        console.log(map);
+        this.nodeMap.sendMap(map);
       });
 
       socket.on('identify', async () => {
@@ -129,9 +145,9 @@ export class SocketServer {
     });
   }
 
-  private callBack() {
+  private callBackPos() {
     const distance = this.p2pPosition.getDistance();
-    console.log("Dans le call back de Limo1.... la disstance est : " + distance)
+    console.log("Dans le call back Pos de Limo1.... la disstance est : " + distance)
     if (distance) this.emit('p2p-distance', distance);
   }
 

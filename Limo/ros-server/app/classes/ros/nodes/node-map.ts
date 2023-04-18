@@ -1,11 +1,14 @@
 import { Ros, Topic } from 'roslib';
 import { BRIDGE_URI } from '../../../constants/url';
 import  Map from '../../../types/Map';
+import { Message } from 'roslib';
 
 export default class NodeMap {
   private ros: Ros;
 
   private mapSubscriber: Topic;
+
+  private mapPublisher: Topic;
 
   private data: Map;
 
@@ -27,8 +30,16 @@ export default class NodeMap {
         name: '/map',
         messageType: 'nav_msgs/OccupancyGrid',
       });
+
+    this.mapPublisher = new Topic({
+      ros: this.ros,
+      name: '/p2p/map',
+      messageType: 'nav_msgs/OccupancyGrid',
+    });
+
     this.mapSubscriber.subscribe(this.callBack.bind(this));
     });
+
   }
 
   private callBack(data: Map): void {
@@ -36,11 +47,18 @@ export default class NodeMap {
   }
 
   
-  getData(): Map {
+  getMap(): Map {
     return this.data;
   }
 
-  closeNodeBattery() {
+  sendMap(map: Map) {
+    console.log('Le ros-server Limo 1 envoie la map :')
+    console.log(map)
+    const mapToSend = new Message(map);
+    this.mapPublisher.publish(mapToSend);
+  }
+
+  closeNodeMap() {
     if (this.ros) this.ros.close();
   }
 }
