@@ -1,0 +1,629 @@
+[33m[ WARN] [1681849603.139703781]: link 'laser_link' material 'laser_material' undefined.[0m
+[33m[ WARN] [1681849603.140779009]: link 'laser_link' material 'laser_material' undefined.[0m
+[33m[ WARN] [1681849603.140900666]: link 'depth_camera_link' material 'depth_camera_material' undefined.[0m
+[33m[ WARN] [1681849603.140928087]: link 'depth_camera_link' material 'depth_camera_material' undefined.[0m
+[33m[ WARN] [1681849603.141010987]: link 'imu_link' material 'imu_material' undefined.[0m
+[33m[ WARN] [1681849603.141032964]: link 'imu_link' material 'imu_material' undefined.[0m
+[33m[ WARN] [1681849603.214374229]: link 'laser_link' material 'laser_material' undefined.[0m
+[33m[ WARN] [1681849603.216919631]: link 'laser_link' material 'laser_material' undefined.[0m
+[33m[ WARN] [1681849603.217007596]: link 'depth_camera_link' material 'depth_camera_material' undefined.[0m
+[33m[ WARN] [1681849603.217024168]: link 'depth_camera_link' material 'depth_camera_material' undefined.[0m
+[33m[ WARN] [1681849603.217071445]: link 'imu_link' material 'imu_material' undefined.[0m
+[33m[ WARN] [1681849603.217085841]: link 'imu_link' material 'imu_material' undefined.[0m
+[ERROR] [1681849605.200143, 0.000000]: Spawn service failed. Exiting.
+[31m[ERROR] [1681849606.437098706, 218.170000000]: No p gain specified for pid.  Namespace: /limo2/gazebo_ros_control/pid_gains/front_right_wheel[0m
+[31m[ERROR] [1681849606.438112147, 218.170000000]: No p gain specified for pid.  Namespace: /limo2/gazebo_ros_control/pid_gains/front_left_wheel[0m
+[31m[ERROR] [1681849606.438885265, 218.170000000]: No p gain specified for pid.  Namespace: /limo2/gazebo_ros_control/pid_gains/rear_left_wheel[0m
+[31m[ERROR] [1681849606.439655234, 218.170000000]: No p gain specified for pid.  Namespace: /limo2/gazebo_ros_control/pid_gains/rear_right_wheel[0m
+[31m[ERROR] [1681849607.319670505, 218.170000000]: No p gain specified for pid.  Namespace: /limo1/gazebo_ros_control/pid_gains/front_right_wheel[0m
+[31m[ERROR] [1681849607.320671713, 218.170000000]: No p gain specified for pid.  Namespace: /limo1/gazebo_ros_control/pid_gains/front_left_wheel[0m
+[31m[ERROR] [1681849607.321445200, 218.170000000]: No p gain specified for pid.  Namespace: /limo1/gazebo_ros_control/pid_gains/rear_left_wheel[0m
+[31m[ERROR] [1681849607.322142549, 218.170000000]: No p gain specified for pid.  Namespace: /limo1/gazebo_ros_control/pid_gains/rear_right_wheel[0m
+grep: buffer_core: No such file or directory
+2023-04-18 20:28:42+0000 [-] Log opened.
+2023-04-18 20:28:42+0000 [-] registered capabilities (classes):
+2023-04-18 20:28:42+0000 [-]  - <class 'rosbridge_library.capabilities.call_service.CallService'>
+2023-04-18 20:28:42+0000 [-]  - <class 'rosbridge_library.capabilities.advertise.Advertise'>
+2023-04-18 20:28:42+0000 [-]  - <class 'rosbridge_library.capabilities.publish.Publish'>
+2023-04-18 20:28:42+0000 [-]  - <class 'rosbridge_library.capabilities.subscribe.Subscribe'>
+2023-04-18 20:28:42+0000 [-]  - <class 'rosbridge_library.capabilities.defragmentation.Defragment'>
+2023-04-18 20:28:42+0000 [-]  - <class 'rosbridge_library.capabilities.advertise_service.AdvertiseService'>
+2023-04-18 20:28:42+0000 [-]  - <class 'rosbridge_library.capabilities.service_response.ServiceResponse'>
+2023-04-18 20:28:42+0000 [-]  - <class 'rosbridge_library.capabilities.unadvertise_service.UnadvertiseService'>
+[0m[ INFO] [1681849722.872983927, 333.620000000]: Laser is mounted upwards.[0m
+ -maxUrange 7.99 -maxUrange 7.99 -sigma     0.05 -kernelSize 1 -lstep 0.05 -lobsGain 3 -astep 0.05
+ -srr 0.1 -srt 0.2 -str 0.1 -stt 0.2
+ -linearUpdate 1 -angularUpdate 0.5 -resampleThreshold 0.5
+ -xmin -100 -xmax 100 -ymin -100 -ymax 100 -delta 0.05 -particles 30
+[0m[ INFO] [1681849722.886548207, 333.630000000]: Initialization complete[0m
+update frame 0
+update ld=0 ad=0
+m_count 0
+Registering First Scan
+2023-04-18 20:28:42+0000 [-] WebSocketServerFactory starting on 9090
+2023-04-18 20:28:42+0000 [-] Starting factory <autobahn.twisted.websocket.WebSocketServerFactory object at 0x7f5667843cd0>
+2023-04-18 20:28:42+0000 [-] [INFO] [1681849722.968214, 333.710000]: Rosbridge WebSocket server started at ws://0.0.0.0:9090
+[0m[ INFO] [1681849723.006308762, 333.750000000]: Laser is mounted upwards.[0m
+ -maxUrange 7.99 -maxUrange 7.99 -sigma     0.05 -kernelSize 1 -lstep 0.05 -lobsGain 3 -astep 0.05
+ -srr 0.1 -srt 0.2 -str 0.1 -stt 0.2
+ -linearUpdate 1 -angularUpdate 0.5 -resampleThreshold 0.5
+ -xmin -100 -xmax 100 -ymin -100 -ymax 100 -delta 0.05 -particles 30
+[0m[ INFO] [1681849723.017822708, 333.760000000]: Initialization complete[0m
+update frame 0
+update ld=0 ad=0
+m_count 0
+Registering First Scan
+grep: buffer_core: No such file or directory
+grep: buffer_core: No such file or directory
+... logging to /home/ubuntu/.ros/log/543f8394-de27-11ed-a81f-bfc7119f6416/roslaunch-ip-172-31-43-175-199452.log
+Checking log directory for disk usage. This may take a while.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is <1GB.
+]2;/home/ubuntu/limo_ws/src/limo_ros/ugv_sim/limo/limo_gazebo_sim/launch/main_navigation.launch
+[1mstarted roslaunch server http://ip-172-31-43-175:35277/[0m
+
+SUMMARY
+========
+
+PARAMETERS
+ * /limo1/amcl/base_frame_id: limo1/base_footprint
+ * /limo1/amcl/global_frame_id: limo1/map
+ * /limo1/amcl/gui_publish_rate: 10.0
+ * /limo1/amcl/initial_pose_a: 0
+ * /limo1/amcl/initial_pose_x: 0
+ * /limo1/amcl/initial_pose_y: 0
+ * /limo1/amcl/kld_err: 0.05
+ * /limo1/amcl/kld_z: 0.99
+ * /limo1/amcl/laser_lambda_short: 0.1
+ * /limo1/amcl/laser_likelihood_max_dist: 2.0
+ * /limo1/amcl/laser_max_beams: 60
+ * /limo1/amcl/laser_max_range: 60.0
+ * /limo1/amcl/laser_model_type: likelihood_field
+ * /limo1/amcl/laser_sigma_hit: 0.2
+ * /limo1/amcl/laser_z_hit: 0.5
+ * /limo1/amcl/laser_z_max: 0.05
+ * /limo1/amcl/laser_z_rand: 0.5
+ * /limo1/amcl/laser_z_short: 0.05
+ * /limo1/amcl/max_particles: 2000
+ * /limo1/amcl/min_particles: 500
+ * /limo1/amcl/odom_alpha1: 0.2
+ * /limo1/amcl/odom_alpha2: 0.2
+ * /limo1/amcl/odom_alpha3: 0.2
+ * /limo1/amcl/odom_alpha4: 0.2
+ * /limo1/amcl/odom_alpha5: 0.1
+ * /limo1/amcl/odom_frame_id: limo1/odom
+ * /limo1/amcl/odom_model_type: diff
+ * /limo1/amcl/recovery_alpha_fast: 0.0
+ * /limo1/amcl/recovery_alpha_slow: 0.0
+ * /limo1/amcl/resample_interval: 1
+ * /limo1/amcl/transform_tolerance: 0.2
+ * /limo1/amcl/update_min_a: 0.5
+ * /limo1/amcl/update_min_d: 0.25
+ * /limo1/amcl/use_map_topic: True
+ * /limo1/move_base/DWAPlannerROS/acc_lim_theta: 2.0
+ * /limo1/move_base/DWAPlannerROS/acc_lim_x: 1.0
+ * /limo1/move_base/DWAPlannerROS/acc_lim_y: 0.0
+ * /limo1/move_base/DWAPlannerROS/angular_sim_granularity: 0.02
+ * /limo1/move_base/DWAPlannerROS/forward_point_distance: 0.325
+ * /limo1/move_base/DWAPlannerROS/global_frame_id: map
+ * /limo1/move_base/DWAPlannerROS/goal_distance_bias: 0.8
+ * /limo1/move_base/DWAPlannerROS/holonomic_robot: False
+ * /limo1/move_base/DWAPlannerROS/latch_xy_goal_tolerance: False
+ * /limo1/move_base/DWAPlannerROS/max_rot_vel: 0.8
+ * /limo1/move_base/DWAPlannerROS/max_scaling_factor: 0.2
+ * /limo1/move_base/DWAPlannerROS/max_trans_vel: 0.1
+ * /limo1/move_base/DWAPlannerROS/max_vel_x: 0.4
+ * /limo1/move_base/DWAPlannerROS/max_vel_y: 0.0
+ * /limo1/move_base/DWAPlannerROS/min_rot_vel: 0.5
+ * /limo1/move_base/DWAPlannerROS/min_trans_vel: -0.1
+ * /limo1/move_base/DWAPlannerROS/min_vel_x: -0.35
+ * /limo1/move_base/DWAPlannerROS/min_vel_y: 0.0
+ * /limo1/move_base/DWAPlannerROS/occdist_scale: 0.1
+ * /limo1/move_base/DWAPlannerROS/oscillation_reset_dist: 0.05
+ * /limo1/move_base/DWAPlannerROS/path_distance_bias: 40.0
+ * /limo1/move_base/DWAPlannerROS/publish_cost_grid_pc: True
+ * /limo1/move_base/DWAPlannerROS/publish_traj_pc: True
+ * /limo1/move_base/DWAPlannerROS/rot_stopped_vel: 1
+ * /limo1/move_base/DWAPlannerROS/scaling_speed: 0.25
+ * /limo1/move_base/DWAPlannerROS/sim_granularity: 0.02
+ * /limo1/move_base/DWAPlannerROS/sim_time: 1.5
+ * /limo1/move_base/DWAPlannerROS/stop_time_buffer: 0.2
+ * /limo1/move_base/DWAPlannerROS/trans_stopped_vel: 0.1
+ * /limo1/move_base/DWAPlannerROS/vtheta_samples: 30
+ * /limo1/move_base/DWAPlannerROS/vx_samples: 25
+ * /limo1/move_base/DWAPlannerROS/vy_samples: 1
+ * /limo1/move_base/DWAPlannerROS/xy_goal_tolerance: 0.3
+ * /limo1/move_base/DWAPlannerROS/yaw_goal_tolerance: 0.3
+ * /limo1/move_base/TrajectoryPlannerROS/acc_lim_th: 0.7
+ * /limo1/move_base/TrajectoryPlannerROS/acc_lim_x: 0.5
+ * /limo1/move_base/TrajectoryPlannerROS/acc_lim_y: 0
+ * /limo1/move_base/TrajectoryPlannerROS/angular_sim_granularity: 0.025
+ * /limo1/move_base/TrajectoryPlannerROS/controller_frequency: 1.0
+ * /limo1/move_base/TrajectoryPlannerROS/dwa: False
+ * /limo1/move_base/TrajectoryPlannerROS/escape_vel: -0.2
+ * /limo1/move_base/TrajectoryPlannerROS/goal_distance_bias: 0.8
+ * /limo1/move_base/TrajectoryPlannerROS/heading_lookahead: 0.325
+ * /limo1/move_base/TrajectoryPlannerROS/holonomic_robot: False
+ * /limo1/move_base/TrajectoryPlannerROS/latch_xy_goal_tolerance: True
+ * /limo1/move_base/TrajectoryPlannerROS/max_rotational_vel: 1.0
+ * /limo1/move_base/TrajectoryPlannerROS/max_vel_theta: 0.5
+ * /limo1/move_base/TrajectoryPlannerROS/max_vel_x: 0.4
+ * /limo1/move_base/TrajectoryPlannerROS/min_in_place_rotational_vel: 0.8
+ * /limo1/move_base/TrajectoryPlannerROS/min_in_place_vel_theta: 0.8
+ * /limo1/move_base/TrajectoryPlannerROS/min_vel_theta: -0.5
+ * /limo1/move_base/TrajectoryPlannerROS/min_vel_x: 0.1
+ * /limo1/move_base/TrajectoryPlannerROS/occdist_scale: 0.01
+ * /limo1/move_base/TrajectoryPlannerROS/oscillation_reset_dist: 0.05
+ * /limo1/move_base/TrajectoryPlannerROS/path_distance_bias: 1.0
+ * /limo1/move_base/TrajectoryPlannerROS/planner_frequency: 1.0
+ * /limo1/move_base/TrajectoryPlannerROS/prune_plan: False
+ * /limo1/move_base/TrajectoryPlannerROS/sim_granularity: 0.025
+ * /limo1/move_base/TrajectoryPlannerROS/sim_time: 1.5
+ * /limo1/move_base/TrajectoryPlannerROS/vtheta_samples: 20
+ * /limo1/move_base/TrajectoryPlannerROS/vx_samples: 3
+ * /limo1/move_base/TrajectoryPlannerROS/xy_goal_tolerance: 0.1
+ * /limo1/move_base/TrajectoryPlannerROS/yaw_goal_tolerance: 0.1
+ * /limo1/move_base/base_global_planner: global_planner/Gl...
+ * /limo1/move_base/base_local_planner: dwa_local_planner...
+ * /limo1/move_base/clearing_rotation_allowed: True
+ * /limo1/move_base/controller_frequency: 5.0
+ * /limo1/move_base/controller_patience: 15.0
+ * /limo1/move_base/global_costmap/always_send_full_costmap: True
+ * /limo1/move_base/global_costmap/footprint: [[-0.16, -0.11], ...
+ * /limo1/move_base/global_costmap/footprint_padding: 0.02
+ * /limo1/move_base/global_costmap/global_frame: limo1/map
+ * /limo1/move_base/global_costmap/inflation_layer/cost_scaling_factor: 10.0
+ * /limo1/move_base/global_costmap/inflation_layer/enabled: True
+ * /limo1/move_base/global_costmap/inflation_layer/inflation_radius: 0.5
+ * /limo1/move_base/global_costmap/map_type: costmap
+ * /limo1/move_base/global_costmap/obstacle_layer/combination_method: 1
+ * /limo1/move_base/global_costmap/obstacle_layer/enabled: True
+ * /limo1/move_base/global_costmap/obstacle_layer/inflation_radius: 0.2
+ * /limo1/move_base/global_costmap/obstacle_layer/laser_scan_sensor/clearing: True
+ * /limo1/move_base/global_costmap/obstacle_layer/laser_scan_sensor/data_type: LaserScan
+ * /limo1/move_base/global_costmap/obstacle_layer/laser_scan_sensor/marking: True
+ * /limo1/move_base/global_costmap/obstacle_layer/laser_scan_sensor/topic: /limo1/scan
+ * /limo1/move_base/global_costmap/obstacle_layer/observation_sources: laser_scan_sensor
+ * /limo1/move_base/global_costmap/obstacle_layer/obstacle_range: 2.0
+ * /limo1/move_base/global_costmap/obstacle_layer/raytrace_range: 2.0
+ * /limo1/move_base/global_costmap/obstacle_layer/scan/sensor_frame: /limo1/base_scan
+ * /limo1/move_base/global_costmap/obstacle_layer/track_unknown_space: True
+ * /limo1/move_base/global_costmap/robot_base_frame: limo1/base_link
+ * /limo1/move_base/global_costmap/scan/sensor_frame: /limo1/base_scan
+ * /limo1/move_base/global_costmap/static_layer/enabled: True
+ * /limo1/move_base/global_costmap/static_layer/map_topic: /limo1/map
+ * /limo1/move_base/global_costmap/static_map: True
+ * /limo1/move_base/global_costmap/transform_tolerance: 0.2
+ * /limo1/move_base/global_costmap/update_frequency: 5.0
+ * /limo1/move_base/local_costmap/always_send_full_costmap: True
+ * /limo1/move_base/local_costmap/footprint: [[-0.16, -0.11], ...
+ * /limo1/move_base/local_costmap/footprint_padding: 0.02
+ * /limo1/move_base/local_costmap/global_frame: limo1/odom
+ * /limo1/move_base/local_costmap/height: 6.0
+ * /limo1/move_base/local_costmap/inflation_layer/cost_scaling_factor: 10.0
+ * /limo1/move_base/local_costmap/inflation_layer/enabled: True
+ * /limo1/move_base/local_costmap/inflation_layer/inflation_radius: 0.5
+ * /limo1/move_base/local_costmap/map_type: costmap
+ * /limo1/move_base/local_costmap/obstacle_layer/combination_method: 1
+ * /limo1/move_base/local_costmap/obstacle_layer/enabled: True
+ * /limo1/move_base/local_costmap/obstacle_layer/inflation_radius: 0.2
+ * /limo1/move_base/local_costmap/obstacle_layer/laser_scan_sensor/clearing: True
+ * /limo1/move_base/local_costmap/obstacle_layer/laser_scan_sensor/data_type: LaserScan
+ * /limo1/move_base/local_costmap/obstacle_layer/laser_scan_sensor/marking: True
+ * /limo1/move_base/local_costmap/obstacle_layer/laser_scan_sensor/topic: /limo1/scan
+ * /limo1/move_base/local_costmap/obstacle_layer/observation_sources: laser_scan_sensor
+ * /limo1/move_base/local_costmap/obstacle_layer/obstacle_range: 2.0
+ * /limo1/move_base/local_costmap/obstacle_layer/raytrace_range: 2.0
+ * /limo1/move_base/local_costmap/obstacle_layer/scan/sensor_frame: /limo1/base_scan
+ * /limo1/move_base/local_costmap/obstacle_layer/track_unknown_space: True
+ * /limo1/move_base/local_costmap/publish_frequency: 2.0
+ * /limo1/move_base/local_costmap/resolution: 0.05
+ * /limo1/move_base/local_costmap/robot_base_frame: limo1/base_link
+ * /limo1/move_base/local_costmap/rolling_window: True
+ * /limo1/move_base/local_costmap/scan/sensor_frame: /limo1/base_scan
+ * /limo1/move_base/local_costmap/static_layer/enabled: True
+ * /limo1/move_base/local_costmap/static_layer/map_topic: /limo1/map
+ * /limo1/move_base/local_costmap/static_map: False
+ * /limo1/move_base/local_costmap/transform_tolerance: 0.2
+ * /limo1/move_base/local_costmap/update_frequency: 5.0
+ * /limo1/move_base/local_costmap/width: 6.0
+ * /limo1/move_base/oscillation_distance: 0.2
+ * /limo1/move_base/oscillation_timeout: 10.0
+ * /limo1/move_base/planner_frequency: 1.0
+ * /limo1/move_base/planner_patience: 5.0
+ * /limo1/move_base/recovery_behavior_enabled: False
+ * /limo1/move_base/shutdown_costmaps: False
+ * /limo2/amcl/base_frame_id: limo2/base_footprint
+ * /limo2/amcl/global_frame_id: limo2/map
+ * /limo2/amcl/gui_publish_rate: 10.0
+ * /limo2/amcl/initial_pose_a: 0
+ * /limo2/amcl/initial_pose_x: 0
+ * /limo2/amcl/initial_pose_y: 0
+ * /limo2/amcl/kld_err: 0.05
+ * /limo2/amcl/kld_z: 0.99
+ * /limo2/amcl/laser_lambda_short: 0.1
+ * /limo2/amcl/laser_likelihood_max_dist: 2.0
+ * /limo2/amcl/laser_max_beams: 60
+ * /limo2/amcl/laser_max_range: 60.0
+ * /limo2/amcl/laser_model_type: likelihood_field
+ * /limo2/amcl/laser_sigma_hit: 0.2
+ * /limo2/amcl/laser_z_hit: 0.5
+ * /limo2/amcl/laser_z_max: 0.05
+ * /limo2/amcl/laser_z_rand: 0.5
+ * /limo2/amcl/laser_z_short: 0.05
+ * /limo2/amcl/max_particles: 2000
+ * /limo2/amcl/min_particles: 500
+ * /limo2/amcl/odom_alpha1: 0.2
+ * /limo2/amcl/odom_alpha2: 0.2
+ * /limo2/amcl/odom_alpha3: 0.2
+ * /limo2/amcl/odom_alpha4: 0.2
+ * /limo2/amcl/odom_alpha5: 0.1
+ * /limo2/amcl/odom_frame_id: limo2/odom
+ * /limo2/amcl/odom_model_type: diff
+ * /limo2/amcl/recovery_alpha_fast: 0.0
+ * /limo2/amcl/recovery_alpha_slow: 0.0
+ * /limo2/amcl/resample_interval: 1
+ * /limo2/amcl/transform_tolerance: 0.2
+ * /limo2/amcl/update_min_a: 0.5
+ * /limo2/amcl/update_min_d: 0.25
+ * /limo2/amcl/use_map_topic: True
+ * /limo2/move_base/DWAPlannerROS/acc_lim_theta: 2.0
+ * /limo2/move_base/DWAPlannerROS/acc_lim_x: 1.0
+ * /limo2/move_base/DWAPlannerROS/acc_lim_y: 0.0
+ * /limo2/move_base/DWAPlannerROS/angular_sim_granularity: 0.02
+ * /limo2/move_base/DWAPlannerROS/forward_point_distance: 0.325
+ * /limo2/move_base/DWAPlannerROS/global_frame_id: map
+ * /limo2/move_base/DWAPlannerROS/goal_distance_bias: 0.8
+ * /limo2/move_base/DWAPlannerROS/holonomic_robot: False
+ * /limo2/move_base/DWAPlannerROS/latch_xy_goal_tolerance: False
+ * /limo2/move_base/DWAPlannerROS/max_rot_vel: 0.8
+ * /limo2/move_base/DWAPlannerROS/max_scaling_factor: 0.2
+ * /limo2/move_base/DWAPlannerROS/max_trans_vel: 0.1
+ * /limo2/move_base/DWAPlannerROS/max_vel_x: 0.4
+ * /limo2/move_base/DWAPlannerROS/max_vel_y: 0.0
+ * /limo2/move_base/DWAPlannerROS/min_rot_vel: 0.5
+ * /limo2/move_base/DWAPlannerROS/min_trans_vel: -0.1
+ * /limo2/move_base/DWAPlannerROS/min_vel_x: -0.35
+ * /limo2/move_base/DWAPlannerROS/min_vel_y: 0.0
+ * /limo2/move_base/DWAPlannerROS/occdist_scale: 0.1
+ * /limo2/move_base/DWAPlannerROS/oscillation_reset_dist: 0.05
+ * /limo2/move_base/DWAPlannerROS/path_distance_bias: 40.0
+ * /limo2/move_base/DWAPlannerROS/publish_cost_grid_pc: True
+ * /limo2/move_base/DWAPlannerROS/publish_traj_pc: True
+ * /limo2/move_base/DWAPlannerROS/rot_stopped_vel: 1
+ * /limo2/move_base/DWAPlannerROS/scaling_speed: 0.25
+ * /limo2/move_base/DWAPlannerROS/sim_granularity: 0.02
+ * /limo2/move_base/DWAPlannerROS/sim_time: 1.5
+ * /limo2/move_base/DWAPlannerROS/stop_time_buffer: 0.2
+ * /limo2/move_base/DWAPlannerROS/trans_stopped_vel: 0.1
+ * /limo2/move_base/DWAPlannerROS/vtheta_samples: 30
+ * /limo2/move_base/DWAPlannerROS/vx_samples: 25
+ * /limo2/move_base/DWAPlannerROS/vy_samples: 1
+ * /limo2/move_base/DWAPlannerROS/xy_goal_tolerance: 0.3
+ * /limo2/move_base/DWAPlannerROS/yaw_goal_tolerance: 0.3
+ * /limo2/move_base/TrajectoryPlannerROS/acc_lim_th: 0.7
+ * /limo2/move_base/TrajectoryPlannerROS/acc_lim_x: 0.5
+ * /limo2/move_base/TrajectoryPlannerROS/acc_lim_y: 0
+ * /limo2/move_base/TrajectoryPlannerROS/angular_sim_granularity: 0.025
+ * /limo2/move_base/TrajectoryPlannerROS/controller_frequency: 1.0
+ * /limo2/move_base/TrajectoryPlannerROS/dwa: False
+ * /limo2/move_base/TrajectoryPlannerROS/escape_vel: -0.2
+ * /limo2/move_base/TrajectoryPlannerROS/goal_distance_bias: 0.8
+ * /limo2/move_base/TrajectoryPlannerROS/heading_lookahead: 0.325
+ * /limo2/move_base/TrajectoryPlannerROS/holonomic_robot: False
+ * /limo2/move_base/TrajectoryPlannerROS/latch_xy_goal_tolerance: True
+ * /limo2/move_base/TrajectoryPlannerROS/max_rotational_vel: 1.0
+ * /limo2/move_base/TrajectoryPlannerROS/max_vel_theta: 0.5
+ * /limo2/move_base/TrajectoryPlannerROS/max_vel_x: 0.4
+ * /limo2/move_base/TrajectoryPlannerROS/min_in_place_rotational_vel: 0.8
+ * /limo2/move_base/TrajectoryPlannerROS/min_in_place_vel_theta: 0.8
+ * /limo2/move_base/TrajectoryPlannerROS/min_vel_theta: -0.5
+ * /limo2/move_base/TrajectoryPlannerROS/min_vel_x: 0.1
+ * /limo2/move_base/TrajectoryPlannerROS/occdist_scale: 0.01
+ * /limo2/move_base/TrajectoryPlannerROS/oscillation_reset_dist: 0.05
+ * /limo2/move_base/TrajectoryPlannerROS/path_distance_bias: 1.0
+ * /limo2/move_base/TrajectoryPlannerROS/planner_frequency: 1.0
+ * /limo2/move_base/TrajectoryPlannerROS/prune_plan: False
+ * /limo2/move_base/TrajectoryPlannerROS/sim_granularity: 0.025
+ * /limo2/move_base/TrajectoryPlannerROS/sim_time: 1.5
+ * /limo2/move_base/TrajectoryPlannerROS/vtheta_samples: 20
+ * /limo2/move_base/TrajectoryPlannerROS/vx_samples: 3
+ * /limo2/move_base/TrajectoryPlannerROS/xy_goal_tolerance: 0.1
+ * /limo2/move_base/TrajectoryPlannerROS/yaw_goal_tolerance: 0.1
+ * /limo2/move_base/base_global_planner: global_planner/Gl...
+ * /limo2/move_base/base_local_planner: dwa_local_planner...
+ * /limo2/move_base/clearing_rotation_allowed: True
+ * /limo2/move_base/controller_frequency: 5.0
+ * /limo2/move_base/controller_patience: 15.0
+ * /limo2/move_base/global_costmap/always_send_full_costmap: True
+ * /limo2/move_base/global_costmap/footprint: [[-0.16, -0.11], ...
+ * /limo2/move_base/global_costmap/footprint_padding: 0.02
+ * /limo2/move_base/global_costmap/global_frame: limo2/map
+ * /limo2/move_base/global_costmap/inflation_layer/cost_scaling_factor: 10.0
+ * /limo2/move_base/global_costmap/inflation_layer/enabled: True
+ * /limo2/move_base/global_costmap/inflation_layer/inflation_radius: 0.5
+ * /limo2/move_base/global_costmap/map_type: costmap
+ * /limo2/move_base/global_costmap/obstacle_layer/combination_method: 1
+ * /limo2/move_base/global_costmap/obstacle_layer/enabled: True
+ * /limo2/move_base/global_costmap/obstacle_layer/inflation_radius: 0.2
+ * /limo2/move_base/global_costmap/obstacle_layer/laser_scan_sensor/clearing: True
+ * /limo2/move_base/global_costmap/obstacle_layer/laser_scan_sensor/data_type: LaserScan
+ * /limo2/move_base/global_costmap/obstacle_layer/laser_scan_sensor/marking: True
+ * /limo2/move_base/global_costmap/obstacle_layer/laser_scan_sensor/topic: /limo1/scan
+ * /limo2/move_base/global_costmap/obstacle_layer/observation_sources: laser_scan_sensor
+ * /limo2/move_base/global_costmap/obstacle_layer/obstacle_range: 2.0
+ * /limo2/move_base/global_costmap/obstacle_layer/raytrace_range: 2.0
+ * /limo2/move_base/global_costmap/obstacle_layer/scan/sensor_frame: /limo2/base_scan
+ * /limo2/move_base/global_costmap/obstacle_layer/track_unknown_space: True
+ * /limo2/move_base/global_costmap/robot_base_frame: limo2/base_link
+ * /limo2/move_base/global_costmap/scan/sensor_frame: /limo2/base_scan
+ * /limo2/move_base/global_costmap/static_layer/enabled: True
+ * /limo2/move_base/global_costmap/static_layer/map_topic: /limo1/map
+ * /limo2/move_base/global_costmap/static_map: True
+ * /limo2/move_base/global_costmap/transform_tolerance: 0.2
+ * /limo2/move_base/global_costmap/update_frequency: 5.0
+ * /limo2/move_base/local_costmap/always_send_full_costmap: True
+ * /limo2/move_base/local_costmap/footprint: [[-0.16, -0.11], ...
+ * /limo2/move_base/local_costmap/footprint_padding: 0.02
+ * /limo2/move_base/local_costmap/global_frame: limo2/odom
+ * /limo2/move_base/local_costmap/height: 6.0
+ * /limo2/move_base/local_costmap/inflation_layer/cost_scaling_factor: 10.0
+ * /limo2/move_base/local_costmap/inflation_layer/enabled: True
+ * /limo2/move_base/local_costmap/inflation_layer/inflation_radius: 0.5
+ * /limo2/move_base/local_costmap/map_type: costmap
+ * /limo2/move_base/local_costmap/obstacle_layer/combination_method: 1
+ * /limo2/move_base/local_costmap/obstacle_layer/enabled: True
+ * /limo2/move_base/local_costmap/obstacle_layer/inflation_radius: 0.2
+ * /limo2/move_base/local_costmap/obstacle_layer/laser_scan_sensor/clearing: True
+ * /limo2/move_base/local_costmap/obstacle_layer/laser_scan_sensor/data_type: LaserScan
+ * /limo2/move_base/local_costmap/obstacle_layer/laser_scan_sensor/marking: True
+ * /limo2/move_base/local_costmap/obstacle_layer/laser_scan_sensor/topic: /limo1/scan
+ * /limo2/move_base/local_costmap/obstacle_layer/observation_sources: laser_scan_sensor
+ * /limo2/move_base/local_costmap/obstacle_layer/obstacle_range: 2.0
+ * /limo2/move_base/local_costmap/obstacle_layer/raytrace_range: 2.0
+ * /limo2/move_base/local_costmap/obstacle_layer/scan/sensor_frame: /limo2/base_scan
+ * /limo2/move_base/local_costmap/obstacle_layer/track_unknown_space: True
+ * /limo2/move_base/local_costmap/publish_frequency: 2.0
+ * /limo2/move_base/local_costmap/resolution: 0.05
+ * /limo2/move_base/local_costmap/robot_base_frame: limo2/base_link
+ * /limo2/move_base/local_costmap/rolling_window: True
+ * /limo2/move_base/local_costmap/scan/sensor_frame: /limo2/base_scan
+ * /limo2/move_base/local_costmap/static_layer/enabled: True
+ * /limo2/move_base/local_costmap/static_layer/map_topic: /limo1/map
+ * /limo2/move_base/local_costmap/static_map: False
+ * /limo2/move_base/local_costmap/transform_tolerance: 0.2
+ * /limo2/move_base/local_costmap/update_frequency: 5.0
+ * /limo2/move_base/local_costmap/width: 6.0
+ * /limo2/move_base/oscillation_distance: 0.2
+ * /limo2/move_base/oscillation_timeout: 10.0
+ * /limo2/move_base/planner_frequency: 1.0
+ * /limo2/move_base/planner_patience: 5.0
+ * /limo2/move_base/recovery_behavior_enabled: False
+ * /limo2/move_base/shutdown_costmaps: False
+ * /rosdistro: noetic
+ * /rosversion: 1.16.0
+
+NODES
+  /limo1/
+    amcl (amcl/amcl)
+    move_base (move_base/move_base)
+  /limo2/
+    amcl (amcl/amcl)
+    move_base (move_base/move_base)
+[0m[ INFO] [1681849732.919354359]: Subscribed to map topic.[0m
+[0m[ INFO] [1681849732.876614505]: Subscribed to map topic.[0m
+[32m[DEBUG] [1681849727.155825461]: Map merging started.[0m
+[32m[DEBUG] [1681849727.157251579]: Robot discovery started.[0m
+[32m[DEBUG] [1681849727.158035615]: Grid pose estimation started.[0m
+[0m[ INFO] [1681849727.158528706]: adding robot [/limo1] to system[0m
+[0m[ INFO] [1681849727.158550217]: Subscribing to MAP topic: /limo1/map.[0m
+[0m[ INFO] [1681849727.162205995]: Subscribing to MAP updates topic: /limo1/map_updates.[0m
+[0m[ INFO] [1681849727.170307617]: adding robot [/limo2] to system[0m
+[0m[ INFO] [1681849727.170327871]: Subscribing to MAP topic: /limo2/map.[0m
+[0m[ INFO] [1681849727.179486857]: Subscribing to MAP updates topic: /limo2/map_updates.[0m
+[32m[DEBUG] [1681849727.415730725, 338.150000000]: received full map update[0m
+[32m[DEBUG] [1681849727.433435850, 338.170000000]: received full map update[0m
+[32m[DEBUG] [1681849729.379201807, 340.120000000]: Map merging started.[0m
+[32m[DEBUG] [1681849729.379260702, 340.120000000]: Map merging started.[0m
+[32m[DEBUG] [1681849731.387346968, 342.120000000]: Map merging started.[0m
+[32m[DEBUG] [1681849733.394337382, 344.120000000]: Map merging started.[0m
+[32m[DEBUG] [1681849735.399662644, 346.120000000]: Map merging started.[0m
+[32m[DEBUG] [1681849737.393446810, 348.120000000]: Map merging started.[0m
+[32m[DEBUG] [1681849737.393980811, 348.120000000]: Grid pose estimation started.[0m
+[32m[DEBUG] [1681849737.394035931, 348.120000000]: computing features[0m
+[32m[DEBUG] [1681849739.395658144, 350.120000000]: Map merging started.[0m
+[32m[DEBUG] [1681849746.609976623, 357.330000000]: pairwise matching features[0m
+[32m[DEBUG] [1681849746.621032810, 357.340000000]: warping grids[0m
+[32m[DEBUG] [1681849746.644389380, 357.360000000]: Grid pose estimation started.[0m
+[32m[DEBUG] [1681849746.673251881, 357.390000000]: compositing result grid[0m
+[32m[DEBUG] [1681849746.707966824, 357.420000000]: all maps merged, publishing[0m
+[32m[DEBUG] [1681849746.708001102, 357.420000000]: Trying to publish message of type [nav_msgs/OccupancyGrid/3381f2d731d4076ec5c71b0759edbe4e] on a publisher with type [nav_msgs/OccupancyGrid/3381f2d731d4076ec5c71b0759edbe4e][0m
+[32m[DEBUG] [1681849746.708057238, 357.420000000]: computing features[0m
+[32m[DEBUG] [1681849746.729202830, 357.440000000]: Map merging started.[0m
+[32m[DEBUG] [1681849747.424842412, 358.120000000]: Robot discovery started.[0m
+[32m[DEBUG] [1681849747.428373630, 358.120000000]: Robot discovery started.[0m
+[32m[DEBUG] [1681849756.509947621, 367.200000000]: pairwise matching features[0m
+[32m[DEBUG] [1681849756.534034667, 367.220000000]: warping grids[0m
+[32m[DEBUG] [1681849756.562441420, 367.250000000]: compositing result grid[0m
+[32m[DEBUG] [1681849756.568237681, 367.260000000]: all maps merged, publishing[0m
+[32m[DEBUG] [1681849756.584590573, 367.270000000]: Map merging started.[0m
+[32m[DEBUG] [1681849756.584759395, 367.270000000]: warping grids[0m
+[32m[DEBUG] [1681849756.611128311, 367.290000000]: compositing result grid[0m
+[32m[DEBUG] [1681849756.619288719, 367.300000000]: all maps merged, publishing[0m
+[32m[DEBUG] [1681849756.672337016, 367.360000000]: Grid pose estimation started.[0m
+[32m[DEBUG] [1681849756.672385454, 367.360000000]: computing features[0m
+[32m[DEBUG] [1681849758.614060905, 369.270000000]: Map merging started.[0m
+[32m[DEBUG] [1681849767.640233881, 378.120000000]: Robot discovery started.[0m
+[32m[DEBUG] [1681849777.284470869, 387.690000000]: pairwise matching features[0m
+[32m[DEBUG] [1681849777.337507863, 387.740000000]: warping grids[0m
+[32m[DEBUG] [1681849777.389764562, 387.790000000]: compositing result grid[0m
+[32m[DEBUG] [1681849777.399685054, 387.800000000]: all maps merged, publishing[0m
+[32m[DEBUG] [1681849777.406405212, 387.810000000]: Map merging started.[0m
+[32m[DEBUG] [1681849777.406577638, 387.810000000]: warping grids[0m
+[32m[DEBUG] [1681849777.442157008, 387.830000000]: Grid pose estimation started.[0m
+[32m[DEBUG] [1681849777.473600401, 387.870000000]: compositing result grid[0m
+[32m[DEBUG] [1681849777.490282610, 387.890000000]: all maps merged, publishing[0m
+[32m[DEBUG] [1681849777.490958789, 387.890000000]: computing features[0m
+[32m[DEBUG] [1681849779.443583460, 389.810000000]: Map merging started.[0m
+[32m[DEBUG] [1681849787.725741047, 398.120000000]: Robot discovery started.[0m
+[32m[DEBUG] [1681849802.919768287, 412.480000000]: pairwise matching features[0m
+[32m[DEBUG] [1681849802.941828553, 412.500000000]: Grid pose estimation started.[0m
+[32m[DEBUG] [1681849802.942177340, 412.500000000]: warping grids[0m
+[32m[DEBUG] [1681849803.000504642, 412.560000000]: compositing result grid[0m
+[32m[DEBUG] [1681849803.009065445, 412.570000000]: computing features[0m
+[32m[DEBUG] [1681849803.023831309, 412.580000000]: all maps merged, publishing[0m
+[32m[DEBUG] [1681849803.045150713, 412.610000000]: Map merging started.[0m
+[32m[DEBUG] [1681849808.555709573, 418.120000000]: Robot discovery started.[0m
+[32m[DEBUG] [1681849826.896552018, 435.900000000]: pairwise matching features[0m
+[32m[DEBUG] [1681849826.932706347, 435.930000000]: Grid pose estimation started.[0m
+[32m[DEBUG] [1681849826.932814815, 435.930000000]: computing features[0m
+[32m[DEBUG] [1681849829.098099320, 438.120000000]: Robot discovery started.[0m
+[32m[DEBUG] [1681849847.258812158, 455.920000000]: pairwise matching features[0m
+[32m[DEBUG] [1681849847.276563058, 455.940000000]: Grid pose estimation started.[0m
+[32m[DEBUG] [1681849847.276928119, 455.940000000]: warping grids[0m
+[32m[DEBUG] [1681849847.364906422, 456.010000000]: compositing result grid[0m
+[32m[DEBUG] [1681849847.378745245, 456.020000000]: all maps merged, publishing[0m
+[32m[DEBUG] [1681849847.380094994, 456.020000000]: computing features[0m
+[32m[DEBUG] [1681849847.387675208, 456.030000000]: Map merging started.[0m
+[32m[DEBUG] [1681849849.434309656, 458.120000000]: Robot discovery started.[0m
+[32m[DEBUG] [1681849869.727512162, 477.810000000]: pairwise matching features[0m
+[32m[DEBUG] [1681849869.743152839, 477.810000000]: warping grids[0m
+[32m[DEBUG] [1681849869.790322593, 477.870000000]: compositing result grid[0m
+[32m[DEBUG] [1681849869.802823961, 477.870000000]: Grid pose estimation started.[0m
+[32m[DEBUG] [1681849869.805129904, 477.880000000]: all maps merged, publishing[0m
+[32m[DEBUG] [1681849869.808480428, 477.890000000]: computing features[0m
+[32m[DEBUG] [1681849869.815831210, 477.890000000]: Map merging started.[0m
+[32m[DEBUG] [1681849870.057849933, 478.120000000]: Robot discovery started.[0m
+[32m[DEBUG] [1681849890.811801875, 498.120000000]: Robot discovery started.[0m
+[32m[DEBUG] [1681849892.509505619, 499.780000000]: pairwise matching features[0m
+[32m[DEBUG] [1681849892.544702752, 499.810000000]: Grid pose estimation started.[0m
+[32m[DEBUG] [1681849892.544749743, 499.810000000]: computing features[0m
+[32m[DEBUG] [1681849911.243362221, 518.120000000]: Robot discovery started.[0m
+[32m[DEBUG] [1681849915.629832787, 522.360000000]: pairwise matching features[0m
+[32m[DEBUG] [1681849915.650307307, 522.370000000]: Grid pose estimation started.[0m
+[32m[DEBUG] [1681849915.650476784, 522.370000000]: computing features[0m
+[32m[DEBUG] [1681849931.536932304, 538.120000000]: Robot discovery started.[0m
+[32m[DEBUG] [1681849937.516908036, 543.940000000]: pairwise matching features[0m
+[32m[DEBUG] [1681849937.573773237, 544.000000000]: warping grids[0m
+[32m[DEBUG] [1681849937.629907874, 544.050000000]: Grid pose estimation started.[0m
+[32m[DEBUG] [1681849937.636763810, 544.060000000]: compositing result grid[0m
+[32m[DEBUG] [1681849937.659033016, 544.080000000]: computing features[0m
+[32m[DEBUG] [1681849937.669717352, 544.090000000]: all maps merged, publishing[0m
+[32m[DEBUG] [1681849937.696093324, 544.100000000]: Map merging started.[0m
+[32m[DEBUG] [1681849952.288825401, 558.120000000]: Robot discovery started.[0m
+[32m[DEBUG] [1681849963.388377063, 569.040000000]: pairwise matching features[0m
+[32m[DEBUG] [1681849963.459665423, 569.110000000]: Grid pose estimation started.[0m
+[32m[DEBUG] [1681849963.460414788, 569.110000000]: warping grids[0m
+[32m[DEBUG] [1681849963.536450130, 569.160000000]: compositing result grid[0m
+[32m[DEBUG] [1681849963.555162882, 569.180000000]: all maps merged, publishing[0m
+[32m[DEBUG] [1681849963.556110736, 569.180000000]: computing features[0m
+[32m[DEBUG] [1681849963.559268802, 569.190000000]: Map merging started.[0m
+[32m[DEBUG] [1681849972.602086822, 578.120000000]: Robot discovery started.[0m
+[32m[DEBUG] [1681849984.120769316, 589.500000000]: pairwise matching features[0m
+[32m[DEBUG] [1681849984.130726318, 589.510000000]: warping grids[0m
+[32m[DEBUG] [1681849984.141602709, 589.520000000]: Grid pose estimation started.[0m
+[32m[DEBUG] [1681849984.176867293, 589.540000000]: compositing result grid[0m
+[32m[DEBUG] [1681849984.191693499, 589.560000000]: all maps merged, publishing[0m
+[32m[DEBUG] [1681849984.196624391, 589.560000000]: Map merging started.[0m
+[32m[DEBUG] [1681849984.196656819, 589.560000000]: warping grids[0m
+[32m[DEBUG] [1681849984.241896301, 589.600000000]: compositing result grid[0m
+[32m[DEBUG] [1681849984.247266606, 589.610000000]: all maps merged, publishing[0m
+[32m[DEBUG] [1681849984.247468291, 589.610000000]: computing features[0m
+[32m[DEBUG] [1681849986.299339509, 591.560000000]: Map merging started.[0m
+[32m[DEBUG] [1681849992.816800288, 598.120000000]: Robot discovery started.[0m
+[32m[DEBUG] [1681850005.815341466, 610.980000000]: pairwise matching features[0m
+[32m[DEBUG] [1681850005.830741630, 610.990000000]: Grid pose estimation started.[0m
+[32m[DEBUG] [1681850005.830908086, 610.990000000]: warping grids[0m
+[32m[DEBUG] [1681850005.860103713, 611.020000000]: compositing result grid[0m
+[32m[DEBUG] [1681850005.867443092, 611.030000000]: all maps merged, publishing[0m
+[32m[DEBUG] [1681850005.867802538, 611.030000000]: computing features[0m
+[32m[DEBUG] [1681850005.871694327, 611.030000000]: Map merging started.[0m
+[32m[DEBUG] [1681850013.114402659, 618.120000000]: Robot discovery started.[0m
+[32m[DEBUG] [1681850027.418073372, 632.350000000]: pairwise matching features[0m
+[32m[DEBUG] [1681850027.435434595, 632.370000000]: warping grids[0m
+[32m[DEBUG] [1681850027.440790512, 632.370000000]: Grid pose estimation started.[0m
+[32m[DEBUG] [1681850027.489471407, 632.420000000]: compositing result grid[0m
+[32m[DEBUG] [1681850027.499143555, 632.430000000]: all maps merged, publishing[0m
+[32m[DEBUG] [1681850027.505251663, 632.440000000]: computing features[0m
+[32m[DEBUG] [1681850027.507984053, 632.440000000]: Map merging started.[0m
+[32m[DEBUG] [1681850033.185212664, 638.120000000]: Robot discovery started.[0m
+[32m[DEBUG] [1681850046.585194435, 650.920000000]: pairwise matching features[0m
+[32m[DEBUG] [1681850046.604116975, 650.940000000]: Grid pose estimation started.[0m
+[32m[DEBUG] [1681850046.611232301, 650.950000000]: warping grids[0m
+[32m[DEBUG] [1681850046.676499323, 650.990000000]: compositing result grid[0m
+[32m[DEBUG] [1681850046.695890211, 651.030000000]: all maps merged, publishing[0m
+[32m[DEBUG] [1681850046.695956897, 651.030000000]: computing features[0m
+[32m[DEBUG] [1681850046.708658427, 651.040000000]: Map merging started.[0m
+[32m[DEBUG] [1681850053.791196501, 658.120000000]: Robot discovery started.[0m
+[32m[DEBUG] [1681850066.411991516, 670.490000000]: pairwise matching features[0m
+[32m[DEBUG] [1681850066.436598399, 670.520000000]: Grid pose estimation started.[0m
+[32m[DEBUG] [1681850066.436685531, 670.520000000]: computing features[0m
+[32m[DEBUG] [1681850074.034759496, 678.120000000]: Robot discovery started.[0m
+[32m[DEBUG] [1681850086.095542037, 690.030000000]: pairwise matching features[0m
+[32m[DEBUG] [1681850086.116757300, 690.050000000]: Grid pose estimation started.[0m
+[32m[DEBUG] [1681850086.116919026, 690.050000000]: warping grids[0m
+[32m[DEBUG] [1681850086.163875440, 690.090000000]: compositing result grid[0m
+[32m[DEBUG] [1681850086.229936065, 690.170000000]: all maps merged, publishing[0m
+[32m[DEBUG] [1681850086.230501668, 690.170000000]: computing features[0m
+[3update frame 3133
+update ld=0.545089 ad=0.500154
+m_count 1
+update frame 3116
+update ld=0.543375 ad=0.500679
+m_count 1
+Average Scan Matching Score=615.579
+neff= 30
+Average Scan Matching Score=615.531
+neff= 29.7563
+2m[DEBUG] [1681850086.272824569, 690.210000000]: Map merging started.[0m
+[32m[DEBUG] [1681850094.356162265, 698.120000000]: Robot discovery started.[0m
+[32m[DEBUG] [1681850108.247382306, 711.930000000]: pairwise matching features[0m
+[32m[DEBUG] [1681850108.278918042, 711.960000000]: Grid pose estimation started.[0m
+[32m[DEBUG] [1681850108.279271831, 711.960000000]: computing features[0m
+[32m[DEBUG] [1681850114.492375183, 718.120000000]: Robot discovery started.[0m
+[32m[DEBUG] [1681850128.830774389, 732.230000000]: pairwise matching features[0m
+[32m[DEBUG] [1681850128.843827799, 732.240000000]: Grid pose estimation started.[0m
+[32m[DEBUG] [1681850128.843892881, 732.240000000]: computing features[0m
+[32m[DEBUG] [1681850134.832462376, 738.120000000]: Robot discovery started.[0m
+[32m[DEBUG] [1681850141.114497566, 744.170000000]: received full map update[0m
+[32m[DEBUG] [1681850141.464465826, 744.470000000]: received full map update[0m
+[32m[DEBUG] [1681850151.510918572, 754.470000000]: pairwise matching features[0m
+[32m[DEBUG] [1681850151.528668296, 754.490000000]: Grid pose estimation started.[0m
+[32m[DEBUG] [1681850151.530811754, 754.490000000]: computing features[0m
+[32m[DEBUG] [1681850155.183593039, 758.120000000]: Robot discovery started.[0m
+[32m[DEBUG] [1681850174.275540151, 776.910000000]: pairwise matching features[0m
+[32m[DEBUG] [1681850174.323365707, 776.960000000]: Grid pose estimation started.[0m
+[32m[DEBUG] [1681850174.323419365, 776.960000000]: computing features[0m
+[32m[DEBUG] [1681850175.486217264, 778.120000000]: Robot discovery started.[0m
+[32m[DEBUG] [1681850195.643492871, 798.120000000]: Robot discovery started.[0m
+[32m[DEBUG] [1681850196.154263134, 798.620000000]: pairwise matching features[0m
+[32m[DEBUG] [1681850196.165807604, 798.630000000]: Grid pose estimation started.[0m
+[32m[DEBUG] [1681850196.166085263, 798.630000000]: warping grids[0m
+[32m[DEBUG] [1681850196.198705893, 798.660000000]: compositing result grid[0m
+[32m[DEBUG] [1681850196.234146408, 798.700000000]: all maps merged, publishing[0m
+[32m[DEBUG] [1681850196.241264999, 798.700000000]: computing features[0m
+[32m[DEBUG] [1681850196.250328133, 798.710000000]: Map merging started.[0m
+[32m[DEBUG] [1681850215.824760594, 818.120000000]: Robot discovery started.[0m
+[32m[DEBUG] [1681850216.676011132, 818.910000000]: pairwise matching features[0m
+[32m[DEBUG] [1681850216.690272102, 818.930000000]: Grid pose estimation started.[0m
+[32m[DEBUG] [1681850216.690462029, 818.930000000]: computing features[0m
+[32m[DEBUG] [1681850233.039966084, 835.130000000]: pairwise matching features[0m
+[32m[DEBUG] [1681850233.062771959, 835.150000000]: Grid pose estimation started.[0m
+[32m[DEBUG] [1681850233.062965548, 835.150000000]: computing features[0m
+[32m[DEBUG] [1681850236.046838961, 838.120000000]: Robot discovery started.[0m
+[32m[DEBUG] [1681850253.512444281, 855.370000000]: pairwise matching features[0m
+[32m[DEBUG] [1681850253.536276314, 855.400000000]: Grid pose estimation started.[0m
+[32m[DEBUG] [1681850253.536685509, 855.400000000]: warping grids[0m
+[32m[DEBUG] [1681850253.586445052, 855.450000000]: compositing result grid[0m
+[32m[DEBUG] [1681850253.602612444, 855.460000000]: all maps merged, publishing[0m
+[32m[DEBUG] [1681850253.602818772, 855.460000000]: computing features[0m
+[32m[DEBUG] [1681850253.606764376, 855.470000000]: Map merging started.[0m
+[32m[DEBUG] [1681850256.239757585, 858.120000000]: Robot discovery started.[0m
+[32m[DEBUG] [1681850275.181306379, 876.870000000]: pairwise matching features[0m
+[32m[DEBUG] [1681850275.202271576, 876.880000000]: Grid pose estimation started.[0m
+[32m[DEBUG] [1681850275.210741673, 876.890000000]: warping grids[0m
+[32m[DEBUG] [1681850275.293310145, 876.910000000]: compositing result grid[0m
+[32m[DEBUG] [1681850275.299035432, 876.910000000]: all maps merged, publishing[0m
+[32m[DEBUG] [1681850275.300372008, 876.920000000]: computing features[0m
+[32m[DEBUG] [1681850275.316743015, 876.930000000]: Map merging started.[0m
+[

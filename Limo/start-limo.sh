@@ -86,4 +86,4 @@ else
 
   echo "Le bon format pour lancer la simulation est : sudo ./start-limo.sh 1 < Chemin du dossier de dependance gazebo >"
 
-wait
+fi
