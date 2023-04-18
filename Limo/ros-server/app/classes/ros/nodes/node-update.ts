@@ -32,7 +32,7 @@ export class NodeUpdate {
     console.log('redemarage des conteneur ...');
     const msg = new Message({ data: true });
     this.publisherUpdate.publish(msg);
-    process.exit(0);
+    process.exit(9);
   }
 
   closeNodeUpdate() {
