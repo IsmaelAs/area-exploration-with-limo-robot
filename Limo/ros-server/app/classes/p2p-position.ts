@@ -12,12 +12,19 @@ export class P2PPosition {
 
   private furthestLimo= 0;
 
+  private interval: NodeJS.Timer;
 
-  constructor(limoId: number) {
-    this.limoId = limoId;
+
+
+  constructor(limoID: number) {
+    this.limoId = limoID;
     if (process.env.IS_SIMULATION) this.nodePosition.setNamespace(`limo${this.limoId}`);
     this.nodePosition.initNodePosition();
-    setInterval(this.getFurthestLimo, 2000);
+    this.interval = setInterval(this.getFurthestLimo.bind(this), 2000);
+  }
+
+  closeInterval(){
+    clearInterval(this.interval);
   }
 
 

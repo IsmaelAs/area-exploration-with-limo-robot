@@ -131,7 +131,6 @@ export class SocketServer {
 
   private callBack() {
     const distance = this.p2pPosition.getDistance();
-    console.log("Dans le call back de Limo1.... la disstance est : " + distance)
     if (distance) this.emit('p2p-distance', distance);
   }
 
