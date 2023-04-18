@@ -3,6 +3,7 @@ import { ClientSocketLimo } from './client.socket.limo';
 import { Logger } from '../services/logger';
 import RobotTargetType from '../types/RobotType';
 import StateLimo from '../interfaces/state-limo';
+import delay = require('delay');
 
 const FIRST_LIMO = 1;
 const SECOND_LIMO = 2;
@@ -59,8 +60,22 @@ export class ServerSocketController {
         this.logger.getAllData(missionNumber, socket);
       });
 
-      socket.on('update', (robotTarget: RobotTargetType) => {
+      socket.on('update', async (robotTarget: RobotTargetType) => {
         this.sendEventToLimo(robotTarget, 'update');
+
+        if ((robotTarget === 'limo-1' || robotTarget === 'robots') && this.socketLimo) {
+          this.socketLimo.disconnect();
+          // eslint-disable-next-line no-magic-numbers
+          await delay(5000);
+          this.socketLimo.connectClientSocketToLimo();
+        }
+
+        if ((robotTarget === 'limo-2' || robotTarget === 'robots') && this.socketLimo2) {
+          this.socketLimo2.disconnect();
+          // eslint-disable-next-line no-magic-numbers
+          await delay(5000);
+          this.socketLimo2.connectClientSocketToLimo();
+        }
       });
 
       socket.on('send-limo-ips', (ips: {limo1: string, limo2: string}) => {
