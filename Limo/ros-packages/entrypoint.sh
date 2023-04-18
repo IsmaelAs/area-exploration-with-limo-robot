@@ -3,7 +3,7 @@
 source /opt/ros/noetic/setup.bash
 
 
-echo "LIMO_IP_SIMU_$LIMO_ID: $(hostname -I awk '{print $1}')"
+echo $(hostname -I)
 sleep 5
 
 
