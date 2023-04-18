@@ -45,6 +45,8 @@ class ExplorationControl:
                 self.warning_filter_process = subprocess.Popen(
                     ["grep", "-v", "TF_REPEATED_DATA", "buffer_core"],
                     stdin=self.explore_lite_process.stderr)
+                
+                self.return_to_base_process = subprocess.Popen(["rosrun", "explore_control", "return_to_base.py"], stderr=subprocess.PIPE, preexec_fn=os.setpgrp)
 
     def stop_explore_lite(self):
         if self.isSimulation:

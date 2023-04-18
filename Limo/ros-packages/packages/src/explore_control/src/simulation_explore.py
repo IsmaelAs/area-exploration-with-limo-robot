@@ -12,6 +12,7 @@ class ExplorationControl:
         rospy.init_node('simulation_explore')
         self.subscriberState = rospy.Subscriber(f"/exploration_state_sim", BoolString, self.setExplorationState)
         self.explore_lite_processes = {}
+        self.return_to_base_process = None
 
 
     def setExplorationState(self, msg: BoolString):
@@ -27,6 +28,7 @@ class ExplorationControl:
             self.explore_lite_processes[msg.info] = subprocess.Popen(
                 ["roslaunch", 'limo_gazebo_sim', "one_exploration.launch", f'ns:=/limo{msg.info}', f'id:=limo{msg.info}'],
                 stderr=subprocess.PIPE, preexec_fn=os.setpgrp)
+            self.return_to_base_process = subprocess.Popen(["rosrun", "explore_control", "return_to_base.py"], stderr=subprocess.PIPE, preexec_fn=os.setpgrp)
 
     def stop_explore_lite(self, msg: BoolString):
         if msg.info in self.explore_lite_processes:
@@ -46,6 +48,7 @@ class ExplorationControl:
                 print(stderr.decode("utf-8"))
             self.explore_lite_processes[f'{msg.info}'].terminate()
             del self.explore_lite_processes[f'{msg.info}']
+            self.return_to_base_process.terminate()
 
 if __name__ == '__main__':
     ec = ExplorationControl()
