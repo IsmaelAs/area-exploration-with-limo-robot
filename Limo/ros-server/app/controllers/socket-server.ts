@@ -7,6 +7,7 @@ import LogType from '../types/LogType';
 import { MyStateMachine } from '../classes/state-machine';
 import StateType from '../types/StateType';
 import { P2PSocketClient } from './p2p-socket-client';
+import { P2PPosition } from '../classes/p2p-position';
 
 const NO_CLIENT = 0;
 
@@ -28,6 +29,10 @@ export class SocketServer {
   private isMissionStopped = true;
 
   private p2pUrl = '';
+
+  private p2pPosition: P2PPosition;
+
+  private intervalPos: NodeJS.Timer;
 
   limoId: number;
 
@@ -59,10 +64,17 @@ export class SocketServer {
       socket.on('p2p-login', (p2pUrl: string) => {
         this.p2pUrl = p2pUrl;
         if (this.limoId === 2) this.p2pSocketClient = new P2PSocketClient(this.p2pUrl);
+        else this.p2pPosition = new P2PPosition(this.limoId);
       });
 
       socket.on('p2p-start', () => {
         if (this.limoId === 2) this.p2pSocketClient?.activateP2P();
+        else this.intervalPos = setInterval(this.callBack.bind(this), 1000);
+      });
+
+      socket.on('p2p-stop', () => {
+        if (this.limoId === 2) this.p2pSocketClient?.activateP2P();
+        else clearInterval(this.intervalPos);
       });
 
       socket.on('p2p-activated', () => {
@@ -71,6 +83,10 @@ export class SocketServer {
 
       socket.on('p2p-deactivated', () => {
         socket.broadcast.emit('p2p-connected', false);
+      });
+
+      socket.on('p2p-distance', (distance: number) => {
+        this.p2pPosition.setP2PDistance(distance);
       });
 
       socket.on('identify', async () => {
@@ -111,6 +127,12 @@ export class SocketServer {
         this.clientCounter--;
       });
     });
+  }
+
+  private callBack() {
+    const distance = this.p2pPosition.getDistance();
+    console.log("Dans le call back de Limo1.... la disstance est : " + distance)
+    if (distance) this.emit('p2p-distance', distance);
   }
 
   emit<T>(event: string, data?: T) {

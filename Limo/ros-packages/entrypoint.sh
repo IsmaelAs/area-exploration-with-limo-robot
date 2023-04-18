@@ -7,7 +7,6 @@ echo $(hostname -I)
 sleep 5
 source /agx_ws/devel/setup.bash
 
-
 if [ ! "$IS_SIMULATION" ];  then 
 
   roslaunch rosbridge_server rosbridge_websocket.launch &
