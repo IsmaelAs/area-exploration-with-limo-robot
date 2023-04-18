@@ -17,12 +17,25 @@ export class SocketCommunicationService {
 
     private state: Subject<StateType> = new Subject();
 
+    private p2pConnected: Subject<boolean> = new Subject();
+
+
     private battery: Subject<BatteryType> = new Subject();
 
     constructor () {
 
         this.socket = io(BACKEND_URL);
         this.initSocketSubscription();
+
+    }
+
+    updateLimo (limo: RobotTargetType) {
+        this.emit('update', limo);
+    }
+
+    startP2P () {
+
+        this.emit('p2p-start');
 
     }
 
@@ -35,7 +48,6 @@ export class SocketCommunicationService {
 
     startMission (robot: RobotTargetType) {
 
-        console.log('start mission', robot);
         this.emit('start-mission', robot);
 
     }
@@ -75,6 +87,11 @@ export class SocketCommunicationService {
         return this.battery.asObservable();
     }
 
+    get subscribeP2PState () {
+
+        return this.p2pConnected.asObservable();
+    }
+
     private initSocketSubscription () {
 
         this.socket.on('connect', () => {
@@ -87,14 +104,17 @@ export class SocketCommunicationService {
 
             this.socket.on('send-state', (state: StateType) => {
                 this.state.next(state);
-                console.log("ICI JE RECOIS L'ETAT DANS CLIENT-INTERFACE");
-                console.log(state);
 
             });
+
 
             this.socket.on('send-battery', (battery: BatteryType) => {
                 this.battery.next(battery);
 
+            });
+
+            this.socket.on('p2p-connected', (isConnected: boolean) => {
+                this.p2pConnected.next(isConnected);
             });
 
             this.socket.on('reconnect', () => {

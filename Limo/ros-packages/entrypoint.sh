@@ -5,9 +5,9 @@ source /opt/ros/noetic/setup.bash
 
 echo $(hostname -I)
 sleep 5
+source /agx_ws/devel/setup.bash
 
 if [ ! "$IS_SIMULATION" ];  then 
-  source /agx_ws/devel/setup.bash
 
   roslaunch rosbridge_server rosbridge_websocket.launch &
 
@@ -38,11 +38,13 @@ if [ ! "$IS_SIMULATION" ];  then
   sleep 10
 
   # Launch explore lite
-  exec roslaunch --wait  limo_bringup one_exploration.launch  2> >(grep -v TF_REPEATED_DATA buffer_core)
+  roslaunch --wait  limo_bringup one_exploration.launch  2> >(grep -v TF_REPEATED_DATA buffer_core) &
+
+  rosrun update-pkg restart-package-container.py
 
 else 
-  exec rosrun explore_control control_explore.py
+  rosrun explore_control control_explore.py &
+  rosrun update-pkg restart-package-container.py
 
 fi
 
-# Subscribe to /exploration_state topic to control exploration state

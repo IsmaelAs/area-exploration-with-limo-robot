@@ -16,21 +16,31 @@ export class ClientSocketLimo {
 
   private limoId: number;
 
+  private p2pUrl: string;
+
 
   private stateObservable: Subject<StateLimo> = new Subject();
 
+  private p2pConnectedObservable: Subject<boolean> = new Subject();
+
+  private limoUrl: string;
   private batteryObservable: Subject<BatteryLimo> = new Subject();
 
 
-  constructor(limoId: number, limoUrl: string) {
+  constructor(limoId: number, limoUrl: string, p2pUrl: string) {
     this.limoId = limoId;
-    this.socket = io(limoUrl);
     this.logger = new Logger();
     this.missionInfos = new MissionInfos();
+    this.limoUrl = limoUrl;
+    this.p2pUrl = p2pUrl;
   }
 
   get subscribeState() {
     return this.stateObservable.asObservable();
+  }
+
+  get subscribeP2PConnected() {
+    return this.p2pConnectedObservable.asObservable();
   }
 
   get subscribeBattery() {
@@ -38,12 +48,16 @@ export class ClientSocketLimo {
   }
 
   connectClientSocketToLimo() {
+    this.socket = io(this.limoUrl);
+
     this.socket.on('connect', () => {
       console.log(`Limo ${this.limoId} connected to the ROS server`);
       this.logger.saveLimoData({limoId: this.limoId,
         data: `Limo ${this.limoId} connected to the ROS server`});
       this.socket.emit('login', this.limoId);
+      this.socket.emit('p2p-login', this.p2pUrl);
     });
+
     this.socket.on('save-log', (data: LogLimo) => {
       this.logger.saveLimoData(data);
     });
@@ -61,6 +75,10 @@ export class ClientSocketLimo {
 
     this.socket.on('save-state', (data: StateLimo) => {
       this.stateObservable.next(data);
+    });
+
+    this.socket.on('p2p-connected', (isConnected: boolean) => {
+      this.p2pConnectedObservable.next(isConnected);
     });
 
     this.socket.on('save-battery', (data: BatteryLimo) => {

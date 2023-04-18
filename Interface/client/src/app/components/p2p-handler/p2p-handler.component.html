@@ -1,0 +1,8 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<p></p>
+<button class="button" mat-flat-button color="primary" (click)="startP2P() ">Lancer P2P</button> 
+<p></p>
+<i class="fa fa-close" *ngIf="!isP2PActivated" style="color:rgb(121, 121, 121)">Peer-to-Peer désactivée</i>
+<i class="fa fa-check" *ngIf="isP2PActivated" style="color:rgb(0, 180, 0)">Peer-to-Peer activée</i>
+   
+

@@ -38,7 +38,6 @@ export class RobotsStateComponent implements OnDestroy {
     }
 
     private changeState (newState: StateType) {
-        console.log(newState);
         if (newState.limoId === FIRST_LIMO) {
             this.stateLimo1 = newState.state;
         } else if (newState.limoId === SECOND_LIMO) {

@@ -16,6 +16,8 @@ import { IpLimoHandlerComponent } from './components/ip-limo-handler/ip-limo-han
 import { MapViewerComponent } from './components/map-viewer/map-viewer.component';
 import { RobotsStateComponent } from './components/robots-state/robots-state.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
+import { P2pHandlerComponent } from './components/p2p-handler/p2p-handler.component';
+import { UpdateComponentComponent } from './components/update-component/update-component.component';
 import { MissionActionComponent } from './components/mission-action/mission-action.component';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -31,7 +33,9 @@ import { HttpClientModule } from '@angular/common/http';
         RobotsActionsComponent,
         IpLimoHandlerComponent,
         RobotsStateComponent,
-        MainPageComponent
+        MainPageComponent,
+        P2pHandlerComponent,
+        UpdateComponentComponent
 
     ],
     'imports': [

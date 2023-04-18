@@ -34,7 +34,6 @@ export class Logger {
 
   private positionLog() {
     const data = this.nodePosition.getData();
-
     if (!data) return null;
 
     const distanceFromInit = Math.sqrt((data.pose.pose.position.x ** 2) + (data.pose.pose.position.y ** 2) + (data.pose.pose.position.z ** 2));
