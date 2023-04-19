@@ -1,10 +1,11 @@
-<div>
-
-    <h1> RENTREZ LES ADRESSES IP DES LIMOS : mettre au moins l'ip du limo 1</h1>
-    <label>Limo IP 1</label>
-    <input type="text" id="limo1" [(ngModel)]="ipAddressLimo1">
-    <label>Limo IP 2</label>
-    <input type="text" id="limo2" [(ngModel)]="ipAddressLimo2">
-
+<div id="ip-limo-handler">
+    <h1 class="titre"> Veuillez saisir les adresses IP des robots Limo</h1>
+    <h2 class="sous-titre">Il est nécessaire d'insérer au moins une adresse IP au robot Limo 1</h2>
+    <div>
+        <label>Limo IP 1</label>
+        <input type="text" id="limo1" [(ngModel)]="ipAddressLimo1">
+        <label>Limo IP 2</label>
+        <input type="text" id="limo2" [(ngModel)]="ipAddressLimo2">
+    </div>
     <button [disabled]="!ipPatternRight" (click)="sendLimoIps()">Envoyer les adresses ip</button>
 </div>

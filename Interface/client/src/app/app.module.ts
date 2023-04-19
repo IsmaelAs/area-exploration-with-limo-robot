@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { MatIconModule } from '@angular/material/icon'
 import {MatSelectModule} from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
@@ -35,6 +36,7 @@ import { P2pHandlerComponent } from './components/p2p-handler/p2p-handler.compon
     'imports': [
         BrowserModule,
         AppRoutingModule,
+        MatIconModule,
         MatSelectModule,
         BrowserAnimationsModule,
         FormsModule,

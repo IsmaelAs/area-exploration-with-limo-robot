@@ -1,5 +1,5 @@
 <div>
-    <mat-form-field appearance="fill">
+    <mat-form-field>
         <mat-label>Selectionnez un robot</mat-label>
         <mat-select [value]="robotTarget" (valueChange)="setTarget($event)">
            <mat-option *ngFor="let type of listType" [value]="type">
@@ -9,5 +9,4 @@
     </mat-form-field>
 
     <app-action-buttons [robotTarget]="robotTarget"></app-action-buttons>
-
 </div>
