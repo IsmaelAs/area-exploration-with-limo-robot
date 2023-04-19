@@ -33,9 +33,12 @@ RUN cd agx_ws && . /opt/ros/noetic/setup.sh  && rosinstall . ; catkin_make
 
 
 RUN chmod +x agx_ws/src/explore_control/src/control_explore.py
+RUN chmod +x agx_ws/src/update-pkg/src/restart-package-container.py
 
 COPY . /home/ros-package
 WORKDIR /home/ros-package
 RUN chmod +x ./entrypoint.sh
 
-ENTRYPOINT [ "./entrypoint.sh" ]
+ENTRYPOINT ["./entrypoint.sh"]
+# CMD ["/bin/bash"]
+# CMD ["tail", "-f", "/dev/null"]

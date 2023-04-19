@@ -1,4 +1,6 @@
 <div >
-  <p> L'etat du Limo1 est {{ stateLimo1 }} </p>  
-  <p> L'etat du Limo2 est {{ stateLimo2 }} </p>
+  <p> L'etat du Limo1 est {{ stateLimo1 }} et son niveau de batterie est {{ batteryLimo1 }} </p>  
+  <p> L'etat du Limo2 est {{ stateLimo2 }} et son niveau de batterie est {{ batteryLimo2 }} </p>
+
+  <app-update-component [stateLimo1]="stateLimo1" [stateLimo2]="stateLimo2"></app-update-component>
 </div>

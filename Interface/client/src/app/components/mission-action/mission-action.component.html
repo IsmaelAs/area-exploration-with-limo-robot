@@ -1,0 +1,24 @@
+<div class="container">
+    <h2>Historique des missions</h2>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th (click)="sortMissions('date')">Date</th>
+          <th (click)="sortMissions('heure')">Heure</th>
+          <th (click)="sortMissions('duration')">Durée</th>
+          <th (click)="sortMissions('limoId')">limoId</th>
+          <th (click)="sortMissions('totalDistance')">Distance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let mission of missions">
+          <td>{{ mission.date }}</td>
+          <td>{{ mission.heure }}</td>
+          <td>{{ mission.duration }} </td>
+          <td>{{ mission.limoId }}</td>
+          <td>{{ mission.totalDistance }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

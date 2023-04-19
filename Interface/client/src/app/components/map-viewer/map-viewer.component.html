@@ -1,6 +1,5 @@
 <div>
-    <div>
-        <h1>Cartes d'exploration</h1>
+    <div *ngIf="mapsVisible">
         <h2>Carte Globale</h2>
         <div id="map3"></div>
         <h3>Carte Limo1</h3>
@@ -8,5 +7,6 @@
         <h3>Carte Limo2</h3>
         <div id="map2"></div>
     </div>
-    <button mat-flat-button color="primary" (click)="init()">Afficher les cartes</button>    
+    <button mat-flat-button color="primary" (click)="init()" *ngIf="!mapsVisible">Afficher la carte</button>
+    <button mat-flat-button color="primary" (click)="swapVisible()" *ngIf="mapsVisible">Cacher la carte</button>    
 </div>

@@ -28,6 +28,12 @@ export class MapViewerComponent {
 
     private ros2: Ros;
 
+    private mapsCreated = false;
+
+    mapsVisible: boolean = false;
+
+    
+
     constructor (private ipHandler: IpHandlerService) {
 
         this.ros1 = new Ros({
@@ -41,6 +47,10 @@ export class MapViewerComponent {
     }
 
     init () {
+
+        this.swapVisible();
+
+        if (this.mapsCreated) return;
 
         // Create the main viewer 1.
         this.viewer1 = new ROS3D.Viewer({
@@ -93,6 +103,12 @@ export class MapViewerComponent {
             'rootObject': this.viewerMerged.scene,
             'continuous': true
         });
+
+        this.mapsCreated = true;
+    }
+
+    swapVisible() {
+        this.mapsVisible = !this.mapsVisible;
     }
 
 

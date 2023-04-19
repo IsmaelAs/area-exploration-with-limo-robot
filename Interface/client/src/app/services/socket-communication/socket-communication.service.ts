@@ -4,6 +4,7 @@ import { BACKEND_URL } from 'src/app/constants/url';
 import RobotTargetType from 'src/app/types/RobotType';
 import { Subject } from 'rxjs';
 import { StateType } from 'src/app/interfaces/state-limo';
+import { BatteryType } from 'src/app/interfaces/battery-limo';
 
 @Injectable({
     'providedIn': 'root'
@@ -19,11 +20,19 @@ export class SocketCommunicationService {
     private p2pConnected: Subject<boolean> = new Subject();
 
 
+    private battery: Subject<BatteryType> = new Subject();
+
+    private refreshDb: Subject<unknown> = new Subject();
+
     constructor () {
 
         this.socket = io(BACKEND_URL);
         this.initSocketSubscription();
 
+    }
+
+    updateLimo (limo: RobotTargetType) {
+        this.emit('update', limo);
     }
 
     startP2P () {
@@ -75,9 +84,18 @@ export class SocketCommunicationService {
         return this.state.asObservable();
     }
 
+    get subscribeBattery () {
+
+        return this.battery.asObservable();
+    }
+
     get subscribeP2PState () {
 
         return this.p2pConnected.asObservable();
+    }
+
+    get subscribeRefreshDb () {
+        return this.refreshDb.asObservable();
     }
 
     private initSocketSubscription () {
@@ -90,8 +108,19 @@ export class SocketCommunicationService {
 
             });
 
+            this.socket.on('refreshDb', () => {
+
+                this.refreshDb.next('allo');
+            });
+
             this.socket.on('send-state', (state: StateType) => {
                 this.state.next(state);
+
+            });
+
+
+            this.socket.on('send-battery', (battery: BatteryType) => {
+                this.battery.next(battery);
 
             });
 

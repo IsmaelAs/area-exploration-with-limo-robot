@@ -1,78 +1,94 @@
+#!/usr/bin/env python
+
 import rospy
 from std_msgs.msg import Bool
-from actionlib_msgs.msg import GoalID
-from move_base_msgs.msg import MoveBaseActionGoal
 import os
-import random
+import subprocess
+from explore_control.msg import BoolString
+from actionlib_msgs.msg import GoalID
 
 class ExplorationControl:
     def __init__(self):
-
-        isSimulation = os.environ.get("IS_SIMULATION")
-
-        if isSimulation : 
-            limoId = os.environ.get("LIMO_ID", "1")
-            rospy.init_node('exploration_control' + limoId)
-            self.subscriberState = rospy.Subscriber(f"limo{limoId}/exploration_state", Bool, self.setExplorationState)
-            self.noMove = rospy.Publisher(f"limo{limoId}/move_base/cancel", GoalID, queue_size=10)
-            self.sendGoal = rospy.Publisher(f"limo{limoId}/move_base/goal", MoveBaseActionGoal, queue_size=10)
-        else :
+        self.isSimulation = os.environ.get("IS_SIMULATION")
+        if self.isSimulation : 
+            self.limoId = os.environ.get("LIMO_ID", "1")
+            rospy.init_node('exploration_control' + self.limoId)
+            self.subscriberState = rospy.Subscriber(f"/limo{self.limoId}/exploration_state", Bool, self.setExplorationState)
+            self.publishState = rospy.Publisher('/exploration_state_sim', BoolString, queue_size=10)
+        else:
             rospy.init_node('exploration_control')
-            self.subscriberState = rospy.Subscriber('/exploration_state', Bool, self.setExplorationState)
-            self.noMove = rospy.Publisher('/move_base/cancel', GoalID, queue_size=10)
-            self.sendGoal = rospy.Publisher("/move_base/goal", MoveBaseActionGoal, queue_size=10)
+            self.subscriberState = rospy.Subscriber(
+                    '/exploration_state', Bool, self.setExplorationState)
+            self.move_base_cancel_pub = rospy.Publisher("/move_base/cancel", GoalID, queue_size=1)
+        self.return_to_base_process = None
+        self.explore_lite_process = None
+        rospy.loginfo("fini le init")
 
-
-
-        self.isExploring = False
-        self.rate = rospy.Rate(3)
-        self.stopRobot()
 
     def setExplorationState(self, msg: Bool):
-        if msg.data != self.isExploring:
+            rospy.loginfo("callback")
+            if msg.data == True:
+                self.launch_explore_lite()
+            else:
+                self.stop_explore_lite()
 
-            self.isExploring = msg.data
-            
-            if(not self.isExploring):
-                self.stopRobot()
+    def launch_explore_lite(self):
+        if self.explore_lite_process is None:
+            if self.isSimulation:
+                rospy.loginfo("Launching explore_control for simulated limo")
+                new_msg = BoolString()
+                new_msg.data = True
+                new_msg.info = f'{self.limoId}'
+                self.publishState.publish(new_msg)
+                self.return_to_base_process = subprocess.Popen(["rosrun", "explore_control", "return_to_base.py"], stderr=subprocess.PIPE, preexec_fn=os.setpgrp)
+                # Wait for the process to complete and get the output and error messages
+                stdout, stderr = self.return_to_base_process.communicate()
 
+                # Check the return code of the command
+                if self.return_to_base_process.returncode == 0:
+                    print("Return to base node deployed")
+                else:
+                    print("Error deploying return to base node:")
+                    print(stderr.decode("utf-8"))
+            else:
+                rospy.loginfo("Launching explore_control for physical limo")
+                self.explore_lite_process = subprocess.Popen(
+                    ["roslaunch", 'limo_bringup', "one_exploration.launch"],
+                    stderr=subprocess.PIPE, preexec_fn=os.setpgrp)
+                self.warning_filter_process = subprocess.Popen(
+                    ["grep", "-v", "TF_REPEATED_DATA", "buffer_core"],
+                    stdin=self.explore_lite_process.stderr)
+                
+                self.return_to_base_process = subprocess.Popen(["rosrun", "explore_control", "return_to_base.py"], stderr=subprocess.PIPE, preexec_fn=os.setpgrp)
 
-    def stopRobot(self):
+    def stop_explore_lite(self):
+        if self.isSimulation:
+            new_msg = BoolString()
+            new_msg.data = False
+            new_msg.info = f'{self.limoId}'
+            self.publishState.publish(new_msg)
+            self.return_to_base_process.terminate()
+        else:
+            if self.explore_lite_process is not None:
+                map_save_process = subprocess.Popen(
+                ["python3", "/agx_ws/src/explore_control/src/save_map.py"],
+                stderr=subprocess.PIPE, preexec_fn=os.setpgrp  
+                )
+                # Wait for the process to complete and get the output and error messages
+                stdout, stderr = map_save_process.communicate()
 
-        while not self.isExploring :
-            msg = GoalID()
-            self.noMove.publish(msg)
-            self.rate.sleep()
-        
-        self.sendMoveGoal()
-        
-    def sendMoveGoal(self): 
-        goal = MoveBaseActionGoal()
-        goal.header.seq = 0
-        goal.header.stamp.nsecs = 0
-        goal.header.stamp.secs = 0
-        goal.header.frame_id = ''
+                # Check the return code of the command
+                if map_save_process.returncode == 0:
+                    print("Map saved successfully")
+                else:
+                    print("Error saving map:")
+                    print(stderr.decode("utf-8"))
+                self.explore_lite_process.terminate()
+                self.explore_lite_process = None
+                self.return_to_base_process.terminate()
+                self.move_base_cancel_pub.publish(GoalID())
+                map_save_process.terminate()
 
-        goal.goal_id.id = ''
-        goal.goal_id.stamp.secs = 0 
-        goal.goal_id.stamp.nsecs = 0
-
-        goal.goal.target_pose.header.seq = 0
-        goal.goal.target_pose.header.stamp.secs = 0
-        goal.goal.target_pose.header.stamp.nsecs = 0
-        goal.goal.target_pose.header.frame_id = 'map'
-
-        goal.goal.target_pose.pose.position.x = random.randint(0, 3)
-        goal.goal.target_pose.pose.position.y = random.randint(0, 3)
-        goal.goal.target_pose.pose.position.z = 0
-        goal.goal.target_pose.pose.orientation.x = 0
-        goal.goal.target_pose.pose.orientation.y = 0
-        goal.goal.target_pose.pose.orientation.z = 0
-        goal.goal.target_pose.pose.orientation.w = 0.66
-
-        self.sendGoal.publish(goal)
-
-    
 if __name__ == '__main__':
     ec = ExplorationControl()
     rospy.spin()

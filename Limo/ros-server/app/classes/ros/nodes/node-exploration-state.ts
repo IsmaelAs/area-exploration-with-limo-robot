@@ -23,7 +23,7 @@ export class NodeExplorationState {
 
       this.publisherExplorationState = new Topic({
         ros: this.ros,
-        name: 'exploration_state',
+        name: process.env.IS_SIMULATION ? `limo${process.env.LIMO_ID}/exploration_state` : 'exploration_state',
         messageType: 'std_msgs/Bool',
         queue_size: 10,
       });
