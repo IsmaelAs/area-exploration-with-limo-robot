@@ -70,7 +70,7 @@ if [ "$IS_SIMULATION" == "true" ] || [ "$IS_SIMULATION" == "1" ]; then
   docker run --name ros-server-1 -p 9332:9332 --restart always -e LIMO_IP=$LIMO_IP_SIMU_1 -e IS_SIMULATION=1 -e LIMO_ID='1'  -d ros-server
   docker run --name ros-server-2 -p 9333:9333 --restart always -e LIMO_IP=$LIMO_IP_SIMU_2 -e IS_SIMULATION=1 -e LIMO_ID='2'   ros-server
 
-elif [ "$IS_SIMULATION" == "" ]; then
+elif [ "$IS_SIMULATION" == "0" ] || [ "$IS_SIMULATION" == "false" ]; then
 
   docker build  -t ros-packages-server ./ros-packages 
   docker build  -t ros-server ./ros-server
