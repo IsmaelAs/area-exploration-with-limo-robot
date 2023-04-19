@@ -6,6 +6,7 @@ import os
 import subprocess
 from explore_control.msg import BoolString
 from datetime import datetime
+from actionlib_msgs.msg import GoalID
 
 class ExplorationControl:
     def __init__(self):
@@ -32,6 +33,7 @@ class ExplorationControl:
     def stop_explore_lite(self, msg: BoolString):
         if msg.info in self.explore_lite_processes:
             rospy.loginfo("Stopping explore_control for simulated limo...")
+            move_base_cancel_pub = rospy.Publisher("/move_base/cancel", GoalID, queue_size=1)
             map_save_process = subprocess.Popen(
               ["python3", "./ros-packages/packages/src/explore_control/src/save_map.py", '-s', f"{msg.info}"],
               stderr=subprocess.PIPE, preexec_fn=os.setpgrp  
@@ -47,6 +49,7 @@ class ExplorationControl:
                 print(stderr.decode("utf-8"))
             self.explore_lite_processes[f'{msg.info}'].terminate()
             del self.explore_lite_processes[f'{msg.info}']
+            move_base_cancel_pub.publish(GoalID())
 
 if __name__ == '__main__':
     ec = ExplorationControl()
