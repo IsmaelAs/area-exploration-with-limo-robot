@@ -10,7 +10,7 @@ export class P2PPosition {
 
   private distance = 0;
 
-  private furthestLimo= 0;
+  private furthestLimo = 0;
 
   private interval: NodeJS.Timer;
 
