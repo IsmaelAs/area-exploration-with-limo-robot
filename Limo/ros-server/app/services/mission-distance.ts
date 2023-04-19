@@ -1,3 +1,4 @@
+import delay = require('delay');
 import { NodePosition } from '../classes/ros/nodes/node-position';
 import { Server } from 'socket.io';
 
@@ -22,9 +23,11 @@ export class MissionDistance {
     this.server = server;
   }
 
-  startMission(): void {
+  async startMission(): Promise<void> {
     this.isMissionActive = true;
+    if (process.env.IS_SIMULATION) this.nodePosition.setNamespace(`limo${this.limoId}`);
     this.nodePosition.initNodePosition();
+    await delay(2000);
     this.previousPosition = this.getCurrentPosition();
     this.updateInterval = setInterval(() => this.calculateDistance(), 1000);
   }
@@ -79,8 +82,4 @@ export class MissionDistance {
       totalDistance: Math.round(this.totalDistance * 100) / 100,
     });
   }
-
-  // public sendTestMessage(message: string): void {
-  //   this.server.emit('test-emit', message);
-  // }
 }

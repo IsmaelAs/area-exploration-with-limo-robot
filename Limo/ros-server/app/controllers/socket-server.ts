@@ -51,8 +51,6 @@ export class SocketServer {
   connectSocketServer(): void {
     this.nodeManager.startNodes();
     console.log('normalement je me suis connecté à toutes les nodes');
-    // this.emit('test-emit', 'Hello World envoyé directement');
-    // this.missionDistance.sendTestMessage('Hello world');
 
     this.server.on('connection', (socket) => {
       console.log('Connected to node server');
@@ -80,11 +78,13 @@ export class SocketServer {
       });
 
       socket.on('p2p-start', () => {
+        if (!this.p2pPosition) return;
         if (this.limoId === 2) this.p2pSocketClient?.activateP2P();
         else this.intervalPos = setInterval(this.callBack.bind(this), 1000);
       });
 
       socket.on('p2p-stop', () => {
+        if (!this.p2pPosition) return;
         if (this.limoId === 2) this.p2pSocketClient?.activateP2P();
         else clearInterval(this.intervalPos);
       });
@@ -98,6 +98,7 @@ export class SocketServer {
       });
 
       socket.on('p2p-distance', (distance: number) => {
+        if (!this.p2pPosition) return;
         this.p2pPosition.setP2PDistance(distance);
       });
 
@@ -109,13 +110,13 @@ export class SocketServer {
         console.log(`On Limo Error : ${err.stack}`);
       });
 
-      socket.on('start-mission', () => {
+      socket.on('start-mission', async () => {
         if (!this.isMissionStopped) return;
 
         this.loggerObservable = this.logger.logObservable.subscribe(this.sendLogs.bind(this));
 
         this.logger.startLogs();
-        this.missionDistance.startMission();
+        await this.missionDistance.startMission();
         this.stateMachine.onMission();
         this.isMissionStopped = false;
         this.nodeManager.startMission();

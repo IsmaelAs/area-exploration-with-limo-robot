@@ -10,7 +10,7 @@ export class P2PPosition {
 
   private distance = 0;
 
-  private furthestLimo= 0;
+  private furthestLimo = 0;
 
 
   constructor(limoId: number) {
@@ -51,7 +51,7 @@ export class P2PPosition {
     if (this.distance > this.p2pDistance) this.furthestLimo = this.limoId;
     // Return the opposite ID
     else this.furthestLimo = this.limoId === 1 ? 2 : 1;
-    console.log("the fursthest limo is :  "+ this.furthestLimo)
+    console.log(`the fursthest limo is :  ${this.furthestLimo}`);
     return this.furthestLimo;
   }
 }
