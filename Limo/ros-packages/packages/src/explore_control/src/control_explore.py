@@ -5,6 +5,7 @@ from std_msgs.msg import Bool
 import os
 import subprocess
 from explore_control.msg import BoolString
+from actionlib_msgs.msg import GoalID
 
 class ExplorationControl:
     def __init__(self):
@@ -18,6 +19,7 @@ class ExplorationControl:
             rospy.init_node('exploration_control')
             self.subscriberState = rospy.Subscriber(
                     '/exploration_state', Bool, self.setExplorationState)
+            self.move_base_cancel_pub = rospy.Publisher("/move_base/cancel", GoalID, queue_size=1)
         self.return_to_base_process = None
         self.explore_lite_process = None
         rospy.loginfo("fini le init")
@@ -84,6 +86,7 @@ class ExplorationControl:
                 self.explore_lite_process.terminate()
                 self.explore_lite_process = None
                 self.return_to_base_process.terminate()
+                self.move_base_cancel_pub.publish(GoalID())
                 map_save_process.terminate()
 
 if __name__ == '__main__':
