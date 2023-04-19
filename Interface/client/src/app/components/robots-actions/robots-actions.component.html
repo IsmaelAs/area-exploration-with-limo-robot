@@ -1,13 +1,10 @@
 <div>
-    <mat-form-field appearance="fill">
-        <mat-label>Selectionnez un robot</mat-label>
-        <mat-select [value]="robotTarget" (valueChange)="setTarget($event)">
-           <mat-option *ngFor="let type of listType" [value]="type">
-                {{ type === 'robots' ? "les deux robots" : type}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
-
+    <form>
+      <label>Selectionnez un robot</label>
+      <select [(ngModel)]="robotTarget" name="robotType">
+        <option *ngFor="let type of listType" [value]="type">{{ type === 'robots' ? 'les deux robots' : type }}</option>
+      </select>
+    </form>
     <app-action-buttons [robotTarget]="robotTarget"></app-action-buttons>
-
 </div>
+  

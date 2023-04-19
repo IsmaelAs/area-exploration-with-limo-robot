@@ -27,8 +27,12 @@ button {
 
   button:active {
     background-color: #0a4d0c;
-    box-shadow: 0 5px #858585;
+    box-shadow: 0 5px ;
     transform: translateY(4px);
+  }
+
+  button:disabled {
+    background: #858585;
   }
 
 
