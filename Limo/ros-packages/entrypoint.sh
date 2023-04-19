@@ -36,13 +36,13 @@ if [ ! "$IS_SIMULATION" ];  then
   # Subscribe to /exploration_state topic to control exploration state
   echo "Launching explore_control..."
   rosrun explore_control control_explore.py  &
-  rosrun update-pkg restart-package-container.py
+  exec rosrun update-pkg restart-package-container.py
 else 
   # echo "Launching return to base..."
   # rosrun explore_control return_to_base.py &
   # sleep 5
   echo "Launching explore_control..."
-  exec rosrun explore_control control_explore.py &
-  # rosrun update-pkg restart-package-container.py
+  rosrun explore_control control_explore.py &
+  exec rosrun update-pkg restart-package-container.py
 fi
 wait

@@ -2,10 +2,56 @@
 <launch>
 	<arg name="ns" default="/limo1"/>
 	<arg name="zz" default="limo1"/>
+
+	<group  ns="$(arg ns)">
+		<node pkg="amcl" type="amcl" name="amcl" output="screen">
+			<rosparam file="$(find limo_bringup)/params/amcl_params_diff.yaml" command="load" />
+			<param name="initial_pose_x"            value="0"/>
+			<param name="initial_pose_y"            value="0"/>
+			<param name="initial_pose_a"            value="0"/>
+
+			<param name="global_frame_id" value="$(arg zz)/map"/>
+			<param name="odom_frame_id" value="$(arg zz)/odom"/>
+			<param name="base_frame_id" value="$(arg zz)/base_footprint"/>
+
+			<remap from="scan" to="$(arg ns)/scan"/>
+			<remap from="initialpose" to="$(arg ns)/initialpose"/> 
+			<remap from="amcl_pose" to="$(arg ns)/amcl_pose"/>
+			<remap from="particlecloud" to="$(arg ns)/particlecloud"/>
+		</node>
+	</group>
+
     <!--  ************** Navigation ***************  -->
 	<group  ns="$(arg ns)">
- 		<include file="$(find limo_gazebo_sim)/launch/limo_navigation_ackerman.launch"></include>	
+		<node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+			<rosparam file="$(find limo_gazebo_sim)/params/diff/costmap_common_params_1.yaml" command="load" ns="global_costmap" />
+			<rosparam file="$(find limo_gazebo_sim)/params/diff/costmap_common_params_1.yaml" command="load" ns="local_costmap" />
+			<rosparam file="$(find limo_gazebo_sim)/params/diff/local_costmap_params_1.yaml" command="load" />
+			<rosparam file="$(find limo_gazebo_sim)/params/diff/global_costmap_params_1.yaml" command="load" />
+			<rosparam file="$(find limo_gazebo_sim)/params/diff/planner_1.yaml" command="load" />
+
+			<param name="base_global_planner" value="global_planner/GlobalPlanner" />
+			<param name="planner_frequency" value="1.0" />
+			<param name="planner_patience" value="5.0" />
+			<!--param name="base_local_planner" value="base_local_planner/TrajectoryPlannerROS" /-->
+			<param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" />
+			<param name="controller_frequency" value="5.0" />
+			<param name="controller_patience" value="15.0" />
+			<param name="clearing_rotation_allowed" value="true" />
+
+			<param name="global_costmap/robot_base_frame" value="$(arg zz)/base_link"/>
+			<param name="local_costmap/robot_base_frame" value="$(arg zz)/base_link"/>
+			<param name="local_costmap/global_frame" value="$(arg zz)/odom"/>
+			<param name="global_costmap/global_frame" value="$(arg zz)/map"/>
+
+			<param name="global_costmap/scan/sensor_frame" value="$(arg ns)/base_scan"/>
+			<param name="global_costmap/obstacle_layer/scan/sensor_frame" value="$(arg ns)/base_scan"/>
+			<param name="local_costmap/scan/sensor_frame" value="$(arg ns)/base_scan"/>
+			<param name="local_costmap/obstacle_layer/scan/sensor_frame" value="$(arg ns)/base_scan"/>
+
+		</node>
 	</group>
 
 </launch>
+
 

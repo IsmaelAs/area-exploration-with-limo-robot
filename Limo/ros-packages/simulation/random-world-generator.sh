@@ -1,6 +1,6 @@
 #!/bin/bash
 
-
+IS_SIMULATION=1
 
 roslaunch limo_gazebo_sim random_world.launch random_world_number:=$((1 + $RANDOM % 6)) &
 

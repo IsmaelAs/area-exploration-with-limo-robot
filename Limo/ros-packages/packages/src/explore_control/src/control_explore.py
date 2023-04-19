@@ -12,7 +12,7 @@ class ExplorationControl:
         if self.isSimulation : 
             self.limoId = os.environ.get("LIMO_ID", "1")
             rospy.init_node('exploration_control' + self.limoId)
-            self.subscriberState = rospy.Subscriber(f"limo{self.limoId}/exploration_state", Bool, self.setExplorationState)
+            self.subscriberState = rospy.Subscriber(f"/limo{self.limoId}/exploration_state", Bool, self.setExplorationState)
             self.publishState = rospy.Publisher('/exploration_state_sim', BoolString, queue_size=10)
         else:
             rospy.init_node('exploration_control')
@@ -38,6 +38,16 @@ class ExplorationControl:
                 new_msg.data = True
                 new_msg.info = f'{self.limoId}'
                 self.publishState.publish(new_msg)
+                self.return_to_base_process = subprocess.Popen(["rosrun", "explore_control", "return_to_base.py"], stderr=subprocess.PIPE, preexec_fn=os.setpgrp)
+                # Wait for the process to complete and get the output and error messages
+                stdout, stderr = self.return_to_base_process.communicate()
+
+                # Check the return code of the command
+                if self.return_to_base_process.returncode == 0:
+                    print("Return to base node deployed")
+                else:
+                    print("Error deploying return to base node:")
+                    print(stderr.decode("utf-8"))
             else:
                 rospy.loginfo("Launching explore_control for physical limo")
                 self.explore_lite_process = subprocess.Popen(
@@ -47,7 +57,7 @@ class ExplorationControl:
                     ["grep", "-v", "TF_REPEATED_DATA", "buffer_core"],
                     stdin=self.explore_lite_process.stderr)
                 
-                # self.return_to_base_process = subprocess.Popen(["rosrun", "explore_control", "return_to_base.py"], stderr=subprocess.PIPE, preexec_fn=os.setpgrp)
+                self.return_to_base_process = subprocess.Popen(["rosrun", "explore_control", "return_to_base.py"], stderr=subprocess.PIPE, preexec_fn=os.setpgrp)
 
     def stop_explore_lite(self):
         if self.isSimulation:
@@ -55,6 +65,7 @@ class ExplorationControl:
             new_msg.data = False
             new_msg.info = f'{self.limoId}'
             self.publishState.publish(new_msg)
+            self.return_to_base_process.terminate()
         else:
             if self.explore_lite_process is not None:
                 map_save_process = subprocess.Popen(
@@ -72,7 +83,7 @@ class ExplorationControl:
                     print(stderr.decode("utf-8"))
                 self.explore_lite_process.terminate()
                 self.explore_lite_process = None
-                # self.return_to_base_process.terminate()
+                self.return_to_base_process.terminate()
                 map_save_process.terminate()
 
 if __name__ == '__main__':
