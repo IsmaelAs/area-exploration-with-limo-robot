@@ -47,7 +47,7 @@ class ExplorationControl:
                     ["grep", "-v", "TF_REPEATED_DATA", "buffer_core"],
                     stdin=self.explore_lite_process.stderr)
                 
-                self.return_to_base_process = subprocess.Popen(["rosrun", "explore_control", "return_to_base.py"], stderr=subprocess.PIPE, preexec_fn=os.setpgrp)
+                # self.return_to_base_process = subprocess.Popen(["rosrun", "explore_control", "return_to_base.py"], stderr=subprocess.PIPE, preexec_fn=os.setpgrp)
 
     def stop_explore_lite(self):
         if self.isSimulation:
@@ -72,7 +72,8 @@ class ExplorationControl:
                     print(stderr.decode("utf-8"))
                 self.explore_lite_process.terminate()
                 self.explore_lite_process = None
-                self.return_to_base_process.terminate()
+                # self.return_to_base_process.terminate()
+                map_save_process.terminate()
 
 if __name__ == '__main__':
     ec = ExplorationControl()

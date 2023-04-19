@@ -42,7 +42,7 @@ else
   # rosrun explore_control return_to_base.py &
   # sleep 5
   echo "Launching explore_control..."
-  rosrun explore_control control_explore.py &
-  rosrun update-pkg restart-package-container.py
+  exec rosrun explore_control control_explore.py &
+  # rosrun update-pkg restart-package-container.py
 fi
 wait

@@ -53,7 +53,7 @@ if [ "$IS_SIMULATION" == "true" ] || [ "$IS_SIMULATION" == "1" ]; then
 
   wait
   echo "Launching simulated explore control..."
-  rosrun explore_control simulation_explore.py &
+  rosrun explore_control simulation_explore.py || { echo "Error: Failed to launch simulated explore control"; exit 1; } &
   sleep 5
 
   docker run --name ros-packages-server-1  --network host --restart always -e ROS_MASTER_URI=$ROS_MASTER_URI -e IS_SIMULATION=1 -e LIMO_ID='1'  -d ros-packages-server &
