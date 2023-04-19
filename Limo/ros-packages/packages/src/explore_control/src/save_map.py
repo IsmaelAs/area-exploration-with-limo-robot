@@ -5,12 +5,12 @@ from datetime import datetime
 now = datetime.now()
 formatted_time = now.strftime("%m-%d-%Y-%H-%M-%S")
 mission_directory_path = f"missions/limo-mission"
-if sys.argv[1] == '-s':   
+if len(sys.argv) > 1 and sys.argv[1] == '-s':   
     mission_directory_path = f"missions/limo{sys.argv[2]}-sim-mission"
 create_saving_directory = subprocess.Popen(["mkdir", "-p", mission_directory_path], stderr=subprocess.PIPE, preexec_fn=os.setpgrp)
 
 map_topic = '/map'
-if sys.argv[1] == '-s':
+if len(sys.argv) > 1 and sys.argv[1] == '-s':
     map_topic = f'limo{sys.argv[2]}/map' 
 
 map_save_process = subprocess.Popen(
