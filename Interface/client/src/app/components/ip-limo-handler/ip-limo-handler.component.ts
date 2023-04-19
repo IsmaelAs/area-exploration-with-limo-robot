@@ -31,12 +31,10 @@ export class IpLimoHandlerComponent {
 
 
         let isIp2Good = true;
-        if (this.ipAddressLimo2.replace(' ', '') !== '') {
 
-            const ips2 = this.ipAddressLimo2.split('.');
-            isIp2Good = ips2.length === IP_LENGTH && ips2.every((ip) => ip !== '' && Number(ip) < MAX_IP && Number(ip) > MIN_IP);
+        const ips2 = this.ipAddressLimo2.split('.');
+        isIp2Good = ips2.length === IP_LENGTH && ips2.every((ip) => ip !== '' && Number(ip) < MAX_IP && Number(ip) > MIN_IP);
 
-        }
 
         const ips1 = this.ipAddressLimo1.split('.');
         return isIp2Good && this.ipAddressLimo1 !== '' && ips1.length === IP_LENGTH && ips1.every((ip) => ip !== '' && Number(ip) < MAX_IP && Number(ip) > MIN_IP);
