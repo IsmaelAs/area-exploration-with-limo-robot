@@ -22,6 +22,8 @@ export class SocketCommunicationService {
 
     private battery: Subject<BatteryType> = new Subject();
 
+    private refreshDb: Subject<unknown> = new Subject();
+
     constructor () {
 
         this.socket = io(BACKEND_URL);
@@ -92,6 +94,10 @@ export class SocketCommunicationService {
         return this.p2pConnected.asObservable();
     }
 
+    get subscribeRefreshDb () {
+        return this.refreshDb.asObservable();
+    }
+
     private initSocketSubscription () {
 
         this.socket.on('connect', () => {
@@ -100,6 +106,11 @@ export class SocketCommunicationService {
 
                 this.logsOpen.next(logs);
 
+            });
+
+            this.socket.on('refreshDb', () => {
+
+                this.refreshDb.next('allo');
             });
 
             this.socket.on('send-state', (state: StateType) => {

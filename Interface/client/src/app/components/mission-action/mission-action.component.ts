@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { firstValueFrom } from 'rxjs';
+import { Subscription, firstValueFrom } from 'rxjs';
 import MissionInfos from 'src/app/interfaces/mission-infos';
 import { CommunicationService } from 'src/app/services/communication.service';
+import { SocketCommunicationService } from 'src/app/services/socket-communication/socket-communication.service';
 
 @Component({
     'selector': 'app-mission-action',
@@ -11,7 +12,14 @@ import { CommunicationService } from 'src/app/services/communication.service';
 export class MissionActionComponent implements OnInit {
     missions: MissionInfos[] | undefined = [];
 
-    constructor (private commHTTP: CommunicationService) {}
+    private dbSub: Subscription;
+
+    constructor (private commHTTP: CommunicationService, private socketCommunication : SocketCommunicationService) {
+        this.dbSub = this.socketCommunication.subscribeRefreshDb.subscribe(async (allo) => {
+            console.log(allo);
+            await this.setMissions();
+        });
+    }
 
     async ngOnInit (): Promise<void> {
         await this.setMissions();
@@ -19,6 +27,8 @@ export class MissionActionComponent implements OnInit {
 
     async setMissions (): Promise<void> {
         try {
+            console.log('ici les missions de jsp quoi');
+            console.log(this.missions);
             this.missions = await firstValueFrom(this.commHTTP.getMissions());
         } catch (error) {
             // Pass

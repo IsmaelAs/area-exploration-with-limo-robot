@@ -6,8 +6,8 @@
           <th (click)="sortMissions('date')">Date</th>
           <th (click)="sortMissions('heure')">Heure</th>
           <th (click)="sortMissions('duration')">Durée</th>
-          <th (click)="sortMissions('distanceLimo1')">Distance Limo 1</th>
-          <th (click)="sortMissions('distanceLimo2')">Distance Limo 2</th>
+          <th (click)="sortMissions('limoId')">limoId</th>
+          <th (click)="sortMissions('totalDistance')">Distance</th>
         </tr>
       </thead>
       <tbody>
@@ -15,8 +15,8 @@
           <td>{{ mission.date }}</td>
           <td>{{ mission.heure }}</td>
           <td>{{ mission.duration }} </td>
-          <td>{{ mission.distanceLimo1 }}</td>
-          <td>{{ mission.distanceLimo2 }}</td>
+          <td>{{ mission.limoId }}</td>
+          <td>{{ mission.totalDistance }}</td>
         </tr>
       </tbody>
     </table>
