@@ -10,7 +10,6 @@ import { ServerSocketController } from './controllers/server.socket.controller';
 import { Logger } from './services/logger';
 import * as cors from 'cors';
 import express = require('express');
-import { MissionInfos } from './services/mission-infos';
 
 const app = express();
 
@@ -28,13 +27,9 @@ export class Server {
 
   private serverSocketController: ServerSocketController;
 
-  private missionInfos: MissionInfos;
-
 
   // eslint-disable-next-line no-useless-constructor, no-empty-function
-  constructor(private readonly application: Application) {
-    this.missionInfos = new MissionInfos();
-  }
+  constructor(private readonly application: Application) { }
 
   private static normalizePort(val: number | string): number | string | boolean {
     const port: number = typeof val === 'string' ? parseInt(val, this.baseDix) : val;
@@ -55,7 +50,6 @@ export class Server {
     this.server.on('error', (error: NodeJS.ErrnoException) => this.onError(error));
     this.server.on('listening', () => this.onListening());
 
-    this.missionInfos.test();
     console.log('Init socket manager');
     this.io = new SocketServer(this.server, {
       cors: {

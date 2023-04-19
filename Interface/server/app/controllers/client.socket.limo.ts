@@ -24,13 +24,14 @@ export class ClientSocketLimo {
   private p2pConnectedObservable: Subject<boolean> = new Subject();
 
   private limoUrl: string;
+
   private batteryObservable: Subject<BatteryLimo> = new Subject();
 
 
-  constructor(limoId: number, limoUrl: string, p2pUrl: string) {
+  constructor(limoId: number, limoUrl: string, p2pUrl: string, missionInfos: MissionInfos) {
     this.limoId = limoId;
     this.logger = new Logger();
-    this.missionInfos = new MissionInfos();
+    this.missionInfos = missionInfos;
     this.limoUrl = limoUrl;
     this.p2pUrl = p2pUrl;
   }
@@ -62,11 +63,11 @@ export class ClientSocketLimo {
       this.logger.saveLimoData(data);
     });
 
-    this.socket.on('save-total-distance', (data: DistanceInfo) => {
-      this.missionInfos = new MissionInfos();
+    this.socket.on('save-total-distance', async (data: DistanceInfo) => {
       console.log('ici jai recu la data dans le emit ');
       console.log(data);
-      this.missionInfos.saveTotalDistance(data);
+      this.missionInfos.onMissionEnd();
+      await this.missionInfos.saveTotalDistance(data);
     });
 
     this.socket.on('test-emit', (data: string) => {

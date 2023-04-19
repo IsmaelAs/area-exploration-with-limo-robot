@@ -2,7 +2,7 @@ interface MissionInfos {
     date: string;
     heure: string;
     duration: string;
-    distanceLimo1: number;
-    distanceLimo2: number;
+    limoId: number;
+    distance: number;
 }
 export default MissionInfos;

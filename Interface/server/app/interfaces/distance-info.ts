@@ -1,6 +1,6 @@
 interface DistanceInfo {
     limoId: number,
-    distance: number
+    totalDistance: number
 }
 
 export default DistanceInfo;

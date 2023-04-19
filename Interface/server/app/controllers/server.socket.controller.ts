@@ -30,6 +30,7 @@ export class ServerSocketController {
   constructor(io: SocketServer, logger: Logger) {
     this.io = io;
     this.logger = logger;
+    this.missionInfos = new MissionInfos(this.io);
   }
 
   initializeSocketServer() {
@@ -87,7 +88,7 @@ export class ServerSocketController {
         const LIMO2_URL = `ws://${ips.limo2}:${process.env.IS_SIMULATION ? '9333' : '9332'}`;
 
         if (ips.limo1.replace(' ', '') !== '') {
-          this.socketLimo = new ClientSocketLimo(FIRST_LIMO, LIMO1_URL, LIMO2_URL);
+          this.socketLimo = new ClientSocketLimo(FIRST_LIMO, LIMO1_URL, LIMO2_URL, this.missionInfos);
           this.socketLimo.connectClientSocketToLimo();
 
           this.socketLimo.subscribeState.subscribe(this.sendStateToClient.bind(this));
@@ -96,7 +97,7 @@ export class ServerSocketController {
         }
 
         if (ips.limo2.replace(' ', '') !== '') {
-          this.socketLimo2 = new ClientSocketLimo(SECOND_LIMO, LIMO2_URL, LIMO1_URL);
+          this.socketLimo2 = new ClientSocketLimo(SECOND_LIMO, LIMO2_URL, LIMO1_URL, this.missionInfos);
           this.socketLimo2.connectClientSocketToLimo();
 
           this.socketLimo2.subscribeState.subscribe(this.sendStateToClient.bind(this));
@@ -139,7 +140,6 @@ export class ServerSocketController {
 
   private startMission() {
     this.logger.startMission();
-    this.missionInfos = new MissionInfos();
     this.missionInfos.onMissionStart();
 
     if (this.socketLimo) this.socketLimo.startMission();

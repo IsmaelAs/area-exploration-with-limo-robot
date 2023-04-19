@@ -1,4 +1,5 @@
-
+/* eslint-disable no-magic-numbers */
+import { Server as SocketServer } from 'socket.io';
 import DistanceInfo from '../interfaces/distance-info';
 import { DB_MISSION_INFOS_COLLECTION } from '../constants/data-base-constants';
 import { DataBaseHandler } from './data-base-handler';
@@ -6,35 +7,23 @@ import { DataBaseHandler } from './data-base-handler';
 export class MissionInfos {
   private missionStart: Date;
 
-  private missionEnd: Date;
+  private currentDate = '';
 
-  private currentDate: string;
+  private currentHour = '';
 
-  private currentHour: string;
-
-  private duration: string;
-
-  private distanceLimo1?: number = 0;
-
-  private distanceLimo2?: number = 0;
+  private duration = '';
 
   private dataBaseHandler: DataBaseHandler;
 
-  constructor() {
+  private io: SocketServer;
+
+  constructor(io: SocketServer) {
     this.dataBaseHandler = new DataBaseHandler();
+    this.io = io;
   }
 
   onMissionStart(): void {
     this.missionStart = new Date();
-    this.saveMissionDateAndHour();
-  }
-
-  onMissionEnd(): void {
-    this.missionEnd = new Date();
-    this.saveTotalDuration();
-  }
-
-  saveMissionDateAndHour(): void {
     // Create a new date object with only the year, month, and day
     const date: Date = new Date(this.missionStart.getFullYear(), this.missionStart.getMonth(), this.missionStart.getDate());
     this.currentDate = date.toISOString().substring(0, 10);
@@ -45,50 +34,26 @@ export class MissionInfos {
     this.currentHour = `${hour}h${minute < 10 ? '0' : ''}${minute}`;
   }
 
-  saveTotalDuration(): void {
-    const durationMs: number = this.missionEnd.getTime() - this.missionStart.getTime();
+  onMissionEnd(): void {
+    const newDate = new Date();
+    const durationMs: number = newDate.getTime() - this.missionStart.getTime();
 
     // Converting the duration to minutes and seconds
     const durationMin: number = Math.floor(durationMs / (1000 * 60));
     const durationSec: number = Math.floor(durationMs % (1000 * 60) / 1000);
-
     this.duration = `${durationMin} min ${durationSec} s`;
   }
 
-  saveTotalDistance(data: DistanceInfo): void {
-    if (data.limoId === 1) this.distanceLimo1 = data.distance;
-    if (data.limoId === 2) this.distanceLimo2 = data.distance;
-    this.insertMissionsInfos();
-  }
-
-  async insertMissionsInfos():Promise<void> {
+  async saveTotalDistance(data: DistanceInfo): Promise<void> {
+    console.log(data);
+    const {totalDistance} = data;
     await this.dataBaseHandler.insert(DB_MISSION_INFOS_COLLECTION, {
       date: this.currentDate,
       heure: this.currentHour,
-      durée: this.duration,
-      distanceLimo1: this.distanceLimo1,
-      distanceLimo2: this.distanceLimo2,
-    }
-    );
-  }
-
-  async test(): Promise<void> {
-    const currentDate = '2023-04-18';
-    const currentHour = '10:30:00';
-    const duration = '01:15:30';
-    await this.dataBaseHandler.insert('test-missions-infos', {
-      date: currentDate,
-      heure: currentHour,
-      durée: duration,
-      distanceLimo1: 1234.56,
-      distanceLimo2: 987.65,
+      duration: this.duration,
+      limoId: data.limoId,
+      totalDistance,
     });
+    this.io.emit('refreshDb');
   }
-
-  /*
-   * Async getAllMissionsInfos():Promise<void> {
-   *   const data = await this.dataBaseHandler.find(DB_MISSION_INFOS_COLLECTION);
-   *   this.socket.emit('send-mission-infos', data);
-   * }
-   */
 }
