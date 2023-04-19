@@ -51,7 +51,6 @@ export class MapViewerComponent {
         this.swapVisible();
 
         if (this.mapsCreated) return;
-        console.log('creerrrr')
 
         // Create the main viewer 1.
         this.viewer1 = new ROS3D.Viewer({

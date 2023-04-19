@@ -16,10 +16,4 @@ export class RobotsActionsComponent {
         'robots'
     ];
 
-    setTarget (choice: RobotTargetType) {
-
-        this.robotTarget = choice;
-
-    }
-
 }
