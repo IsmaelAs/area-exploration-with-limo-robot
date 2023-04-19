@@ -55,9 +55,6 @@
   <build_depend>actionlib</build_depend>
   <build_depend>message_generation</build_depend>
   <depend>geometry_msgs</depend>
-  <depend>std_msgs</depend>
-  <depend>move_base_msgs</depend>
-  <depend>actionlib</depend>
   <depend>actionlib_msgs</depend>
   <build_export_depend>move_base_msgs</build_export_depend>
   <build_export_depend>rospy</build_export_depend>
