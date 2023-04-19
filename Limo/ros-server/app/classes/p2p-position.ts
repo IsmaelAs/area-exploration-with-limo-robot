@@ -12,12 +12,19 @@ export class P2PPosition {
 
   private furthestLimo = 0;
 
+  private interval: NodeJS.Timer;
 
-  constructor(limoId: number) {
-    this.limoId = limoId;
+
+
+  constructor(limoID: number) {
+    this.limoId = limoID;
     if (process.env.IS_SIMULATION) this.nodePosition.setNamespace(`limo${this.limoId}`);
     this.nodePosition.initNodePosition();
-    setInterval(this.getFurthestLimo, 2000);
+    this.interval = setInterval(this.getFurthestLimo.bind(this), 2000);
+  }
+
+  closeInterval(){
+    clearInterval(this.interval);
   }
 
 
@@ -48,10 +55,17 @@ export class P2PPosition {
   }
 
   getFurthestLimo() {
+    console.log('This is limoId : ' + this.limoId )
+    console.log('My distance is : ' + this.distance )
+    console.log('The P2P distance is : ' + this.p2pDistance )
+
+
     if (this.distance > this.p2pDistance) this.furthestLimo = this.limoId;
     // Return the opposite ID
-    else this.furthestLimo = this.limoId === 1 ? 2 : 1;
-    console.log(`the fursthest limo is :  ${this.furthestLimo}`);
+    else  {
+      this.furthestLimo = this.limoId === 1 ? 2 : 1; 
+    }
+    console.log("the fursthest limo is of ID :  "+ this.furthestLimo)
     return this.furthestLimo;
   }
 }
