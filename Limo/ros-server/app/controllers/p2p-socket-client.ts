@@ -1,3 +1,4 @@
+import NodeMap from '../classes/ros/nodes/node-map';
 import { P2PPosition } from '../classes/p2p-position';
 import { io, Socket } from 'socket.io-client';
 
@@ -12,6 +13,10 @@ export class P2PSocketClient {
 
   private intervalPos: NodeJS.Timer;
 
+  private intervalMap: NodeJS.Timer;
+
+  private nodeMap: NodeMap = new NodeMap();
+
   private p2pPosition: P2PPosition = new P2PPosition(LIMO_ID);
 
 
@@ -19,6 +24,8 @@ export class P2PSocketClient {
     this.p2pActivated = false;
     this.p2pUrl = p2pUrl;
     this.socket = io(this.p2pUrl);
+
+    this.nodeMap.initNodeMap();
 
     this.initP2P();
   }
@@ -32,6 +39,7 @@ export class P2PSocketClient {
     this.p2pActivated = false;
     this.emit('p2p-deactivated');
     clearInterval(this.intervalPos);
+    clearInterval(this.intervalMap);
   }
 
   initP2P() {
@@ -39,14 +47,24 @@ export class P2PSocketClient {
       this.socket.on('reconnect', () => {
         window.location.reload();
       });
-      this.intervalPos = setInterval(this.callBack.bind(this), 1000);
+      this.intervalPos = setInterval(this.callBackPos.bind(this), 1000);
+      this.intervalMap = setInterval(this.callBackMap.bind(this), 10000);
       this.socket.on('p2p-distance', (distance: number) => {
         this.p2pPosition.setP2PDistance(distance);
       });
     });
   }
 
-  private callBack() {
+  private callBackMap() {
+    const map = this.nodeMap.getMap();
+    console.log("Dans le call back Map de Limo2.... ");
+    if (map) {
+      console.log("Il y a une map");
+      this.emit('p2p-map', map); 
+    }
+  }
+
+  private callBackPos() {
     const distance = this.p2pPosition.getDistance();
     if (distance) this.emit('p2p-distance', distance);
   }

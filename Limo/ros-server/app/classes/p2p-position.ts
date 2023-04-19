@@ -29,7 +29,8 @@ export class P2PPosition {
 
 
   getDistance() {
-    const data = this.nodePosition.getData();
+    const data = this.nodePosition.getData();1
+    
 
     if (!data) return null;
     const distanceFromInit = Math.sqrt((data.pose.pose.position.x ** 2) + (data.pose.pose.position.y ** 2) + (data.pose.pose.position.z ** 2));

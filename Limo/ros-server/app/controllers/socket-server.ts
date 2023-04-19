@@ -7,6 +7,8 @@ import { MyStateMachine } from '../classes/state-machine';
 import StateType from '../types/StateType';
 import { P2PSocketClient } from './p2p-socket-client';
 import { P2PPosition } from '../classes/p2p-position';
+import Map from '../types/Map';
+import NodeMap from '../classes/ros/nodes/node-map';
 import { MissionDistance } from '../services/mission-distance';
 
 
@@ -34,6 +36,8 @@ export class SocketServer {
   private p2pPosition: P2PPosition;
 
   private intervalPos: NodeJS.Timer;
+
+  private nodeMap: NodeMap = new NodeMap();
 
   limoId: number;
 
@@ -80,7 +84,10 @@ export class SocketServer {
       socket.on('p2p-start', () => {
         if (!this.p2pPosition) return;
         if (this.limoId === 2) this.p2pSocketClient?.activateP2P();
-        else this.intervalPos = setInterval(this.callBack.bind(this), 1000);
+        else {
+          this.nodeMap.initNodeMap();
+          this.intervalPos = setInterval(this.callBackPos.bind(this), 1000);
+        }
       });
 
       socket.on('p2p-stop', () => {
@@ -100,6 +107,10 @@ export class SocketServer {
       socket.on('p2p-distance', (distance: number) => {
         if (!this.p2pPosition) return;
         this.p2pPosition.setP2PDistance(distance);
+      });
+
+      socket.on('p2p-map', (map: Map) => {
+        this.nodeMap.sendMap(map);
       });
 
       socket.on('identify', async () => {
@@ -145,7 +156,7 @@ export class SocketServer {
     });
   }
 
-  private callBack() {
+  private callBackPos() {
     const distance = this.p2pPosition.getDistance();
     if (distance) this.emit('p2p-distance', distance);
   }
