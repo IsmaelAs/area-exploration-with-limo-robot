@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    //"esModuleInterop": true,
     "baseUrl": "./",
     "target": "es6",
     "types": ["reflect-metadata", "@types/mocha", "mocha"],

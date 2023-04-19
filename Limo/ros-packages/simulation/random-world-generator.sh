@@ -1,6 +1,6 @@
 #!/bin/bash
 
-
+IS_SIMULATION=1
 
 roslaunch limo_gazebo_sim random_world.launch random_world_number:=$((1 + $RANDOM % 6)) &
 
@@ -25,12 +25,6 @@ roslaunch  limo_gazebo_sim main_navigation.launch  2> >(grep -v TF_REPEATED_DATA
 
 # Wait for navigation stack to start up
 sleep 10
-
-# Launch explore lite
-roslaunch  limo_gazebo_sim main_exploration.launch  2> >(grep -v TF_REPEATED_DATA buffer_core) &
-
-# Wait for explore lite to start up
-sleep 5
 
 
 

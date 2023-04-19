@@ -5,15 +5,16 @@ source /opt/ros/noetic/setup.bash
 
 echo $(hostname -I)
 sleep 5
-source /agx_ws/devel/setup.bash
+
+
+source /agx_ws/devel/setup.bash --extend
 
 if [ ! "$IS_SIMULATION" ];  then 
-
-  roslaunch rosbridge_server rosbridge_websocket.launch &
-
   cp -r ./packages/launchs $(rospack find limo_bringup)
   cp -r ./packages/params $(rospack find limo_bringup)
 
+  roslaunch rosbridge_server rosbridge_websocket.launch &
+  wait
   # Launch gmapping
   roslaunch --wait  limo_bringup one_gmapping.launch  2> >(grep -v TF_REPEATED_DATA buffer_core) &
 
@@ -32,17 +33,16 @@ if [ ! "$IS_SIMULATION" ];  then
   # Wait for navigation stack to start up
   sleep 5
 
-  rosrun explore_control control_explore.py &
-
-  # Wait for explore lite to start up
-  sleep 10
-
-  # Launch explore lite
-  exec roslaunch --wait  limo_bringup one_exploration.launch  2> >(grep -v TF_REPEATED_DATA buffer_core)
-
+  # Subscribe to /exploration_state topic to control exploration state
+  echo "Launching explore_control..."
+  rosrun explore_control control_explore.py  &
+  exec rosrun update-pkg restart-package-container.py
 else 
-  exec rosrun explore_control control_explore.py
-
+  # echo "Launching return to base..."
+  # rosrun explore_control return_to_base.py &
+  # sleep 5
+  echo "Launching explore_control..."
+  rosrun explore_control control_explore.py &
+  exec rosrun update-pkg restart-package-container.py
 fi
-
-# Subscribe to /exploration_state topic to control exploration state
+wait
