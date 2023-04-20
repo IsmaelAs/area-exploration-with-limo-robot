@@ -1,6 +1,7 @@
 import { Ros, Topic } from 'roslib';
 import { BRIDGE_URI } from '../../../constants/url';
 import { Observable, Subject } from 'rxjs';
+import { Message } from 'roslib';
 
 export class NodeBattery {
   private ros: Ros;
@@ -45,7 +46,7 @@ export class NodeBattery {
 
   // Add a new method to publish a True boolean on the /return_to_base topic
   private publishReturnToBase() {
-    const message = new Bool({ data: true });
+    const message = new Message({ data: true });
     this.returnToBasePublisher.publish(message);
   }
 
