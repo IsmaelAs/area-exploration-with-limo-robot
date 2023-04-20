@@ -58,7 +58,6 @@ export class P2PSocketClient {
 
   private callBackMap() {
     const map = this.nodeMap.getMap();
-    console.log("Dans le call back Map de Limo2.... ");
     if (map) {
       console.log("Il y a une map");
       this.emit('p2p-map', map); 
