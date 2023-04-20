@@ -22,13 +22,14 @@ class ReturnToBase:
             self.return_subscriber = rospy.Subscriber(f'/limo{self.limoId}/return_to_base', Bool, self.return_callback)
 
             self.move_base_client = actionlib.SimpleActionClient(f'/limo{self.limoId}/move_base', MoveBaseAction)
+            self.stop_explore_lite = rospy.Publisher(f'/limo{self.limoId}/exploration_state', Bool, queue_size=10)
             self.move_base_client.wait_for_server()
         else:
             rospy.init_node('return_to_base_node')
 
             self.pose_subscriber = rospy.Subscriber('/odom', Odometry, self.pose_callback)  # Update the message type
             self.return_subscriber = rospy.Subscriber('/return_to_base', Bool, self.return_callback)
-
+            self.stop_explore_lite = rospy.Publisher('/exploration_state', Bool, queue_size=10)
             self.move_base_client = actionlib.SimpleActionClient('/move_base', MoveBaseAction)
             self.move_base_client.wait_for_server()
 
@@ -50,6 +51,8 @@ class ReturnToBase:
                 rospy.loginfo("Robot returned to base successfully")
             else:
                 rospy.logwarn("Failed to return to base")
+                
+            self.stop_explore_lite.publish(False)
             
 
 if __name__ == '__main__':
