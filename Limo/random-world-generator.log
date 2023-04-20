@@ -1,1242 +1,153 @@
-[33m[ WARN] [1681951631.314020140]: link 'laser_link' material 'laser_material' undefined.[0m
-[33m[ WARN] [1681951631.314949808]: link 'laser_link' material 'laser_material' undefined.[0m
-[33m[ WARN] [1681951631.315032945]: link 'depth_camera_link' material 'depth_camera_material' undefined.[0m
-[33m[ WARN] [1681951631.315051520]: link 'depth_camera_link' material 'depth_camera_material' undefined.[0m
-[33m[ WARN] [1681951631.315089842]: link 'imu_link' material 'imu_material' undefined.[0m
-[33m[ WARN] [1681951631.315098248]: link 'imu_link' material 'imu_material' undefined.[0m
-[33m[ WARN] [1681951631.332193636]: link 'laser_link' material 'laser_material' undefined.[0m
-[33m[ WARN] [1681951631.333488007]: link 'laser_link' material 'laser_material' undefined.[0m
-[33m[ WARN] [1681951631.333591533]: link 'depth_camera_link' material 'depth_camera_material' undefined.[0m
-[33m[ WARN] [1681951631.333634905]: link 'depth_camera_link' material 'depth_camera_material' undefined.[0m
-[33m[ WARN] [1681951631.333714515]: link 'imu_link' material 'imu_material' undefined.[0m
-[33m[ WARN] [1681951631.333757637]: link 'imu_link' material 'imu_material' undefined.[0m
-INFO: cannot create a symlink to latest log directory: [Errno 2] No such file or directory: '/home/ubuntu/.ros/log/latest'
+[33m[ WARN] [1681952215.949682502]: link 'laser_link' material 'laser_material' undefined.[0m
+[33m[ WARN] [1681952215.951262066]: link 'laser_link' material 'laser_material' undefined.[0m
+[33m[ WARN] [1681952215.951341173]: link 'depth_camera_link' material 'depth_camera_material' undefined.[0m
+[33m[ WARN] [1681952215.951358185]: link 'depth_camera_link' material 'depth_camera_material' undefined.[0m
+[33m[ WARN] [1681952215.951394532]: link 'imu_link' material 'imu_material' undefined.[0m
+[33m[ WARN] [1681952215.951402647]: link 'imu_link' material 'imu_material' undefined.[0m
+[33m[ WARN] [1681952215.965628966]: link 'laser_link' material 'laser_material' undefined.[0m
+[33m[ WARN] [1681952215.966899761]: link 'laser_link' material 'laser_material' undefined.[0m
+[33m[ WARN] [1681952215.966998825]: link 'depth_camera_link' material 'depth_camera_material' undefined.[0m
+[33m[ WARN] [1681952215.967042115]: link 'depth_camera_link' material 'depth_camera_material' undefined.[0m
+[33m[ WARN] [1681952215.967122324]: link 'imu_link' material 'imu_material' undefined.[0m
+[33m[ WARN] [1681952215.967162629]: link 'imu_link' material 'imu_material' undefined.[0m
 
-(gzclient:17036): dconf-WARNING **: 17:47:14.508: failed to commit changes to dconf: The connection is closed
+(gzclient:21036): dconf-WARNING **: 17:56:58.803: failed to commit changes to dconf: The connection is closed
 
-(gzclient:17036): dconf-WARNING **: 17:47:14.508: failed to commit changes to dconf: The connection is closed
+(gzclient:21036): dconf-WARNING **: 17:56:58.803: failed to commit changes to dconf: The connection is closed
 
-(gzclient:17036): dconf-WARNING **: 17:47:14.510: failed to commit changes to dconf: The connection is closed
+(gzclient:21036): dconf-WARNING **: 17:56:58.804: failed to commit changes to dconf: The connection is closed
 
-(gzclient:17036): dconf-WARNING **: 17:47:14.510: failed to commit changes to dconf: The connection is closed
-[31m[ERROR] [1681951635.129146928, 311.880000000]: No p gain specified for pid.  Namespace: /limo1/gazebo_ros_control/pid_gains/front_right_wheel[0m
-[31m[ERROR] [1681951635.130252708, 311.880000000]: No p gain specified for pid.  Namespace: /limo1/gazebo_ros_control/pid_gains/front_left_wheel[0m
-[31m[ERROR] [1681951635.131103938, 311.880000000]: No p gain specified for pid.  Namespace: /limo1/gazebo_ros_control/pid_gains/rear_left_wheel[0m
-[31m[ERROR] [1681951635.131822021, 311.880000000]: No p gain specified for pid.  Namespace: /limo1/gazebo_ros_control/pid_gains/rear_right_wheel[0m
-[31m[ERROR] [1681951635.310990949, 312.030000000]: Could not load controller 'limo_fl_steering_hinge_controller' because controller type 'effort_controllers/JointPositionController' does not exist.[0m
-[31m[ERROR] [1681951635.311088944, 312.030000000]: Use 'rosservice call controller_manager/list_controller_types' to get the available types[0m
-[31m[ERROR] [1681951636.318764052, 312.090000000]: Could not load controller 'limo_fr_steering_hinge_controller' because controller type 'effort_controllers/JointPositionController' does not exist.[0m
-[31m[ERROR] [1681951636.318851407, 312.090000000]: Use 'rosservice call controller_manager/list_controller_types' to get the available types[0m
-[WARN] [1681951665.444312, 312.090000]: Controller Spawner couldn't find the expected controller_manager ROS interface.
-[INFO] [1681951631.826748, 0.000000]: Waiting for /clock to be available...
-[INFO] [1681951635.277561, 312.000000]: /clock is published. Proceeding to load the controller(s).
-[INFO] [1681951635.279070, 312.000000]: Controller Spawner: Waiting for service controller_manager/load_controller
-[31m[ERROR] [1681951665.979876116, 312.090000000]: No p gain specified for pid.  Namespace: /limo2/gazebo_ros_control/pid_gains/front_right_wheel[0m
-[31m[ERROR] [1681951665.980914420, 312.090000000]: No p gain specified for pid.  Namespace: /limo2/gazebo_ros_control/pid_gains/front_left_wheel[0m
-[31m[ERROR] [1681951665.981742036, 312.090000000]: No p gain specified for pid.  Namespace: /limo2/gazebo_ros_control/pid_gains/rear_left_wheel[0m
-[31m[ERROR] [1681951665.982568559, 312.090000000]: No p gain specified for pid.  Namespace: /limo2/gazebo_ros_control/pid_gains/rear_right_wheel[0m
-[0m[ INFO] [1681951632.369374518]: Finished loading Gazebo ROS API Plugin.[0m
-[0m[ INFO] [1681951632.370613395]: waitForService: Service [/gazebo_gui/set_physics_properties] has not been advertised, waiting...[0m
-context mismatch in svga_surface_destroy
-context mismatch in svga_surface_destroy
-grep: buffer_core: No such file or directory
-[0m[ INFO] [1681951750.552879247, 396.570000000]: Laser is mounted upwards.[0m
- -maxUrange 7.99 -maxUrange 7.99 -sigma     0.05 -kernelSize 1 -lstep 0.05 -lobsGain 3 -astep 0.05
- -srr 0.1 -srt 0.2 -str 0.1 -stt 0.2
- -linearUpdate 1 -angularUpdate 0.5 -resampleThreshold 0.5
- -xmin -100 -xmax 100 -ymin -100 -ymax 100 -delta 0.05 -particles 30
-[0m[ INFO] [1681951750.563112684, 396.580000000]: Initialization complete[0m
-update frame 0
-update ld=0 ad=0
-m_count 0
-Registering First Scan
-[0m[ INFO] [1681951750.568711697, 396.580000000]: Laser is mounted upwards.[0m
- -maxUrange 7.99 -maxUrange 7.99 -sigma     0.05 -kernelSize 1 -lstep 0.05 -lobsGain 3 -astep 0.05
- -srr 0.1 -srt 0.2 -str 0.1 -stt 0.2
- -linearUpdate 1 -angularUpdate 0.5 -resampleThreshold 0.5
- -xmin -100 -xmax 100 -ymin -100 -ymax 100 -delta 0.05 -particles 30
-[0m[ INFO] [1681951750.580615237, 396.600000000]: Initialization complete[0m
-update frame 0
-update ld=0 ad=0
-m_count 0
-Registering First Scan
-2023-04-19 17:49:10-0700 [-] Log opened.
-2023-04-19 17:49:10-0700 [-] registered capabilities (classes):
-2023-04-19 17:49:10-0700 [-]  - <class 'rosbridge_library.capabilities.call_service.CallService'>
-2023-04-19 17:49:10-0700 [-]  - <class 'rosbridge_library.capabilities.advertise.Advertise'>
-2023-04-19 17:49:10-0700 [-]  - <class 'rosbridge_library.capabilities.publish.Publish'>
-2023-04-19 17:49:10-0700 [-]  - <class 'rosbridge_library.capabilities.subscribe.Subscribe'>
-2023-04-19 17:49:10-0700 [-]  - <class 'rosbridge_library.capabilities.defragmentation.Defragment'>
-2023-04-19 17:49:10-0700 [-]  - <class 'rosbridge_library.capabilities.advertise_service.AdvertiseService'>
-2023-04-19 17:49:10-0700 [-]  - <class 'rosbridge_library.capabilities.service_response.ServiceResponse'>
-2023-04-19 17:49:10-0700 [-]  - <class 'rosbridge_library.capabilities.unadvertise_service.UnadvertiseService'>
-2023-04-19 17:49:11-0700 [-] WebSocketServerFactory starting on 9090
-2023-04-19 17:49:11-0700 [-] Starting factory <autobahn.twisted.websocket.WebSocketServerFactory object at 0x7f064b5f7550>
-2023-04-19 17:49:11-0700 [-] [INFO] [1681951751.089074, 0.000000]: Rosbridge WebSocket server started at ws://0.0.0.0:9090
-grep: buffer_core: No such file or directory
-grep: buffer_core: No such file or directory
-... logging to /home/ubuntu/.ros/log/e1d944c2-df14-11ed-8a3d-b9c8653a4aa4/roslaunch-ubuntu-17949.log
+(gzclient:21036): dconf-WARNING **: 17:56:58.806: failed to commit changes to dconf: The connection is closed
+
+(gzclient:21036): dconf-WARNING **: 17:56:58.806: failed to commit changes to dconf: The connection is closed
+[31m[ERROR] [1681952219.713386547, 200.890000000]: No p gain specified for pid.  Namespace: /limo1/gazebo_ros_control/pid_gains/front_right_wheel[0m
+[31m[ERROR] [1681952219.714528779, 200.890000000]: No p gain specified for pid.  Namespace: /limo1/gazebo_ros_control/pid_gains/front_left_wheel[0m
+[31m[ERROR] [1681952219.715408804, 200.890000000]: No p gain specified for pid.  Namespace: /limo1/gazebo_ros_control/pid_gains/rear_left_wheel[0m
+[31m[ERROR] [1681952219.716453484, 200.890000000]: No p gain specified for pid.  Namespace: /limo1/gazebo_ros_control/pid_gains/rear_right_wheel[0m
+[31m[ERROR] [1681952219.776921281, 200.930000000]: Could not load controller 'limo_fl_steering_hinge_controller' because controller type 'effort_controllers/JointPositionController' does not exist.[0m
+[31m[ERROR] [1681952219.777014674, 200.930000000]: Use 'rosservice call controller_manager/list_controller_types' to get the available types[0m
+[31m[ERROR] [1681952220.783098173, 201.100000000]: Could not load controller 'limo_fr_steering_hinge_controller' because controller type 'effort_controllers/JointPositionController' does not exist.[0m
+[31m[ERROR] [1681952220.783210341, 201.100000000]: Use 'rosservice call controller_manager/list_controller_types' to get the available types[0m
+[WARN] [1681952248.700874, 201.100000]: Controller Spawner couldn't find the expected controller_manager ROS interface.
+[INFO] [1681952216.216138, 0.000000]: Waiting for /clock to be available...
+[INFO] [1681952218.525713, 200.840000]: /clock is published. Proceeding to load the controller(s).
+[INFO] [1681952218.527639, 200.840000]: Controller Spawner: Waiting for service controller_manager/load_controller
+[31m[ERROR] [1681952250.536343469, 201.100000000]: No p gain specified for pid.  Namespace: /limo2/gazebo_ros_control/pid_gains/front_right_wheel[0m
+[31m[ERROR] [1681952250.537185239, 201.100000000]: No p gain specified for pid.  Namespace: /limo2/gazebo_ros_control/pid_gains/front_left_wheel[0m
+[31m[ERROR] [1681952250.537973731, 201.100000000]: No p gain specified for pid.  Namespace: /limo2/gazebo_ros_control/pid_gains/rear_left_wheel[0m
+[31m[ERROR] [1681952250.538803324, 201.100000000]: No p gain specified for pid.  Namespace: /limo2/gazebo_ros_control/pid_gains/rear_right_wheel[0m
+[ERROR] [1681952220.778056, 201.100000]: Failed to load limo_fl_steering_hinge_controller
+[ERROR] [1681952221.784952, 201.100000]: Failed to load limo_fr_steering_hinge_controller
+[WARN] [1681952257.608349, 208.120000]: Controller Spawner error while taking down controllers: unable to contact master
+[INFO] [1681952216.216045, 0.000000]: Waiting for /clock to be available...
+[INFO] [1681952218.536080, 200.850000]: /clock is published. Proceeding to load the controller(s).
+[INFO] [1681952218.537382, 200.850000]: Controller Spawner: Waiting for service controller_manager/load_controller
+[INFO] [1681952219.749798, 200.900000]: Controller Spawner: Waiting for service controller_manager/switch_controller
+[INFO] [1681952219.752570, 200.910000]: Controller Spawner: Waiting for service controller_manager/unload_controller
+[INFO] [1681952219.755056, 200.910000]: Loading controller: limo_state_controller
+[INFO] [1681952219.772877, 200.930000]: Loading controller: limo_fl_steering_hinge_controller
+[INFO] [1681952220.779501, 201.100000]: Loading controller: limo_fr_steering_hinge_controller
+[INFO] [1681952221.786525, 201.100000]: Controller Spawner: Loaded controllers: limo_state_controller
+[INFO] [1681952250.556889, 201.110000]: Started controllers: limo_state_controller
+[INFO] [1681952257.600347, 208.120000]: Shutting down spawner. Stopping and unloading controllers...
+[INFO] [1681952257.607583, 208.120000]: Stopping all controllers...
+... logging to /home/ubuntu/.ros/log/3e5c62f0-df16-11ed-8a3d-b9c8653a4aa4/roslaunch-ubuntu-20916.log
 Checking log directory for disk usage. This may take a while.
 Press Ctrl-C to interrupt
 Done checking log file disk usage. Usage is <1GB.
-]2;/home/ubuntu/Desktop/catkin_ws/src/ugv_gazebo_sim/limo/limo_gazebo_sim/launch/main_navigation.launch
-[1mstarted roslaunch server http://ubuntu:33609/[0m
+]2;/home/ubuntu/Desktop/catkin_ws/src/ugv_gazebo_sim/limo/limo_gazebo_sim/launch/random_world.launch
+[1mstarted roslaunch server http://ubuntu:40719/[0m
 
 SUMMARY
 ========
 
 PARAMETERS
- * /limo1/amcl/base_frame_id: limo1/base_footprint
- * /limo1/amcl/global_frame_id: limo1/map
- * /limo1/amcl/gui_publish_rate: 10.0
- * /limo1/amcl/initial_pose_a: 0
- * /limo1/amcl/initial_pose_x: 0
- * /limo1/amcl/initial_pose_y: 0
- * /limo1/amcl/kld_err: 0.05
- * /limo1/amcl/kld_z: 0.99
- * /limo1/amcl/laser_lambda_short: 0.1
- * /limo1/amcl/laser_likelihood_max_dist: 2.0
- * /limo1/amcl/laser_max_beams: 60
- * /limo1/amcl/laser_max_range: 60.0
- * /limo1/amcl/laser_model_type: likelihood_field
- * /limo1/amcl/laser_sigma_hit: 0.2
- * /limo1/amcl/laser_z_hit: 0.5
- * /limo1/amcl/laser_z_max: 0.05
- * /limo1/amcl/laser_z_rand: 0.5
- * /limo1/amcl/laser_z_short: 0.05
- * /limo1/amcl/max_particles: 2000
- * /limo1/amcl/min_particles: 500
- * /limo1/amcl/odom_alpha1: 0.2
- * /limo1/amcl/odom_alpha2: 0.2
- * /limo1/amcl/odom_alpha3: 0.2
- * /limo1/amcl/odom_alpha4: 0.2
- * /limo1/amcl/odom_alpha5: 0.1
- * /limo1/amcl/odom_frame_id: limo1/odom
- * /limo1/amcl/odom_model_type: diff
- * /limo1/amcl/recovery_alpha_fast: 0.0
- * /limo1/amcl/recovery_alpha_slow: 0.0
- * /limo1/amcl/resample_interval: 1
- * /limo1/amcl/transform_tolerance: 0.2
- * /limo1/amcl/update_min_a: 0.5
- * /limo1/amcl/update_min_d: 0.25
- * /limo1/amcl/use_map_topic: True
- * /limo1/move_base/DWAPlannerROS/acc_lim_theta: 2.0
- * /limo1/move_base/DWAPlannerROS/acc_lim_x: 1.0
- * /limo1/move_base/DWAPlannerROS/acc_lim_y: 0.0
- * /limo1/move_base/DWAPlannerROS/angular_sim_granularity: 0.02
- * /limo1/move_base/DWAPlannerROS/forward_point_distance: 0.325
- * /limo1/move_base/DWAPlannerROS/global_frame_id: map
- * /limo1/move_base/DWAPlannerROS/goal_distance_bias: 0.8
- * /limo1/move_base/DWAPlannerROS/holonomic_robot: False
- * /limo1/move_base/DWAPlannerROS/latch_xy_goal_tolerance: False
- * /limo1/move_base/DWAPlannerROS/max_rot_vel: 0.8
- * /limo1/move_base/DWAPlannerROS/max_scaling_factor: 0.2
- * /limo1/move_base/DWAPlannerROS/max_trans_vel: 0.1
- * /limo1/move_base/DWAPlannerROS/max_vel_x: 0.4
- * /limo1/move_base/DWAPlannerROS/max_vel_y: 0.0
- * /limo1/move_base/DWAPlannerROS/min_rot_vel: 0.5
- * /limo1/move_base/DWAPlannerROS/min_trans_vel: -0.1
- * /limo1/move_base/DWAPlannerROS/min_vel_x: -0.35
- * /limo1/move_base/DWAPlannerROS/min_vel_y: 0.0
- * /limo1/move_base/DWAPlannerROS/occdist_scale: 0.1
- * /limo1/move_base/DWAPlannerROS/oscillation_reset_dist: 0.05
- * /limo1/move_base/DWAPlannerROS/path_distance_bias: 40.0
- * /limo1/move_base/DWAPlannerROS/publish_cost_grid_pc: True
- * /limo1/move_base/DWAPlannerROS/publish_traj_pc: True
- * /limo1/move_base/DWAPlannerROS/rot_stopped_vel: 1
- * /limo1/move_base/DWAPlannerROS/scaling_speed: 0.25
- * /limo1/move_base/DWAPlannerROS/sim_granularity: 0.02
- * /limo1/move_base/DWAPlannerROS/sim_time: 1.5
- * /limo1/move_base/DWAPlannerROS/stop_time_buffer: 0.2
- * /limo1/move_base/DWAPlannerROS/trans_stopped_vel: 0.1
- * /limo1/move_base/DWAPlannerROS/vtheta_samples: 30
- * /limo1/move_base/DWAPlannerROS/vx_samples: 25
- * /limo1/move_base/DWAPlannerROS/vy_samples: 1
- * /limo1/move_base/DWAPlannerROS/xy_goal_tolerance: 0.3
- * /limo1/move_base/DWAPlannerROS/yaw_goal_tolerance: 0.3
- * /limo1/move_base/TrajectoryPlannerROS/acc_lim_th: 0.7
- * /limo1/move_base/TrajectoryPlannerROS/acc_lim_x: 0.5
- * /limo1/move_base/TrajectoryPlannerROS/acc_lim_y: 0
- * /limo1/move_base/TrajectoryPlannerROS/angular_sim_granularity: 0.025
- * /limo1/move_base/TrajectoryPlannerROS/controller_frequency: 1.0
- * /limo1/move_base/TrajectoryPlannerROS/dwa: False
- * /limo1/move_base/TrajectoryPlannerROS/escape_vel: -0.2
- * /limo1/move_base/TrajectoryPlannerROS/goal_distance_bias: 0.8
- * /limo1/move_base/TrajectoryPlannerROS/heading_lookahead: 0.325
- * /limo1/move_base/TrajectoryPlannerROS/holonomic_robot: False
- * /limo1/move_base/TrajectoryPlannerROS/latch_xy_goal_tolerance: True
- * /limo1/move_base/TrajectoryPlannerROS/max_rotational_vel: 1.0
- * /limo1/move_base/TrajectoryPlannerROS/max_vel_theta: 0.5
- * /limo1/move_base/TrajectoryPlannerROS/max_vel_x: 0.4
- * /limo1/move_base/TrajectoryPlannerROS/min_in_place_rotational_vel: 0.8
- * /limo1/move_base/TrajectoryPlannerROS/min_in_place_vel_theta: 0.8
- * /limo1/move_base/TrajectoryPlannerROS/min_vel_theta: -0.5
- * /limo1/move_base/TrajectoryPlannerROS/min_vel_x: 0.1
- * /limo1/move_base/TrajectoryPlannerROS/occdist_scale: 0.01
- * /limo1/move_base/TrajectoryPlannerROS/oscillation_reset_dist: 0.05
- * /limo1/move_base/TrajectoryPlannerROS/path_distance_bias: 1.0
- * /limo1/move_base/TrajectoryPlannerROS/planner_frequency: 1.0
- * /limo1/move_base/TrajectoryPlannerROS/prune_plan: False
- * /limo1/move_base/TrajectoryPlannerROS/sim_granularity: 0.025
- * /limo1/move_base/TrajectoryPlannerROS/sim_time: 1.5
- * /limo1/move_base/TrajectoryPlannerROS/vtheta_samples: 20
- * /limo1/move_base/TrajectoryPlannerROS/vx_samples: 3
- * /limo1/move_base/TrajectoryPlannerROS/xy_goal_tolerance: 0.1
- * /limo1/move_base/TrajectoryPlannerROS/yaw_goal_tolerance: 0.1
- * /limo1/move_base/base_global_planner: global_planner/Gl...
- * /limo1/move_base/base_local_planner: dwa_local_planner...
- * /limo1/move_base/clearing_rotation_allowed: True
- * /limo1/move_base/controller_frequency: 5.0
- * /limo1/move_base/controller_patience: 15.0
- * /limo1/move_base/global_costmap/always_send_full_costmap: True
- * /limo1/move_base/global_costmap/footprint: [[-0.16, -0.11], ...
- * /limo1/move_base/global_costmap/footprint_padding: 0.02
- * /limo1/move_base/global_costmap/global_frame: limo1/map
- * /limo1/move_base/global_costmap/inflation_layer/cost_scaling_factor: 10.0
- * /limo1/move_base/global_costmap/inflation_layer/enabled: True
- * /limo1/move_base/global_costmap/inflation_layer/inflation_radius: 0.5
- * /limo1/move_base/global_costmap/map_type: costmap
- * /limo1/move_base/global_costmap/obstacle_layer/combination_method: 1
- * /limo1/move_base/global_costmap/obstacle_layer/enabled: True
- * /limo1/move_base/global_costmap/obstacle_layer/inflation_radius: 0.2
- * /limo1/move_base/global_costmap/obstacle_layer/laser_scan_sensor/clearing: True
- * /limo1/move_base/global_costmap/obstacle_layer/laser_scan_sensor/data_type: LaserScan
- * /limo1/move_base/global_costmap/obstacle_layer/laser_scan_sensor/marking: True
- * /limo1/move_base/global_costmap/obstacle_layer/laser_scan_sensor/topic: /limo1/scan
- * /limo1/move_base/global_costmap/obstacle_layer/observation_sources: laser_scan_sensor
- * /limo1/move_base/global_costmap/obstacle_layer/obstacle_range: 2.0
- * /limo1/move_base/global_costmap/obstacle_layer/raytrace_range: 2.0
- * /limo1/move_base/global_costmap/obstacle_layer/scan/sensor_frame: /limo1/base_scan
- * /limo1/move_base/global_costmap/obstacle_layer/track_unknown_space: True
- * /limo1/move_base/global_costmap/robot_base_frame: limo1/base_link
- * /limo1/move_base/global_costmap/scan/sensor_frame: /limo1/base_scan
- * /limo1/move_base/global_costmap/static_layer/enabled: True
- * /limo1/move_base/global_costmap/static_layer/map_topic: /limo1/map
- * /limo1/move_base/global_costmap/static_map: True
- * /limo1/move_base/global_costmap/transform_tolerance: 0.2
- * /limo1/move_base/global_costmap/update_frequency: 5.0
- * /limo1/move_base/local_costmap/always_send_full_costmap: True
- * /limo1/move_base/local_costmap/footprint: [[-0.16, -0.11], ...
- * /limo1/move_base/local_costmap/footprint_padding: 0.02
- * /limo1/move_base/local_costmap/global_frame: limo1/odom
- * /limo1/move_base/local_costmap/height: 6.0
- * /limo1/move_base/local_costmap/inflation_layer/cost_scaling_factor: 10.0
- * /limo1/move_base/local_costmap/inflation_layer/enabled: True
- * /limo1/move_base/local_costmap/inflation_layer/inflation_radius: 0.5
- * /limo1/move_base/local_costmap/map_type: costmap
- * /limo1/move_base/local_costmap/obstacle_layer/combination_method: 1
- * /limo1/move_base/local_costmap/obstacle_layer/enabled: True
- * /limo1/move_base/local_costmap/obstacle_layer/inflation_radius: 0.2
- * /limo1/move_base/local_costmap/obstacle_layer/laser_scan_sensor/clearing: True
- * /limo1/move_base/local_costmap/obstacle_layer/laser_scan_sensor/data_type: LaserScan
- * /limo1/move_base/local_costmap/obstacle_layer/laser_scan_sensor/marking: True
- * /limo1/move_base/local_costmap/obstacle_layer/laser_scan_sensor/topic: /limo1/scan
- * /limo1/move_base/local_costmap/obstacle_layer/observation_sources: laser_scan_sensor
- * /limo1/move_base/local_costmap/obstacle_layer/obstacle_range: 2.0
- * /limo1/move_base/local_costmap/obstacle_layer/raytrace_range: 2.0
- * /limo1/move_base/local_costmap/obstacle_layer/scan/sensor_frame: /limo1/base_scan
- * /limo1/move_base/local_costmap/obstacle_layer/track_unknown_space: True
- * /limo1/move_base/local_costmap/publish_frequency: 2.0
- * /limo1/move_base/local_costmap/resolution: 0.05
- * /limo1/move_base/local_costmap/robot_base_frame: limo1/base_link
- * /limo1/move_base/local_costmap/rolling_window: True
- * /limo1/move_base/local_costmap/scan/sensor_frame: /limo1/base_scan
- * /limo1/move_base/local_costmap/static_layer/enabled: True
- * /limo1/move_base/local_costmap/static_layer/map_topic: /limo1/map
- * /limo1/move_base/local_costmap/static_map: False
- * /limo1/move_base/local_costmap/transform_tolerance: 0.2
- * /limo1/move_base/local_costmap/update_frequency: 5.0
- * /limo1/move_base/local_costmap/width: 6.0
- * /limo1/move_base/oscillation_distance: 0.2
- * /limo1/move_base/oscillation_timeout: 10.0
- * /limo1/move_base/planner_frequency: 1.0
- * /limo1/move_base/planner_patience: 5.0
- * /limo1/move_base/recovery_behavior_enabled: False
- * /limo1/move_base/shutdown_costmaps: False
- * /limo2/amcl/base_frame_id: limo2/base_footprint
- * /limo2/amcl/global_frame_id: limo2/map
- * /limo2/amcl/gui_publish_rate: 10.0
- * /limo2/amcl/initial_pose_a: 0
- * /limo2/amcl/initial_pose_x: 0
- * /limo2/amcl/initial_pose_y: 0
- * /limo2/amcl/kld_err: 0.05
- * /limo2/amcl/kld_z: 0.99
- * /limo2/amcl/laser_lambda_short: 0.1
- * /limo2/amcl/laser_likelihood_max_dist: 2.0
- * /limo2/amcl/laser_max_beams: 60
- * /limo2/amcl/laser_max_range: 60.0
- * /limo2/amcl/laser_model_type: likelihood_field
- * /limo2/amcl/laser_sigma_hit: 0.2
- * /limo2/amcl/laser_z_hit: 0.5
- * /limo2/amcl/laser_z_max: 0.05
- * /limo2/amcl/laser_z_rand: 0.5
- * /limo2/amcl/laser_z_short: 0.05
- * /limo2/amcl/max_particles: 2000
- * /limo2/amcl/min_particles: 500
- * /limo2/amcl/odom_alpha1: 0.2
- * /limo2/amcl/odom_alpha2: 0.2
- * /limo2/amcl/odom_alpha3: 0.2
- * /limo2/amcl/odom_alpha4: 0.2
- * /limo2/amcl/odom_alpha5: 0.1
- * /limo2/amcl/odom_frame_id: limo2/odom
- * /limo2/amcl/odom_model_type: diff
- * /limo2/amcl/recovery_alpha_fast: 0.0
- * /limo2/amcl/recovery_alpha_slow: 0.0
- * /limo2/amcl/resample_interval: 1
- * /limo2/amcl/transform_tolerance: 0.2
- * /limo2/amcl/update_min_a: 0.5
- * /limo2/amcl/update_min_d: 0.25
- * /limo2/amcl/use_map_topic: True
- * /limo2/move_base/DWAPlannerROS/acc_lim_theta: 2.0
- * /limo2/move_base/DWAPlannerROS/acc_lim_x: 1.0
- * /limo2/move_base/DWAPlannerROS/acc_lim_y: 0.0
- * /limo2/move_base/DWAPlannerROS/angular_sim_granularity: 0.02
- * /limo2/move_base/DWAPlannerROS/forward_point_distance: 0.325
- * /limo2/move_base/DWAPlannerROS/global_frame_id: map
- * /limo2/move_base/DWAPlannerROS/goal_distance_bias: 0.8
- * /limo2/move_base/DWAPlannerROS/holonomic_robot: False
- * /limo2/move_base/DWAPlannerROS/latch_xy_goal_tolerance: False
- * /limo2/move_base/DWAPlannerROS/max_rot_vel: 0.8
- * /limo2/move_base/DWAPlannerROS/max_scaling_factor: 0.2
- * /limo2/move_base/DWAPlannerROS/max_trans_vel: 0.1
- * /limo2/move_base/DWAPlannerROS/max_vel_x: 0.4
- * /limo2/move_base/DWAPlannerROS/max_vel_y: 0.0
- * /limo2/move_base/DWAPlannerROS/min_rot_vel: 0.5
- * /limo2/move_base/DWAPlannerROS/min_trans_vel: -0.1
- * /limo2/move_base/DWAPlannerROS/min_vel_x: -0.35
- * /limo2/move_base/DWAPlannerROS/min_vel_y: 0.0
- * /limo2/move_base/DWAPlannerROS/occdist_scale: 0.1
- * /limo2/move_base/DWAPlannerROS/oscillation_reset_dist: 0.05
- * /limo2/move_base/DWAPlannerROS/path_distance_bias: 40.0
- * /limo2/move_base/DWAPlannerROS/publish_cost_grid_pc: True
- * /limo2/move_base/DWAPlannerROS/publish_traj_pc: True
- * /limo2/move_base/DWAPlannerROS/rot_stopped_vel: 1
- * /limo2/move_base/DWAPlannerROS/scaling_speed: 0.25
- * /limo2/move_base/DWAPlannerROS/sim_granularity: 0.02
- * /limo2/move_base/DWAPlannerROS/sim_time: 1.5
- * /limo2/move_base/DWAPlannerROS/stop_time_buffer: 0.2
- * /limo2/move_base/DWAPlannerROS/trans_stopped_vel: 0.1
- * /limo2/move_base/DWAPlannerROS/vtheta_samples: 30
- * /limo2/move_base/DWAPlannerROS/vx_samples: 25
- * /limo2/move_base/DWAPlannerROS/vy_samples: 1
- * /limo2/move_base/DWAPlannerROS/xy_goal_tolerance: 0.3
- * /limo2/move_base/DWAPlannerROS/yaw_goal_tolerance: 0.3
- * /limo2/move_base/TrajectoryPlannerROS/acc_lim_th: 0.7
- * /limo2/move_base/TrajectoryPlannerROS/acc_lim_x: 0.5
- * /limo2/move_base/TrajectoryPlannerROS/acc_lim_y: 0
- * /limo2/move_base/TrajectoryPlannerROS/angular_sim_granularity: 0.025
- * /limo2/move_base/TrajectoryPlannerROS/controller_frequency: 1.0
- * /limo2/move_base/TrajectoryPlannerROS/dwa: False
- * /limo2/move_base/TrajectoryPlannerROS/escape_vel: -0.2
- * /limo2/move_base/TrajectoryPlannerROS/goal_distance_bias: 0.8
- * /limo2/move_base/TrajectoryPlannerROS/heading_lookahead: 0.325
- * /limo2/move_base/TrajectoryPlannerROS/holonomic_robot: False
- * /limo2/move_base/TrajectoryPlannerROS/latch_xy_goal_tolerance: True
- * /limo2/move_base/TrajectoryPlannerROS/max_rotational_vel: 1.0
- * /limo2/move_base/TrajectoryPlannerROS/max_vel_theta: 0.5
- * /limo2/move_base/TrajectoryPlannerROS/max_vel_x: 0.4
- * /limo2/move_base/TrajectoryPlannerROS/min_in_place_rotational_vel: 0.8
- * /limo2/move_base/TrajectoryPlannerROS/min_in_place_vel_theta: 0.8
- * /limo2/move_base/TrajectoryPlannerROS/min_vel_theta: -0.5
- * /limo2/move_base/TrajectoryPlannerROS/min_vel_x: 0.1
- * /limo2/move_base/TrajectoryPlannerROS/occdist_scale: 0.01
- * /limo2/move_base/TrajectoryPlannerROS/oscillation_reset_dist: 0.05
- * /limo2/move_base/TrajectoryPlannerROS/path_distance_bias: 1.0
- * /limo2/move_base/TrajectoryPlannerROS/planner_frequency: 1.0
- * /limo2/move_base/TrajectoryPlannerROS/prune_plan: False
- * /limo2/move_base/TrajectoryPlannerROS/sim_granularity: 0.025
- * /limo2/move_base/TrajectoryPlannerROS/sim_time: 1.5
- * /limo2/move_base/TrajectoryPlannerROS/vtheta_samples: 20
- * /limo2/move_base/TrajectoryPlannerROS/vx_samples: 3
- * /limo2/move_base/TrajectoryPlannerROS/xy_goal_tolerance: 0.1
- * /limo2/move_base/TrajectoryPlannerROS/yaw_goal_tolerance: 0.1
- * /limo2/move_base/base_global_planner: global_planner/Gl...
- * /limo2/move_base/base_local_planner: dwa_local_planner...
- * /limo2/move_base/clearing_rotation_allowed: True
- * /limo2/move_base/controller_frequency: 5.0
- * /limo2/move_base/controller_patience: 15.0
- * /limo2/move_base/global_costmap/always_send_full_costmap: True
- * /limo2/move_base/global_costmap/footprint: [[-0.16, -0.11], ...
- * /limo2/move_base/global_costmap/footprint_padding: 0.02
- * /limo2/move_base/global_costmap/global_frame: limo2/map
- * /limo2/move_base/global_costmap/inflation_layer/cost_scaling_factor: 10.0
- * /limo2/move_base/global_costmap/inflation_layer/enabled: True
- * /limo2/move_base/global_costmap/inflation_layer/inflation_radius: 0.5
- * /limo2/move_base/global_costmap/map_type: costmap
- * /limo2/move_base/global_costmap/obstacle_layer/combination_method: 1
- * /limo2/move_base/global_costmap/obstacle_layer/enabled: True
- * /limo2/move_base/global_costmap/obstacle_layer/inflation_radius: 0.2
- * /limo2/move_base/global_costmap/obstacle_layer/laser_scan_sensor/clearing: True
- * /limo2/move_base/global_costmap/obstacle_layer/laser_scan_sensor/data_type: LaserScan
- * /limo2/move_base/global_costmap/obstacle_layer/laser_scan_sensor/marking: True
- * /limo2/move_base/global_costmap/obstacle_layer/laser_scan_sensor/topic: /limo1/scan
- * /limo2/move_base/global_costmap/obstacle_layer/observation_sources: laser_scan_sensor
- * /limo2/move_base/global_costmap/obstacle_layer/obstacle_range: 2.0
- * /limo2/move_base/global_costmap/obstacle_layer/raytrace_range: 2.0
- * /limo2/move_base/global_costmap/obstacle_layer/scan/sensor_frame: /limo2/base_scan
- * /limo2/move_base/global_costmap/obstacle_layer/track_unknown_space: True
- * /limo2/move_base/global_costmap/robot_base_frame: limo2/base_link
- * /limo2/move_base/global_costmap/scan/sensor_frame: /limo2/base_scan
- * /limo2/move_base/global_costmap/static_layer/enabled: True
- * /limo2/move_base/global_costmap/static_layer/map_topic: /limo1/map
- * /limo2/move_base/global_costmap/static_map: True
- * /limo2/move_base/global_costmap/transform_tolerance: 0.2
- * /limo2/move_base/global_costmap/update_frequency: 5.0
- * /limo2/move_base/local_costmap/always_send_full_costmap: True
- * /limo2/move_base/local_costmap/footprint: [[-0.16, -0.11], ...
- * /limo2/move_base/local_costmap/footprint_padding: 0.02
- * /limo2/move_base/local_costmap/global_frame: limo2/odom
- * /limo2/move_base/local_costmap/height: 6.0
- * /limo2/move_base/local_costmap/inflation_layer/cost_scaling_factor: 10.0
- * /limo2/move_base/local_costmap/inflation_layer/enabled: True
- * /limo2/move_base/local_costmap/inflation_layer/inflation_radius: 0.5
- * /limo2/move_base/local_costmap/map_type: costmap
- * /limo2/move_base/local_costmap/obstacle_layer/combination_method: 1
- * /limo2/move_base/local_costmap/obstacle_layer/enabled: True
- * /limo2/move_base/local_costmap/obstacle_layer/inflation_radius: 0.2
- * /limo2/move_base/local_costmap/obstacle_layer/laser_scan_sensor/clearing: True
- * /limo2/move_base/local_costmap/obstacle_layer/laser_scan_sensor/data_type: LaserScan
- * /limo2/move_base/local_costmap/obstacle_layer/laser_scan_sensor/marking: True
- * /limo2/move_base/local_costmap/obstacle_layer/laser_scan_sensor/topic: /limo1/scan
- * /limo2/move_base/local_costmap/obstacle_layer/observation_sources: laser_scan_sensor
- * /limo2/move_base/local_costmap/obstacle_layer/obstacle_range: 2.0
- * /limo2/move_base/local_costmap/obstacle_layer/raytrace_range: 2.0
- * /limo2/move_base/local_costmap/obstacle_layer/scan/sensor_frame: /limo2/base_scan
- * /limo2/move_base/local_costmap/obstacle_layer/track_unknown_space: True
- * /limo2/move_base/local_costmap/publish_frequency: 2.0
- * /limo2/move_base/local_costmap/resolution: 0.05
- * /limo2/move_base/local_costmap/robot_base_frame: limo2/base_link
- * /limo2/move_base/local_costmap/rolling_window: True
- * /limo2/move_base/local_costmap/scan/sensor_frame: /limo2/base_scan
- * /limo2/move_base/local_costmap/static_layer/enabled: True
- * /limo2/move_base/local_costmap/static_layer/map_topic: /limo1/map
- * /limo2/move_base/local_costmap/static_map: False
- * /limo2/move_base/local_costmap/transform_tolerance: 0.2
- * /limo2/move_base/local_costmap/update_frequency: 5.0
- * /limo2/move_base/local_costmap/width: 6.0
- * /limo2/move_base/oscillation_distance: 0.2
- * /limo2/move_base/oscillation_timeout: 10.0
- * /limo2/move_base/planner_frequency: 1.0
- * /limo2/move_base/planner_patience: 5.0
- * /limo2/move_base/recovery_behavior_enabled: False
- * /limo2/move_base/shutdown_costmaps: False
+ * /gazebo/enable_ros_network: True
+ * /gazebo_ros_control/pid_gains/front_left_wheel/d: 0.01
+ * /gazebo_ros_control/pid_gains/front_left_wheel/i: 0
+ * /gazebo_ros_control/pid_gains/front_left_wheel/p: 1.0
+ * /gazebo_ros_control/pid_gains/front_right_wheel/d: 0.01
+ * /gazebo_ros_control/pid_gains/front_right_wheel/i: 0
+ * /gazebo_ros_control/pid_gains/front_right_wheel/p: 1.0
+ * /gazebo_ros_control/pid_gains/rear_left_wheel/d: 0.01
+ * /gazebo_ros_control/pid_gains/rear_left_wheel/i: 0
+ * /gazebo_ros_control/pid_gains/rear_left_wheel/p: 1.0
+ * /gazebo_ros_control/pid_gains/rear_right_wheel/d: 0.01
+ * /gazebo_ros_control/pid_gains/rear_right_wheel/i: 0
+ * /gazebo_ros_control/pid_gains/rear_right_wheel/p: 1.0
+ * /limo1/limo_fl_steering_hinge_controller/joint: left_steering_hin...
+ * /limo1/limo_fl_steering_hinge_controller/pid/d: 0.1
+ * /limo1/limo_fl_steering_hinge_controller/pid/i: 0.1
+ * /limo1/limo_fl_steering_hinge_controller/pid/p: 100.0
+ * /limo1/limo_fl_steering_hinge_controller/type: effort_controller...
+ * /limo1/limo_fr_steering_hinge_controller/joint: right_steering_hi...
+ * /limo1/limo_fr_steering_hinge_controller/pid/d: 0.1
+ * /limo1/limo_fr_steering_hinge_controller/pid/i: 0.1
+ * /limo1/limo_fr_steering_hinge_controller/pid/p: 100.0
+ * /limo1/limo_fr_steering_hinge_controller/type: effort_controller...
+ * /limo1/limo_state_controller/publish_rate: 100
+ * /limo1/limo_state_controller/type: joint_state_contr...
+ * /limo1/robot_description: <?xml version="1....
+ * /limo1/tf_prefix: limo1
+ * /limo2/limo_fl_steering_hinge_controller/joint: left_steering_hin...
+ * /limo2/limo_fl_steering_hinge_controller/pid/d: 0.1
+ * /limo2/limo_fl_steering_hinge_controller/pid/i: 0.1
+ * /limo2/limo_fl_steering_hinge_controller/pid/p: 100.0
+ * /limo2/limo_fl_steering_hinge_controller/type: effort_controller...
+ * /limo2/limo_fr_steering_hinge_controller/joint: right_steering_hi...
+ * /limo2/limo_fr_steering_hinge_controller/pid/d: 0.1
+ * /limo2/limo_fr_steering_hinge_controller/pid/i: 0.1
+ * /limo2/limo_fr_steering_hinge_controller/pid/p: 100.0
+ * /limo2/limo_fr_steering_hinge_controller/type: effort_controller...
+ * /limo2/limo_state_controller/publish_rate: 100
+ * /limo2/limo_state_controller/type: joint_state_contr...
+ * /limo2/robot_description: <?xml version="1....
+ * /limo2/tf_prefix: limo2
  * /rosdistro: noetic
  * /rosversion: 1.16.0
+ * /use_sim_time: True
 
 NODES
+  /
+    gazebo (gazebo_ros/gzserver)
+    gazebo_gui (gazebo_ros/gzclient)
   /limo1/
-    amcl (amcl/amcl)
-    move_base (move_base/move_base)
+    controller_spawner (controller_manager/spawner)
+    robot_state_publisher (robot_state_publisher/robot_state_publisher)
+    spawn_limo_model (gazebo_ros/spawn_model)
   /limo2/
-    amcl (amcl/amcl)
-    move_base (move_base/move_base)
-[0m[ INFO] [1681951760.610880418]: Subscribed to map topic.[0m
-[0m[ INFO] [1681951760.603502665]: Subscribed to map topic.[0m
-[32m[DEBUG] [1681951755.165855256]: Map merging started.[0m
-[32m[DEBUG] [1681951755.166805983]: Robot discovery started.[0m
-[32m[DEBUG] [1681951755.166868556]: Grid pose estimation started.[0m
-[0m[ INFO] [1681951755.167581737]: adding robot [/limo2] to system[0m
-[0m[ INFO] [1681951755.167620751]: Subscribing to MAP topic: /limo2/map.[0m
-[0m[ INFO] [1681951755.170122947]: Subscribing to MAP updates topic: /limo2/map_updates.[0m
-[0m[ INFO] [1681951755.173303112]: adding robot [/limo1] to system[0m
-[0m[ INFO] [1681951755.173337287]: Subscribing to MAP topic: /limo1/map.[0m
-[0m[ INFO] [1681951755.175523663]: Subscribing to MAP updates topic: /limo1/map_updates.[0m
-[32m[DEBUG] [1681951755.431959382, 401.450000000]: received full map update[0m
-[32m[DEBUG] [1681951755.439787835, 401.460000000]: received full map update[0m
-[32m[DEBUG] [1681951757.408826627, 403.440000000]: Map merging started.[0m
-[32m[DEBUG] [1681951757.408870010, 403.440000000]: Map merging started.[0m
-[32m[DEBUG] [1681951759.410119615, 405.440000000]: Map merging started.[0m
-[32m[DEBUG] [1681951761.416320001, 407.440000000]: Map merging started.[0m
-[32m[DEBUG] [1681951763.419702171, 409.440000000]: Map merging started.[0m
-[32m[DEBUG] [1681951765.421682006, 411.440000000]: Grid pose estimation started.[0m
-[32m[DEBUG] [1681951765.421741819, 411.440000000]: computing features[0m
-[32m[DEBUG] [1681951765.422644244, 411.440000000]: Map merging started.[0m
-[32m[DEBUG] [1681951769.780471723, 415.760000000]: pairwise matching features[0m
-[32m[DEBUG] [1681951769.787452500, 415.770000000]: Grid pose estimation started.[0m
-[32m[DEBUG] [1681951769.787559448, 415.770000000]: warping grids[0m
-[32m[DEBUG] [1681951769.801553059, 415.770000000]: compositing result grid[0m
-[32m[DEBUG] [1681951769.808816583, 415.790000000]: computing features[0m
-[32m[DEBUG] [1681951769.808949389, 415.790000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951769.808986760, 415.790000000]: Trying to publish message of type [nav_msgs/OccupancyGrid/3381f2d731d4076ec5c71b0759edbe4e] on a publisher with type [nav_msgs/OccupancyGrid/3381f2d731d4076ec5c71b0759edbe4e][0m
-[32m[DEBUG] [1681951769.820106160, 415.800000000]: Map merging started.[0m
-[32m[DEBUG] [1681951773.855468667, 419.810000000]: pairwise matching features[0m
-[32m[DEBUG] [1681951773.866888096, 419.820000000]: warping grids[0m
-[32m[DEBUG] [1681951773.876184964, 419.830000000]: compositing result grid[0m
-[32m[DEBUG] [1681951773.880339727, 419.830000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951773.892128446, 419.840000000]: Map merging started.[0m
-[32m[DEBUG] [1681951773.892176848, 419.840000000]: warping grids[0m
-[32m[DEBUG] [1681951773.899060923, 419.840000000]: compositing result grid[0m
-[32m[DEBUG] [1681951773.903613760, 419.850000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951775.438393971, 421.440000000]: Robot discovery started.[0m
-[32m[DEBUG] [1681951775.440082671, 421.440000000]: Robot discovery started.[0m
-[32m[DEBUG] [1681951775.834015702, 421.840000000]: Map merging started.[0m
-[32m[DEBUG] [1681951775.834084653, 421.840000000]: warping grids[0m
-[32m[DEBUG] [1681951775.843512524, 421.840000000]: compositing result grid[0m
-[32m[DEBUG] [1681951775.847506132, 421.850000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951777.827309871, 423.840000000]: Map merging started.[0m
-[32m[DEBUG] [1681951777.827361188, 423.840000000]: warping grids[0m
-[32m[DEBUG] [1681951777.837540638, 423.840000000]: compositing result grid[0m
-[32m[DEBUG] [1681951777.849689472, 423.860000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951779.753576957, 425.770000000]: Grid pose estimation started.[0m
-[32m[DEBUG] [1681951779.753616612, 425.770000000]: computing features[0m
-[32m[DEBUG] [1681951779.825276530, 425.840000000]: Map merging started.[0m
-[32m[DEBUG] [1681951784.161996153, 430.120000000]: pairwise matching features[0m
-[32m[DEBUG] [1681951784.168204873, 430.130000000]: warping grids[0m
-[32m[DEBUG] [1681951784.178124063,2023-04-19 17:49:55-0700 [-] [INFO] [1681951795.599961, 441.420000]: Client connected.  1 clients total.
-2023-04-19 17:49:55-0700 [-] [INFO] [1681951795.603256, 441.420000]: Client connected.  2 clients total.
-2023-04-19 17:49:55-0700 [-] [INFO] [1681951795.605838, 441.420000]: Client connected.  3 clients total.
-2023-04-19 17:49:55-0700 [-] [INFO] [1681951795.608840, 441.430000]: Client connected.  4 clients total.
-2023-04-19 17:49:56-0700 [-] [INFO] [1681951796.391392, 442.260000]: [Client 3] Subscribed to /limo_status
-2023-04-19 17:49:56-0700 [-] [INFO] [1681951796.414701, 442.280000]: Client connected.  5 clients total.
-2023-04-19 17:49:56-0700 [-] [INFO] [1681951796.419163, 442.290000]: Client connected.  6 clients total.
-2023-04-19 17:49:56-0700 [-] [INFO] [1681951796.421499, 442.290000]: Client connected.  7 clients total.
-2023-04-19 17:49:56-0700 [-] [INFO] [1681951796.423724, 442.290000]: Client connected.  8 clients total.
-2023-04-19 17:49:56-0700 [-] [INFO] [1681951796.431327, 442.300000]: [Client 7] Subscribed to /limo_status
- 430.130000000]: compositing result grid[0m
-[32m[DEBUG] [1681951784.182529021, 430.140000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951784.192967744, 430.150000000]: Map merging started.[0m
-[32m[DEBUG] [1681951784.192996208, 430.150000000]: warping grids[0m
-[32m[DEBUG] [1681951784.201245032, 430.150000000]: compositing result grid[0m
-[32m[DEBUG] [1681951784.206047593, 430.160000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951786.184017687, 432.150000000]: Map merging started.[0m
-[32m[DEBUG] [1681951786.184056310, 432.150000000]: warping grids[0m
-[32m[DEBUG] [1681951786.193616530, 432.150000000]: compositing result grid[0m
-[32m[DEBUG] [1681951786.199396424, 432.160000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951788.166959795, 434.150000000]: Map merging started.[0m
-[32m[DEBUG] [1681951788.167023746, 434.150000000]: warping grids[0m
-[32m[DEBUG] [1681951788.175912182, 434.150000000]: compositing result grid[0m
-[32m[DEBUG] [1681951788.186500761, 434.160000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951789.821812326, 435.770000000]: Grid pose estimation started.[0m
-[32m[DEBUG] [1681951789.821894712, 435.770000000]: computing features[0m
-[32m[DEBUG] [1681951790.211386268, 436.150000000]: Map merging started.[0m
-[32m[DEBUG] [1681951795.616319878, 441.440000000]: Robot discovery started.[0m
-[32m[DEBUG] [1681951795.773661403, 441.600000000]: pairwise matching features[0m
-[32m[DEBUG] [1681951795.780517364, 441.610000000]: warping grids[0m
-[32m[DEBUG] [1681951795.803390042, 441.630000000]: compositing result grid[0m
-[32m[DEBUG] [1681951795.807716282, 441.640000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951795.811950648, 441.640000000]: Map merging started.[0m
-[32m[DEBUG] [1681951795.811981416, 441.640000000]: warping grids[0m
-[32m[DEBUG] [1681951795.821247840, 441.640000000]: compositing result grid[0m
-[32m[DEBUG] [1681951795.835655890, 441.670000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951797.743122411, 443.640000000]: Map merging started.[0m
-[32m[DEBUG] [1681951797.743164711, 443.640000000]: warping grids[0m
-[32m[DEBUG] [1681951797.751233396, 443.640000000]: compositing result grid[0m
-[32m[DEBUG] [1681951797.756075764, 443.650000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951799.729485337, 445.640000000]: Map merging started.[0m
-[32m[DEBUG] [1681951799.729549764, 445.640000000]: warping grids[0m
-[32m[DEBUG] [1681951799.738816580, 445.640000000]: compositing result grid[0m
-[32m[DEBUG] [1681951799.743987782, 445.650000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951799.867249877, 445.770000000]: Grid pose estimation started.[0m
-[32m[DEBUG] [1681951799.867310171, 445.770000000]: computing features[0m
-[32m[DEBUG] [1681951801.790279187, 447.640000000]: Map merging started.[0m
-[32m[DEBUG] [1681951805.934149894, 451.720000000]: pairwise matching features[0m
-[32m[DEBUG] [1681951805.938971099, 451.720000000]: warping grids[0m
-[32m[DEBUG] [1681951805.954508452, 451.720000000]: compositing result grid[0m
-[32m[DEBUG] [1681951805.966767142, 451.740000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951805.976828845, 451.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951805.977013034, 451.750000000]: warping grids[0m
-[32m[DEBUG] [1681951805.997171277, 451.760000000]: compositing result grid[0m
-[32m[DEBUG] [1681951806.002645795, 451.770000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951807.973673925, 453.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951807.973710615, 453.750000000]: warping grids[0m
-[32m[DEBUG] [1681951807.982713291, 453.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951807.995834664, 453.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951810.013801541, 455.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951810.013844873, 455.750000000]: warping grids[0m
-[32m[DEBUG] [1681951810.021168998, 455.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951810.026060701, 455.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951810.031610222, 455.770000000]: Grid pose estimation started.[0m
-[32m[DEBUG] [1681951810.031676297, 455.770000000]: computing features[0m
-[32m[DEBUG] [1681951812.036143630, 457.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951815.745543846, 461.440000000]: Robot discovery started.[0m
-[32m[DEBUG] [1681951815.784718890, 461.480000000]: pairwise matching features[0m
-[32m[DEBUG] [1681951815.791819702, 461.480000000]: warping grids[0m
-[32m[DEBUG] [1681951815.805821738, 461.480000000]: compositing result grid[0m
-[32m[DEBUG] [1681951815.817248603, 461.500000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951815.844813382, 461.510000000]: Map merging started.[0m
-[32m[DEBUG] [1681951815.844860601, 461.510000000]: warping grids[0m
-[32m[DEBUG] [1681951815.862642023, 461.550000000]: compositing result grid[0m
-[32m[DEBUG] [1681951815.867064037, 461.550000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951816.057057623, 461.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951816.057101706, 461.750000000]: warping grids[0m
-[32m[DEBUG] [1681951816.067526941, 461.760000000]: compositing result grid[0m
-[32m[DEBUG] [1681951816.071496447, 461.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951818.034578746, 463.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951818.034628490, 463.750000000]: warping grids[0m
-[32m[DEBUG] [1681951818.043182798, 463.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951818.056064261, 463.770000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951820.058934144, 465.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951820.059000180, 465.750000000]: warping grids[0m
-[32m[DEBUG] [1681951820.068494440, 465.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951820.074024425, 465.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951820.078603672, 465.770000000]: Grid pose estimation started.[0m
-[32m[DEBUG] [1681951820.078662684, 465.770000000]: computing features[0m
-[32m[DEBUG] [1681951822.089751090, 467.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951825.056874993, 470.720000000]: pairwise matching features[0m
-[32m[DEBUG] [1681951825.062257318, 470.720000000]: warping grids[0m
-[32m[DEBUG] [1681951825.070431801, 470.720000000]: compositing result grid[0m
-[32m[DEBUG] [1681951825.079471702, 470.740000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951825.086501941, 470.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951825.086543680, 470.750000000]: warping grids[0m
-[32m[DEBUG] [1681951825.094664584, 470.760000000]: compositing result grid[0m
-[32m[DEBUG] [1681951825.098777942, 470.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951826.048338828, 471.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951826.048386519, 471.750000000]: warping grids[0m
-[32m[DEBUG] [1681951826.055483886, 471.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951826.064343123, 471.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951828.034852851, 473.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951828.034897275, 473.750000000]: warping grids[0m
-[32m[DEBUG] [1681951828.042790682, 473.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951828.050664331, 473.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951830.036322604, 475.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951830.036361578, 475.750000000]: warping grids[0m
-[32m[DEBUG] [1681951830.047241989, 475.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951830.056262975, 475.770000000]: Grid pose estimation started.[0m
-[32m[DEBUG] [1681951830.056600949, 475.770000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951830.056652684, 475.770000000]: computing features[0m
-[32m[DEBUG] [1681951832.066727666, 477.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951834.339658544, 480.020000000]: pairwise matching features[0m
-[32m[DEBUG] [1681951834.343972569, 480.030000000]: warping grids[0m
-[32023-04-19 17:50:36-0700 [-] [INFO] [1681951836.971847, 482.650000]: Client connected.  9 clients total.
-2023-04-19 17:50:36-0700 [-] [INFO] [1681951836.992469, 482.670000]: Client connected.  10 clients total.
-2023-04-19 17:50:37-0700 [-] [INFO] [1681951837.122831, 482.790000]: Client connected.  11 clients total.
-2023-04-19 17:50:37-0700 [-] [INFO] [1681951837.131097, 482.810000]: Client connected.  12 clients total.
-2023-04-19 17:50:37-0700 [-] [INFO] [1681951837.134998, 482.810000]: Client connected.  13 clients total.
-2023-04-19 17:50:37-0700 [-] [INFO] [1681951837.207148, 482.890000]: [Client 12] Subscribed to limo1/odom
-2023-04-19 17:50:37-0700 [-] [INFO] [1681951837.218977, 482.900000]: [Client 11] Subscribed to /limo2/map
-2023-04-19 17:50:37-0700 [-] [INFO] [1681951837.234967, 482.910000]: [Client 10] Subscribed to limo2/odom
-2m[DEBUG] [1681951834.351803027, 480.030000000]: compositing result grid[0m
-[32m[DEBUG] [1681951834.357611121, 480.040000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951834.364084536, 480.050000000]: Map merging started.[0m
-[32m[DEBUG] [1681951834.364183634, 480.050000000]: warping grids[0m
-[32m[DEBUG] [1681951834.373280053, 480.050000000]: compositing result grid[0m
-[32m[DEBUG] [1681951834.383620851, 480.060000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951835.736345584, 481.440000000]: Robot discovery started.[0m
-[32m[DEBUG] [1681951836.046047872, 481.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951836.046072969, 481.750000000]: warping grids[0m
-[32m[DEBUG] [1681951836.053827023, 481.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951836.060452657, 481.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951838.091079751, 483.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951838.091126420, 483.750000000]: warping grids[0m
-[32m[DEBUG] [1681951838.102012914, 483.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951838.111984302, 483.770000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951840.068829222, 485.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951840.068878646, 485.750000000]: warping grids[0m
-[32m[DEBUG] [1681951840.078269724, 485.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951840.084564531, 485.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951840.092573168, 485.770000000]: Grid pose estimation started.[0m
-[32m[DEBUG] [1681951840.092618464, 485.770000000]: computing features[0m
-[32m[DEBUG] [1681951842.115483245, 487.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951844.840810298, 490.500000000]: pairwise matching features[0m
-[32m[DEBUG] [1681951844.849182455, 490.510000000]: warping grids[0m
-[32m[DEBUG] [1681951844.859204470, 490.510000000]: compositing result grid[0m
-[32m[DEBUG] [1681951844.871631848, 490.530000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951844.881030541, 490.530000000]: Map merging started.[0m
-[32m[DEBUG] [1681951844.881079313, 490.530000000]: warping grids[0m
-[32m[DEBUG] [1681951844.890480542, 490.550000000]: compositing result grid[0m
-[32m[DEBUG] [1681951844.894624641, 490.550000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951846.072441876, 491.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951846.072481030, 491.750000000]: warping grids[0m
-[32m[DEBUG] [1681951846.082881554, 491.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951846.089239932, 491.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951848.076530481, 493.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951848.076570657, 493.750000000]: warping grids[0m
-[32m[DEBUG] [1681951848.084592600, 493.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951848.089637718, 493.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951850.080974159, 495.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951850.081026158, 495.750000000]: warping grids[0m
-[32m[DEBUG] [1681951850.089462037, 495.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951850.100553607, 495.770000000]: Grid pose estimation started.[0m
-[32m[DEBUG] [1681951850.101849625, 495.770000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951850.101914468, 495.770000000]: computing features[0m
-[32m[DEBUG] [1681951852.116077930, 497.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951854.644719298, 500.280000000]: pairwise matching features[0m
-[32m[DEBUG] [1681951854.653572179, 500.290000000]: warping grids[0m
-[32m[DEBUG] [1681951854.659822203, 500.290000000]: compositing result grid[0m
-[32m[DEBUG] [1681951854.665853592, 500.300000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951854.672973675, 500.310000000]: Map merging started.[0m
-[32m[DEBUG] [1681951854.673102279, 500.310000000]: warping grids[0m
-[32m[DEBUG] [1681951854.682809153, 500.320000000]: compositing result grid[0m
-[32m[DEBUG] [1681951854.69342023-04-19 17:50:55-0700 [-] [INFO] [1681951855.217716, 500.870000]: Client connected.  14 clients total.
-2023-04-19 17:50:55-0700 [-] [INFO] [1681951855.221537, 500.870000]: [Client 13] Subscribed to /limo2/map
-2023-04-19 17:51:11-0700 [-] [INFO] [1681951871.537537, 517.160000]: Client connected.  15 clients total.
-2023-04-19 17:51:11-0700 [-] [INFO] [1681951871.546945, 517.170000]: [Client 14] Subscribed to /limo2/map
-2023-04-19 17:51:11-0700 [-] [INFO] [1681951871.832369, 517.420000]: Client connected.  16 clients total.
-2023-04-19 17:51:11-0700 [-] [INFO] [1681951871.894041, 517.480000]: [Client 15] Subscribed to /limo2/map
-41338, 500.330000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951855.778767180, 501.440000000]: Robot discovery started.[0m
-[32m[DEBUG] [1681951856.091042652, 501.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951856.091095843, 501.750000000]: warping grids[0m
-[32m[DEBUG] [1681951856.096918426, 501.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951856.102587619, 501.750000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951858.091197945, 503.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951858.091241648, 503.750000000]: warping grids[0m
-[32m[DEBUG] [1681951858.108706418, 503.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951858.120014135, 503.770000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951860.088700201, 505.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951860.088737462, 505.750000000]: warping grids[0m
-[32m[DEBUG] [1681951860.097718686, 505.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951860.103225892, 505.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951860.110146849, 505.770000000]: Grid pose estimation started.[0m
-[32m[DEBUG] [1681951860.110215699, 505.770000000]: computing features[0m
-[32m[DEBUG] [1681951862.153950483, 507.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951864.807656230, 510.410000000]: pairwise matching features[0m
-[32m[DEBUG] [1681951864.851045379, 510.450000000]: warping grids[0m
-[32m[DEBUG] [1681951864.861107322, 510.450000000]: compositing result grid[0m
-[32m[DEBUG] [1681951864.872352721, 510.470000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951864.880799392, 510.480000000]: Map merging started.[0m
-[32m[DEBUG] [1681951864.880826944, 510.480000000]: warping grids[0m
-[32m[DEBUG] [1681951864.887840978, 510.480000000]: compositing result grid[0m
-[32m[DEBUG] [1681951864.892864836, 510.490000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951866.111172065, 511.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951866.111217010, 511.750000000]: warping grids[0m
-[32m[DEBUG] [1681951866.120392404, 511.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951866.129819805, 511.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951868.100981544, 513.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951868.101025397, 513.750000000]: warping grids[0m
-[32m[DEBUG] [1681951868.108232336, 513.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951868.113016571, 513.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951870.097774281, 515.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951870.097799629, 515.750000000]: warping grids[0m
-[32m[DEBUG] [1681951870.104324846, 515.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951870.111647205, 515.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951870.118550129, 515.770000000]: Grid pose estimation started.[0m
-[32m[DEBUG] [1681951870.118616635, 515.770000000]: computing features[0m
-[32m[DEBUG] [1681951872.156839970, 517.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951875.204134309, 520.810000000]: pairwise matching features[0m
-[32m[DEBUG] [1681951875.209788849, 520.810000000]: warping grids[0m
-[32m[DEBUG] [1681951875.222106103, 520.830000000]: compositing result grid[0m
-[32m[DEBUG] [1681951875.226490650, 520.830000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951875.233762053, 520.840000000]: Map merging started.[0m
-[32m[DEBUG] [1681951875.233809804, 520.840000000]: warping grids[0m
-[32m[DEBUG] [1681951875.242219746, 520.840000000]: compositing result grid[0m
-[32m[DEBUG] [1681951875.255351286, 520.860000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951875.807587967, 521.440000000]: Robot discovery started.[0m
-[32m[DEBUG] [1681951876.121377097, 521.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951876.121436239, 521.750000000]: warping grids[0m
-[32m[DEBUG] [1681951876.131896883, 521.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951876.136891798, 521.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951878.104454948, 523.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951878.104496868, 523.750000000]: warping grids[0m
-[32m[DEBUG] [1681951878.117090681, 523.760000000]: compositing result grid[0m
-[32m[DEBUG] [1681951878.129092028, 523.770000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951880.112192125, 525.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951880.112225508, 525.750000000]: warping grids[0m
-[32m[DEBUG] [1681951880.119589608, 525.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951880.124889823, 525.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951880.132116231, 525.770000000]: Grid pose estimation started.[0m
-[32m[DEBUG] [1681951880.132186464, 525.770000000]: computing features[0m
-[32m[DEBUG] [1681951882.170968792, 527.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951885.472212703, 531.050000000]: pairwise matching features[0m
-[32m[DEBUG] [1681951885.476728460, 531.050000000]: warping grids[0m
-[32m[DEBUG] [1681951885.486541666, 531.050000000]: compositing result grid[0m
-[32m[DEBUG] [1681951885.498695282, 531.070000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951885.505385745, 531.080000000]: Map merging started.[0m
-[32m[DEBUG] [1681951885.505403759, 531.080000000]: warping grids[0m
-[32m[DEBUG] [1681951885.514166231, 531.080000000]: compositing result grid[0m
-[32m[DEBUG] [1681951885.518561148, 531.090000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951886.145331918, 531.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951886.145390238, 531.750000000]: warping grids[0m
-[32m[DEBUG] [1681951886.153401132, 531.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951886.159372560, 531.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951888.125991083, 533.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951888.126018926, 533.750000000]: warping grids[0m
-[32m[DEBUG] [1681951888.137845452, 533.760000000]: compositing result grid[0m
-[32m[DEBUG] [1681951888.147590028, 533.770000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951890.130975998, 535.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951890.131027075, 535.750000000]: warping grids[0m
-[32m[DEBUG] [1681951890.142817572, 535.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951890.148748363, 535.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951890.155081573, 535.770000000]: Grid pose estimation started.[0m
-[32m[DEBUG] [1681951890.155157597, 535.770000000]: computing features[0m
-[32m[DEBUG] [1681951892.153034832, 537.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951894.924745760, 540.520000000]: pairwise matching features[0m
-[32m[DEBUG] [1681951894.931273474, 540.530000000]: warping grids[0m
-[32m[DEBUG] [1681951894.942978030, 540.530000000]: compositing result grid[0m
-[32m[DEBUG] [1681951894.956858619, 540.550000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951894.968245722, 540.560000000]: Map merging started.[0m
-[32m[DEBUG] [1681951894.968292811, 540.560000000]: warping grids[0m
-[32m[DEBUG] [1681951894.975192521, 540.560000000]: compositing result grid[0m
-[32m[DEBUG] [1681951894.981569870, 540.570000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951895.827859890, 541.440000000]: Robot discovery started.[0m
-[32m[DEBUG] [1681951896.133060508, 541.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951896.133112326, 541.750000000]: warping grids[0m
-[32m[DEBUG] [1681951896.144074794, 541.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951896.155392957, 541.770000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951898.148524520, 543.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951898.148955277, 543.750000000]: warping grids[0m
-[32m[DEBUG] [1681951898.159522555, 543.760000000]: compositing result grid[0m
-[32m[DEBUG] [1681951898.163943102, 543.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951900.130649036, 545.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951900.130742704, 545.750000000]: warping grids[0m
-[32m[DEBUG] [1681951900.139453621, 545.760000000]: compositing result grid[0m
-[32m[DEBUG] [1681951900.149345107, 545.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951900.150563054, 545.770000000]: Grid pose estimation started.[0m
-[32m[DEBUG] [1681951900.150615263, 545.770000000]: computing features[0m
-[32m[DEBUG] [1681951902.156828305, 547.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951904.646838438, 550.150000000]: pairwise matching features[0m
-[32m[DEBUG] [1681951904.654633017, 550.160000000]: warping grids[0m
-[32m[DEBUG] [1681951904.662581136, 550.160000000]: compositing result grid[0m
-[32m[DEBUG] [1681951904.668505286, 550.170000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951904.674291685, 550.170000000]: Map merging started.[0m
-[32m[DEBUG] [1681951904.675251145, 550.180000000]: warping grids[0m
-[32m[DEBUG] [1681951904.683483014, 550.180000000]: compositing result grid[0m
-[32m[DEBUG] [1681951904.695987269, 550.200000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951906.168109481, 551.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951906.168159986, 551.750000000]: warping grids[0m
-[32m[DEBUG] [1681951906.174944184, 551.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951906.179576162, 551.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951908.158684540, 553.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951908.158713174, 553.750000000]: warping grids[0m
-[32m[DEBUG] [1681951908.166256686, 553.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951908.176424800, 553.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951910.165969563, 555.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951910.166000812, 555.750000000]: warping grids[0m
-[32m[DEBUG] [1681951910.173415802, 555.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951910.179914773, 555.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951910.186152969, 555.770000000]: Grid pose estimation started.[0m
-[32m[DEBUG] [1681951910.186202563, 555.770000000]: computing features[0m
-[32m[DEBUG] [1681951912.190480929, 557.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951914.612939832, 560.170000000]: pairwise matching features[0m
-[32m[DEBUG] [1681951914.618719789, 560.170000000]: warping grids[0m
-[32m[DEBUG] [1681951914.629900329, 560.180000000]: compositing result grid[0m
-[32m[DEBUG] [1681951914.640762989, 560.200000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951914.650888061, 560.210000000]: Map merging started.[0m
-[32m[DEBUG] [1681951914.650933237, 560.210000000]: warping grids[0m
-[32m[DEBUG] [1681951914.657636686, 560.210000000]: compositing result grid[0m
-[32m[DEBUG] [1681951914.662618048, 560.220000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951915.863991535, 561.440000000]: Robot discovery started.[0m
-[32m[DEBUG] [1681951916.167693649, 561.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951916.167744175, 561.750000000]: warping grids[0m
-[32m[DEBUG] [1681951916.177029443, 561.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951916.187152491, 561.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951918.169947493, 563.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951918.169990986, 563.750000000]: warping grids[0m
-[32m[DEBUG] [1681951918.179104091, 563.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951918.183828156, 563.750000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951920.180079108, 565.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951920.180136527, 565.750000000]: warping grids[0m
-[32m[DEBUG] [1681951920.189019271, 565.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951920.201626449, 565.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951920.213507183, 565.770000000]: Grid pose estimation started.[0m
-[32m[DEBUG] [1681951920.213617302, 565.770000000]: computing features[0m
-[32m[DEBUG] [1681951922.204969818, 567.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951924.696185281, 570.210000000]: pairwise matching features[0m
-[32m[DEBUG] [1681951924.699859185, 570.220000000]: warping grids[0m
-[32m[DEBUG] [1681951924.706889722, 570.220000000]: compositing result grid[0m
-[32m[DEBUG] [1681951924.712065024, 570.230000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951924.717418621, 570.230000000]: Map merging started.[0m
-[32m[DEBUG] [1681951924.717454086, 570.230000000]: warping grids[0m
-[32m[DEBUG] [1681951924.727626452, 570.240000000]: compositing result grid[0m
-[32m[DEBUG] [1681951924.772845679, 570.270000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951926.213332653, 571.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951926.213382875, 571.750000000]: warping grids[0m
-[32m[DEBUG] [1681951926.224480196, 571.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951926.229925373, 571.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951928.219435782, 573.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951928.219487276, 573.750000000]: warping grids[0m
-[32m[DEBUG] [1681951928.229709048, 573.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951928.242319233, 573.770000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951930.216861318, 575.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951930.216890903, 575.750000000]: warping grids[0m
-[32m[DEBUG] [1681951930.226393482, 575.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951930.231605505, 575.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951930.240290191, 575.770000000]: Grid pose estimation started.[0m
-[32m[DEBUG] [1681951930.240328190, 575.770000000]: computing features[0m
-[32m[DEBUG] [1681951932.250411011, 577.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951935.149871341, 580.650000000]: pairwise matching features[0m
-[32m[DEBUG] [1681951935.155407079, 580.650000000]: warping grids[0m
-[32m[DEBUG] [1681951935.164108485, 580.650000000]: compositing result grid[0m
-[32m[DEBUG] [1681951935.172905717, 580.660000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951935.181751498, 580.670000000]: Map merging started.[0m
-[32m[DEBUG] [1681951935.181775882, 580.670000000]: warping grids[0m
-[32m[DEBUG] [1681951935.190786114, 580.680000000]: compositing result grid[0m
-[32m[DEBUG] [1681951935.194871596, 580.690000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951935.922426249, 581.440000000]: Robot discovery started.[0m
-[32m[DEBUG] [1681951936.226321203, 581.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951936.226403073, 581.750000000]: warping grids[0m
-[32m[DEBUG] [1681951936.234816377, 581.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951936.247168390, 581.770000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951938.221340472, 583.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951938.221398869, 583.750000000]: warping grids[0m
-[32m[DEBUG] [1681951938.230180545, 583.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951938.236123060, 583.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951940.219067986, 585.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951940.219109923, 585.750000000]: warping grids[0m
-[32m[DEBUG] [1681951940.225187468, 585.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951940.230752994, 585.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951940.239534822, 585.770000000]: Grid pose estimation started.[0m
-[32m[DEBUG] [1681951940.239603718, 585.770000000]: computing features[0m
-[32m[DEBUG] [1681951942.256349581, 587.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951944.799403625, 590.300000000]: pairwise matching features[0m
-[32m[DEBUG] [1681951944.804635813, 590.300000000]: warping grids[0m
-[32m[DEBUG] [1681951944.817190715, 590.300000000]: compositing result grid[0m
-[32m[DEBUG] [1681951944.828379249, 590.310000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951944.842722080, 590.310000000]: Map merging started.[0m
-[32m[DEBUG] [1681951944.842838844, 590.310000000]: warping grids[0m
-[32m[DEBUG] [1681951944.849266864, 590.330000000]: compositing result grid[0m
-[32m[DEBUG] [1681951944.854465563, 590.340000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951946.233388731, 591.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951946.233451566, 591.750000000]: warping grids[0m
-[32m[DEBUG] [1681951946.241373205, 591.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951946.250869850, 591.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951948.232328128, 593.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951948.232381456, 593.750000000]: warping grids[0m
-[32m[DEBUG] [1681951948.239128593, 593.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951948.243569803, 593.750000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951950.230266781, 595.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951950.230299841, 595.750000000]: warping grids[0m
-[32m[DEBUG] [1681951950.238447568, 595.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951950.248213291, 595.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951950.252021232, 595.770000000]: Grid pose estimation started.[0m
-[32m[DEBUG] [1681951950.252060854, 595.770000000]: computing features[0m
-[32m[DEBUG] [1681951952.257206287, 597.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951954.695211245, 600.170000000]: pairwise matching features[0m
-[32m[DEBUG] [1681951954.703845884, 600.180000000]: warping grids[0m
-[32m[DEBUG] [1681951954.710786266, 600.180000000]: compositing result grid[0m
-[32m[DEBUG] [1681951954.716649086, 600.190000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951954.724227452, 600.200000000]: Map merging started.[0m
-[32m[DEBUG] [1681951954.724315133, 600.200000000]: warping grids[0m
-[32m[DEBUG] [1681951954.736095905, 600.200000000]: compositing result grid[0m
-[32m[DEBUG] [1681951954.747447283, 600.220000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951955.932365179, 601.440000000]: Robot discovery started.[0m
-[32m[DEBUG] [1681951956.239448975, 601.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951956.239672345, 601.750000000]: warping grids[0m
-[32m[DEBUG] [1681951956.249554238, 601.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951956.254380129, 601.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951958.235341421, 603.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951958.235367950, 603.750000000]: warping grids[0m
-[32m[DEBUG] [1681951958.246156358, 603.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951958.255430688, 603.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951960.240284431, 605.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951960.240334042, 605.750000000]: warping grids[0m
-[32m[DEBUG] [1681951960.248293512, 605.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951960.253355117, 605.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951960.260251452, 605.770000000]: Grid pose estimation started.[0m
-[32m[DEBUG] [1681951960.260317954, 605.770000000]: computing features[0m
-[32m[DEBUG] [1681951962.261004780, 607.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951964.934571136, 610.410000000]: pairwise matching features[0m
-[32m[DEBUG] [1681951964.940490957, 610.420000000]: warping grids[0m
-[32m[DEBUG] [1681951964.951882339, 610.420000000]: compositing result grid[0m
-[32m[DEBUG] [1681951964.962181826, 610.430000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951964.971589949, 610.430000000]: Map merging started.[0m
-[32m[DEBUG] [1681951964.971636174, 610.430000000]: warping grids[0m
-[32m[DEBUG] [1681951964.982417185, 610.450000000]: compositing result grid[0m
-[32m[DEBUG] [1681951964.986639663, 610.450000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951966.246194704, 611.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951966.246227033, 611.750000000]: warping grids[0m
-[32m[DEBUG] [1681951966.254755284, 611.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951966.263893392, 611.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951968.238922312, 613.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951968.238955914, 613.750000000]: warping grids[0m
-[32m[DEBUG] [1681951968.247052723, 613.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951968.252869749, 613.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951970.244941734, 615.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951970.244974744, 615.750000000]: warping grids[0m
-[32m[DEBUG] [1681951970.252142661, 615.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951970.261499596, 615.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951970.271903242, 615.770000000]: Grid pose estimation started.[0m
-[32m[DEBUG] [1681951970.271971177, 615.770000000]: computing features[0m
-[32m[DEBUG] [1681951972.264022728, 617.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951974.947442208, 620.410000000]: pairwise matching features[0m
-[32m[DEBUG] [1681951974.957346927, 620.420000000]: warping grids[0m
-[32m[DEBUG] [1681951974.964129940, 620.420000000]: compositing result grid[0m
-[32m[DEBUG] [1681951974.969356967, 620.430000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951974.976266663, 620.440000000]: Map merging started.[0m
-[32m[DEBUG] [1681951974.976464406, 620.440000000]: warping grids[0m
-[32m[DEBUG] [1681951974.987287266, 620.450000000]: compositing result grid[0m
-[32m[DEBUG] [1681951974.994687012, 620.450000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951975.952164283, 621.440000000]: Robot discovery started.[0m
-[32m[DEBUG] [1681951976.256425414, 621.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951976.256465617, 621.750000000]: warping grids[0m
-[32m[DEBUG] [1681951976.263175428, 621.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951976.267453553, 621.750000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951978.259921946, 623.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951978.259955007, 623.750000000]: warping grids[0m
-[32m[DEBUG] [1681951978.268657992, 623.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951978.281281003, 623.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951980.271404016, 625.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951980.271447866, 625.750000000]: warping grids[0m
-[32m[DEBUG] [1681951980.278962498, 625.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951980.285750255, 625.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951980.291145143, 625.770000000]: Grid pose estimation started.[0m
-[32m[DEBUG] [1681951980.291177933, 625.770000000]: computing features[0m
-[32m[DEBUG] [1681951982.299651476, 627.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951985.069221813, 630.500000000]: pairwise matching features[0m
-[32m[DEBUG] [1681951985.079207739, 630.520000000]: warping grids[0m
-[32m[DEBUG] [1681951985.092080804, 630.530000000]: compositing result grid[0m
-[32m[DEBUG] [1681951985.103009462, 630.540000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951985.112124829, 630.550000000]: Map merging started.[0m
-[32m[DEBUG] [1681951985.112151638, 630.550000000]: warping grids[0m
-[32m[DEBUG] [1681951985.123470422, 630.560000000]: compositing result grid[0m
-[32m[DEBUG] [1681951985.127961844, 630.560000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951986.292516746, 631.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951986.292550217, 631.750000000]: warping grids[0m
-[32m[DEBUG] [1681951986.301030577, 631.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951986.310714560, 631.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951988.287066765, 633.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951988.287096269, 633.750000000]: warping grids[0m
-[32m[DEBUG] [1681951988.293577709, 633.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951988.298726079, 633.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951990.285211831, 635.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951990.285241506, 635.750000000]: warping grids[0m
-[32m[DEBUG] [1681951990.295766308, 635.760000000]: compositing result grid[0m
-[32m[DEBUG] [1681951990.304507095, 635.770000000]: Grid pose estimation started.[0m
-[32m[DEBUG] [1681951990.308724570, 635.770000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951990.308975071, 635.770000000]: computing features[0m
-[32m[DEBUG] [1681951992.370087633, 637.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951994.896338822, 640.310000000]: pairwise matching features[0m
-[32m[DEBUG] [1681951994.902436740, 640.320000000]: warping grids[0m
-[32m[DEBUG] [1681951994.911686017, 640.320000000]: compositing result grid[0m
-[32m[DEBUG] [1681951994.916668685, 640.330000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951994.922650887, 640.330000000]: Map merging started.[0m
-[32m[DEBUG] [1681951994.922748286, 640.330000000]: warping grids[0m
-[32m[DEBUG] [1681951994.933484190, 640.340000000]: compositing result grid[0m
-[32m[DEBUG] [1681951994.943624199, 640.350000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951995.994176460, 641.440000000]: Robot discovery started.[0m
-[32m[DEBUG] [1681951996.300738025, 641.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951996.300773730, 641.750000000]: warping grids[0m
-[32m[DEBUG] [1681951996.309197797, 641.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951996.314040049, 641.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681951998.302900206, 643.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681951998.302945580, 643.750000000]: warping grids[0m
-[32m[DEBUG] [1681951998.312827631, 643.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681951998.321846642, 643.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952000.301972666, 645.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681952000.302015825, 645.750000000]: warping grids[0m
-[32m[DEBUG] [1681952000.308573784, 645.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681952000.314771070, 645.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952000.322660882, 645.770000000]: Grid pose estimation started.[0m
-[32m[DEBUG] [1681952000.322701817, 645.770000000]: computing features[0m
-[32m[DEBUG] [1681952002.334311265, 647.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681952005.109075380, 650.530000000]: pairwise matching features[0m
-[32m[DEBUG] [1681952005.116334457, 650.540000000]: warping grids[0m
-[32m[DEBUG] [1681952005.127565434, 650.550000000]: compositing result grid[0m
-[32m[DEBUG] [1681952005.138443381, 650.560000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952005.151419731, 650.570000000]: Map merging started.[0m
-[32m[DEBUG] [1681952005.151467028, 650.570000000]: warping grids[0m
-[32m[DEBUG] [1681952005.159549266, 650.580000000]: compositing result grid[0m
-[32m[DEBUG] [1681952005.163910908, 650.580000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952006.306169029, 651.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681952006.306197211, 651.750000000]: warping grids[0m
-[32m[DEBUG] [1681952006.313724686, 651.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681952006.318956159, 651.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952008.309120363, 653.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681952008.309148255, 653.750000000]: warping grids[0m
-[32m[DEBUG] [1681952008.317745982, 653.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681952008.332267035, 653.770000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952010.305713231, 655.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681952010.305746352, 655.750000000]: warping grids[0m
-[32m[DEBUG] [1681952010.313270335, 655.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681952010.318538458, 655.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952010.326573052, 655.770000000]: Grid pose estimation started.[0m
-[32m[DEBUG] [1681952010.326678125, 655.770000000]: computing features[0m
-[32m[DEBUG] [1681952012.338689698, 657.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681952014.784341529, 660.200000000]: pairwise matching features[0m
-[32m[DEBUG] [1681952014.789109428, 660.200000000]: warping grids[0m
-[32m[DEBUG] [1681952014.804534704, 660.220000000]: compositing result grid[0m
-[32m[DEBUG] [1681952014.812977241, 660.230000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952014.820751628, 660.230000000]: Map merging started.[0m
-[32m[DEBUG] [1681952014.820791581, 660.230000000]: warping grids[0m
-[32m[DEBUG] [1681952014.833599306, 660.250000000]: compositing result grid[0m
-[32m[DEBUG] [1681952014.838427952, 660.250000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952015.999243418, 661.440000000]: Robot discovery started.[0m
-[32m[DEBUG] [1681952016.308896222, 661.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681952016.308949720, 661.750000000]: warping grids[0m
-[32m[DEBUG] [1681952016.322627643, 661.760000000]: compositing result grid[0m
-[32m[DEBUG] [1681952016.334345249, 661.770000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952018.307903231, 663.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681952018.307953674, 663.750000000]: warping grids[0m
-[32m[DEBUG] [1681952018.319739487, 663.760000000]: compositing result grid[0m
-[32m[DEBUG] [1681952018.324388264, 663.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952020.308899449, 665.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681952020.308935656, 665.750000000]: warping grids[0m
-[32m[DEBUG] [1681952020.318282772, 665.760000000]: compositing result grid[0m
-[32m[DEBUG] [1681952020.328691920, 665.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952020.329583033, 665.770000000]: Grid pose estimation started.[0m
-[32m[DEBUG] [1681952020.329613980, 665.770000000]: computing features[0m
-[32m[DEBUG] [1681952022.327526888, 667.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681952025.005380729, 670.420000000]: pairwise matching features[0m
-[32m[DEBUG] [1681952025.012849445, 670.430000000]: warping grids[0m
-[32m[DEBUG] [1681952025.020773625, 670.430000000]: compositing result grid[0m
-[32m[DEBUG] [1681952025.026080407, 670.440000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952025.033099702, 670.450000000]: Map merging started.[0m
-[32m[DEBUG] [1681952025.033203564, 670.450000000]: warping grids[0m
-[32m[DEBUG] [1681952025.041001968, 670.450000000]: compositing result grid[0m
-[32m[DEBUG] [1681952025.049428535, 670.460000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952026.319860986, 671.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681952026.319981608, 671.750000000]: warping grids[0m
-[32m[DEBUG] [1681952026.326123197, 671.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681952026.332039061, 671.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952028.319313285, 673.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681952028.319428286, 673.750000000]: warping grids[0m
-[32m[DEBUG] [1681952028.327477571, 673.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681952028.334696295, 673.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952030.320185713, 675.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681952030.320212252, 675.750000000]: warping grids[0m
-[32m[DEBUG] [1681952030.328440298, 675.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681952030.333883383, 675.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952030.340183170, 675.770000000]: Grid pose estimation started.[0m
-[32m[DEBUG] [1681952030.340282062, 675.770000000]: computing features[0m
-[32m[DEBUG] [1681952032.346746421, 677.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681952034.997611648, 680.370000000]: pairwise matching features[0m
-[32m[DEBUG] [1681952035.004624301, 680.380000000]: warping grids[0m
-[32m[DEBUG] [1681952035.015697451, 680.390000000]: compositing result grid[0m
-[32m[DEBUG] [1681952035.026564483, 680.400000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952035.036494146, 680.410000000]: Map merging started.[0m
-[32m[DEBUG] [1681952035.036662186, 680.410000000]: warping grids[0m
-[32m[DEBUG] [1681952035.047168583, 680.420000000]: compositing result grid[0m
-[32m[DEBUG] [1681952035.051335660, 680.420000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952036.027662097, 681.440000000]: Robot discovery started.[0m
-[32m[DEBUG] [1681952036.330672295, 681.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681952036.330826640, 681.750000000]: warping grids[0m
-[32m[DEBUG] [1681952036.339708659, 681.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681952036.350872869, 681.770000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952038.323566854, 683.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681952038.323592601, 683.750000000]: warping grids[0m
-[32m[DEBUG] [1681952038.331551738, 683.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681952038.336156482, 683.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952040.319275634, 685.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681952040.319314346, 685.750000000]: warping grids[0m
-[32m[DEBUG] [1681952040.327521631, 685.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681952040.340403491, 685.770000000]: Grid pose estimation started.[0m
-[32m[DEBUG] [1681952040.341921943, 685.770000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952040.341989237, 685.770000000]: computing features[0m
-[32m[DEBUG] [1681952042.354590745, 687.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681952044.715248104, 690.060000000]: pairwise matching features[0m
-[32m[DEBUG] [1681952044.725257765, 690.070000000]: warping grids[0m
-[32m[DEBUG] [1681952044.734811350, 690.070000000]: compositing result grid[0m
-[32m[DEBUG] [1681952044.739957906, 690.080000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952044.748070660, 690.090000000]: Map merging started.[0m
-[32m[DEBUG] [1681952044.748121443, 690.090000000]: warping grids[0m
-[32m[DEBUG] [1681952044.756638091, 690.100000000]: compositing result grid[0m
-[32m[DEBUG] [1681952044.767923308, 690.100000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952046.337890711, 691.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681952046.337918923, 691.750000000]: warping grids[0m
-[32m[DEBUG] [1681952046.346505733, 691.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681952046.352384269, 691.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952048.334033760, 693.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681952048.334059478, 693.750000000]: warping grids[0m
-[32m[DEBUG] [1681952048.344355509, 693.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681952048.355607103, 693.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952050.331792913, 695.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681952050.331824200, 695.750000000]: warping grids[0m
-[32m[DEBUG] [1681952050.338453879, 695.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681952050.343973596, 695.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952050.350981942, 695.770000000]: Grid pose estimation started.[0m
-[32m[DEBUG] [1681952050.351013290, 695.770000000]: computing features[0m
-[32m[DEBUG] [1681952052.368720959, 697.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681952055.042620751, 700.440000000]: pairwise matching features[0m
-[32m[DEBUG] [1681952055.051247973, 700.440000000]: warping grids[0m
-[32m[DEBUG] [1681952055.062311006, 700.440000000]: compositing result grid[0m
-[32m[DEBUG] [1681952055.075375320, 700.470000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952055.086429678, 700.480000000]: Map merging started.[0m
-[32m[DEBUG] [1681952055.086479429, 700.480000000]: warping grids[0m
-[32m[DEBUG] [1681952055.095854841, 700.480000000]: compositing result grid[0m
-[32m[DEBUG] [1681952055.100384224, 700.490000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952056.043233923, 701.440000000]: Robot discovery started.[0m
-[32m[DEBUG] [1681952056.352343326, 701.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681952056.352375996, 701.750000000]: warping grids[0m
-[32m[DEBUG] [1681952056.361301513, 701.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681952056.368627034, 701.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952058.352450001, 703.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681952058.352495795, 703.750000000]: warping grids[0m
-[32m[DEBUG] [1681952058.363988440, 703.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681952058.375003357, 703.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952060.359292337, 705.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681952060.359338552, 705.750000000]: warping grids[0m
-[32m[DEBUG] [1681952060.368918696, 705.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681952060.373648662, 705.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952060.379148115, 705.770000000]: Grid pose estimation started.[0m
-[32m[DEBUG] [1681952060.379207905, 705.770000000]: computing features[0m
-[32m[DEBUG] [1681952062.434549375, 707.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681952065.110205441, 710.430000000]: pairwise matching features[0m
-[32m[DEBUG] [1681952065.115921280, 710.440000000]: warping grids[0m
-[32m[DEBUG] [1681952065.124026907, 710.440000000]: compositing result grid[0m
-[32m[DEBUG] [1681952065.128681055, 710.450000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952065.139059426, 710.460000000]: Map merging started.[0m
-[32m[DEBUG] [1681952065.139129505, 710.460000000]: warping grids[0m
-[32m[DEBUG] [1681952065.147809307, 710.460000000]: compositing result grid[0m
-[32m[DEBUG] [1681952065.156676814, 710.470000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952066.388515571, 711.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681952066.388564001, 711.750000000]: warping grids[0m
-[32m[DEBUG] [1681952066.395081548, 711.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681952066.399883700, 711.750000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952068.377544982, 713.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681952068.377586278, 713.750000000]: warping grids[0m
-[32m[DEBUG] [1681952068.384266717, 713.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681952068.388888236, 713.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952070.377573925, 715.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681952070.377623366, 715.750000000]: warping grids[0m
-[32m[DEBUG] [1681952070.385125538, 715.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681952070.395424747, 715.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952070.398084366, 715.770000000]: Grid pose estimation started.[0m
-[32m[DEBUG] [1681952070.398124731, 715.770000000]: computing features[0m
-[32m[DEBUG] [1681952072.413612059, 717.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681952075.029699531, 720.360000000]: pairwise matching features[0m
-[32m[DEBUG] [1681952075.037703357, 720.370000000]: warping grids[0m
-[32m[DEBUG] [1681952075.045655183, 720.370000000]: compositing result grid[0m
-[32m[DEBUG] [1681952075.051371547, 720.380000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952075.058428865, 720.390000000]: Map merging started.[0m
-[32m[DEBUG] [1681952075.058493735, 720.390000000]: warping grids[0m
-[32m[DEBUG] [1681952075.066633095, 720.390000000]: compositing result grid[0m
-[32m[DEBUG] [1681952075.077983640, 720.410000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952076.080569161, 721.440000000]: Robot discovery started.[0m
-[32m[DEBUG] [1681952076.393466557, 721.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681952076.393492084, 721.750000000]: warping grids[0m
-[32m[DEBUG] [1681952076.402270111, 721.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681952076.406539393, 721.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952078.387176110, 723.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681952078.387277257, 723.750000000]: warping grids[0m
-[32m[DEBUG] [1681952078.395799988, 723.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681952078.408990233, 723.770000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952080.386950753, 725.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681952080.386982712, 725.750000000]: warping grids[0m
-[32m[DEBUG] [1681952080.394486989, 725.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681952080.399664500, 725.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952080.407261990, 725.770000000]: Grid pose estimation started.[0m
-[32m[DEBUG] [1681952080.407317142, 725.770000000]: computing features[0m
-[32m[DEBUG] [1681952082.450844957, 727.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681952084.900546719, 730.200000000]: pairwise matching features[0m
-[32m[DEBUG] [1681952084.905942565, 730.200000000]: warping grids[0m
-[32m[DEBUG] [1681952084.915433647, 730.210000000]: compositing result grid[0m
-[32m[DEBUG] [1681952084.929235018, 730.230000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952084.938920396, 730.240000000]: Map merging started.[0m
-[32m[DEBUG] [1681952084.938971461, 730.240000000]: warping grids[0m
-[32m[DEBUG] [1681952084.949207194, 730.250000000]: compositing result grid[0m
-[32m[DEBUG] [1681952084.953344756, 730.250000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952086.401210048, 731.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681952086.401265250, 731.750000000]: warping grids[0m
-[32m[DEBUG] [1681952086.410927809, 731.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681952086.419850671, 731.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952088.399770193, 733.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681952088.399805579, 733.750000000]: warping grids[0m
-[32m[DEBUG] [1681952088.409548487, 733.760000000]: compositing result grid[0m
-[32m[DEBUG] [1681952088.415178667, 733.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952090.404292476, 735.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681952090.404324625, 735.750000000]: warping grids[0m
-[32m[DEBUG] [1681952090.413293205, 735.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681952090.422955135, 735.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952090.424066829, 735.770000000]: Grid pose estimation started.[0m
-[32m[DEBUG] [1681952090.424120118, 735.770000000]: computing features[0m
-[32m[DEBUG] [1681952092.469031953, 737.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681952095.061913191, 740.350000000]: pairwise matching features[0m
-[32m[DEBUG] [1681952095.068159454, 740.360000000]: warping grids[0m
-[32m[DEBUG] [1681952095.076247811, 740.360000000]: compositing result grid[0m
-[32m[DEBUG] [1681952095.080695701, 740.370000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952095.086824657, 740.370000000]: Map merging started.[0m
-[32m[DEBUG] [1681952095.087074719, 740.370000000]: warping grids[0m
-[32m[DEBUG] [1681952095.097133266, 740.390000000]: compositing result grid[0m
-[32m[DEBUG] [1681952095.105236321, 740.390000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952096.128419135, 741.440000000]: Robot discovery started.[0m
-[32m[DEBUG] [1681952096.439185692, 741.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681952096.439316123, 741.750000000]: warping grids[0m
-[32m[DEBUG] [1681952096.446868029, 741.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681952096.451967674, 741.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952098.429932664, 743.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681952098.429956148, 743.750000000]: warping grids[0m
-[32m[DEBUG] [1681952098.440582798, 743.750000000]: compositing result grid[0m
-[32m[DEBUG] [1681952098.450551512, 743.760000000]: all maps merged, publishing[0m
-[32m[DEBUG] [1681952100.431385403, 745.750000000]: Map merging started.[0m
-[32m[DEBUG] [1681952100.431408536, 745.750000000]: warping grids[0m
-[3
+    controller_spawner (controller_manager/spawner)
+    robot_state_publisher (robot_state_publisher/robot_state_publisher)
+    spawn_limo_model (gazebo_ros/spawn_model)
+
+auto-starting new master
+[1mprocess[master]: started with pid [20929][0m
+[1mROS_MASTER_URI=http://192.168.136.128:11311[0m
+]2;/home/ubuntu/Desktop/catkin_ws/src/ugv_gazebo_sim/limo/limo_gazebo_sim/launch/random_world.launch http://192.168.136.128:11311
+[1msetting /run_id to 3e5c62f0-df16-11ed-8a3d-b9c8653a4aa4[0m
+[1mprocess[rosout-1]: started with pid [20942][0m
+started core service [/rosout]
+[1mprocess[gazebo-2]: started with pid [20949][0m
+[1mprocess[gazebo_gui-3]: started with pid [20953][0m
+[1mprocess[limo1/spawn_limo_model-4]: started with pid [20959][0m
+[1mprocess[limo1/controller_spawner-5]: started with pid [20960][0m
+[1mprocess[limo1/robot_state_publisher-6]: started with pid [20961][0m
+[1mprocess[limo2/spawn_limo_model-7]: started with pid [20962][0m
+[1mprocess[limo2/controller_spawner-8]: started with pid [20963][0m
+[1mprocess[limo2/robot_state_publisher-9]: started with pid [20964][0m
+[1m[limo1/spawn_limo_model-4] process has finished cleanly
+log file: /home/ubuntu/.ros/log/3e5c62f0-df16-11ed-8a3d-b9c8653a4aa4/limo1-spawn_limo_model-4*.log[0m
+[1m[limo2/spawn_limo_model-7] process has finished cleanly
+log file: /home/ubuntu/.ros/log/3e5c62f0-df16-11ed-8a3d-b9c8653a4aa4/limo2-spawn_limo_model-7*.log[0m
+[1m[limo2/controller_spawner-8] process has finished cleanly
+log file: /home/ubuntu/.ros/log/3e5c62f0-df16-11ed-8a3d-b9c8653a4aa4/limo2-controller_spawner-8*.log[0m
+[limo2/robot_state_publisher-9] killing on exit
+[limo1/robot_state_publisher-6] killing on exit
+[limo1/controller_spawner-5] killing on exit
+[gazebo_gui-3] killing on exit
+[gazebo-2] killing on exit
+[rosout-1] killing on exit
+[master] killing on exit
+shutting down processing monitor...
+... shutting down processing monitor complete
+[1mdone[0m

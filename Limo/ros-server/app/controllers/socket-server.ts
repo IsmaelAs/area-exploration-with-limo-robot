@@ -91,24 +91,27 @@ export class SocketServer {
       });
 
       socket.on('p2p-stop', () => {
-        if (this.limoId === 2) this.p2pSocketClient?.activateP2P();
+        if (this.limoId === 2) this.p2pSocketClient?.deactivateP2P();
         else clearInterval(this.intervalPos);
       });
 
       socket.on('p2p-activated', () => {
+        if (this.limoId === 2) return;
         socket.broadcast.emit('p2p-connected', true);
       });
 
       socket.on('p2p-deactivated', () => {
+        if (this.limoId === 2) return;
         socket.broadcast.emit('p2p-connected', false);
       });
 
       socket.on('p2p-distance', (distance: number) => {
-        if (!this.p2pPosition) return;
+        if (this.limoId === 2) return;
         this.p2pPosition.setP2PDistance(distance);
       });
 
       socket.on('p2p-map', (map: Map) => {
+        if (this.limoId === 2) return;
         this.nodeMap.sendMap(map);
       });
 
