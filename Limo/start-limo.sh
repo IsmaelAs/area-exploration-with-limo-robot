@@ -28,7 +28,7 @@ docker build -t ros-server ./ros-server || { echo "Error: Failed to build ros-se
 wait
 
 
-if [ "$IS_SIMULATION" -eq 1 ]; then
+if [ "$IS_SIMULATION" == "1" ] || [ "$IS_SIMULATION" == "true" ]; then
   echo "Sourcing ${PATH_TO_SETUP_BASH}..."
   source ${PATH_TO_SETUP_BASH} --extend || { echo "Error: Failed to source setup.bash"; exit 1; }
 
@@ -70,7 +70,7 @@ if [ "$IS_SIMULATION" -eq 1 ]; then
   docker run --name ros-server-1 -p 9332:9332 --restart always -e LIMO_IP=$LIMO_IP_SIMU_1 -e IS_SIMULATION=1 -e LIMO_ID='1'  -d ros-server
   docker run --name ros-server-2 -p 9333:9333 --restart always -e LIMO_IP=$LIMO_IP_SIMU_2 -e IS_SIMULATION=1 -e LIMO_ID='2'   ros-server
 
-elif [ "$IS_SIMULATION" -eq 0 ]; then
+elif [ "$IS_SIMULATION" == "" ]; then
 
   docker build  -t ros-packages-server ./ros-packages 
   docker build  -t ros-server ./ros-server

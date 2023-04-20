@@ -9,11 +9,11 @@ sleep 5
 
 source /agx_ws/devel/setup.bash --extend
 
-if [ "$IS_SIMULATION" -eq 0 ]; then 
+if [ ! "$IS_SIMULATION" ];  then 
   cp -r ./packages/launchs $(rospack find limo_bringup)
   cp -r ./packages/params $(rospack find limo_bringup)
 
-  roslaunch rosbridge_server rosbridge_websocket.launch || { echo "Error: Failed to launch rosbridge"; exit 1; } &
+  roslaunch rosbridge_server rosbridge_websocket.launch &
   wait
   # Launch gmapping
   roslaunch --wait  limo_bringup one_gmapping.launch  2> >(grep -v TF_REPEATED_DATA buffer_core) &
@@ -28,7 +28,7 @@ if [ "$IS_SIMULATION" -eq 0 ]; then
   sleep 5
 
   # Launch navigation stack
-  roslaunch  --wait  limo_bringup limo_navigation_ackerman.launch  2> >(grep -v TF_REPEATED_DATA buffer_core) &
+  roslaunch  --wait  limo_bringup one_navigation.launch  2> >(grep -v TF_REPEATED_DATA buffer_core) &
 
   # Wait for navigation stack to start up
   sleep 5

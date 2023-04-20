@@ -39,6 +39,6 @@ COPY . /home/ros-package
 WORKDIR /home/ros-package
 RUN chmod +x ./entrypoint.sh
 
-# ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["./entrypoint.sh"]
 # CMD ["/bin/bash"]
-CMD ["tail", "-f", "/dev/null"]
+# CMD ["tail", "-f", "/dev/null"]
