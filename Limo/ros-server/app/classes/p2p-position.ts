@@ -14,6 +14,8 @@ export class P2PPosition {
 
   private interval: NodeJS.Timer;
 
+  private p2pActivated: boolean = false;
+
 
 
   constructor(limoID: number) {
@@ -55,7 +57,13 @@ export class P2PPosition {
     this.p2pDistance = distance;
   }
 
+  activateP2P(){
+    this.p2pActivated = true;
+  }
+
   getFurthestLimo() {
+    if (!this.p2pActivated) return;
+
     console.log('This is limoId : ' + this.limoId )
     console.log('My distance is : ' + this.distance )
     console.log('The P2P distance is : ' + this.p2pDistance )

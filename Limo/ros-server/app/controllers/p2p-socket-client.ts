@@ -9,7 +9,7 @@ export class P2PSocketClient {
 
   private p2pUrl: string;
 
-  private p2pActivated: boolean;
+  private p2pActivated: boolean = false;
 
   private intervalPos: NodeJS.Timer;
 
@@ -32,6 +32,7 @@ export class P2PSocketClient {
 
   activateP2P() {
     this.p2pActivated = true;
+    this.p2pPosition.activateP2P();
     this.emit('p2p-activated');
   }
 

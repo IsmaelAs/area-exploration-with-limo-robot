@@ -85,6 +85,8 @@ export class SocketServer {
         if (!this.p2pPosition) return;
         if (this.limoId === 2) this.p2pSocketClient?.activateP2P();
         else {
+          console.log('p2p should start..')
+          this.p2pPosition.activateP2P();
           this.nodeMap.initNodeMap();
           this.intervalPos = setInterval(this.callBackPos.bind(this), 1000);
         }
@@ -97,6 +99,7 @@ export class SocketServer {
       });
 
       socket.on('p2p-activated', () => {
+        console.log('p2p has been actuivated an received by server..')
         socket.broadcast.emit('p2p-connected', true);
       });
 
