@@ -13,7 +13,6 @@ class ExplorationControl:
         rospy.init_node('simulation_explore')
         self.subscriberState = rospy.Subscriber(f"/exploration_state_sim", BoolString, self.setExplorationState)
         self.explore_lite_processes = {}
-        self.return_to_base_process = None
 
 
     def setExplorationState(self, msg: BoolString):
