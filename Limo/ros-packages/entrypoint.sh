@@ -9,7 +9,7 @@ sleep 5
 
 source /agx_ws/devel/setup.bash --extend
 
-if [ ! "$IS_SIMULATION" ];  then 
+if [ "$IS_SIMULATION" == "0" ] || [ "$IS_SIMULATION" == "false" ];  then 
   cp -r ./packages/launchs $(rospack find limo_bringup)
   cp -r ./packages/params $(rospack find limo_bringup)
 
