@@ -43,8 +43,9 @@ class ReturnToBase:
             goal.target_pose.header.frame_id = "map"
             goal.target_pose.header.stamp = rospy.Time.now()
             goal.target_pose.pose = self.base_pose
+            self.stop_explore_lite.publish(False)
 
-            self.move_base_client.send_goal(goal)
+            self.move_base_client.send_goal(goal) 
             
 
 if __name__ == '__main__':
