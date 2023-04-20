@@ -1,10 +1,10 @@
 #! /bin/bash
 
-# Check if input parameter is provided
-if [ -z "$1" ]; then
-  echo "Error: Missing input parameter (IS_SIMULATION)."
-  exit 1
-fi
+# # Check if input parameter is provided
+# if [ -z "$1" ]; then
+#   echo "Error: Missing input parameter (IS_SIMULATION)."
+#   exit 1
+# fi
 
 IS_SIMULATION=$1
 echo "IS_SIMULATION: $IS_SIMULATION"
