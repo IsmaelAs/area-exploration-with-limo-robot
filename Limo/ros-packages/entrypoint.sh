@@ -9,11 +9,11 @@ sleep 5
 
 source /agx_ws/devel/setup.bash --extend
 
-if [ "$IS_SIMULATION" == "0" ] || [ "$IS_SIMULATION" == "false" ];   then 
+if [ "$IS_SIMULATION" -eq 0 ];   then 
   cp -r ./packages/launchs $(rospack find limo_bringup)
   cp -r ./packages/params $(rospack find limo_bringup)
 
-  roslaunch rosbridge_server rosbridge_websocket.launch &
+  roslaunch rosbridge_server rosbridge_websocket.launch || { echo "Error: Failed to build ros-packages-server"; exit 1; } &
   wait
   # Launch gmapping
   roslaunch --wait  limo_bringup one_gmapping.launch  2> >(grep -v TF_REPEATED_DATA buffer_core) &
