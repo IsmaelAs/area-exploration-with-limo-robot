@@ -45,14 +45,6 @@ class ReturnToBase:
             goal.target_pose.pose = self.base_pose
 
             self.move_base_client.send_goal(goal)
-            result = self.move_base_client.wait_for_result()
-
-            if result and self.move_base_client.get_state() == GoalStatus.SUCCEEDED:
-                rospy.loginfo("Robot returned to base successfully")
-            else:
-                rospy.logwarn("Failed to return to base")
-                
-            self.stop_explore_lite.publish(False)
             
 
 if __name__ == '__main__':
