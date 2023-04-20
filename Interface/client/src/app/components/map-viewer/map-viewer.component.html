@@ -1,6 +1,6 @@
 <div>
-    <div *ngIf="mapsVisible">
-        <h2>Carte Globale</h2>
+    <div [hidden]="!mapsVisible">
+        <h3>Carte Globale</h3>
         <div id="map3"></div>
         <h3>Carte Limo1</h3>
         <div id="map1"></div>
