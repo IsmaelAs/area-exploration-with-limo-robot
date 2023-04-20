@@ -5,8 +5,8 @@ RUN apt-get update && apt-get install -y curl git \
       ros-noetic-tf ros-noetic-cv-bridge \
       ros-noetic-image-geometry ros-noetic-image-transport \
       ros-noetic-camera-info-manager ros-noetic-libuvc-ros \
-      ros-noetic-gmapping ros-noetic-amcl \
-      ros-noetic-costmap-2d ros-noetic-global-planner \
+      ros-noetic-teb-local-planner ros-noetic-gmapping ros-noetic-amcl \
+      ros-noetic-base-local-planner ros-noetic-costmap-2d ros-noetic-global-planner \
       ros-noetic-dwa-local-planner ros-noetic-navigation \
       ros-noetic-rosbridge-server ros-noetic-robot-pose-ekf\
       ros-${ROS_DISTRO}-multirobot-map-merge ros-${ROS_DISTRO}-explore-lite
