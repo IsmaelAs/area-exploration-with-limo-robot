@@ -6,6 +6,8 @@ export class NodeBattery {
   private ros: Ros;
 
   private batterySubscriber: Topic;
+  // Add a new Topic instance for the /return_to_base publisher
+  private returnToBasePublisher: Topic;
 
   private data: {percentage: number};
 
@@ -14,7 +16,6 @@ export class NodeBattery {
   private name = 'Node Battery';
 
   isLowBattery = false;
-
 
   initNodeBattery() {
     this.ros = new Ros({ url: BRIDGE_URI });
@@ -32,7 +33,20 @@ export class NodeBattery {
         messageType: 'limo_base/LimoStatus',
       });
       this.batterySubscriber.subscribe(this.callBack.bind(this));
+
+      // Initialize the /return_to_base publisher
+      this.returnToBasePublisher = new Topic({
+        ros: this.ros,
+        name: '/return_to_base',
+        messageType: 'std_msgs/Bool',
+      });
     });
+  }
+
+  // Add a new method to publish a True boolean on the /return_to_base topic
+  private publishReturnToBase() {
+    const message = new Bool({ data: true });
+    this.returnToBasePublisher.publish(message);
   }
 
   private callBack(message: { battery_voltage: number; }): void {
@@ -49,6 +63,7 @@ export class NodeBattery {
     // Check if the battery is below 30%
     if (percentage < 30) {
       console.log('Battery level is below 30%');
+      this.publishReturnToBase();
       this.isLowBattery = true;
     } else {
       this.isLowBattery = false;
