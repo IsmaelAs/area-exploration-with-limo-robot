@@ -28,7 +28,7 @@ if [ ! "$IS_SIMULATION" ];  then
   sleep 5
 
   # Launch navigation stack
-  roslaunch  --wait  limo_bringup limo_navigation_ackerman.launch  2> >(grep -v TF_REPEATED_DATA buffer_core) &
+  roslaunch  --wait  limo_bringup one_navigation.launch  2> >(grep -v TF_REPEATED_DATA buffer_core) &
 
   # Wait for navigation stack to start up
   sleep 5
