@@ -1,7 +1,7 @@
 #!/bin/bash
 
 source /opt/ros/noetic/setup.bash
-
+source /agx_ws/devel/setup.bash --extend
 echo $(hostname -I)
 sleep 5
 
@@ -40,5 +40,5 @@ function launch_sequence {
 
 launch_sequence
 
-# echo "Executing restart-package-container.py"
-# exec rosrun update-pkg restart-package-container.py
+echo "Executing restart-package-container.py"
+exec rosrun update-pkg restart-package-container.py
