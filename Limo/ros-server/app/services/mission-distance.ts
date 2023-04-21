@@ -3,6 +3,9 @@ import { NodePosition } from '../classes/ros/nodes/node-position';
 import { Server } from 'socket.io';
 
 export class MissionDistance {
+  prototype(prototype: any, arg1: string) {
+      throw new Error("Method not implemented.");
+  }
   private nodePosition: NodePosition = new NodePosition();
 
   private previousPosition = { x: 0,

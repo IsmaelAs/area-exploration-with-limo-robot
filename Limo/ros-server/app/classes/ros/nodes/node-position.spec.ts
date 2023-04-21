@@ -90,5 +90,13 @@ describe("Node Position Unittest's", () => {
         expect(spyClose.called).to.be.true
     })
 
+    it("should set and print the namespace when setNamespace is called", () => {
+        const namespace = "test"
+        const consoleLogSpy = sinon.spy(console, "log");
+        nodePosition.setNamespace(namespace)
+        expect(consoleLogSpy.called).to.be.true
+        expect(nodePosition["namespace"]).to.equal(namespace)
+    })
+
 
 })

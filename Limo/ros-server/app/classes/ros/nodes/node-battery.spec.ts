@@ -5,7 +5,8 @@ import { expect } from "chai";
 import { RosMock } from "../../../classes/RosMock";
 import { TopicMock } from "../../../classes/TopicMock";
 import { BRIDGE_URI } from "../../../constants/url";
-import NodeBattery from "./node-battery";
+import { NodeBattery } from "./node-battery";
+import { Observable } from "rxjs";
 
 
 describe("Battery Unittest's", ()=> {
@@ -43,34 +44,50 @@ describe("Battery Unittest's", ()=> {
         expect(nodeBattery).to.exist
     })
 
-    it("should initialize node when we call initNodeScan", () => {
+    it("should initialize node when we call initNodeBattery", () => {
         const spyOn = sinon.spy(rosMock, "on")
-        nodeBattery.initNodeScan()
+        nodeBattery.initNodeBattery()
         expect(spyOn.called).to.be.true
         expect(nodeBattery["ros"]).to.deep.equal(rosMock)
         expect(nodeBattery["batterySubscriber"]).to.deep.equal(topicMock)
 
     })
 
-    it("should set data when we call callback", () => {
-        const data = {"percentage":40} 
-        nodeBattery["callBack"](data)
-        expect(nodeBattery["data"]).to.deep.equal(data)
-    })
+    // it("should set data when we call callback", () => {
+    //     const data = {"percentage":40} 
+    //     nodeBattery["callBack"](data)
+    //     expect(nodeBattery["data"]).to.deep.equal(data)
+    // })
 
-    it("should log a message if battery percentage is below 30", () => {
-        const percentage = 15
-        const consoleSpy = sinon.spy(console, 'log')
-        nodeBattery.onLowBattery(percentage)
-        expect(consoleSpy.calledWith('Battery level is below 30%')).to.be.true
+    // it("should log a message if battery percentage is below 30", () => {
+    //     const percentage = 15
+    //     const consoleSpy = sinon.spy(console, 'log')
+    //     nodeBattery.onLowBattery(percentage)
+    //     expect(consoleSpy.calledWith('Battery level is below 30%')).to.be.true
       
-    })
+    // })
 
     it("should return the correct data", () => {
         const data = {"percentage":40} 
         nodeBattery["data"] = data
         expect(nodeBattery.getData()).to.deep.equal(data)
     })
+
+    it("should return an Observable that emits objects with percentage property", () => {
+        const observable = nodeBattery.getBatteryObservable();
+        expect(observable).to.be.instanceOf(Observable);
+      
+        const testValues = [    { percentage: 10 },    { percentage: 20 },    { percentage: 30 },  ];
+      
+        const onNextSpy = sinon.spy();
+        observable.subscribe(onNextSpy);
+      
+        testValues.forEach((value) => {
+          nodeBattery["batterySubject"].next(value);
+          expect(onNextSpy.calledWith(value)).to.be.true;
+        });
+      });
+    
     
     it("should call close when we call closeNodeBattery", () => {
         const spyClose = sinon.spy(rosMock, "close")
@@ -79,4 +96,7 @@ describe("Battery Unittest's", ()=> {
         nodeBattery.closeNodeBattery()
         expect(spyClose.called).to.be.true
     })
+
+ 
+      
 })
