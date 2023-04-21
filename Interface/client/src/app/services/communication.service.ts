@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-// import { environment } from '../../environments/environment';
+import { environment } from '../../environments/environment';
 import MissionInfos from '../interfaces/mission-infos';
 
 @Injectable({
@@ -12,7 +12,7 @@ export class CommunicationService {
     private readonly baseUrl: string;
 
     constructor (private readonly http: HttpClient) {
-        this.baseUrl = 'http://localhost:9330';
+        this.baseUrl = `http://${environment.BACKEND_IP}:9330`;
     }
 
     getMissions (): Observable<MissionInfos[]> {
