@@ -26,7 +26,7 @@ function launch_sequence {
     sleep 5
 
     echo "Launching navigation stack..."
-    roslaunch --wait  limo_bringup one_navigation.launch  2> >(grep -v TF_REPEATED_DATA buffer_core) &
+    roslaunch --wait  limo_bringup one_navigation.launch &
     sleep 5
 
     echo "Launching explore_control..."
