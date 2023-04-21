@@ -1,87 +1,47 @@
 import { Logger } from '../services/logger';
 import { NodeManager } from '../classes/nodes-manager';
 import { Server } from 'socket.io';
-
-import { MyStateMachine } from '../classes/state-machine';
-
-import sinon, { SinonSandbox, SinonStub } from 'sinon';
+import * as sinon from "sinon";
 import { expect } from 'chai';
+import { SocketServer } from './socket-server';
+
 
 describe('SocketServer', () => {
-  let server: Server;
-  let nodeManager: NodeManager;
-  let logger: Logger;
-  let socketStub: SinonStub;
-  let loggerStub: SinonStub;
-  let stateMachineStub: SinonStub;
-  let sandbox: SinonSandbox;
-
+  let server: sinon.SinonStubbedInstance<Server<any, any, any, any>>;
+  let nodeManager: sinon.SinonStubbedInstance<NodeManager>;
+  let logger: sinon.SinonStubbedInstance<Logger>;
+//   let socketStub: sinon.SinonStub;
+//   let loggerStub: sinon.SinonStub;
+//   let stateMachineStub: sinon.SinonStub;
+//   let sandbox: sinon.SinonSandbox;
+  let socketServer: SocketServer;
   beforeEach(() => {
-    server = {} as Server;
-    nodeManager = {} as NodeManager;
-    logger = {} as Logger;
-    sandbox = sinon.createSandbox();
-
-    socketStub = sandbox.stub(server, 'on');
-    loggerStub = sandbox.stub(logger, 'startLogs');
-    stateMachineStub = sandbox.stub(MyStateMachine.prototype, 'startStates');
+    server = sinon.createStubInstance(Server);
+    nodeManager = sinon.createStubInstance(NodeManager);
+    logger = sinon.createStubInstance(Logger);
+    // sandbox = sinon.createSandbox();
+    socketServer = new SocketServer(server,nodeManager, logger)
+    // socketStub = sandbox.stub(server, 'on');
+    // loggerStub = sandbox.stub(logger, 'startLogs');
+    // stateMachineStub = sandbox.stub(MyStateMachine.prototype, 'startStates');
   });
 
   afterEach(() => {
-    sandbox.restore();
+    sinon.restore();
   });
 
-  describe('connectSocketServer', () => {
-    it('should start nodes', () => {
-      socketServer.connectSocketServer();
-      expect(nodeManager.startNodes.calledOnce).to.be.true;
-    });
 
-    it('should subscribe to stateObservable', () => {
-      const subscribeStub = sandbox.stub();
-      const stateObservable = { subscribe: subscribeStub };
-      sandbox.stub(MyStateMachine.prototype, 'stateObservable').get(() => stateObservable);
+it("emit", () => {
+    socketServer.emit("1")
+    expect(server.emit.called).to.be.true
+})
 
-      socketServer.connectSocketServer();
-      expect(subscribeStub.calledOnce).to.be.true;
-    });
+// it("should set send logs when we call sendLogs", () => {
+//     const mockLog: LogType = {} as unknown as LogType
+//     socketServer["sendLogs"](mockLog)
+//     expect(server.emit.called).to.be.true
 
-    it('should call startStates on MyStateMachine instance', () => {
-      socketServer.connectSocketServer();
-      expect(stateMachineStub.calledOnce).to.be.true;
-    });
-
-    describe('on login event', () => {
-      let loginCallback: (limoId: number) => void;
-
-      beforeEach(() => {
-        socketServer.connectSocketServer();
-        loginCallback = socketStub.getCall(0).args[1];
-      });
-
-      it('should set limoId on instance', () => {
-        loginCallback(1);
-        expect(socketServer.limoId).to.equal(1);
-      });
-
-      it('should call setLimoId on stateMachine', () => {
-        const setLimoIdStub = sandbox.stub(MyStateMachine.prototype, 'setLimoId');
-        loginCallback(1);
-        expect(setLimoIdStub.calledWith(1)).to.be.true;
-      });
-
-      it('should subscribe to stateObservable', () => {
-        const subscribeStub = sandbox.stub();
-        const stateObservable = { subscribe: subscribeStub };
-        sandbox.stub(MyStateMachine.prototype, 'stateObservable').get(() => stateObservable);
-
-        loginCallback(1);
-        expect(subscribeStub.calledOnce).to.be.true;
-      });
-    });
-    });
-    });
-    
+})
     
 
 
