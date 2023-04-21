@@ -57,6 +57,10 @@ export class ServerSocketController {
         this.sendEventToLimo(robotTarget, 'stop-mission');
       });
 
+      socket.on('return-to-base', (robotTarget: RobotTargetType) => {
+        this.sendEventToLimo(robotTarget, 'return-to-base');
+      });
+
       socket.on('save-log', (data: unknown) => {
         this.logger.saveUserData(data);
       });

@@ -3,19 +3,23 @@ import { NodeBattery } from './ros/nodes/node-battery';
 import { NodeExplorationState } from './ros/nodes/node-exploration-state';
 import { NodeMovement } from './ros/nodes/node-movement';
 import { NodeUpdate } from './ros/nodes/node-update';
+import { NodeReturnToBase } from './ros/nodes/node-return-to-base';
 
 export class NodeManager {
   private nodeMovement: NodeMovement;
 
   private nodeExplorationState: NodeExplorationState;
+  private nodeReturnToBase: NodeReturnToBase;
 
   private nodeUpdate: NodeUpdate;
 
   private nodeBattery: NodeBattery;
 
-  constructor(nodeExplorationState: NodeExplorationState, nodeMovement: NodeMovement, nodeUpdate: NodeUpdate, nodeBattery: NodeBattery) {
+  constructor(nodeExplorationState: NodeExplorationState, nodeReturnToBase: NodeReturnToBase, 
+    nodeMovement: NodeMovement, nodeUpdate: NodeUpdate, nodeBattery: NodeBattery) {
     this.nodeMovement = nodeMovement;
     this.nodeExplorationState = nodeExplorationState;
+    this.nodeReturnToBase = nodeReturnToBase;
     this.nodeUpdate = nodeUpdate;
     this.nodeBattery = nodeBattery;
   }
@@ -25,6 +29,7 @@ export class NodeManager {
     console.log(`Starting connection for the nodes`);
     this.nodeMovement.initNodeMovement();
     this.nodeExplorationState.initNodeExplorationState();
+    this.nodeReturnToBase.initNodeReturnToBase();
     this.nodeUpdate.initNodeScan();
     this.nodeBattery.initNodeBattery();
   }
@@ -40,6 +45,10 @@ export class NodeManager {
 
   startMission() {
     this.nodeExplorationState.sendMessage({ data: true });
+  }
+
+  returnToBase() {
+    this.nodeReturnToBase.sendMessage({ data: true });
   }
 
   stopMission() {
