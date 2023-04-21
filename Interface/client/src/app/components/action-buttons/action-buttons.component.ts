@@ -31,4 +31,8 @@ export class ActionButtonsComponent {
 
   }
 
+  returnToBase() {
+      this.socketCommunication.return_to_base(this.robotTarget);
+  }
+
 }

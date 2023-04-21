@@ -31,6 +31,10 @@ export class SocketCommunicationService {
 
     }
 
+    return_to_base (limo: RobotTargetType){
+        this.emit('return-to-base', limo);
+    }
+
     updateLimo (limo: RobotTargetType) {
         this.emit('update', limo);
     }

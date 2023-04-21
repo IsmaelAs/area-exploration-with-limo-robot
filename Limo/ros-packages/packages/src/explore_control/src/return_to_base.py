@@ -2,51 +2,52 @@
 
 import rospy
 from geometry_msgs.msg import PoseStamped
-from nav_msgs.msg import Odometry  # Add this import
+from nav_msgs.msg import Odometry
 from std_msgs.msg import Bool
-from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
-import actionlib
-from actionlib_msgs.msg import GoalStatus
 import os
-import sys
 
 class ReturnToBase:
     def __init__(self):
-        self.base_pose = None
+        self.start_pose = None
         self.isSimulation = os.environ.get("IS_SIMULATION")
-        if self.isSimulation : 
+        if self.isSimulation :
             self.limoId = os.environ.get("LIMO_ID", "1")
             rospy.init_node('return_to_base_node' + self.limoId)
 
-            self.pose_subscriber = rospy.Subscriber(f'/limo{self.limoId}/odom', Odometry, self.pose_callback)  # Update the message type
+            self.pose_subscriber = rospy.Subscriber(f'/limo{self.limoId}/odom', Odometry, self.pose_callback)
             self.return_subscriber = rospy.Subscriber(f'/limo{self.limoId}/return_to_base', Bool, self.return_callback)
+            self.explore_lite_subscriber = rospy.Subscriber(f'/limo{self.limoId}/exploration_state', Bool, self.explore_lite_callback)
 
-            self.move_base_client = actionlib.SimpleActionClient(f'/limo{self.limoId}/move_base', MoveBaseAction)
-            self.stop_explore_lite = rospy.Publisher(f'/limo{self.limoId}/exploration_state', Bool, queue_size=10)
-            self.move_base_client.wait_for_server()
+            self.goal_publisher = rospy.Publisher(f'/limo{self.limoId}/move_base_simple/goal', PoseStamped, queue_size=10)
+            self.stop_explore_lite_publisher = rospy.Publisher(f'/limo{self.limoId}/exploration_state', Bool, queue_size=10)
         else:
             rospy.init_node('return_to_base_node')
 
-            self.pose_subscriber = rospy.Subscriber('/odom', Odometry, self.pose_callback)  # Update the message type
+            self.pose_subscriber = rospy.Subscriber('/odom', Odometry, self.pose_callback)
             self.return_subscriber = rospy.Subscriber('/return_to_base', Bool, self.return_callback)
-            self.stop_explore_lite = rospy.Publisher('/exploration_state', Bool, queue_size=10)
-            self.move_base_client = actionlib.SimpleActionClient('/move_base', MoveBaseAction)
-            self.move_base_client.wait_for_server()
+            self.explore_lite_subscriber = rospy.Subscriber('/exploration_state', Bool, self.explore_lite_callback)
+
+            self.goal_publisher = rospy.Publisher('/move_base_simple/goal', PoseStamped, queue_size=10)
+            self.stop_explore_lite_publisher = rospy.Publisher('/exploration_state', Bool, queue_size=10)
 
     def pose_callback(self, msg):
-        if self.base_pose is None:
-            self.base_pose = msg.pose.pose  # Update this line to get the pose from the Odometry message
+        if self.start_pose is None:
+            self.start_pose = msg.pose.pose
 
     def return_callback(self, msg):
-        if msg.data and self.base_pose is not None:
-            goal = MoveBaseGoal()
-            goal.target_pose.header.frame_id = "map"
-            goal.target_pose.header.stamp = rospy.Time.now()
-            goal.target_pose.pose = self.base_pose
-            self.stop_explore_lite.publish(False)
+        if msg.data and self.start_pose is not None:
+            goal = PoseStamped()
+            goal.header.frame_id = "map"
+            goal.header.stamp = rospy.Time.now()
+            goal.pose = self.start_pose
 
-            self.move_base_client.send_goal(goal) 
-            
+            self.stop_explore_lite_publisher.publish(False)  # Stop explore_lite before returning to base
+            rospy.sleep(5)
+            self.goal_publisher.publish(goal)
+
+    def explore_lite_callback(self, msg):
+        if msg.data:
+            self.start_pose = None  # Reset the start_pose to record the new position before exploration starts
 
 if __name__ == '__main__':
     return_to_base = ReturnToBase()

@@ -129,10 +129,14 @@ export class SocketServer {
         this.loggerObservable = this.logger.logObservable.subscribe(this.sendLogs.bind(this));
 
         this.logger.startLogs();
-        await this.missionDistance.startMission();
+        // await this.missionDistance.startMission();
         this.stateMachine.onMission();
         this.isMissionStopped = false;
         this.nodeManager.startMission();
+      });
+
+      socket.on('return-to-base', async () => {
+        this.nodeManager.returnToBase();
       });
 
       socket.on('stop-mission', () => {
@@ -142,7 +146,7 @@ export class SocketServer {
         this.stateMachine.onMissionEnd();
         this.nodeManager.stopMission();
         this.logger.stopLog();
-        this.missionDistance.stopMission();
+        // this.missionDistance.stopMission();
         this.loggerObservable.unsubscribe();
         this.stateMachine.onReady();
       });
