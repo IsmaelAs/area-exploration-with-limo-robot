@@ -10,7 +10,6 @@ RUN apt-get update && apt-get install -y curl git \
       ros-noetic-dwa-local-planner ros-noetic-navigation \
       ros-noetic-rosbridge-server ros-noetic-robot-pose-ekf\
       ros-${ROS_DISTRO}-multirobot-map-merge ros-${ROS_DISTRO}-explore-lite
-      ros-${ROS_DISTRO}-move-base
 
 # For some reason, libusb is missing some pkg-config files
 RUN curl -LO https://github.com/libusb/libusb/releases/download/v1.0.26/libusb-1.0.26.tar.bz2 && \
