@@ -42,6 +42,7 @@ class ReturnToBase:
             goal.pose = self.start_pose
 
             self.stop_explore_lite_publisher.publish(False)  # Stop explore_lite before returning to base
+            rospy.sleep(5)
             self.goal_publisher.publish(goal)
 
     def explore_lite_callback(self, msg):
