@@ -26,7 +26,7 @@ function launch_sequence {
     sleep 5
 
     echo "Launching navigation stack..."
-    roslaunch --wait  limo_bringup one_navigation.launch &
+    roslaunch --wait  limo_bringup limo_navigation_ackerman.launch &
     sleep 5
 
     echo "Launching explore_control..."
