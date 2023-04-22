@@ -71,6 +71,12 @@ describe("Node map state Unittest's", ()=> {
     })
 
 
-   
+    it("should pass by when we call closeNodeMap on ros undefined", () => {
+        const spyClose = sinon.spy(rosMock, "close")
+        // to init ros in the node
+        nodeMap["ros"] = undefined as unknown as roslibjs.Ros
+        nodeMap.closeNodeMap()
+        expect(spyClose.called).to.be.false
+    })
       
 })
