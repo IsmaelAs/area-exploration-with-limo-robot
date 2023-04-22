@@ -71,4 +71,12 @@ describe("Node Update Unittest's", ()=> {
         nodeUpdate.closeNodeUpdate()
         expect(spyClose.called).to.be.true
     })
+
+    it("should pass by when we call closeNodeUpdate on ros undefined", () => {
+        const spyClose = sinon.spy(rosMock, "close")
+        // to init ros in the node
+        nodeUpdate["ros"] = undefined as unknown as roslibjs.Ros
+        nodeUpdate.closeNodeUpdate()
+        expect(spyClose.called).to.be.false
+    })
 })

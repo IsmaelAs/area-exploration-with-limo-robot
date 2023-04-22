@@ -61,6 +61,14 @@ describe("Note exploration state Unittest's", ()=> {
         expect(spyClose.called).to.be.true
     })
 
+    it("should pass by when we call closeNodeExporationState on ros undefined", () => {
+        const spyClose = sinon.spy(rosMock, "close")
+        // to init ros in the node
+        nodeExplorationState["ros"] = undefined as unknown as roslibjs.Ros
+        nodeExplorationState.closeNodeExplorationState()
+        expect(spyClose.called).to.be.false
+    })
+
     it('should publish a message with the provided boolean data', () => {
         const msg: Bool = { data: true };
         nodeExplorationState.initNodeExplorationState()

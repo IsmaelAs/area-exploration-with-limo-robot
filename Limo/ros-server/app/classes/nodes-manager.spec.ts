@@ -6,6 +6,7 @@ import { NodeMovement } from "./ros/nodes/node-movement";
 import { NodeExplorationState } from './ros/nodes/node-exploration-state';
 import { NodeUpdate } from "./ros/nodes/node-update";
 import { NodeBattery } from "./ros/nodes/node-battery";
+import { NodeReturnToBase } from "./ros/nodes/node-return-to-base";
 
 describe("Node Manager Unittest's", () => {
     
@@ -15,13 +16,15 @@ describe("Node Manager Unittest's", () => {
     let stubNodeExplorationState: sinon.SinonStubbedInstance<NodeExplorationState>
     let stubNodeUpdate: sinon.SinonStubbedInstance<NodeUpdate>
     let stubNodeBattery: sinon.SinonStubbedInstance<NodeBattery>
+    let stubNodeReturnToBase: sinon.SinonStubbedInstance<NodeReturnToBase>
 
     beforeEach(() => {
         stubNodeMovement =  sinon.createStubInstance(NodeMovement)
         stubNodeExplorationState = sinon.createStubInstance(NodeExplorationState)
         stubNodeUpdate = sinon.createStubInstance(NodeUpdate)
         stubNodeBattery = sinon.createStubInstance(NodeBattery)
-        nodeManager = new NodeManager(stubNodeExplorationState,stubNodeMovement, stubNodeUpdate, stubNodeBattery)
+        stubNodeReturnToBase = sinon.createStubInstance(NodeReturnToBase)
+        nodeManager = new NodeManager(stubNodeExplorationState,stubNodeReturnToBase,stubNodeMovement, stubNodeUpdate, stubNodeBattery)
         nodeExplorationState = new NodeExplorationState()
     })
 
