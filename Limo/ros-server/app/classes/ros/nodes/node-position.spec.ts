@@ -16,7 +16,7 @@ describe("Node Position Unittest's", () => {
     let topicMock: TopicMock
 
     beforeEach(() => {
-        rosMock = new RosMock({url: BRIDGE_URI})
+        rosMock = new RosMock({ url: BRIDGE_URI })
 
         topicMock = new TopicMock({
             ros: rosMock,
@@ -28,10 +28,10 @@ describe("Node Position Unittest's", () => {
         sinon.stub(roslibjs, 'Ros').callsFake((args) => {
             return rosMock
         })
-    
+
         sinon.stub(roslibjs, 'Topic').callsFake((args) => {
             return topicMock
-        })    
+        })
 
         nodePosition = new NodePosition()
     })
@@ -68,15 +68,15 @@ describe("Node Position Unittest's", () => {
     it('should call deepCopy with data when we call getData', () => {
         const mockOdom: Odometry = {} as unknown as Odometry
         const returnOdom: Odometry = {} as unknown as Odometry
-        const spyDeepCopy = sinon.stub(deepCopy, "default").callsFake(() => {return returnOdom})
-    
+        const spyDeepCopy = sinon.stub(deepCopy, "default").callsFake(() => { return returnOdom })
+
         nodePosition["data"] = mockOdom
 
         const returnOfFunction = nodePosition.getData()
 
         expect(returnOfFunction).to.deep.equal(returnOdom)
         expect(spyDeepCopy.called).to.be.true
-        expect(spyDeepCopy.calledWith(mockOdom)).to.be,true
+        expect(spyDeepCopy.calledWith(mockOdom)).to.be, true
     })
 
     it("should call close when we call closeNodePosition", () => {
@@ -88,6 +88,14 @@ describe("Node Position Unittest's", () => {
         nodePosition.closeNodePosition()
 
         expect(spyClose.called).to.be.true
+    })
+
+    it("should set and print the namespace when setNamespace is called", () => {
+        const namespace = "test"
+        const consoleLogSpy = sinon.spy(console, "log");
+        nodePosition.setNamespace(namespace)
+        expect(consoleLogSpy.called).to.be.true
+        expect(nodePosition["namespace"]).to.equal(namespace)
     })
 
 

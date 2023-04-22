@@ -3,7 +3,6 @@ import { IpHandlerService } from 'src/app/services/ip-handler.service';
 const ROS3D = require('ros3d');
 import { Ros } from 'roslib';
 import { environment } from 'src/environments/environment';
-//import { GridClient, MapViewer } from 'src/app/types/ros3d';
 import { MapViewerComponent } from './map-viewer.component';
 
 describe('MapViewerComponent', () => {
@@ -23,9 +22,9 @@ describe('MapViewerComponent', () => {
       getTopicType: jasmine.createSpy(),
       idCounter: 0
     };
-    
+
     const rosLibMock = {
-      Ros: function() {
+      Ros: function () {
         return rosMock;
       },
       Topic: jasmine.createSpy(),
@@ -81,14 +80,11 @@ describe('MapViewerComponent', () => {
     expect(component["ros1"].constructor).toHaveBeenCalledWith({
       'url': `ws://${ipAddressLimo1}:9090`
     });
- 
+
   });
 
   it('should set the topic correctly based on the environment', () => {
     spyOn(ROS3D.OccupancyGridClient.prototype, 'constructor');
-
-    /*const isSimulation = true;
-    environment.IS_SIMULATION = isSimulation;*/
 
     component.init();
 
@@ -99,27 +95,27 @@ describe('MapViewerComponent', () => {
       'continuous': true
     });
   });
-    
-    it('should create the merged viewer', () => {
+
+  it('should create the merged viewer', () => {
     expect(component["viewerMerged"]).toBeDefined();
-    });
-    
-    it('should create the merged grid client', () => {
+  });
+
+  it('should create the merged grid client', () => {
     expect(component["gridClientMerged"]).toBeDefined();
-    });
-    
-    it('should create the ros 1', () => {
+  });
+
+  it('should create the ros 1', () => {
     expect(component["ros1"]).toBeDefined();
-    });
-    
-    describe('init', () => {
+  });
+
+  describe('init', () => {
     beforeEach(() => {
-    spyOn(ROS3D, 'Viewer').and.callThrough();
-    spyOn(ROS3D, 'OccupancyGridClient').and.callThrough();
-    component.init();
+      spyOn(ROS3D, 'Viewer').and.callThrough();
+      spyOn(ROS3D, 'OccupancyGridClient').and.callThrough();
+      component.init();
     });
   });
-  
+
   it('should create the merged viewer', () => {
     expect(ROS3D.Viewer).toHaveBeenCalledWith({
       'background': '#7e7e7e',
@@ -130,7 +126,7 @@ describe('MapViewerComponent', () => {
     });
     expect(component["viewerMerged"]).toBeDefined();
   });
-  
+
   it('should setup the merged grid client', () => {
     expect(ROS3D.OccupancyGridClient).toHaveBeenCalledWith({
       'ros': component["ros1"],
@@ -140,5 +136,5 @@ describe('MapViewerComponent', () => {
     });
     expect(component["gridClientMerged"]).toBeDefined();
   });
-  
+
 });

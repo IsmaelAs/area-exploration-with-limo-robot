@@ -22,8 +22,10 @@ export class MyStateMachine {
        * this.onLowBattery(data?.percentage);
        */
     }
-    this.statesObservable.next({limoId: this.limoId,
-      state: this.currentState});
+    this.statesObservable.next({
+      limoId: this.limoId,
+      state: this.currentState,
+    });
   }
 
 
@@ -31,17 +33,6 @@ export class MyStateMachine {
     this.intervalState = setInterval(this.callBack.bind(this), 1000);
   }
 
-  /*
-   *  OnLowBattery(percentage: number = 100): void {
-   *     // Check if the battery is below 30%
-   *     if (percentage < 30) {
-   *       console.log('Battery level is below 30%');
-   *       this.currentState = "STOPPED";
-   *     } else if (this.currentState !== "ON_MISSION"  && this.currentState !== "WAITING") {
-   *         this.currentState = "WAITING";
-   *     }
-   *  }
-   */
 
   setLimoId(limoId: number) {
     this.limoId = limoId;

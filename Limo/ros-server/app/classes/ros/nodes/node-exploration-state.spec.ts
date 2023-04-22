@@ -9,13 +9,13 @@ import { BRIDGE_URI } from "../../../constants/url";
 import Bool from '../../../types/Bool';
 
 
-describe("Note exploration state Unittest's", ()=> {
+describe("Note exploration state Unittest's", () => {
     let nodeExplorationState: NodeExplorationState
     let rosMock: RosMock
     let topicMock: TopicMock
 
     beforeEach(() => {
-        rosMock = new RosMock({url: BRIDGE_URI})
+        rosMock = new RosMock({ url: BRIDGE_URI })
 
         topicMock = new TopicMock({
             ros: rosMock,
@@ -30,7 +30,7 @@ describe("Note exploration state Unittest's", ()=> {
 
         sinon.stub(roslibjs, 'Topic').callsFake((args) => {
             return topicMock
-        })  
+        })
 
         nodeExplorationState = new NodeExplorationState()
 
@@ -61,12 +61,20 @@ describe("Note exploration state Unittest's", ()=> {
         expect(spyClose.called).to.be.true
     })
 
+    it("should pass by when we call closeNodeExporationState on ros undefined", () => {
+        const spyClose = sinon.spy(rosMock, "close")
+        // to init ros in the node
+        nodeExplorationState["ros"] = undefined as unknown as roslibjs.Ros
+        nodeExplorationState.closeNodeExplorationState()
+        expect(spyClose.called).to.be.false
+    })
+
     it('should publish a message with the provided boolean data', () => {
         const msg: Bool = { data: true };
         nodeExplorationState.initNodeExplorationState()
         const spyPublish = sinon.spy(nodeExplorationState["publisherExplorationState"], 'publish');
         nodeExplorationState.sendMessage(msg);
         expect(spyPublish.called).to.be.true;
-      });
-      
+    });
+
 })

@@ -9,7 +9,7 @@ import { expect } from "chai";
 
 
 describe("Logger Unittest", () => {
-    
+
     let logger: Logger;
     let nodePosition: NodePosition
     let nodeScan: NodeScan
@@ -29,16 +29,18 @@ describe("Logger Unittest", () => {
 
     it("should call initNodePos and initNodeScan when starting logs", () => {
         const spyNodePos = sinon.spy(nodePosition, "initNodePosition")
-        const spyNodeScan = sinon.spy(nodeScan,"initNodeScan") 
-        const mockOdom: Odometry = {pose: {
+        const spyNodeScan = sinon.spy(nodeScan, "initNodeScan")
+        const mockOdom: Odometry = {
             pose: {
-                position: {
-                    x: 1,
-                    y: 2,
-                    z: 3
+                pose: {
+                    position: {
+                        x: 1,
+                        y: 2,
+                        z: 3
+                    }
                 }
-            } 
-        } } as unknown as Odometry
+            }
+        } as unknown as Odometry
         sinon.stub(logger['nodePosition'], 'getData').callsFake(() => {
             return mockOdom
         })
@@ -62,16 +64,16 @@ describe("Logger Unittest", () => {
         logger.setLimoId(5)
         expect(logger["limoId"]).to.deep.equal(5);
     });
-    
+
     it('should call asObservable when we call getObservable', () => {
         const spyOn = sinon.spy(logger["logsObservable"], "asObservable")
         logger.logObservable
         expect(spyOn.called).to.be.true;
     });
- 
+
     it("should call closeNodePos and closeNodeScan when stopping logs", () => {
         const spyNodePos = sinon.spy(nodePosition, "closeNodePosition")
-        const spyNodeScan = sinon.spy(nodeScan,"closeNodeScan") 
+        const spyNodeScan = sinon.spy(nodeScan, "closeNodeScan")
         const spyOn = sinon.spy(global, 'clearInterval');
         const spyNext = sinon.spy(logger["logsObservable"], "next")
         logger.stopLog()
@@ -81,6 +83,6 @@ describe("Logger Unittest", () => {
         expect(spyOn.called).to.be.true;
         expect(spyNext.called).to.be.true;
     });
-    
-    
+
+
 })

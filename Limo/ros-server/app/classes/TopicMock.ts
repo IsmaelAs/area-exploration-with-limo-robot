@@ -5,7 +5,7 @@ export class TopicMock {
 
   ros: unknown;
 
-  constructor(data: {ros: unknown, name: string, messageType: string, queue_size: number}) {
+  constructor(data: { ros: unknown, name: string, messageType: string, queue_size: number }) {
     this.name = data.name;
     this.messageType = data.messageType;
     this.ros = data.ros;

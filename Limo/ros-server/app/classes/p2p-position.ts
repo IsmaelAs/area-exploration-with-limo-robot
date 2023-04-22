@@ -14,8 +14,7 @@ export class P2PPosition {
 
   private interval: NodeJS.Timer;
 
-  private p2pActivated: boolean = false;
-
+  private p2pActivated = false;
 
 
   constructor(limoID: number) {
@@ -25,14 +24,14 @@ export class P2PPosition {
     this.interval = setInterval(this.getFurthestLimo.bind(this), 2000);
   }
 
-  closeInterval(){
+  closeInterval() {
     clearInterval(this.interval);
   }
 
 
   getDistance() {
-    const data = this.nodePosition.getData();1
-    
+    const data = this.nodePosition.getData();
+    1;
 
     if (!data) return null;
     const distanceFromInit = Math.sqrt((data.pose.pose.position.x ** 2) + (data.pose.pose.position.y ** 2) + (data.pose.pose.position.z ** 2));
@@ -45,7 +44,7 @@ export class P2PPosition {
   }
 
 
-  private setDistance(distance:number) {
+  private setDistance(distance: number) {
     this.distance = distance;
   }
 
@@ -53,28 +52,29 @@ export class P2PPosition {
     return this.p2pDistance;
   }
 
-  setP2PDistance(distance:number) {
+  setP2PDistance(distance: number) {
     this.p2pDistance = distance;
   }
 
-  activateP2P(){
+  activateP2P() {
     this.p2pActivated = true;
   }
 
   getFurthestLimo() {
     if (!this.p2pActivated) return;
 
-    console.log('This is limoId : ' + this.limoId )
-    console.log('My distance is : ' + this.distance )
-    console.log('The P2P distance is : ' + this.p2pDistance )
+    console.log(`This is limoId : ${this.limoId}`);
+    console.log(`My distance is : ${this.distance}`);
+    console.log(`The P2P distance is : ${this.p2pDistance}`);
 
 
     if (this.distance > this.p2pDistance) this.furthestLimo = this.limoId;
     // Return the opposite ID
-    else  {
-      this.furthestLimo = this.limoId === 1 ? 2 : 1; 
+    else {
+      this.furthestLimo = this.limoId === 1 ? 2 : 1;
     }
-    console.log("the fursthest limo is of ID :  "+ this.furthestLimo)
+    console.log(`the fursthest limo is of ID :  ${this.furthestLimo}`);
+    // eslint-disable-next-line consistent-return
     return this.furthestLimo;
   }
 }

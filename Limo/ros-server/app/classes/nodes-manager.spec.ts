@@ -1,21 +1,30 @@
 import { expect } from "chai";
-import { NodeManager} from "./nodes-manager";
+import { NodeManager } from "./nodes-manager";
 import { beforeEach, describe, it } from "mocha";
-import * as sinon from "sinon"
+import * as sinon from "sinon";
 import { NodeMovement } from "./ros/nodes/node-movement";
 import { NodeExplorationState } from './ros/nodes/node-exploration-state';
+import { NodeUpdate } from "./ros/nodes/node-update";
+import { NodeBattery } from "./ros/nodes/node-battery";
+import { NodeReturnToBase } from "./ros/nodes/node-return-to-base";
 
 describe("Node Manager Unittest's", () => {
-    
+
     let nodeManager: NodeManager
     let nodeExplorationState: NodeExplorationState
     let stubNodeMovement: sinon.SinonStubbedInstance<NodeMovement>
     let stubNodeExplorationState: sinon.SinonStubbedInstance<NodeExplorationState>
+    let stubNodeUpdate: sinon.SinonStubbedInstance<NodeUpdate>
+    let stubNodeBattery: sinon.SinonStubbedInstance<NodeBattery>
+    let stubNodeReturnToBase: sinon.SinonStubbedInstance<NodeReturnToBase>
 
     beforeEach(() => {
-        stubNodeMovement =  sinon.createStubInstance(NodeMovement)
+        stubNodeMovement = sinon.createStubInstance(NodeMovement)
         stubNodeExplorationState = sinon.createStubInstance(NodeExplorationState)
-        nodeManager = new NodeManager(stubNodeExplorationState,stubNodeMovement)
+        stubNodeUpdate = sinon.createStubInstance(NodeUpdate)
+        stubNodeBattery = sinon.createStubInstance(NodeBattery)
+        stubNodeReturnToBase = sinon.createStubInstance(NodeReturnToBase)
+        nodeManager = new NodeManager(stubNodeExplorationState, stubNodeReturnToBase, stubNodeMovement, stubNodeUpdate, stubNodeBattery)
         nodeExplorationState = new NodeExplorationState()
     })
 
@@ -27,7 +36,7 @@ describe("Node Manager Unittest's", () => {
         expect(nodeManager["nodeMovement"]).to.deep.equal(stubNodeMovement)
     })
 
-    it("should call initNodeMovement when we call startNodes", () => {    
+    it("should call initNodeMovement when we call startNodes", () => {
         nodeManager.startNodes()
 
         expect(stubNodeMovement.initNodeMovement.called).to.be.true
@@ -70,4 +79,14 @@ describe("Node Manager Unittest's", () => {
         nodeManager.stopMission();
         expect(spy.calledOnce);
     })
+
+    it("should call move and restartContainers of nodeMovement and nodeUpdate when we call update", async () => {
+        await nodeManager.update();
+
+        expect(stubNodeMovement.move.calledTwice).to.be.true;
+        expect(stubNodeMovement.move.firstCall.calledWith('forward', 2)).to.be.true;
+        expect(stubNodeMovement.move.secondCall.calledWith('backward', 2)).to.be.true;
+        expect(stubNodeUpdate.restartContainers.calledOnce).to.be.true;
+    })
+
 })
