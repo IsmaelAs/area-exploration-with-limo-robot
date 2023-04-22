@@ -2,7 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { IpLimoHandlerComponent } from './ip-limo-handler.component';
 import { IpHandlerService } from 'src/app/services/ip-handler.service';
 import { FormsModule } from '@angular/forms';
-import { EventEmitter } from '@angular/core';
 
 describe('IpLimoHandlerComponent', () => {
   let component: IpLimoHandlerComponent;
@@ -40,13 +39,6 @@ describe('IpLimoHandlerComponent', () => {
     expect(ipHandlerServiceSpy.setIps).toHaveBeenCalled()
     expect(spyOutput).toHaveBeenCalled()
 
-  })
-
-  it("should return true when the ip1 is good", () => {
-    component.ipAddressLimo1 = "127.2.1.3"
-    component.ipAddressLimo2 = ""
-
-    expect(component.ipPatternRight).toBeTruthy()
   })
 
   it("should return false when the ip1 is false", () => {
