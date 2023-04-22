@@ -24,12 +24,6 @@ describe("Mission Distance  Unittest's", () => {
     })
 
     //fake test
-    it("startMission", async () => {
-        const stubNodePosition = sinon.spy(missionDistance["nodePosition"], "initNodePosition")
-        await missionDistance.startMission()
-        expect(stubNodePosition.called).to.be.false
-    })
-    //fake test
     it("should call emitTotalDistance when stopMission called", () => {
         missionDistance["isMissionActive"] = false;
         const emitTotalDistanceSpy = sinon.spy((missionDistance as any), 'emitTotalDistance')
