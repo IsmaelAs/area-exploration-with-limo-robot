@@ -29,16 +29,16 @@ export class Server {
 
 
   // eslint-disable-next-line no-useless-constructor, no-empty-function
-  constructor(private readonly application: Application) {}
+  constructor(private readonly application: Application) { }
 
   private static normalizePort(val: number | string): number | string | boolean {
     const port: number = typeof val === 'string' ?
-parseInt(val,
-    this.baseDix) :
-val;
+      parseInt(val,
+          this.baseDix) :
+      val;
     if (isNaN(port)) {
       return val;
-    // eslint-disable-next-line no-magic-numbers
+      // eslint-disable-next-line no-magic-numbers
     } else if (port >= 0) {
       return port;
     }
@@ -62,7 +62,7 @@ val;
       cors: {
         origin: '*',
       },
-      maxHttpBufferSize: 1e9
+      maxHttpBufferSize: 1e9,
     });
     const nodeExplorationState = new NodeExplorationState();
     const nodeReturnToBase = new NodeReturnToBase();
@@ -81,8 +81,8 @@ val;
       throw error;
     }
     const bind: string = typeof Server.appPort === 'string' ?
-`Pipe ${Server.appPort}` :
-`Port ${Server.appPort}`;
+      `Pipe ${Server.appPort}` :
+      `Port ${Server.appPort}`;
     switch (error.code) {
       case 'EACCES':
         console.error(`${bind} requires elevated privileges`);
@@ -103,8 +103,8 @@ val;
   private onListening(): void {
     const addr = this.server.address() as AddressInfo;
     const bind: string = typeof addr === 'string' ?
-`pipe ${addr}` :
-`port ${addr.port}`;
+      `pipe ${addr}` :
+      `port ${addr.port}`;
     // eslint-disable-next-line no-console
     console.log(`Listening on ${bind}`);
   }

@@ -10,14 +10,14 @@ import * as deepCopy from "../../../utilities/DeepCopy";
 import LaserScan from '../../../types/LaserScan';
 
 
-describe("Node scan Unittest's", ()=> {
+describe("Node scan Unittest's", () => {
     let nodeScan: NodeScan
     let rosMock: RosMock
     let topicMock: TopicMock
 
 
     beforeEach(() => {
-        rosMock = new RosMock({url: BRIDGE_URI})
+        rosMock = new RosMock({ url: BRIDGE_URI })
 
         topicMock = new TopicMock({
             ros: rosMock,
@@ -32,7 +32,7 @@ describe("Node scan Unittest's", ()=> {
 
         sinon.stub(roslibjs, 'Topic').callsFake((args) => {
             return topicMock
-        })  
+        })
 
         nodeScan = new NodeScan()
 
@@ -66,19 +66,19 @@ describe("Node scan Unittest's", ()=> {
 
         expect(nodeScan["data"]).to.deep.equal(mockLaserScan)
     })
-    
+
     it('should call deepCopy with data when we call getData', () => {
         const mockLaserScan: LaserScan = {} as unknown as LaserScan
         const returnLaserScan: LaserScan = {} as unknown as LaserScan
-        const spyDeepCopy = sinon.stub(deepCopy, "default").callsFake(() => {return returnLaserScan})
-    
+        const spyDeepCopy = sinon.stub(deepCopy, "default").callsFake(() => { return returnLaserScan })
+
         nodeScan["data"] = mockLaserScan
 
         const returnOfFunction = nodeScan.getData()
 
         expect(returnOfFunction).to.deep.equal(returnLaserScan)
         expect(spyDeepCopy.called).to.be.true
-        expect(spyDeepCopy.calledWith(mockLaserScan)).to.be,true
+        expect(spyDeepCopy.calledWith(mockLaserScan)).to.be, true
     })
 
 

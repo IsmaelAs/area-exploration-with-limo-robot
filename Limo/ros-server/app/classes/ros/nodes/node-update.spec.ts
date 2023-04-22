@@ -9,14 +9,14 @@ import { NodeUpdate } from "./node-update";
 
 
 
-describe("Node Update Unittest's", ()=> {
+describe("Node Update Unittest's", () => {
     let nodeUpdate: NodeUpdate
     let rosMock: RosMock
     let topicMock: TopicMock
 
 
     beforeEach(() => {
-        rosMock = new RosMock({url: BRIDGE_URI})
+        rosMock = new RosMock({ url: BRIDGE_URI })
 
         topicMock = new TopicMock({
             ros: rosMock,
@@ -31,7 +31,7 @@ describe("Node Update Unittest's", ()=> {
 
         sinon.stub(roslibjs, 'Topic').callsFake((args) => {
             return topicMock
-        })  
+        })
 
         nodeUpdate = new NodeUpdate()
 
@@ -54,10 +54,10 @@ describe("Node Update Unittest's", ()=> {
     })
 
 
-   
+
     it("should restartContainers ", () => {
         nodeUpdate.initNodeScan()
-        let stubProcess = sinon.stub(process, "exit").callsFake((code?:number)=>{ return 0 as unknown as never})
+        let stubProcess = sinon.stub(process, "exit").callsFake((code?: number) => { return 0 as unknown as never })
         const consoleSpy = sinon.spy(console, 'log')
         nodeUpdate.restartContainers()
         expect(stubProcess.called).to.be.true

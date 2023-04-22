@@ -12,7 +12,7 @@ describe('MyStateMachine Unittest', () => {
 
   afterEach(() => {
     sinon.restore()
-})
+  })
 
 
   it('setLimoId', () => {
@@ -66,7 +66,7 @@ describe('MyStateMachine Unittest', () => {
     stateMachine["callBack"]()
     expect(spyOn.called).to.be.true;
   });
-  
+
   it('should set intervalState when we call startStates', () => {
     expect(stateMachine["intervalState"]).to.be.undefined
     stateMachine.startStates()

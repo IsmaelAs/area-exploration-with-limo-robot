@@ -3,14 +3,17 @@ import { NodePosition } from '../classes/ros/nodes/node-position';
 import { Server } from 'socket.io';
 
 export class MissionDistance {
-  prototype(prototype: any, arg1: string) {
-      throw new Error("Method not implemented.");
+  prototype() {
+    throw new Error('Method not implemented.');
   }
+
   private nodePosition: NodePosition = new NodePosition();
 
-  private previousPosition = { x: 0,
+  private previousPosition = {
+    x: 0,
     y: 0,
-    z: 0 };
+    z: 0,
+  };
 
   private totalDistance = 0;
 
@@ -65,8 +68,8 @@ export class MissionDistance {
     const currentPosition = this.getCurrentPosition();
     const distance = Math.sqrt(
         ((currentPosition.x - this.previousPosition.x) ** 2) +
-        ((currentPosition.y - this.previousPosition.y) ** 2) +
-        ((currentPosition.z - this.previousPosition.z) ** 2)
+      ((currentPosition.y - this.previousPosition.y) ** 2) +
+      ((currentPosition.z - this.previousPosition.z) ** 2)
     );
 
     this.totalDistance += distance;

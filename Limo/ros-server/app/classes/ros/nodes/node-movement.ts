@@ -1,6 +1,6 @@
 import { BRIDGE_URI } from '../../../constants/url';
 import Command from '../../../types/types';
-import {Message, Ros, Topic} from 'roslib';
+import { Message, Ros, Topic } from 'roslib';
 import { TIME_DELAY } from '../../../constants/time-constants';
 import delay from 'delay';
 import Twist from '../../../interfaces/Twist';

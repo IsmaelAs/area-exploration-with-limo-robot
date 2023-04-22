@@ -9,7 +9,7 @@ export class P2PSocketClient {
 
   private p2pUrl: string;
 
-  private p2pActivated: boolean = false;
+  private p2pActivated = false;
 
   private intervalPos: NodeJS.Timer;
 
@@ -59,8 +59,8 @@ export class P2PSocketClient {
   private callBackMap() {
     const map = this.nodeMap.getMap();
     if (map) {
-      console.log("Il y a une map");
-      this.emit('p2p-map', map); 
+      console.log('Il y a une map');
+      this.emit('p2p-map', map);
     }
   }
 

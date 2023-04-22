@@ -9,14 +9,15 @@ export class NodeManager {
   private nodeMovement: NodeMovement;
 
   private nodeExplorationState: NodeExplorationState;
+
   private nodeReturnToBase: NodeReturnToBase;
 
   private nodeUpdate: NodeUpdate;
 
   private nodeBattery: NodeBattery;
 
-  constructor(nodeExplorationState: NodeExplorationState, nodeReturnToBase: NodeReturnToBase, 
-    nodeMovement: NodeMovement, nodeUpdate: NodeUpdate, nodeBattery: NodeBattery) {
+  constructor(nodeExplorationState: NodeExplorationState, nodeReturnToBase: NodeReturnToBase,
+      nodeMovement: NodeMovement, nodeUpdate: NodeUpdate, nodeBattery: NodeBattery) {
     this.nodeMovement = nodeMovement;
     this.nodeExplorationState = nodeExplorationState;
     this.nodeReturnToBase = nodeReturnToBase;
@@ -35,7 +36,7 @@ export class NodeManager {
   }
 
   // Send command to move limo
-  async move(command :Command, nbrSendingMsg?: number): Promise<void> {
+  async move(command: Command, nbrSendingMsg?: number): Promise<void> {
     nbrSendingMsg ? await this.nodeMovement.move(command, nbrSendingMsg) : await this.nodeMovement.move(command);
   }
 

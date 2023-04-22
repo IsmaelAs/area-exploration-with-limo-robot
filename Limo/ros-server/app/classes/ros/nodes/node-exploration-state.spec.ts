@@ -9,13 +9,13 @@ import { BRIDGE_URI } from "../../../constants/url";
 import Bool from '../../../types/Bool';
 
 
-describe("Note exploration state Unittest's", ()=> {
+describe("Note exploration state Unittest's", () => {
     let nodeExplorationState: NodeExplorationState
     let rosMock: RosMock
     let topicMock: TopicMock
 
     beforeEach(() => {
-        rosMock = new RosMock({url: BRIDGE_URI})
+        rosMock = new RosMock({ url: BRIDGE_URI })
 
         topicMock = new TopicMock({
             ros: rosMock,
@@ -30,7 +30,7 @@ describe("Note exploration state Unittest's", ()=> {
 
         sinon.stub(roslibjs, 'Topic').callsFake((args) => {
             return topicMock
-        })  
+        })
 
         nodeExplorationState = new NodeExplorationState()
 
@@ -75,6 +75,6 @@ describe("Note exploration state Unittest's", ()=> {
         const spyPublish = sinon.spy(nodeExplorationState["publisherExplorationState"], 'publish');
         nodeExplorationState.sendMessage(msg);
         expect(spyPublish.called).to.be.true;
-      });
-      
+    });
+
 })

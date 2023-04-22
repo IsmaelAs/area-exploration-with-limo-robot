@@ -14,7 +14,7 @@ describe("Node Return to Base Unittest's", () => {
     let topicMock: TopicMock
 
     beforeEach(() => {
-        rosMock = new RosMock({url: BRIDGE_URI})
+        rosMock = new RosMock({ url: BRIDGE_URI })
 
         topicMock = new TopicMock({
             ros: rosMock,
@@ -29,10 +29,10 @@ describe("Node Return to Base Unittest's", () => {
 
         sinon.stub(roslibjs, 'Topic').callsFake((args) => {
             return topicMock
-        })  
+        })
 
         nodeReturnToBase = new NodeReturnToBase()
-        
+
     })
 
     afterEach(() => {
@@ -74,5 +74,5 @@ describe("Node Return to Base Unittest's", () => {
         nodeReturnToBase.closeNodeReturnToBase()
         expect(spyClose.called).to.be.false
     })
-    
+
 })

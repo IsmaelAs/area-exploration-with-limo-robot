@@ -1,5 +1,5 @@
 import { BRIDGE_URI } from '../../../constants/url';
-import {Message, Ros, Topic} from 'roslib';
+import { Message, Ros, Topic } from 'roslib';
 import Bool from '../../../types/Bool';
 
 export class NodeReturnToBase {
@@ -11,7 +11,7 @@ export class NodeReturnToBase {
 
 
   initNodeReturnToBase() {
-    this.ros = new Ros({url: BRIDGE_URI});
+    this.ros = new Ros({ url: BRIDGE_URI });
 
     // Console error when error
     this.ros.on('error', (err: Error) => {

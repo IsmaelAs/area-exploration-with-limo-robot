@@ -6,17 +6,17 @@ import { expect } from "chai";
 import { RosMock } from "../../../classes/RosMock";
 import { TopicMock } from "../../../classes/TopicMock";
 import { BRIDGE_URI } from "../../../constants/url";
-import  Map from '../../../types/Map';
+import Map from '../../../types/Map';
 
 
-describe("Node map state Unittest's", ()=> {
+describe("Node map state Unittest's", () => {
     let nodeMap: NodeMap
     let rosMock: RosMock
     let topicMock: TopicMock
 
 
     beforeEach(() => {
-        rosMock = new RosMock({url: BRIDGE_URI})
+        rosMock = new RosMock({ url: BRIDGE_URI })
 
         topicMock = new TopicMock({
             ros: rosMock,
@@ -31,7 +31,7 @@ describe("Node map state Unittest's", ()=> {
 
         sinon.stub(roslibjs, 'Topic').callsFake((args) => {
             return topicMock
-        })  
+        })
 
         nodeMap = new NodeMap()
 
@@ -61,7 +61,7 @@ describe("Node map state Unittest's", ()=> {
         expect(consoleLogSpy.called).to.be.true
     })
 
-    
+
     it("should call close when we call closeNodeMap", () => {
         const spyClose = sinon.spy(rosMock, "close")
         // to init ros in the node
@@ -78,5 +78,5 @@ describe("Node map state Unittest's", ()=> {
         nodeMap.closeNodeMap()
         expect(spyClose.called).to.be.false
     })
-      
+
 })

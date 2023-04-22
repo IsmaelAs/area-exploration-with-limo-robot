@@ -9,13 +9,13 @@ import { NodeBattery } from "./node-battery";
 import { Observable } from "rxjs";
 
 
-describe("Battery Unittest's", ()=> {
+describe("Battery Unittest's", () => {
     let nodeBattery: NodeBattery
     let rosMock: RosMock
     let topicMock: TopicMock
 
     beforeEach(() => {
-        rosMock = new RosMock({url: BRIDGE_URI})
+        rosMock = new RosMock({ url: BRIDGE_URI })
 
         topicMock = new TopicMock({
             ros: rosMock,
@@ -30,7 +30,7 @@ describe("Battery Unittest's", ()=> {
 
         sinon.stub(roslibjs, 'Topic').callsFake((args) => {
             return topicMock
-        })  
+        })
 
         nodeBattery = new NodeBattery()
 
@@ -53,22 +53,9 @@ describe("Battery Unittest's", ()=> {
 
     })
 
-    // it("should set data when we call callback", () => {
-    //     const data = {"percentage":40} 
-    //     nodeBattery["callBack"](data)
-    //     expect(nodeBattery["data"]).to.deep.equal(data)
-    // })
-
-    // it("should log a message if battery percentage is below 30", () => {
-    //     const percentage = 15
-    //     const consoleSpy = sinon.spy(console, 'log')
-    //     nodeBattery.onLowBattery(percentage)
-    //     expect(consoleSpy.calledWith('Battery level is below 30%')).to.be.true
-      
-    // })
 
     it("should return the correct data", () => {
-        const data = {"percentage":40} 
+        const data = { "percentage": 40 }
         nodeBattery["data"] = data
         expect(nodeBattery.getData()).to.deep.equal(data)
     })
@@ -76,19 +63,19 @@ describe("Battery Unittest's", ()=> {
     it("should return an Observable that emits objects with percentage property", () => {
         const observable = nodeBattery.getBatteryObservable();
         expect(observable).to.be.instanceOf(Observable);
-      
-        const testValues = [    { percentage: 10 },    { percentage: 20 },    { percentage: 30 },  ];
-      
+
+        const testValues = [{ percentage: 10 }, { percentage: 20 }, { percentage: 30 },];
+
         const onNextSpy = sinon.spy();
         observable.subscribe(onNextSpy);
-      
+
         testValues.forEach((value) => {
-          nodeBattery["batterySubject"].next(value);
-          expect(onNextSpy.calledWith(value)).to.be.true;
+            nodeBattery["batterySubject"].next(value);
+            expect(onNextSpy.calledWith(value)).to.be.true;
         });
-      });
-    
-    
+    });
+
+
     it("should call close when we call closeNodeBattery", () => {
         const spyClose = sinon.spy(rosMock, "close")
         // to init ros in the node
@@ -97,6 +84,6 @@ describe("Battery Unittest's", ()=> {
         expect(spyClose.called).to.be.true
     })
 
- 
-      
+
+
 })

@@ -1,6 +1,7 @@
 import { Ros, Topic } from 'roslib';
 import { BRIDGE_URI } from '../../../constants/url';
-import  Map from '../../../types/Map';
+import Map from '../../../types/Map';
+// eslint-disable-next-line no-duplicate-imports
 import { Message } from 'roslib';
 
 export default class NodeMap {
@@ -25,39 +26,38 @@ export default class NodeMap {
     this.ros.on('connection', () => {
       console.log(`${this.name} : ROS connected`);
       // Initialize subscriber
-    this.mapSubscriber = new Topic({
+      this.mapSubscriber = new Topic({
         ros: this.ros,
-        name: process.env.IS_SIMULATION ? '/limo2/map': '/map',
+        name: process.env.IS_SIMULATION ? '/limo2/map' : '/map',
         messageType: 'nav_msgs/OccupancyGrid',
         queue_size: 10,
-        queue_length: 10
+        queue_length: 10,
       });
 
-    this.mapPublisher = new Topic({
-      ros: this.ros,
-      name: '/p2p/map',
-      messageType: 'nav_msgs/OccupancyGrid',
-      queue_size: 10,
-      queue_length: 10
-    });
+      this.mapPublisher = new Topic({
+        ros: this.ros,
+        name: '/p2p/map',
+        messageType: 'nav_msgs/OccupancyGrid',
+        queue_size: 10,
+        queue_length: 10,
+      });
 
-    this.mapSubscriber.subscribe(this.callBack.bind(this));
+      this.mapSubscriber.subscribe(this.callBack.bind(this));
     });
-
   }
 
   private callBack(data: Map): void {
     this.data = data;
   }
 
-  
+
   getMap(): Map {
     return this.data;
   }
 
   sendMap(map: Map) {
     const mapToSend = new Message(map);
-    console.log('Le ros-server Limo 1 envoie la map :')
+    console.log('Le ros-server Limo 1 envoie la map :');
     this.mapPublisher.publish(mapToSend);
   }
 

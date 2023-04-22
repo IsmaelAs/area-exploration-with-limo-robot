@@ -25,11 +25,13 @@ export class Logger {
     const scanOutput = this.nodeScan.getData();
 
 
-    this.logsObservable.next({limoId: this.limoId,
+    this.logsObservable.next({
+      limoId: this.limoId,
       data: {
         position,
         scanOutput,
-      }});
+      },
+    });
   }
 
   private positionLog() {
@@ -46,8 +48,10 @@ export class Logger {
   }
 
   stopLog() {
-    this.logsObservable.next({limoId: this.limoId,
-      data: `Stop sending logs from limo ${this.limoId}`});
+    this.logsObservable.next({
+      limoId: this.limoId,
+      data: `Stop sending logs from limo ${this.limoId}`,
+    });
 
     this.nodePosition.closeNodePosition();
     this.nodeScan.closeNodeScan();

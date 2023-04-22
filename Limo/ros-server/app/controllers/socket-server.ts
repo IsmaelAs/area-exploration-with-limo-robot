@@ -78,7 +78,7 @@ export class SocketServer {
       socket.on('p2p-login', (p2pUrl: string) => {
         this.p2pUrl = p2pUrl;
         if (this.limoId === 2) this.p2pSocketClient = new P2PSocketClient(this.p2pUrl);
-        else this.p2pPosition = new P2PPosition(1) 
+        else this.p2pPosition = new P2PPosition(1);
       });
 
       socket.on('p2p-start', () => {
@@ -123,18 +123,19 @@ export class SocketServer {
         console.log(`On Limo Error : ${err.stack}`);
       });
 
+      // eslint-disable-next-line require-await
       socket.on('start-mission', async () => {
         if (!this.isMissionStopped) return;
 
         this.loggerObservable = this.logger.logObservable.subscribe(this.sendLogs.bind(this));
 
         this.logger.startLogs();
-        // await this.missionDistance.startMission();
         this.stateMachine.onMission();
         this.isMissionStopped = false;
         this.nodeManager.startMission();
       });
 
+      // eslint-disable-next-line require-await
       socket.on('return-to-base', async () => {
         this.nodeManager.returnToBase();
       });
@@ -146,7 +147,6 @@ export class SocketServer {
         this.stateMachine.onMissionEnd();
         this.nodeManager.stopMission();
         this.logger.stopLog();
-        // this.missionDistance.stopMission();
         this.loggerObservable.unsubscribe();
         this.stateMachine.onReady();
       });
@@ -180,8 +180,10 @@ export class SocketServer {
   }
 
   private sendBattery(data: { percentage: number }) {
-    this.emit('save-battery', {limoId: this.limoId,
-      battery: data.percentage});
+    this.emit('save-battery', {
+      limoId: this.limoId,
+      battery: data.percentage,
+    });
   }
 }
 
