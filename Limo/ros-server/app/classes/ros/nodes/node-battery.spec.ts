@@ -53,20 +53,6 @@ describe("Battery Unittest's", ()=> {
 
     })
 
-    // it("should set data when we call callback", () => {
-    //     const data = {"percentage":40} 
-    //     nodeBattery["callBack"](data)
-    //     expect(nodeBattery["data"]).to.deep.equal(data)
-    // })
-
-    // it("should log a message if battery percentage is below 30", () => {
-    //     const percentage = 15
-    //     const consoleSpy = sinon.spy(console, 'log')
-    //     nodeBattery.onLowBattery(percentage)
-    //     expect(consoleSpy.calledWith('Battery level is below 30%')).to.be.true
-      
-    // })
-
     it("should return the correct data", () => {
         const data = {"percentage":40} 
         nodeBattery["data"] = data
