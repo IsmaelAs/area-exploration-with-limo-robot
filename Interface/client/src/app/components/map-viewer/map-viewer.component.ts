@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
 
 export class MapViewerComponent {
 
-    private gridClientMerged: GridClient = { };
+    private gridClientMerged: GridClient = {};
 
     private viewerMerged: MapViewer = { 'scene': undefined };
 
@@ -23,9 +23,9 @@ export class MapViewerComponent {
 
     mapsVisible: boolean = false;
 
-    
 
-    constructor (private ipHandler: IpHandlerService) {
+
+    constructor(private ipHandler: IpHandlerService) {
 
         this.ros1 = new Ros({
             'url': `ws://${ipHandler.ipAddressLimo1}:9090`
@@ -33,7 +33,7 @@ export class MapViewerComponent {
 
     }
 
-    init () {
+    init() {
 
         this.swapVisible();
 

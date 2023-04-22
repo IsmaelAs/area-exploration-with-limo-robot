@@ -53,7 +53,6 @@ describe("Battery Unittest's", () => {
 
     })
 
-
     it("should return the correct data", () => {
         const data = { "percentage": 40 }
         nodeBattery["data"] = data
